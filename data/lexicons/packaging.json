@@ -1,0 +1,4351 @@
+{
+ "profession": "packaging",
+ "name": "包装与展示道具",
+ "version": "1.2.0",
+ "description": "奢侈品包装盒、展示道具的外协加工术语，覆盖物料、结构件、视图、表面工艺、装配公差与品质交付六大类，中英对照面向外协厂沟通场景",
+ "terms": [
+  {
+   "zh": "铜版纸",
+   "en": "Art Paper",
+   "brief": "表面涂布压光的印刷纸，光泽度高、色彩还原好",
+   "scene": "面纸选料",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Coated Paper"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "洋纸",
+   "en": "Art Paper",
+   "brief": "客户对涂层印刷纸的旧称，即铜版纸",
+   "scene": "面纸选料",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Art Paper"
+   ],
+   "freq": 880
+  },
+  {
+   "zh": "硬卡纸",
+   "en": "Cardboard",
+   "brief": "厚度较大、挺度高的纸张基材",
+   "scene": "内衬用纸",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Grey Board"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "灰板纸",
+   "en": "Grey Board",
+   "brief": "以废纸浆制成的厚纸板，用于盒体骨架",
+   "scene": "盒体骨架",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "牛皮纸",
+   "en": "Kraft Paper",
+   "brief": "未漂硫酸盐浆抄造、呈棕黄色的强韧纸张",
+   "scene": "内衬包装",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "Kraft",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "牛皮卡纸",
+   "en": "Kraft Cardboard",
+   "brief": "牛皮浆制的中厚卡纸，兼具挺度与韧性",
+   "scene": "内衬包装",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "瓦楞纸",
+   "en": "Corrugated Board",
+   "brief": "瓦楞芯与面纸贴合而成的缓冲包装材",
+   "scene": "运输包装",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Corrugated Paper"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "特种纸",
+   "en": "Specialty Paper",
+   "brief": "带纹理、植绒或金属效果的艺术纸",
+   "scene": "面纸选料",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "触感纸",
+   "en": "Touch Paper",
+   "brief": "表面有绒面触感涂层的艺术纸",
+   "scene": "面纸选料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Soft Touch Paper"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "植绒纸",
+   "en": "Flocked Paper",
+   "brief": "表面静电植短绒的装饰纸",
+   "scene": "面纸选料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Flocking"
+   ],
+   "freq": 895
+  },
+  {
+   "zh": "皮革",
+   "en": "Leather",
+   "brief": "动物皮鞣制而成的天然皮质材料",
+   "scene": "外包材",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "仿皮",
+   "en": "Pu Leather",
+   "brief": "以基布涂层仿制的皮革替代材料",
+   "scene": "外包材",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "PU"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "绒布",
+   "en": "Velvet",
+   "brief": "表面有密集短绒的柔软织物，用于内衬",
+   "scene": "内衬材料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Flocking Fabric"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "超纤绒",
+   "en": "Microfiber Suede",
+   "brief": "超细纤维制成的仿麂皮绒面料",
+   "scene": "内衬材料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Microfiber"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "丝带",
+   "en": "Ribbon",
+   "brief": "用于装饰与捆扎的窄幅织物带",
+   "scene": "装饰配件",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 935
+  },
+  {
+   "zh": "缎带",
+   "en": "Satin Ribbon",
+   "brief": "缎纹组织、表面光亮的丝带",
+   "scene": "装饰配件",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Satin"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "罗纹带",
+   "en": "Grosgrain Ribbon",
+   "brief": "横向罗纹肌理的丝带，挺度好",
+   "scene": "装饰配件",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Grosgrain"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "磁铁",
+   "en": "Magnet",
+   "brief": "用于盒盖吸附闭合的永磁体",
+   "scene": "闭合结构",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 940
+  },
+  {
+   "zh": "磁钢",
+   "en": "Magnet",
+   "brief": "磁性较强的烧结永磁材料，口语称磁钢",
+   "scene": "闭合结构",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Magnet"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "铰链",
+   "en": "Hinge",
+   "brief": "使盒盖可转动开启的连接件",
+   "scene": "连接结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 935
+  },
+  {
+   "zh": "合页",
+   "en": "Hinge",
+   "brief": "即铰链，用于盖体翻转的金属连接件",
+   "scene": "连接结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Hinge"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "泡棉",
+   "en": "Foam",
+   "brief": "发泡材料，用于内衬缓冲与定位",
+   "scene": "缓冲材料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "EVA Foam"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "海绵",
+   "en": "Sponge",
+   "brief": "开孔发泡材料，用于缓冲保护",
+   "scene": "缓冲材料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "珍珠棉",
+   "en": "EPE Foam",
+   "brief": "聚乙烯发泡材料，轻质缓冲",
+   "scene": "缓冲材料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "EPE"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "吸塑托盘",
+   "en": "Blister Tray",
+   "brief": "热塑成型的透明或白色定位托盘",
+   "scene": "内托结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Blister"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "塑胶件",
+   "en": "Plastic Part",
+   "brief": "注塑或压塑成型的塑料零件",
+   "scene": "结构件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Plastic"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "五金件",
+   "en": "Hardware Part",
+   "brief": "金属材质的结构或装饰零件统称",
+   "scene": "结构件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Hardware"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "亚克力",
+   "en": "Acrylic",
+   "brief": "透明有机玻璃板材，常用作展示座",
+   "scene": "展示结构",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "PMMA"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "压克力",
+   "en": "Acrylic",
+   "brief": "亚克力的另一种写法，即有机玻璃",
+   "scene": "展示结构",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Acrylic"
+   ],
+   "freq": 880
+  },
+  {
+   "zh": "木板",
+   "en": "Wooden Board",
+   "brief": "木质基材，用于展示盒体",
+   "scene": "展示结构",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "MDF 板",
+   "en": "MDF Board",
+   "brief": "中密度纤维板，表面平整便于贴面",
+   "scene": "展示结构",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "MDF"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "贴皮纸",
+   "en": "Lining Paper",
+   "brief": "贴在盒体内壁的精美衬纸",
+   "scene": "内衬工艺",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Lining"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "内衬",
+   "en": "Inner Lining",
+   "brief": "盒体内部起保护与装饰作用的结构",
+   "scene": "内衬工艺",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 935
+  },
+  {
+   "zh": "内托",
+   "en": "Insert Tray",
+   "brief": "承托产品并定位的内置托盘",
+   "scene": "内托结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Insert"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "外箱",
+   "en": "Outer Carton",
+   "brief": "运输与仓储用的外层瓦楞纸箱",
+   "scene": "运输包装",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Master Carton"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "彩盒",
+   "en": "Color Box",
+   "brief": "印刷精美的产品外包装盒",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "胶水",
+   "en": "Glue",
+   "brief": "粘接材料的统称",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Adhesive"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "环保胶",
+   "en": "Eco-friendly Glue",
+   "brief": "符合环保要求的水性粘合剂",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "热熔胶",
+   "en": "Hot Melt Glue",
+   "brief": "加热熔融、冷却固化的粘合剂",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "双面胶",
+   "en": "Double-sided Tape",
+   "brief": "两面都有粘性的胶带",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "DST"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "金箔",
+   "en": "Gold Foil",
+   "brief": "极薄的金质装饰材料，用于烫金",
+   "scene": "表面工艺",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "电化铝",
+   "en": "Hot Stamping Foil",
+   "brief": "烫印用的金属效果转印箔",
+   "scene": "表面工艺",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Foil"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "色卡",
+   "en": "Color Swatch",
+   "brief": "标准化的颜色样卡，便于比色确认",
+   "scene": "色彩确认",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Pantone"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "样板",
+   "en": "Sample Board",
+   "brief": "送客户确认的实物样件",
+   "scene": "打样确认",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Sample"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "盒体",
+   "en": "Box Body",
+   "brief": "包装盒的主体承载结构",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 940
+  },
+  {
+   "zh": "盒盖",
+   "en": "Box Lid",
+   "brief": "覆盖盒体上方的盖子",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Lid"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "天盖",
+   "en": "Top Lid",
+   "brief": "由上向下罩住盒体的盖型",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "地盖",
+   "en": "Bottom Tray",
+   "brief": "承托盒体的下盖部分",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "天地盖",
+   "en": "Top-bottom Box",
+   "brief": "天盖与地盖组合的盒型结构",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "翻盖",
+   "en": "Flip Cover",
+   "brief": "可翻转开启的盖体结构",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Flap"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "书型盒",
+   "en": "Book-style Box",
+   "brief": "像书一样侧开、常配磁吸的盒型",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Book Box"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "抽屉盒",
+   "en": "Drawer Box",
+   "brief": "内盒可抽出的套盒结构",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Drawer"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "包装盒",
+   "en": "Packaging Box",
+   "brief": "产品外包装用的盒体统称",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Gift Box"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "展示盒",
+   "en": "Display Box",
+   "brief": "兼顾收纳与展示功能的盒体",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "display"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "陈列座",
+   "en": "Display Stand",
+   "brief": "用于陈列展示产品的支撑座",
+   "scene": "展示结构",
+   "software": [],
+   "scene_tags": [
+    "display",
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Display"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "展示架",
+   "en": "Display Rack",
+   "brief": "用于陈列商品的立式支架",
+   "scene": "展示结构",
+   "software": [],
+   "scene_tags": [
+    "display",
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Rack"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "底托",
+   "en": "Base Tray",
+   "brief": "支撑整体结构的底部托盘",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "base"
+   ],
+   "standard": "",
+   "var_en": [
+    "Base"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "托盘",
+   "en": "Tray",
+   "brief": "承托产品的平底容器",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "隔板",
+   "en": "Divider",
+   "brief": "分隔内部空间、避免产品碰撞的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Partition"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "挡板",
+   "en": "Baffle",
+   "brief": "限制产品移动的限位板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "侧板",
+   "en": "Side Panel",
+   "brief": "构成盒体侧面的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "side"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 920
+  },
+  {
+   "zh": "面板",
+   "en": "Face Panel",
+   "brief": "构成外观主视面的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Panel"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "围板",
+   "en": "Wrap Panel",
+   "brief": "围合成盒体侧壁的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "底板",
+   "en": "Base Panel",
+   "brief": "构成盒体底面的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "base"
+   ],
+   "standard": "",
+   "var_en": [
+    "Bottom Panel"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "顶板",
+   "en": "Top Panel",
+   "brief": "构成盒体顶面的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Top Panel"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "背板",
+   "en": "Back Panel",
+   "brief": "构成盒体背面的板件",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "铰链盒",
+   "en": "Hinged Box",
+   "brief": "以铰链连接盖体的盒型",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Hinge Box"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "磁吸盒",
+   "en": "Magnetic Box",
+   "brief": "以磁铁吸附闭合的盒型",
+   "scene": "包装结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Magnet Box"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "卡槽",
+   "en": "Groove",
+   "brief": "用于嵌入或定位的凹槽结构",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Slot"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "槽位",
+   "en": "Slot",
+   "brief": "容纳产品嵌入的定位凹槽",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Groove"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "卡扣",
+   "en": "Snap Fit",
+   "brief": "靠弹性形变卡合的连接结构",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Clip"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "榫卯",
+   "en": "Mortise and Tenon",
+   "brief": "靠凹凸配合的插接结构",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "插接",
+   "en": "Interlock",
+   "brief": "板件相互插入固定的装配方式",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "定位柱",
+   "en": "Locating Pin",
+   "brief": "用于精确定位的凸起结构",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Pin"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "定位孔",
+   "en": "Locating Hole",
+   "brief": "与定位柱配合的孔位",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "包边",
+   "en": "Edge Banding",
+   "brief": "对板件边沿进行的包覆处理",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [
+    "Edging"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "翻边",
+   "en": "Flange",
+   "brief": "板件边沿翻折形成的加强边",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [
+    "Edge"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "折边",
+   "en": "Folded Edge",
+   "brief": "板件边缘折弯形成的处理",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [
+    "Fold"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "圆角",
+   "en": "Radius",
+   "brief": "零件转角处加工成的圆弧",
+   "scene": "结构工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "R Corner"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "倒角",
+   "en": "Chamfer",
+   "brief": "把锐边切出的斜面或小平面",
+   "scene": "结构工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Beveled"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "斜面",
+   "en": "Bevel",
+   "brief": "与基准面成一定角度的平面",
+   "scene": "结构工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Beveled"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "拔模斜度",
+   "en": "Draft Angle",
+   "brief": "便于脱模而设置的脱模角度",
+   "scene": "结构工艺",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "厚度",
+   "en": "Thickness",
+   "brief": "材料或零件的厚薄尺寸",
+   "scene": "结构参数",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "T"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "间隙",
+   "en": "Clearance",
+   "brief": "配合件之间预留的空隙量",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Gap"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "配合",
+   "en": "Fit",
+   "brief": "两零件装配时的松紧关系",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "过盈配合",
+   "en": "Interference Fit",
+   "brief": "轴大于孔、需压装的配合",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "间隙配合",
+   "en": "Clearance Fit",
+   "brief": "轴小于孔、有间隙的配合",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "基材",
+   "en": "Substrate",
+   "brief": "表面处理所依附的底层材料",
+   "scene": "物料构成",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Base Material"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "面层",
+   "en": "Top Layer",
+   "brief": "制件最外层的表面材料",
+   "scene": "物料构成",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Surface"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "正视图",
+   "en": "Front View",
+   "brief": "从正前方投影得到的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Front"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "背视图",
+   "en": "Back View",
+   "brief": "从正后方投影得到的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Back"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "左视图",
+   "en": "Left View",
+   "brief": "从左侧投影得到的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "side"
+   ],
+   "standard": "",
+   "var_en": [
+    "Left"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "右视图",
+   "en": "Right View",
+   "brief": "从右侧投影得到的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "side"
+   ],
+   "standard": "",
+   "var_en": [
+    "Right"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "侧视图",
+   "en": "Side View",
+   "brief": "从侧面投影得到的视图统称",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "side"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "俯视图",
+   "en": "Top View",
+   "brief": "从上方俯视投影得到的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Top"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "仰视图",
+   "en": "Bottom View",
+   "brief": "从下方仰视投影得到的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "base"
+   ],
+   "standard": "",
+   "var_en": [
+    "Bottom"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "顶视图",
+   "en": "Top View",
+   "brief": "即俯视图，从上向下观察所得",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Top"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "底视图",
+   "en": "Bottom View",
+   "brief": "即仰视图，从下向上观察所得",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "base"
+   ],
+   "standard": "",
+   "var_en": [
+    "Bottom"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "等轴测图",
+   "en": "Isometric View",
+   "brief": "三个轴向等角度投影的立体视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Isometric"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "轴测图",
+   "en": "Axonometric View",
+   "brief": "沿轴向投影、可量测的立体视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "爆炸图",
+   "en": "Exploded View",
+   "brief": "把装配件按装配顺序拆开表达的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "剖视图",
+   "en": "Section View",
+   "brief": "假想剖切后展示内部结构的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Section"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "局部放大图",
+   "en": "Detail View",
+   "brief": "对局部结构放大表达的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "annotation"
+   ],
+   "standard": "",
+   "var_en": [
+    "Detail"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "展开图",
+   "en": "Unfolded View",
+   "brief": "板件展开后的平面形状图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Flat Pattern"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "三维图",
+   "en": "3D View",
+   "brief": "立体形态表达的视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "3D"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "渲染图",
+   "en": "Rendering",
+   "brief": "模拟真实材质与光照的效果图",
+   "scene": "效果表达",
+   "software": [],
+   "scene_tags": [
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Render"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "线框图",
+   "en": "Wireframe",
+   "brief": "只表达结构线与轮廓的视图",
+   "scene": "效果表达",
+   "software": [],
+   "scene_tags": [
+    "view"
+   ],
+   "standard": "",
+   "var_en": [
+    "Line Drawing"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "隐藏线",
+   "en": "Hidden Line",
+   "brief": "表示被遮挡轮廓的虚线",
+   "scene": "图纸规范",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "中心线",
+   "en": "Center Line",
+   "brief": "表示对称或轴心位置的点划线",
+   "scene": "图纸规范",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "annotation"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "基准面",
+   "en": "Datum Plane",
+   "brief": "作为尺寸与定位参照的平面",
+   "scene": "图纸规范",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Datum"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "基准线",
+   "en": "Datum Line",
+   "brief": "作为测量起点的参照线",
+   "scene": "图纸规范",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "尺寸链",
+   "en": "Dimension Chain",
+   "brief": "由多个相关尺寸构成的封闭尺寸组",
+   "scene": "图纸规范",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "annotation"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "总长",
+   "en": "Overall Length",
+   "brief": "构件在长度方向的总体尺寸",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "L"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "总宽",
+   "en": "Overall Width",
+   "brief": "构件在宽度方向的总体尺寸",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "W"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "总高",
+   "en": "Overall Height",
+   "brief": "构件在高度方向的总体尺寸",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "H"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "内径",
+   "en": "Inner Diameter",
+   "brief": "孔或管件的内表面直径",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "ID"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "外径",
+   "en": "Outer Diameter",
+   "brief": "圆柱件的外表面直径",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "OD"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "孔径",
+   "en": "Hole Diameter",
+   "brief": "孔的直径尺寸",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Dia"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "中心距",
+   "en": "Center Distance",
+   "brief": "两孔或两特征中心之间的距离",
+   "scene": "尺寸参数",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Center Distance"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "图号",
+   "en": "Drawing Number",
+   "brief": "图纸的唯一编号标识",
+   "scene": "图纸管理",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "版本号",
+   "en": "Revision",
+   "brief": "图纸或文件的版次编号",
+   "scene": "图纸管理",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Rev"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "物料清单",
+   "en": "Bill of Materials",
+   "brief": "列出产品全部用料与数量的清单",
+   "scene": "图纸管理",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "BOM"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "装配图",
+   "en": "Assembly Drawing",
+   "brief": "表达零件装配关系的图纸",
+   "scene": "图纸类型",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "零件图",
+   "en": "Part Drawing",
+   "brief": "表达单个零件形状尺寸的图纸",
+   "scene": "图纸类型",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Part"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "加工图",
+   "en": "Manufacturing Drawing",
+   "brief": "指导生产加工的图纸",
+   "scene": "图纸类型",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Production"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "打样图",
+   "en": "Sample Drawing",
+   "brief": "用于打样确认的图纸",
+   "scene": "图纸类型",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Sample"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "生产图",
+   "en": "Production Drawing",
+   "brief": "投产使用的正式图纸",
+   "scene": "图纸类型",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "烫金",
+   "en": "Hot Stamping",
+   "brief": "用加热的印版转印金属箔的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Foil Stamping",
+    "Hot Foil Stamping"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "烫银",
+   "en": "Silver Stamping",
+   "brief": "转印银色金属箔的烫印工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 920
+  },
+  {
+   "zh": "压印",
+   "en": "Embossing",
+   "brief": "用模具压出凸起图文效果的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Emboss"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "压凹",
+   "en": "Debossing",
+   "brief": "用模具压出凹陷效果的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Deboss"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "击凸",
+   "en": "Embossing",
+   "brief": "即压印，使图文凸起于表面的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Emboss"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "UV 上光",
+   "en": "UV Coating",
+   "brief": "局部或全面涂布紫外固化光油",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "UV"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "局部 UV",
+   "en": "Spot UV",
+   "brief": "只在指定区域施加 UV 光油的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Spot UV"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "过哑胶",
+   "en": "Matte Lamination",
+   "brief": "覆哑光薄膜的表面处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Matte Lamination"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "过光胶",
+   "en": "Gloss Lamination",
+   "brief": "覆亮光薄膜的表面处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Gloss Lamination"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "覆膜",
+   "en": "Lamination",
+   "brief": "在印刷品表面覆盖薄膜的处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Lamination"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "磨砂",
+   "en": "Frosted",
+   "brief": "表面呈细砂效果的哑光处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Matte"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "哑光",
+   "en": "Matte",
+   "brief": "表面无光泽的质感",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Matt"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "亮光",
+   "en": "Gloss",
+   "brief": "表面呈高光泽的质感",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Glossy"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "电镀",
+   "en": "Electroplating",
+   "brief": "以电解方式在表面沉积金属层",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Plating"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "喷漆",
+   "en": "Spray Painting",
+   "brief": "以喷涂方式施加漆膜",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Painting"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "烤漆",
+   "en": "Baking Varnish",
+   "brief": "喷涂后高温烘烤固化的漆面",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "喷砂",
+   "en": "Sand Blasting",
+   "brief": "以磨料喷射形成麻面质感",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Sand Blast"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "拉丝",
+   "en": "Brushed Finish",
+   "brief": "以砂带拉出定向纹理的表面处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Brushed"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "镜面",
+   "en": "Mirror Finish",
+   "brief": "经抛光达到高反射的镜面效果",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Mirror Polish"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "阳极氧化",
+   "en": "Anodizing",
+   "brief": "铝材表面生成氧化膜的处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Anodized"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "镭雕",
+   "en": "Laser Engraving",
+   "brief": "用激光刻蚀出图文",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Laser"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "丝印",
+   "en": "Silkscreen Printing",
+   "brief": "通过网版刮印油墨的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Screen Print"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "移印",
+   "en": "Pad Printing",
+   "brief": "用硅胶头转印油墨的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Pad Print"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "热转印",
+   "en": "Heat Transfer",
+   "brief": "通过加热加压把图案转印到表面",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Transfer"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "水转印",
+   "en": "Water Transfer",
+   "brief": "利用水压使膜转贴表面的工艺",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Hydro Transfer"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "胶印",
+   "en": "Offset Printing",
+   "brief": "通过橡皮布间接转印的平版印刷",
+   "scene": "印刷工艺",
+   "software": [],
+   "scene_tags": [
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Offset"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "数码印刷",
+   "en": "Digital Printing",
+   "brief": "无需制版的直接数字输出印刷",
+   "scene": "印刷工艺",
+   "software": [],
+   "scene_tags": [
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Digital"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "专色印刷",
+   "en": "Spot Color Printing",
+   "brief": "使用专门调制的油墨印刷",
+   "scene": "印刷工艺",
+   "software": [],
+   "scene_tags": [
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "Spot Color"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "四色印刷",
+   "en": "CMYK Printing",
+   "brief": "青品黄黑四色叠印的彩色印刷",
+   "scene": "印刷工艺",
+   "software": [],
+   "scene_tags": [
+    "print"
+   ],
+   "standard": "",
+   "var_en": [
+    "CMYK"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "压花",
+   "en": "Texturing",
+   "brief": "在表面压出肌理纹路的处理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Emboss Texture"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "蚀刻",
+   "en": "Etching",
+   "brief": "用化学或电化学方式腐蚀出纹理",
+   "scene": "表面处理",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Etched"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "颜色确认",
+   "en": "Color Approval",
+   "brief": "对成品颜色与色卡的一致性确认",
+   "scene": "品质确认",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 920
+  },
+  {
+   "zh": "色差",
+   "en": "Color Deviation",
+   "brief": "成品颜色与标准色的差异量",
+   "scene": "品质确认",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Delta E"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "对色",
+   "en": "Color Matching",
+   "brief": "将成品与色卡在标准光源下比对",
+   "scene": "品质确认",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 920
+  },
+  {
+   "zh": "光泽度",
+   "en": "Gloss Level",
+   "brief": "表面反射光线的强弱程度",
+   "scene": "品质确认",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Gloss"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "手感",
+   "en": "Hand Feel",
+   "brief": "材料表面的触感体验",
+   "scene": "品质确认",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Touch"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "车缝",
+   "en": "Stitching",
+   "brief": "用缝纫设备把材料缝合的工艺",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Sewing"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "走线",
+   "en": "Stitch Line",
+   "brief": "车缝形成的线迹走向",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Stitch"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "缝线",
+   "en": "Thread",
+   "brief": "车缝所用的缝纫线",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Stitch",
+    "Stitching tone on tone"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "针距",
+   "en": "Stitch Length",
+   "brief": "相邻两针之间的距离",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [
+    "SPI"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "车线",
+   "en": "Sewing Line",
+   "brief": "即走线，车缝形成的线条",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Stitching"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "包边缝合",
+   "en": "Edge Stitching",
+   "brief": "对材料边缘进行包覆缝合",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 915
+  },
+  {
+   "zh": "暗线",
+   "en": "Blind Stitch",
+   "brief": "从表面看不到的隐藏线迹",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Hidden Stitch"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "明线",
+   "en": "Top Stitch",
+   "brief": "在表面可见的装饰性线迹",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Topstitch"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "车缝密合",
+   "en": "Seam Closure",
+   "brief": "缝线处完全贴合无缝隙",
+   "scene": "缝制工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 905
+  },
+  {
+   "zh": "装配",
+   "en": "Assembly",
+   "brief": "把各零件组合成完整产品",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Assemble"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "组装",
+   "en": "Assembling",
+   "brief": "即装配，零件组合的过程",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Assembly"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "粘接",
+   "en": "Bonding",
+   "brief": "用胶粘剂把两件材料连接",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Gluing"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "贴合",
+   "en": "Laminating",
+   "brief": "把两层材料紧密贴合并压合",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Lamination"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "压合",
+   "en": "Pressing",
+   "brief": "施加压力使材料牢固结合",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Press"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "铆接",
+   "en": "Riveting",
+   "brief": "用铆钉把零件固定连接",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Rivet"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "螺钉固定",
+   "en": "Screw Fastening",
+   "brief": "用螺钉把零件锁紧",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Screw"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "焊接",
+   "en": "Welding",
+   "brief": "通过加热或加压使材料连接",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Weld"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "卡装",
+   "en": "Snap Assembly",
+   "brief": "靠卡扣弹性形变完成装配",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Snap"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "插入",
+   "en": "Insertion",
+   "brief": "把零件插入到指定位置",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Insert"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "定位",
+   "en": "Positioning",
+   "brief": "把零件放置在准确位置上",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Locate"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "对齐",
+   "en": "Alignment",
+   "brief": "使各零件基准线或面相互重合",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Align"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "装配顺序",
+   "en": "Assembly Sequence",
+   "brief": "零件装配的先后次序",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "Sequence"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "手板",
+   "en": "Prototype",
+   "brief": "手工制作的首版样件",
+   "scene": "打样开发",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Prototype"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "首版样",
+   "en": "First Article Sample",
+   "brief": "批量生产前确认的首件",
+   "scene": "打样开发",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "First Sample"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "样品确认",
+   "en": "Sample Approval",
+   "brief": "客户对样件的书面确认",
+   "scene": "打样开发",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 930
+  },
+  {
+   "zh": "打样",
+   "en": "Sampling",
+   "brief": "制作样品供确认的过程",
+   "scene": "打样开发",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Sample Making"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "改模",
+   "en": "Mold Modification",
+   "brief": "对模具进行修改调整",
+   "scene": "打样开发",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Mold Change"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "开模",
+   "en": "Mold Making",
+   "brief": "制作成型模具的过程",
+   "scene": "打样开发",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Tooling"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "试产",
+   "en": "Trial Production",
+   "brief": "小批量试制验证工艺",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Trial Run"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "量产",
+   "en": "Mass Production",
+   "brief": "大批量正式生产",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Production"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "工序",
+   "en": "Process Step",
+   "brief": "生产流程中的单个操作环节",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "Process"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "工艺流程",
+   "en": "Process Flow",
+   "brief": "生产各工序的先后序列",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "Process Flow"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "作业指导书",
+   "en": "Work Instruction",
+   "brief": "指导现场操作的标准文件",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "SOP"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "产能",
+   "en": "Capacity",
+   "brief": "单位时间可完成的生产数量",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "report"
+   ],
+   "standard": "",
+   "var_en": [
+    "Capacity"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "交期",
+   "en": "Delivery Date",
+   "brief": "约定的交货日期",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "Lead Time"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "提前期",
+   "en": "Lead Time",
+   "brief": "从下单到交货所需的时间",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 920
+  },
+  {
+   "zh": "排产",
+   "en": "Production Scheduling",
+   "brief": "对生产任务的顺序安排",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "Scheduling"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "报工",
+   "en": "Production Reporting",
+   "brief": "上报工序完成情况",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "schedule",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "良率",
+   "en": "Yield Rate",
+   "brief": "合格品占投入总量的比例",
+   "scene": "生产管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "report"
+   ],
+   "standard": "",
+   "var_en": [
+    "Yield"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "不良率",
+   "en": "Defect Rate",
+   "brief": "不良品占总量的比例",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "report"
+   ],
+   "standard": "",
+   "var_en": [
+    "Defect Rate"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "返工",
+   "en": "Rework",
+   "brief": "对不合格品进行重新加工",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Rework"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "返修",
+   "en": "Repair",
+   "brief": "对可修复缺陷进行的修补",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Repair"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "报废",
+   "en": "Scrap",
+   "brief": "无法修复而作废处理",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Scrap"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "来料检验",
+   "en": "Incoming Inspection",
+   "brief": "对供应商来料的检验",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "IQC"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "过程检验",
+   "en": "In-process Inspection",
+   "brief": "生产过程中的抽检",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "IPQC"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "出货检验",
+   "en": "Outgoing Inspection",
+   "brief": "发货前的成品抽检",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "OQC"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "首件检验",
+   "en": "First Article Inspection",
+   "brief": "批量生产前对首件确认",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "FAI"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "抽检",
+   "en": "Sampling Inspection",
+   "brief": "按比例抽取样本检验",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "AQL"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "全检",
+   "en": "Full Inspection",
+   "brief": "对全部产品逐件检验",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "100% Inspection"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "检验标准",
+   "en": "Inspection Standard",
+   "brief": "判定合格与否的依据",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "品质标准",
+   "en": "Quality Standard",
+   "brief": "对品质要求的规范定义",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "QC Standard"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "公差",
+   "en": "Tolerance",
+   "brief": "允许的尺寸偏差范围",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Tol"
+   ],
+   "freq": 940
+  },
+  {
+   "zh": "上下限",
+   "en": "Upper and Lower Limit",
+   "brief": "公差允许的最大与最小值",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [
+    "USL/LSL"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "测量",
+   "en": "Measurement",
+   "brief": "用工具获取尺寸数值的过程",
+   "scene": "公差配合",
+   "software": [],
+   "scene_tags": [
+    "examination",
+    "tolerance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Measure"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "卡尺",
+   "en": "Vernier Caliper",
+   "brief": "测量内外尺寸的常用量具",
+   "scene": "检验工具",
+   "software": [],
+   "scene_tags": [
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "Caliper"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "卷尺",
+   "en": "Measuring Tape",
+   "brief": "测量较长距离的软尺",
+   "scene": "检验工具",
+   "software": [],
+   "scene_tags": [
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "Tape"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "投影仪",
+   "en": "Profile Projector",
+   "brief": "把轮廓放大投影以测量的仪器",
+   "scene": "检验工具",
+   "software": [],
+   "scene_tags": [
+    "examination"
+   ],
+   "standard": "",
+   "var_en": [
+    "Projector"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "不良品",
+   "en": "Defective Product",
+   "brief": "不符合要求的产品",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "NG"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "合格品",
+   "en": "Qualified Product",
+   "brief": "满足全部要求的产品",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "OK"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "缺陷",
+   "en": "Defect",
+   "brief": "产品上不符合要求的特征",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Defect"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "划痕",
+   "en": "Scratch",
+   "brief": "表面被硬物划出的痕迹",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Scratch"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "污渍",
+   "en": "Stain",
+   "brief": "表面被污染形成的痕迹",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Stain"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "溢胶",
+   "en": "Glue Overflow",
+   "brief": "胶水从接缝处溢出",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Glue Squeeze-out"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "起泡",
+   "en": "Blistering",
+   "brief": "表面局部鼓起的缺陷",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Bubble"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "脱胶",
+   "en": "Delamination",
+   "brief": "贴合层分离脱开的缺陷",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Bond Failure"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "变形",
+   "en": "Deformation",
+   "brief": "形状偏离设计要求的现象",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Warping"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "色差超标",
+   "en": "Out-of-tolerance Color",
+   "brief": "颜色偏差超出允许范围",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 910
+  },
+  {
+   "zh": "验收",
+   "en": "Acceptance",
+   "brief": "对交付成果的确认接受",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Acceptance"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "验收标准",
+   "en": "Acceptance Criteria",
+   "brief": "判定是否通过验收的准则",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 925
+  },
+  {
+   "zh": "包装要求",
+   "en": "Packing Requirement",
+   "brief": "对成品包装方式的规定",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Packing"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "出货",
+   "en": "Shipment",
+   "brief": "把成品发出交付客户",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "shipping"
+   ],
+   "standard": "",
+   "var_en": [
+    "Shipping"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "装箱单",
+   "en": "Packing List",
+   "brief": "列明装箱明细的单据",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "P/L"
+   ],
+   "freq": 920
+  },
+  {
+   "zh": "标识",
+   "en": "Labeling",
+   "brief": "在产品或包装上加注标识",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Label"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "注意事项",
+   "en": "Precaution",
+   "brief": "需特别提示避免的操作",
+   "scene": "交付管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Note"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "要求",
+   "en": "Requirement",
+   "brief": "对产品或工艺提出的规定",
+   "scene": "工艺要求",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Req"
+   ],
+   "freq": 935
+  },
+  {
+   "zh": "确认",
+   "en": "Confirmation",
+   "brief": "对方案的书面认可",
+   "scene": "工艺要求",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Confirm"
+   ],
+   "freq": 930
+  },
+  {
+   "zh": "待确认",
+   "en": "To Be Confirmed",
+   "brief": "尚未得到确认的事项",
+   "scene": "工艺要求",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "TBC"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "详见",
+   "en": "Refer To",
+   "brief": "指引查阅其他文件或图纸",
+   "scene": "工艺要求",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Ref"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "备注",
+   "en": "Remark",
+   "brief": "对内容的补充说明",
+   "scene": "工艺要求",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Note"
+   ],
+   "freq": 925
+  },
+  {
+   "zh": "参考",
+   "en": "Reference",
+   "brief": "供参照参考的依据",
+   "scene": "工艺要求",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "document"
+   ],
+   "standard": "",
+   "var_en": [
+    "Ref"
+   ],
+   "freq": 915
+  },
+  {
+   "zh": "塑胶件（Pla）",
+   "en": "Plastic Part",
+   "brief": "原文「Pla」，按上下文推断为塑胶件缩写",
+   "scene": "结构件",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Pla",
+    "PD"
+   ],
+   "freq": 890
+  },
+  {
+   "zh": "可拆结构",
+   "en": "Detachable Structure",
+   "brief": "原文「欧拆…件」，推断为可拆卸结构件",
+   "scene": "装配结构",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Detachable"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "拆件程序",
+   "en": "Disassembly Sequence",
+   "brief": "原文「欧拆」，推断为拆件顺序说明",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "assembly",
+    "schedule"
+   ],
+   "standard": "",
+   "var_en": [
+    "Disassembly"
+   ],
+   "freq": 885
+  },
+  {
+   "zh": "软胶",
+   "en": "Soft Glue",
+   "brief": "原文「轻胶」，按与硬胶对比的上下文推断为软性胶",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [
+    "Light Glue"
+   ],
+   "freq": 895
+  },
+  {
+   "zh": "低气味胶",
+   "en": "Low-odor Glue",
+   "brief": "原文「轻胶」的另一解，指气味轻的环保胶",
+   "scene": "装配工艺",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Light Glue"
+   ],
+   "freq": 880
+  },
+  {
+   "zh": "边缘包边",
+   "en": "Edge Banding",
+   "brief": "原文「边用包边」，「用」为「缘」的 OCR 误识",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [
+    "Edge Wrap"
+   ],
+   "freq": 905
+  },
+  {
+   "zh": "边缘包覆",
+   "en": "Edge Wrapping",
+   "brief": "原文「边用包边」，指四边全包覆工艺",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [
+    "Full Wrap"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "毛边",
+   "en": "Burr",
+   "brief": "原文「粗边」，指未做处理的粗糙边缘",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge",
+    "compliance"
+   ],
+   "standard": "",
+   "var_en": [
+    "Rough Edge"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "披锋",
+   "en": "Burr",
+   "brief": "注塑或冲切后残留的锐利飞边",
+   "scene": "品质管理",
+   "software": [],
+   "scene_tags": [
+    "compliance",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [
+    "Flash"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "侧面视图",
+   "en": "Side View",
+   "brief": "原文「侧百」，「百」为「面」的 OCR 误识",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "drawing_2d",
+    "view",
+    "side"
+   ],
+   "standard": "",
+   "var_en": [
+    "Side"
+   ],
+   "freq": 910
+  },
+  {
+   "zh": "鱼鳞片",
+   "en": "Fishscale",
+   "brief": "3D 鱼鳞纹装饰片，常焊接金属包边用于盒边装饰",
+   "scene": "盒边装饰工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "display"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 850
+  },
+  {
+   "zh": "可拆卸部件",
+   "en": "Removable Parts",
+   "brief": "可拆装的展示道具部件，便于运输与组装",
+   "scene": "道具结构设计",
+   "software": [],
+   "scene_tags": [
+    "component",
+    "assembly"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 860
+  },
+  {
+   "zh": "金属贴纸",
+   "en": "Metal Sticker",
+   "brief": "金属质感贴饰，GRAFF 常用亮光金 MT1A",
+   "scene": "表面装饰工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 830
+  },
+  {
+   "zh": "金属包边",
+   "en": "Metal Trim",
+   "brief": "金属收边条，分亮光/哑光/拉丝金",
+   "scene": "边缘收口工艺",
+   "software": [],
+   "scene_tags": [
+    "finish",
+    "edge"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 880
+  },
+  {
+   "zh": "中纤板",
+   "en": "MDF",
+   "brief": "中密度纤维板，展示道具与包装盒基材",
+   "scene": "基材选料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Medium Density Fiberboard"
+   ],
+   "freq": 870
+  },
+  {
+   "zh": "包覆",
+   "en": "Wrapping",
+   "brief": "皮/布/纸包覆 MDF 或泡棉的工艺",
+   "scene": "包覆工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Wrapped with"
+   ],
+   "freq": 840
+  },
+  {
+   "zh": "机眼",
+   "en": "Grommet",
+   "brief": "金属气眼扣，用于丝带穿引与加固",
+   "scene": "五金配件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Eyelet"
+   ],
+   "freq": 840
+  },
+  {
+   "zh": "六边形机眼",
+   "en": "Hexangular Grommet",
+   "brief": "六边形金属气眼，装饰性五金件",
+   "scene": "五金配件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 800
+  },
+  {
+   "zh": "磨砂亚克力",
+   "en": "Frosted Acrylic",
+   "brief": "磨砂/半透明亚克力板，展架与隔断常用",
+   "scene": "基材选料",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 860
+  },
+  {
+   "zh": "油漆",
+   "en": "Paint",
+   "brief": "表面喷漆处理，分亮光/哑光",
+   "scene": "表面处理工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [
+    "Painted"
+   ],
+   "freq": 820
+  },
+  {
+   "zh": "哑光金",
+   "en": "Matte Gold",
+   "brief": "哑光金色效果，对应亮光金 MT1A",
+   "scene": "表面装饰工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 830
+  },
+  {
+   "zh": "槽口",
+   "en": "Slot",
+   "brief": "织物或金属上的开口槽",
+   "scene": "结构开口",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 810
+  },
+  {
+   "zh": "绒面革",
+   "en": "Suede",
+   "brief": "绒面皮革（麂皮），GRAFF 内部包裹指定用料",
+   "scene": "内衬选料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Suede Fabric"
+   ],
+   "freq": 890
+  },
+  {
+   "zh": "金属插脚",
+   "en": "Metal Pin",
+   "brief": "固定展示品的金属插脚",
+   "scene": "五金配件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 800
+  },
+  {
+   "zh": "锯齿边",
+   "en": "Serrated Edge",
+   "brief": "锯齿状边缘，四边锯齿用于防滑/装饰",
+   "scene": "边缘工艺",
+   "software": [],
+   "scene_tags": [
+    "edge",
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 800
+  },
+  {
+   "zh": "毛毡",
+   "en": "Felt",
+   "brief": "底部防滑毛毡垫",
+   "scene": "底部处理",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 830
+  },
+  {
+   "zh": "拉丝金",
+   "en": "Brushed Gold",
+   "brief": "拉丝质感金色金属",
+   "scene": "表面装饰工艺",
+   "software": [],
+   "scene_tags": [
+    "finish"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 840
+  },
+  {
+   "zh": "胸针",
+   "en": "Brooch",
+   "brief": "珠宝陈列品类：胸针",
+   "scene": "珠宝陈列",
+   "software": [],
+   "scene_tags": [
+    "display"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 860
+  },
+  {
+   "zh": "项链",
+   "en": "Necklace",
+   "brief": "珠宝陈列品类：项链",
+   "scene": "珠宝陈列",
+   "software": [],
+   "scene_tags": [
+    "display"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "耳坠",
+   "en": "Earrings",
+   "brief": "珠宝陈列品类：耳坠/耳饰",
+   "scene": "珠宝陈列",
+   "software": [],
+   "scene_tags": [
+    "display"
+   ],
+   "standard": "",
+   "var_en": [
+    "Eardrop"
+   ],
+   "freq": 880
+  },
+  {
+   "zh": "戒指",
+   "en": "Ring",
+   "brief": "珠宝陈列品类：戒指",
+   "scene": "珠宝陈列",
+   "software": [],
+   "scene_tags": [
+    "display"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "内芯",
+   "en": "Insert",
+   "brief": "盒内承托珠宝的内芯/内托",
+   "scene": "内托结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Inserts"
+   ],
+   "freq": 870
+  },
+  {
+   "zh": "半身像",
+   "en": "Bust",
+   "brief": "项链/耳坠陈列用半身像道具",
+   "scene": "珠宝陈列道具",
+   "software": [],
+   "scene_tags": [
+    "display"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 860
+  },
+  {
+   "zh": "天鹅绒",
+   "en": "Velvet",
+   "brief": "天鹅绒面料，高档展示道具常用",
+   "scene": "面料选料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 900
+  },
+  {
+   "zh": "按扣",
+   "en": "Snap Button",
+   "brief": "隐形按扣，固定丝带/翻盖",
+   "scene": "五金配件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Snap Fastener",
+    "Press Stud"
+   ],
+   "freq": 830
+  },
+  {
+   "zh": "隐藏式磁铁",
+   "en": "Hidden Magnet",
+   "brief": "盒盖闭合用隐藏磁铁",
+   "scene": "闭合结构",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 860
+  },
+  {
+   "zh": "卡纸",
+   "en": "Cardstock",
+   "brief": "卡纸总称，分亚光/亮光覆面",
+   "scene": "基材选料",
+   "software": [],
+   "scene_tags": [
+    "material"
+   ],
+   "standard": "",
+   "var_en": [
+    "Card Paper",
+    "Matte Cardboard"
+   ],
+   "freq": 850
+  },
+  {
+   "zh": "珍珠纸",
+   "en": "Pearl Paper",
+   "brief": "珠光质感特种纸",
+   "scene": "面纸选料",
+   "software": [],
+   "scene_tags": [
+    "material",
+    "print"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 840
+  },
+  {
+   "zh": "弹簧铰链",
+   "en": "Spring Hinge",
+   "brief": "带弹簧的铰链，盒盖自动弹开需更强弹力",
+   "scene": "五金配件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 840
+  },
+  {
+   "zh": "信封",
+   "en": "Envelope",
+   "brief": "配套信封物料",
+   "scene": "配套物料",
+   "software": [],
+   "scene_tags": [
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 800
+  },
+  {
+   "zh": "信笺",
+   "en": "Letterhead",
+   "brief": "配套信笺/抬头纸",
+   "scene": "配套物料",
+   "software": [],
+   "scene_tags": [
+    "document"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 790
+  },
+  {
+   "zh": "T架",
+   "en": "T-Stand",
+   "brief": "T 形展示架，陈列耳坠/手链",
+   "scene": "珠宝陈列道具",
+   "software": [],
+   "scene_tags": [
+    "display"
+   ],
+   "standard": "",
+   "var_en": [
+    "T Support",
+    "T-Bar"
+   ],
+   "freq": 830
+  },
+  {
+   "zh": "封底",
+   "en": "Back Cover",
+   "brief": "盒/册的封底",
+   "scene": "结构部件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 800
+  },
+  {
+   "zh": "顶盖",
+   "en": "Cap",
+   "brief": "盒体顶盖",
+   "scene": "结构部件",
+   "software": [],
+   "scene_tags": [
+    "component"
+   ],
+   "standard": "",
+   "var_en": [
+    "Lid",
+    "Top Cover"
+   ],
+   "freq": 820
+  },
+  {
+   "zh": "前视图",
+   "en": "Front View",
+   "brief": "正视方向视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "view",
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 920
+  },
+  {
+   "zh": "后视图",
+   "en": "Rear View",
+   "brief": "背面方向视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "view",
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Back View"
+   ],
+   "freq": 900
+  },
+  {
+   "zh": "鸟瞰图",
+   "en": "Aerial View",
+   "brief": "高空俯视整体效果图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "view",
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 840
+  },
+  {
+   "zh": "大样图",
+   "en": "Detail View",
+   "brief": "局部放大详图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "view",
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [
+    "Detail Drawing"
+   ],
+   "freq": 880
+  },
+  {
+   "zh": "指引图",
+   "en": "Reference View",
+   "brief": "指引参考视图",
+   "scene": "图纸视图",
+   "software": [],
+   "scene_tags": [
+    "view",
+    "drawing_2d"
+   ],
+   "standard": "",
+   "var_en": [],
+   "freq": 800
+  }
+ ]
+}

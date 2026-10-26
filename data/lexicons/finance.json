@@ -1,0 +1,932 @@
+{
+  "profession": "finance",
+  "name": "财务与会计",
+  "version": "1.0.0",
+  "description": "会计核算、税务与资金管理术语，覆盖用友 / 金蝶 / Excel 场景",
+  "terms": [
+    {
+      "zh": "会计科目",
+      "en": "Chart of Accounts",
+      "brief": "对会计要素具体分类的项目名称",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "企业会计准则",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "借方",
+      "en": "Debit",
+      "brief": "复式记账中账户的左方",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "贷方",
+      "en": "Credit",
+      "brief": "复式记账中账户的右方",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "记账凭证",
+      "en": "Accounting Voucher",
+      "brief": "记录经济业务、作为记账依据的凭证",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "原始凭证",
+      "en": "Source Document",
+      "brief": "业务发生时取得的最初凭据",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "总账",
+      "en": "General Ledger",
+      "brief": "汇总全部科目的总分类账簿",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "明细账",
+      "en": "Subsidiary Ledger",
+      "brief": "按明细科目设置的分类账簿",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "试算平衡",
+      "en": "Trial Balance",
+      "brief": "检验借贷是否相等的核对方法",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "月结",
+      "en": "Month-end Closing",
+      "brief": "月末结账与结转损益的流程",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "年结",
+      "en": "Year-end Closing",
+      "brief": "年末结算与账务结转",
+      "scene": "会计核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "资产负债表",
+      "en": "Balance Sheet",
+      "brief": "反映特定时点财务状况的报表",
+      "scene": "财务报表",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 955
+    },
+    {
+      "zh": "利润表",
+      "en": "Income Statement",
+      "brief": "反映一定期间经营成果的报表",
+      "scene": "财务报表",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "损益表"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "现金流量表",
+      "en": "Cash Flow Statement",
+      "brief": "反映现金流入流出的报表",
+      "scene": "财务报表",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "财务报表附注",
+      "en": "Notes to Financial Statements",
+      "brief": "对报表项目的补充说明",
+      "scene": "财务报表",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "合并报表",
+      "en": "Consolidated Statements",
+      "brief": "把母子公司报表合并编制",
+      "scene": "财务报表",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "应收账款",
+      "en": "Accounts Receivable",
+      "brief": "因销售商品应收未收的款项",
+      "scene": "往来核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "AR",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "应付账款",
+      "en": "Accounts Payable",
+      "brief": "因采购应付未付的款项",
+      "scene": "往来核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "AP",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "预收账款",
+      "en": "Advances from Customers",
+      "brief": "预先收取尚未履约的款项",
+      "scene": "往来核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "其他应收款",
+      "en": "Other Receivables",
+      "brief": "非主营业务形成的应收款项",
+      "scene": "往来核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "坏账准备",
+      "en": "Provision for Bad Debts",
+      "brief": "对预计无法收回款项计提的准备",
+      "scene": "往来核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "账龄分析",
+      "en": "Aging Analysis",
+      "brief": "按欠款时间分区间统计分析",
+      "scene": "往来核算",
+      "software": [],
+      "scene_tags": [
+        "accounting",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "存货",
+      "en": "Inventory",
+      "brief": "为销售或耗用而储备的资产",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "先进先出法",
+      "en": "FIFO",
+      "brief": "按先入库先发出的假设计价",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [
+        "FIFO"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "固定资产",
+      "en": "Fixed Asset",
+      "brief": "使用年限超过一年的有形资产",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "累计折旧",
+      "en": "Accumulated Depreciation",
+      "brief": "固定资产已计提折旧的累计数",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "折旧年限",
+      "en": "Useful Life",
+      "brief": "固定资产计提折旧的规定年限",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "无形资产摊销",
+      "en": "Amortization of Intangible Assets",
+      "brief": "把无形资产成本分期计入费用",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "存货跌价准备",
+      "en": "Inventory Write-down",
+      "brief": "对可变现净值低于成本的计提",
+      "scene": "资产核算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "预提费用",
+      "en": "Accrued Expense",
+      "brief": "已发生但尚未支付的费用计提",
+      "scene": "期末处理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "待摊费用",
+      "en": "Prepaid Expense",
+      "brief": "已支付需分期摊销的费用",
+      "scene": "期末处理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "增值税",
+      "en": "Value-added Tax",
+      "brief": "对增值额征收的流转税",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "VAT",
+      "var_en": [],
+      "freq": 955
+    },
+    {
+      "zh": "进项税额",
+      "en": "Input VAT",
+      "brief": "购进货物或服务支付的增值税",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "销项税额",
+      "en": "Output VAT",
+      "brief": "销售货物或服务收取的增值税",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "进项转出",
+      "en": "Input VAT Transfer-out",
+      "brief": "不得抵扣的进项税额转出处理",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "附加税费",
+      "en": "Surcharges",
+      "brief": "随增值税附征的城建税与教育费附加",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "企业所得税",
+      "en": "Corporate Income Tax",
+      "brief": "对企业所得征收的所得税",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "汇算清缴",
+      "en": "Annual Tax Settlement",
+      "brief": "年度终了后的所得税清算",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "纳税调整",
+      "en": "Tax Adjustment",
+      "brief": "会计与税法差异的调整",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "税务筹划",
+      "en": "Tax Planning",
+      "brief": "在法律范围内优化税负的安排",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "发票认证",
+      "en": "Invoice Verification",
+      "brief": "对取得的进项发票进行验证抵扣",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "全电发票",
+      "en": "Fully Digital Invoice",
+      "brief": "全流程电子化的增值税发票",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [
+        "数电票"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "税率",
+      "en": "Tax Rate",
+      "brief": "税法规定的征收比例",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "成本核算",
+      "en": "Cost Accounting",
+      "brief": "归集与分配生产费用的过程",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "直接材料",
+      "en": "Direct Material",
+      "brief": "构成产品实体的原材料成本",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "制造费用",
+      "en": "Manufacturing Overhead",
+      "brief": "车间发生的间接生产费用",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "约当产量",
+      "en": "Equivalent Units",
+      "brief": "把在产品折算为完工产品数量",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "标准成本",
+      "en": "Standard Cost",
+      "brief": "预先设定的目标成本",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "成本差异",
+      "en": "Cost Variance",
+      "brief": "实际成本与标准成本的差额",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "本量利分析",
+      "en": "CVP Analysis",
+      "brief": "分析成本业务量与利润的关系",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "CVP"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "边际贡献",
+      "en": "Contribution Margin",
+      "brief": "销售收入减去变动成本后的余额",
+      "scene": "成本管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "预算编制",
+      "en": "Budgeting",
+      "brief": "编制年度或项目预算的过程",
+      "scene": "预算管理",
+      "software": [],
+      "scene_tags": [
+        "budget"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "滚动预算",
+      "en": "Rolling Budget",
+      "brief": "随期间推进不断向后延展的预算",
+      "scene": "预算管理",
+      "software": [],
+      "scene_tags": [
+        "budget"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "预算控制",
+      "en": "Budget Control",
+      "brief": "对预算执行情况的监控与纠偏",
+      "scene": "预算管理",
+      "software": [],
+      "scene_tags": [
+        "budget"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "费用报销",
+      "en": "Expense Reimbursement",
+      "brief": "员工垫付费用的报销流程",
+      "scene": "资金管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "资金计划",
+      "en": "Cash Planning",
+      "brief": "对资金收支的安排与预测",
+      "scene": "资金管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "银行对账",
+      "en": "Bank Reconciliation",
+      "brief": "核对账簿与银行流水的差异",
+      "scene": "资金管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "承兑汇票",
+      "en": "Bank Acceptance Bill",
+      "brief": "由银行承兑的商业汇票",
+      "scene": "资金管理",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "现金流",
+      "en": "Cash Flow",
+      "brief": "企业现金及等价物的流入流出",
+      "scene": "资金管理",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "经营分析",
+      "en": "Business Analysis",
+      "brief": "对经营成果与效率的分析",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "budget"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "财务比率",
+      "en": "Financial Ratio",
+      "brief": "反映偿债盈利能力的指标比值",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "毛利率",
+      "en": "Gross Margin",
+      "brief": "毛利占营业收入的比重",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "净利率",
+      "en": "Net Margin",
+      "brief": "净利润占营业收入的比重",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "资产负债率",
+      "en": "Debt-to-Asset Ratio",
+      "brief": "负债总额占总资产的比重",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "周转率",
+      "en": "Turnover Ratio",
+      "brief": "反映资产使用效率的指标",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "内部控制",
+      "en": "Internal Control",
+      "brief": "保障资产安全与信息可靠的制度",
+      "scene": "内控审计",
+      "software": [],
+      "scene_tags": [
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "内部审计",
+      "en": "Internal Audit",
+      "brief": "对内部控制的独立检查评价",
+      "scene": "内控审计",
+      "software": [],
+      "scene_tags": [
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "财务测算",
+      "en": "Financial Modeling",
+      "brief": "对经营结果的量化预测",
+      "scene": "经营分析",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "专票",
+      "en": "Special VAT Invoice",
+      "brief": "可用于抵扣进项税的增值税发票",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "普票",
+      "en": "General Invoice",
+      "brief": "不可抵扣进项税的普通发票",
+      "scene": "税务",
+      "software": [],
+      "scene_tags": [
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "老板",
+      "en": "Business Owner",
+      "brief": "关注经营报表与现金流的负责人",
+      "scene": "经营决策",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 850
+    }
+  ]
+}

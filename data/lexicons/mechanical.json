@@ -1,0 +1,6484 @@
+{
+  "profession": "mechanical",
+  "name": "机械工程",
+  "version": "1.0.0",
+  "description": "机械设计常用术语，覆盖 SolidWorks / AutoCAD / UG / CATIA / Creo 等三维建模与工程图场景",
+  "terms": [
+    {
+      "zh": "螺纹孔",
+      "en": "Tapped Hole",
+      "brief": "内螺纹的孔，用于安装螺栓或螺钉",
+      "scene": "异型孔向导 / 孔标注",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo",
+        "inventor",
+        "autocad"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "GB/T 197",
+      "var_en": [
+        "Threaded Hole",
+        "Tapped Hole"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "沉孔",
+      "en": "Counterbore",
+      "brief": "为容纳螺栓头部而扩大的圆柱形孔",
+      "scene": "工程图孔标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug",
+        "catia",
+        "creo"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "3d_modeling"
+      ],
+      "standard": "GB/T 152.3",
+      "var_en": [
+        "Counter Bore",
+        "C'Bore"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "埋头孔",
+      "en": "Countersink",
+      "brief": "锥形扩孔，使沉头螺钉头部与表面齐平",
+      "scene": "工程图孔标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "3d_modeling"
+      ],
+      "standard": "GB/T 152.2",
+      "var_en": [
+        "Counter Sink",
+        "C'Sink"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "倒角",
+      "en": "Chamfer",
+      "brief": "在零件边缘切出的斜面，去除锐边便于装配",
+      "scene": "建模特征 / 工程图标注",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo",
+        "inventor",
+        "autocad"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "GB/T 6403.4",
+      "var_en": [
+        "Chamfer",
+        "Bevel"
+      ],
+      "freq": 980
+    },
+    {
+      "zh": "圆角",
+      "en": "Fillet",
+      "brief": "零件边缘的圆弧过渡，减小应力集中",
+      "scene": "建模特征 / 工程图标注",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Round",
+        "Fillet"
+      ],
+      "freq": 970
+    },
+    {
+      "zh": "基准面",
+      "en": "Datum Plane",
+      "brief": "作为草图或特征参照的参考平面",
+      "scene": "三维建模参照",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Reference Plane",
+        "Construction Plane"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "基准轴",
+      "en": "Datum Axis",
+      "brief": "作为旋转或阵列参照的参考轴线",
+      "scene": "三维建模参照",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Reference Axis"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "基准点",
+      "en": "Datum Point",
+      "brief": "作为定位参照的参考点",
+      "scene": "三维建模参照",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Reference Point"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "拉伸凸台",
+      "en": "Extruded Boss",
+      "brief": "由截面轮廓沿垂直方向拉伸生成实体",
+      "scene": "基础建模特征",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Extrude Boss/Base"
+      ],
+      "freq": 960
+    },
+    {
+      "zh": "拉伸切除",
+      "en": "Extruded Cut",
+      "brief": "沿截面轮廓切除材料的特征",
+      "scene": "基础建模特征",
+      "software": [
+        "solidworks",
+        "inventor",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Extrude Cut"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "旋转凸台",
+      "en": "Revolved Boss",
+      "brief": "截面绕轴线旋转生成的回转体",
+      "scene": "基础建模特征",
+      "software": [
+        "solidworks",
+        "inventor",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Revolve Boss"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "旋转切除",
+      "en": "Revolved Cut",
+      "brief": "截面绕轴线旋转切除材料",
+      "scene": "基础建模特征",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Revolve Cut"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "扫描特征",
+      "en": "Sweep",
+      "brief": "轮廓沿路径移动生成的实体特征",
+      "scene": "高级建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Swept Feature"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "放样特征",
+      "en": "Loft",
+      "brief": "多个截面轮廓之间平滑过渡生成实体",
+      "scene": "高级建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "surface"
+      ],
+      "standard": "",
+      "var_en": [
+        "Lofted Feature",
+        "Blend"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "抽壳",
+      "en": "Shell",
+      "brief": "将实体掏空成薄壁结构并指定壁厚",
+      "scene": "建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Shell Feature",
+        "Hollow"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "拔模",
+      "en": "Draft",
+      "brief": "为便于脱模而给侧面添加的斜度",
+      "scene": "注塑件建模",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Draft Angle"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "拔模斜度",
+      "en": "Draft Angle",
+      "brief": "脱模方向上的倾斜角度",
+      "scene": "注塑件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Draft"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "抽壳厚度",
+      "en": "Shell Thickness",
+      "brief": "抽壳后保留的壁厚值",
+      "scene": "建模参数",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Wall Thickness"
+      ],
+      "freq": 720
+    },
+    {
+      "zh": "阵列",
+      "en": "Pattern",
+      "brief": "按规律复制特征或实体的操作",
+      "scene": "建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Array"
+      ],
+      "freq": 910
+    },
+    {
+      "zh": "线性阵列",
+      "en": "Linear Pattern",
+      "brief": "沿一个或两个方向线性排布的阵列",
+      "scene": "建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Linear Array"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "圆周阵列",
+      "en": "Circular Pattern",
+      "brief": "绕轴线均匀分布的阵列",
+      "scene": "建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Circular Array",
+        "Polar Pattern"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "镜像",
+      "en": "Mirror",
+      "brief": "以平面为对称基准复制特征",
+      "scene": "建模特征",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Symmetry"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "装配体",
+      "en": "Assembly",
+      "brief": "由多个零件按约束关系组合的整体",
+      "scene": "自下而上装配设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "creo",
+        "inventor"
+      ],
+      "scene_tags": [
+        "assembly",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Assembly Model"
+      ],
+      "freq": 960
+    },
+    {
+      "zh": "子装配体",
+      "en": "Sub-Assembly",
+      "brief": "装配体中作为独立单元的次级装配",
+      "scene": "装配设计管理",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Subassembly"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "配合",
+      "en": "Mate",
+      "brief": "定义零件之间相对位置与自由度的约束",
+      "scene": "装配约束",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Constraint",
+        "Assembly Constraint"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "同心配合",
+      "en": "Concentric Mate",
+      "brief": "使两圆柱面轴线重合的配合",
+      "scene": "装配约束",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Concentric Constraint"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "重合配合",
+      "en": "Coincident Mate",
+      "brief": "使两个面或边线共面的配合",
+      "scene": "装配约束",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Coincident Constraint"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "自由度",
+      "en": "Degrees of Freedom",
+      "brief": "未受限的运动方向数量，共 6 个",
+      "scene": "装配分析",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "DOF"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "干涉检查",
+      "en": "Interference Detection",
+      "brief": "检测装配体中零件相互重叠的部位",
+      "scene": "装配质量检查",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Interference Check",
+        "Clash Detection"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "间隙验证",
+      "en": "Clearance Verification",
+      "brief": "检查零件间最小间距是否满足要求",
+      "scene": "装配质量检查",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Clearance Check"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "爆炸视图",
+      "en": "Exploded View",
+      "brief": "将装配体零件沿装配方向分离的示意视图",
+      "scene": "装配说明与手册",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Exploded Assembly"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "工程图",
+      "en": "Engineering Drawing",
+      "brief": "用于制造与检验的正式二维图纸",
+      "scene": "出图",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug",
+        "catia",
+        "creo"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4457",
+      "var_en": [
+        "Technical Drawing",
+        "Draft"
+      ],
+      "freq": 970
+    },
+    {
+      "zh": "剖视图",
+      "en": "Section View",
+      "brief": "切开零件显示内部结构的视图",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.6",
+      "var_en": [
+        "Cross Section",
+        "Sectional View"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "全剖视图",
+      "en": "Full Section View",
+      "brief": "用剖切面完整剖开物体的视图",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.6",
+      "var_en": [
+        "Full Section"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "半剖视图",
+      "en": "Half Section View",
+      "brief": "一半剖视一半视图的对称表达方法",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.6",
+      "var_en": [
+        "Half Section"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "局部剖视图",
+      "en": "Broken-out Section View",
+      "brief": "局部剖开的视图，保留其他部分外形",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.6",
+      "var_en": [
+        "Local Section",
+        "Broken-out Section"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "旋转剖视图",
+      "en": "Aligned Section View",
+      "brief": "用相交剖切面剖切后旋转展开的视图",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.6",
+      "var_en": [
+        "Revolved Section"
+      ],
+      "freq": 750
+    },
+    {
+      "zh": "辅助视图",
+      "en": "Auxiliary View",
+      "brief": "沿倾斜方向投影得到的视图",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.1",
+      "var_en": [
+        "Auxiliary View"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "局部放大图",
+      "en": "Detail View",
+      "brief": "将细小结构放大表达的视图",
+      "scene": "工程图视图",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.1",
+      "var_en": [
+        "Enlarged Detail",
+        "Detail View"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "俯视图",
+      "en": "Top View",
+      "brief": "从上方投影得到的视图",
+      "scene": "三视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.1",
+      "var_en": [
+        "Plan View"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "主视图",
+      "en": "Front View",
+      "brief": "反映零件主要形状特征的正视图",
+      "scene": "三视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.1",
+      "var_en": [
+        "Front Elevation"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "左视图",
+      "en": "Left View",
+      "brief": "从左侧投影得到的视图",
+      "scene": "三视图",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.1",
+      "var_en": [
+        "Left Side View"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "等轴测图",
+      "en": "Isometric View",
+      "brief": "三个坐标轴等角投影的立体视图",
+      "scene": "三维示意",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.3",
+      "var_en": [
+        "Isometric",
+        "Iso View"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "尺寸标注",
+      "en": "Dimensioning",
+      "brief": "在图纸上标注长度、角度等尺寸",
+      "scene": "图纸标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 4458.4",
+      "var_en": [
+        "Dimension",
+        "Dimensioning"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "形位公差",
+      "en": "Geometric Tolerance",
+      "brief": "形状与位置公差的统称",
+      "scene": "图纸标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "GD&T",
+        "Geometric Dimensioning and Tolerancing"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "平面度",
+      "en": "Flatness",
+      "brief": "实际表面相对理想平面的形状公差",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Flatness"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "平行度",
+      "en": "Parallelism",
+      "brief": "被测要素相对基准保持平行的位置公差",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Parallelism"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "垂直度",
+      "en": "Perpendicularity",
+      "brief": "被测要素相对基准保持垂直的位置公差",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Perpendicularity",
+        "Squareness"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "同轴度",
+      "en": "Coaxiality",
+      "brief": "被测轴线相对基准轴线的位置公差",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Concentricity",
+        "Coaxiality"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "圆跳动",
+      "en": "Circular Runout",
+      "brief": "绕基准轴旋转一周的跳动量",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Circular Runout"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "全跳动",
+      "en": "Total Runout",
+      "brief": "沿整个被测表面测量的跳动量",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Total Runout"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "表面粗糙度",
+      "en": "Surface Roughness",
+      "brief": "加工表面微小不平度的评定参数",
+      "scene": "图纸标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 131",
+      "var_en": [
+        "Surface Finish",
+        "Roughness"
+      ],
+      "freq": 910
+    },
+    {
+      "zh": "粗糙度符号",
+      "en": "Roughness Symbol",
+      "brief": "图纸上表示表面粗糙度要求的符号",
+      "scene": "图纸标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 131",
+      "var_en": [
+        "Surface Texture Symbol"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "配合公差",
+      "en": "Fit Tolerance",
+      "brief": "孔轴配合的间隙或过盈变动范围",
+      "scene": "尺寸公差设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Fit Clearance",
+        "Fit Tolerance"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "基孔制",
+      "en": "Hole-basis System",
+      "brief": "以孔的极限尺寸为基准的配合制度",
+      "scene": "公差配合设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Hole Basis System"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "基轴制",
+      "en": "Shaft-basis System",
+      "brief": "以轴的极限尺寸为基准的配合制度",
+      "scene": "公差配合设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Shaft Basis System"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "过渡配合",
+      "en": "Transition Fit",
+      "brief": "可能产生间隙也可能产生过盈的配合",
+      "scene": "公差配合设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Transition Fit"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "过盈配合",
+      "en": "Interference Fit",
+      "brief": "轴始终大于孔的配合，需压力装配",
+      "scene": "公差配合设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Interference Fit",
+        "Press Fit"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "间隙配合",
+      "en": "Clearance Fit",
+      "brief": "孔始终大于轴的配合，有活动余量",
+      "scene": "公差配合设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Clearance Fit",
+        "Slip Fit"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "材料明细表",
+      "en": "Bill of Materials",
+      "brief": "列出装配体全部零件的清单",
+      "scene": "图纸明细栏 / 出图",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "inventor"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "BOM",
+        "Parts List"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "标题栏",
+      "en": "Title Block",
+      "brief": "图纸右下角记录图号、名称、比例等信息的表格",
+      "scene": "工程图格式",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 14689",
+      "var_en": [
+        "Title Block",
+        "Drawing Block"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "图框",
+      "en": "Drawing Border",
+      "brief": "图纸的边界框与格式模板",
+      "scene": "工程图格式",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 14689",
+      "var_en": [
+        "Border",
+        "Drawing Frame"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "比例",
+      "en": "Scale",
+      "brief": "图样尺寸与实物尺寸之比",
+      "scene": "工程图格式",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 14690",
+      "var_en": [
+        "Scale"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "剖切线",
+      "en": "Cutting Plane Line",
+      "brief": "标示剖切位置与方向的线",
+      "scene": "工程图标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4458.6",
+      "var_en": [
+        "Section Line",
+        "Cut Line"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "剖面线",
+      "en": "Hatch",
+      "brief": "剖视图中表示被剖切材料的斜线",
+      "scene": "工程图标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4457.5",
+      "var_en": [
+        "Section Hatch",
+        "Hatching"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "中心线",
+      "en": "Centerline",
+      "brief": "表示对称中心或轴线的点划线",
+      "scene": "工程图标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4457.4",
+      "var_en": [
+        "Center Line"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "虚线",
+      "en": "Hidden Line",
+      "brief": "表示不可见轮廓的细虚线",
+      "scene": "工程图标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4457.4",
+      "var_en": [
+        "Dashed Line",
+        "Hidden Line"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "引出标注",
+      "en": "Leader",
+      "brief": "从被标注要素引出说明文字的线",
+      "scene": "图纸标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 4458.4",
+      "var_en": [
+        "Leader Line",
+        "Callout"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "孔位标注",
+      "en": "Hole Callout",
+      "brief": "标注孔径、深度、数量等信息的文字",
+      "scene": "工程图孔标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [
+        "Hole Callout",
+        "Hole Note"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "通孔",
+      "en": "Through Hole",
+      "brief": "贯穿整个零件的孔",
+      "scene": "工程图孔标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Through Hole"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "盲孔",
+      "en": "Blind Hole",
+      "brief": "未贯穿零件的孔，有深度要求",
+      "scene": "工程图孔标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Blind Hole"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "异型孔向导",
+      "en": "Hole Wizard",
+      "brief": "SolidWorks 中按标准生成各类孔的向导工具",
+      "scene": "SolidWorks 专用功能",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Hole Wizard"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "螺纹",
+      "en": "Thread",
+      "brief": "圆柱表面上的螺旋形凸起，用于连接或传动",
+      "scene": "建模与标注",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "autocad"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "GB/T 196",
+      "var_en": [
+        "Screw Thread",
+        "Thread"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "外螺纹",
+      "en": "External Thread",
+      "brief": "加工在圆柱外表面的螺纹",
+      "scene": "螺纹标注",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "GB/T 196",
+      "var_en": [
+        "Male Thread"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "内螺纹",
+      "en": "Internal Thread",
+      "brief": "加工在圆孔内表面的螺纹",
+      "scene": "螺纹标注",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "GB/T 196",
+      "var_en": [
+        "Female Thread"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "螺纹装饰线",
+      "en": "Cosmetic Thread",
+      "brief": "SolidWorks 中表示螺纹的简化线条",
+      "scene": "SolidWorks 螺纹表达",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Cosmetic Thread"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "螺距",
+      "en": "Thread Pitch",
+      "brief": "相邻两螺纹牙对应点间的轴向距离",
+      "scene": "螺纹参数",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 196",
+      "var_en": [
+        "Pitch"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "钣金",
+      "en": "Sheet Metal",
+      "brief": "以薄板为原料的冲压成型零件",
+      "scene": "钣金设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "creo"
+      ],
+      "scene_tags": [
+        "sheet_metal",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Sheet Metal"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "折弯",
+      "en": "Bend",
+      "brief": "将平板沿直线弯折成型的工序",
+      "scene": "钣金设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "creo"
+      ],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [
+        "Bending",
+        "Bend"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "展开图",
+      "en": "Flat Pattern",
+      "brief": "钣金件展开后的平面下料图",
+      "scene": "钣金设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "sheet_metal",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Flat Pattern",
+        "Unfold"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "折弯半径",
+      "en": "Bend Radius",
+      "brief": "钣金折弯处的内侧圆弧半径",
+      "scene": "钣金设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [
+        "Bend Radius"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "折弯系数",
+      "en": "K-Factor",
+      "brief": "计算钣金展开长度的中性层系数",
+      "scene": "钣金展开计算",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [
+        "K-Factor",
+        "Bend Allowance"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "切口",
+      "en": "Rip",
+      "brief": "钣金展开时在边角处开的缝",
+      "scene": "钣金设计",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [
+        "Rip",
+        "Slit"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "成型工具",
+      "en": "Forming Tool",
+      "brief": "在钣金上冲压出凸包、百叶窗等的工具",
+      "scene": "钣金设计",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [
+        "Forming Tool"
+      ],
+      "freq": 730
+    },
+    {
+      "zh": "加强筋",
+      "en": "Rib",
+      "brief": "为增加刚度而在结构上添加的凸起",
+      "scene": "结构设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Rib",
+        "Stiffener"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "孔距",
+      "en": "Hole Spacing",
+      "brief": "两个孔中心之间的距离",
+      "scene": "工程图标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Hole Pitch",
+        "Hole Spacing"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "中心距",
+      "en": "Center Distance",
+      "brief": "两特征中心之间的距离",
+      "scene": "工程图标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Center Distance"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "壁厚",
+      "en": "Wall Thickness",
+      "brief": "零件壳体的材料厚度",
+      "scene": "结构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Wall Thickness"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "干涉配合",
+      "en": "Interference Fit",
+      "brief": "过盈装配，需加热或加压安装",
+      "scene": "装配设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Press Fit"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "公差带",
+      "en": "Tolerance Zone",
+      "brief": "允许尺寸变动的区域范围",
+      "scene": "公差设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Tolerance Zone"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "基本偏差",
+      "en": "Fundamental Deviation",
+      "brief": "确定公差带相对零线位置的偏差",
+      "scene": "公差设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "Basic Deviation"
+      ],
+      "freq": 740
+    },
+    {
+      "zh": "配合等级",
+      "en": "Fit Grade",
+      "brief": "IT 公差等级代号，如 IT7",
+      "scene": "公差设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "IT Grade",
+        "Quality Grade"
+      ],
+      "freq": 750
+    },
+    {
+      "zh": "几何公差框格",
+      "en": "Feature Control Frame",
+      "brief": "形位公差的标准标注框",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Feature Control Frame",
+        "FCF"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "基准符号",
+      "en": "Datum Feature Symbol",
+      "brief": "图纸上标示基准要素的符号",
+      "scene": "形位公差标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 1182",
+      "var_en": [
+        "Datum Symbol",
+        "Datum Feature"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "未注公差",
+      "en": "General Tolerance",
+      "brief": "图纸未单独标注时适用的通用公差",
+      "scene": "工程图说明",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1804",
+      "var_en": [
+        "General Tolerance",
+        "Title Block Tolerance"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "技术要求",
+      "en": "Technical Requirements",
+      "brief": "图纸上对加工、检验等的文字说明",
+      "scene": "工程图说明",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [
+        "Technical Notes",
+        "General Notes"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "锐边倒钝",
+      "en": "Break Sharp Edges",
+      "brief": "去除零件锐利边角的处理要求",
+      "scene": "工程图技术要求",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [
+        "Deburr Sharp Edges",
+        "Break Edges"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "去毛刺",
+      "en": "Deburring",
+      "brief": "去除加工后残留毛刺的工序",
+      "scene": "工艺要求",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [
+        "Deburr"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "热处理",
+      "en": "Heat Treatment",
+      "brief": "通过加热冷却改善材料性能的工艺",
+      "scene": "工艺要求",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [
+        "Heat Treatment"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "调质",
+      "en": "Quenching and Tempering",
+      "brief": "淬火加高温回火的热处理工艺",
+      "scene": "工艺要求",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Q&T",
+        "Hardening and Tempering"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "淬火",
+      "en": "Quenching",
+      "brief": "加热后快速冷却以提高硬度",
+      "scene": "工艺要求",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Hardening",
+        "Quench"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "发黑",
+      "en": "Black Oxide",
+      "brief": "钢铁表面氧化处理形成保护膜",
+      "scene": "表面处理",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Blackening",
+        "Bluing"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "镀锌",
+      "en": "Zinc Plating",
+      "brief": "在钢铁表面电镀锌层防锈",
+      "scene": "表面处理",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Galvanizing",
+        "Zinc Coating"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "阳极氧化",
+      "en": "Anodizing",
+      "brief": "铝合金表面形成氧化膜的处理",
+      "scene": "表面处理",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Anodize",
+        "Anodizing"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "喷砂",
+      "en": "Sandblasting",
+      "brief": "用高速砂流清理或粗化表面",
+      "scene": "表面处理",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Sand Blasting",
+        "Bead Blasting"
+      ],
+      "freq": 750
+    },
+    {
+      "zh": "轴",
+      "en": "Shaft",
+      "brief": "传递运动和扭矩的旋转零件",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Shaft",
+        "Axle"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "阶梯轴",
+      "en": "Stepped Shaft",
+      "brief": "直径分段变化的轴",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Stepped Shaft"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "轴承",
+      "en": "Bearing",
+      "brief": "支撑轴并减小摩擦的标准件",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "GB/T 271",
+      "var_en": [
+        "Bearing"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "滚动轴承",
+      "en": "Rolling Bearing",
+      "brief": "依靠滚动体承载的轴承",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 271",
+      "var_en": [
+        "Ball Bearing",
+        "Roller Bearing"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "深沟球轴承",
+      "en": "Deep Groove Ball Bearing",
+      "brief": "最常用的径向轴承类型",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 276",
+      "var_en": [
+        "DGBB",
+        "Deep Groove Ball Bearing"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "键槽",
+      "en": "Keyway",
+      "brief": "轴上安装平键的槽",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1095",
+      "var_en": [
+        "Keyway",
+        "Key Slot"
+      ],
+      "freq": 870
+    },
+    {
+      "zh": "平键",
+      "en": "Parallel Key",
+      "brief": "用于周向固定的矩形截面键",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "GB/T 1096",
+      "var_en": [
+        "Flat Key",
+        "Parallel Key"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "花键",
+      "en": "Spline",
+      "brief": "轴与轮毂上多齿啮合的连接结构",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 1144",
+      "var_en": [
+        "Spline Shaft"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "齿轮",
+      "en": "Gear",
+      "brief": "通过轮齿啮合传递运动和动力的零件",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "GB/T 10095",
+      "var_en": [
+        "Gear"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "模数",
+      "en": "Module",
+      "brief": "齿轮齿距与圆周率之比，齿轮基本参数",
+      "scene": "齿轮设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 1357",
+      "var_en": [
+        "Module",
+        "Modulus"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "齿数",
+      "en": "Number of Teeth",
+      "brief": "齿轮轮齿的总数",
+      "scene": "齿轮设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Tooth Count",
+        "Number of Teeth"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "分度圆",
+      "en": "Pitch Circle",
+      "brief": "齿轮设计计算的基准圆",
+      "scene": "齿轮设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 10095",
+      "var_en": [
+        "Reference Circle",
+        "Pitch Circle"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "压力角",
+      "en": "Pressure Angle",
+      "brief": "齿轮啮合点受力方向与运动方向的夹角",
+      "scene": "齿轮设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 10095",
+      "var_en": [
+        "Pressure Angle"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "螺旋角",
+      "en": "Helix Angle",
+      "brief": "斜齿轮轮齿的倾斜角度",
+      "scene": "齿轮设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Helix Angle"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "传动比",
+      "en": "Gear Ratio",
+      "brief": "输入与输出转速之比",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Transmission Ratio",
+        "Gear Ratio"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "皮带轮",
+      "en": "Pulley",
+      "brief": "传送带传动中的轮子",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Pulley",
+        "Sheave"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "链轮",
+      "en": "Sprocket",
+      "brief": "链传动中与链条啮合的轮子",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 1243",
+      "var_en": [
+        "Sprocket",
+        "Chain Wheel"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "联轴器",
+      "en": "Coupling",
+      "brief": "连接两轴传递扭矩的部件",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "GB/T 3852",
+      "var_en": [
+        "Coupling"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "凸轮",
+      "en": "Cam",
+      "brief": "将旋转运动转换为往复运动的构件",
+      "scene": "机构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Cam"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "连杆",
+      "en": "Connecting Rod",
+      "brief": "连接并传递运动和力的杆件",
+      "scene": "机构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Connecting Rod",
+        "Linkage"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "曲柄",
+      "en": "Crank",
+      "brief": "曲柄滑块机构中的转动件",
+      "scene": "机构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Crank"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "铰链",
+      "en": "Hinge",
+      "brief": "允许两构件相对转动的连接",
+      "scene": "机构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Hinge",
+        "Pivot Joint"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "导轨",
+      "en": "Guide Rail",
+      "brief": "引导运动部件沿直线移动的构件",
+      "scene": "结构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Linear Guide",
+        "Guideway"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "丝杠",
+      "en": "Lead Screw",
+      "brief": "将旋转运动转换为直线运动的螺杆",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Lead Screw",
+        "Ball Screw"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "滚珠丝杠",
+      "en": "Ball Screw",
+      "brief": "用滚珠在丝杠与螺母间传动的精密传动件",
+      "scene": "传动设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Ball Screw",
+        "Recirculating Ball Screw"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "液压缸",
+      "en": "Hydraulic Cylinder",
+      "brief": "将液压能转换为直线机械能的执行元件",
+      "scene": "液压系统",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Hydraulic Cylinder"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "气缸",
+      "en": "Pneumatic Cylinder",
+      "brief": "将压缩空气能转换为机械能的执行元件",
+      "scene": "气动系统",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Air Cylinder",
+        "Pneumatic Cylinder"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "O 型圈",
+      "en": "O-Ring",
+      "brief": "环形橡胶密封件，用于静/动密封",
+      "scene": "密封设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 3452.1",
+      "var_en": [
+        "O-Ring",
+        "O Ring"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "密封圈",
+      "en": "Seal Ring",
+      "brief": "防止介质泄漏的环状密封件",
+      "scene": "密封设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Seal",
+        "Sealing Ring"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "油封",
+      "en": "Oil Seal",
+      "brief": "旋转轴处的唇形密封件",
+      "scene": "密封设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 13871",
+      "var_en": [
+        "Oil Seal",
+        "Rotary Shaft Seal"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "垫片",
+      "en": "Gasket",
+      "brief": "置于两平面间起密封作用的薄片",
+      "scene": "密封设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Gasket",
+        "Shim"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "弹簧垫圈",
+      "en": "Spring Washer",
+      "brief": "防止螺栓松动的弹性垫圈",
+      "scene": "紧固件",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 93",
+      "var_en": [
+        "Spring Washer",
+        "Lock Washer"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "平垫圈",
+      "en": "Flat Washer",
+      "brief": "分散压力的平面垫圈",
+      "scene": "紧固件",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 97.1",
+      "var_en": [
+        "Flat Washer",
+        "Plain Washer"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "六角头螺栓",
+      "en": "Hex Head Bolt",
+      "brief": "头部为六角形的螺栓",
+      "scene": "紧固件",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 5782",
+      "var_en": [
+        "Hex Bolt"
+      ],
+      "freq": 860
+    },
+    {
+      "zh": "内六角螺钉",
+      "en": "Socket Head Cap Screw",
+      "brief": "头部带内六角孔的螺钉",
+      "scene": "紧固件",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 70.1",
+      "var_en": [
+        "SHCS",
+        "Allen Bolt",
+        "Socket Screw"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "螺母",
+      "en": "Nut",
+      "brief": "与螺栓配合使用的内螺纹紧固件",
+      "scene": "紧固件",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 6170",
+      "var_en": [
+        "Nut"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "防松",
+      "en": "Anti-loosening",
+      "brief": "防止螺纹连接松脱的措施",
+      "scene": "紧固件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Locking",
+        "Anti-loosening"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "预紧力",
+      "en": "Preload",
+      "brief": "螺栓拧紧时施加的轴向拉力",
+      "scene": "紧固件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Preload",
+        "Pre-tension"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "拧紧扭矩",
+      "en": "Tightening Torque",
+      "brief": "装配时施加的旋转力矩",
+      "scene": "紧固件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Tightening Torque",
+        "Clamp Torque"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "公差分析",
+      "en": "Tolerance Analysis",
+      "brief": "分析尺寸链累积误差的方法",
+      "scene": "质量与工艺",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Tolerance Stack-up",
+        "Tolerance Analysis"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "尺寸链",
+      "en": "Dimension Chain",
+      "brief": "相互关联尺寸组成的封闭尺寸组",
+      "scene": "公差分析",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Dimension Chain",
+        "Dimensional Loop"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "有限元分析",
+      "en": "Finite Element Analysis",
+      "brief": "数值求解结构应力应变的仿真方法",
+      "scene": "仿真分析",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "analysis",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "FEA",
+        "Finite Element Analysis"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "应力云图",
+      "en": "Stress Contour Plot",
+      "brief": "以颜色表示应力分布的仿真结果图",
+      "scene": "仿真后处理",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Stress Plot",
+        "Stress Contour"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "安全系数",
+      "en": "Safety Factor",
+      "brief": "材料强度与工作应力的比值",
+      "scene": "强度校核",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Factor of Safety",
+        "FOS"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "屈服强度",
+      "en": "Yield Strength",
+      "brief": "材料发生塑性变形时的应力",
+      "scene": "材料力学",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "GB/T 228.1",
+      "var_en": [
+        "Yield Strength",
+        "ReL"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "抗拉强度",
+      "en": "Tensile Strength",
+      "brief": "材料拉断前承受的最大应力",
+      "scene": "材料力学",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "GB/T 228.1",
+      "var_en": [
+        "Ultimate Tensile Strength",
+        "UTS"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "弹性模量",
+      "en": "Young's Modulus",
+      "brief": "材料在弹性范围内应力与应变之比",
+      "scene": "材料力学",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Modulus of Elasticity",
+        "E"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "泊松比",
+      "en": "Poisson's Ratio",
+      "brief": "横向应变与轴向应变之比的绝对值",
+      "scene": "材料力学",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Poisson Ratio"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "米塞斯应力",
+      "en": "Von Mises Stress",
+      "brief": "用于判断延性材料屈服的等效应力",
+      "scene": "仿真分析",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Von Mises",
+        "Equivalent Stress"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "网格划分",
+      "en": "Meshing",
+      "brief": "将模型离散为有限单元的过程",
+      "scene": "仿真前处理",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Meshing",
+        "Mesh Generation"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "载荷",
+      "en": "Load",
+      "brief": "施加在结构上的外力",
+      "scene": "仿真前处理",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Load",
+        "Applied Load"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "约束",
+      "en": "Constraint",
+      "brief": "限制结构自由度的边界条件",
+      "scene": "仿真前处理 / 草图",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Restraint",
+        "Constraint"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "运动仿真",
+      "en": "Motion Simulation",
+      "brief": "模拟机构运动学与动力学的分析",
+      "scene": "仿真分析",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Motion Analysis",
+        "Kinematics"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "设计表",
+      "en": "Design Table",
+      "brief": "用表格参数驱动生成系列零件配置",
+      "scene": "参数化设计",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Design Table",
+        "Configuration Table"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "配置",
+      "en": "Configuration",
+      "brief": "同一模型的不同参数化变体",
+      "scene": "参数化设计",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Configuration",
+        "Variant"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "方程式",
+      "en": "Equation",
+      "brief": "用数学关系驱动尺寸的表达式",
+      "scene": "参数化设计",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Equation",
+        "Formula"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "全局变量",
+      "en": "Global Variable",
+      "brief": "可在多个尺寸间引用的命名变量",
+      "scene": "参数化设计",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Global Variable"
+      ],
+      "freq": 740
+    },
+    {
+      "zh": "方程式驱动",
+      "en": "Equation Driven",
+      "brief": "由方程控制尺寸或曲线的建模方式",
+      "scene": "参数化设计",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Equation Driven Curve"
+      ],
+      "freq": 730
+    },
+    {
+      "zh": "曲面缝合",
+      "en": "Knit Surface",
+      "brief": "将多张曲面合并为一张曲面的操作",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Knit",
+        "Stitch Surface"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "曲面裁剪",
+      "en": "Trim Surface",
+      "brief": "用曲面或曲线剪裁曲面的操作",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Trim Surface"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "曲面延伸",
+      "en": "Extend Surface",
+      "brief": "沿边界方向延长曲面的操作",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Extend Surface"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "加厚",
+      "en": "Thicken",
+      "brief": "将曲面加厚成实体的操作",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Thicken",
+        "Offset Surface"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "分割线",
+      "en": "Split Line",
+      "brief": "在面上投影曲线以分割表面的工具",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Split Line"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "边界曲面",
+      "en": "Boundary Surface",
+      "brief": "由边界曲线生成的曲面",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Boundary Surface",
+        "Blended Surface"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "曲率",
+      "en": "Curvature",
+      "brief": "曲线或曲面弯曲程度的量度",
+      "scene": "曲面建模 / 分析",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Curvature"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "连续性",
+      "en": "Continuity",
+      "brief": "曲面拼接处的光滑程度 G0/G1/G2",
+      "scene": "曲面质量分析",
+      "software": [
+        "solidworks",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "G0/G1/G2 Continuity"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "斑马条纹",
+      "en": "Zebra Stripes",
+      "brief": "检测曲面连续性的条纹分析工具",
+      "scene": "曲面质量分析",
+      "software": [
+        "solidworks",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "analysis"
+      ],
+      "standard": "",
+      "var_en": [
+        "Zebra Analysis",
+        "Zebra Stripes"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "脱模方向",
+      "en": "Draft Direction",
+      "brief": "注塑件从模具中取出的方向",
+      "scene": "注塑件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Pull Direction",
+        "Draft Direction"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "分型面",
+      "en": "Parting Surface",
+      "brief": "模具上下模的分界曲面",
+      "scene": "注塑件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Parting Line",
+        "Parting Surface"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "注塑件",
+      "en": "Injection Molded Part",
+      "brief": "通过注塑工艺成型的塑料零件",
+      "scene": "零件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Injection Molded Part",
+        "Plastic Part"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "卡扣",
+      "en": "Snap Fit",
+      "brief": "利用材料弹性实现扣合的结构",
+      "scene": "塑料件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Snap Fit",
+        "Snap Hook"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "boss 柱",
+      "en": "Boss",
+      "brief": "塑料件中用于螺钉或热熔连接的凸台",
+      "scene": "塑料件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Boss",
+        "Standoff"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "止口",
+      "en": "Rabbet",
+      "brief": "装配时用于定位与遮挡的台阶结构",
+      "scene": "结构设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Rabbet",
+        "Step Joint"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "定位销",
+      "en": "Locating Pin",
+      "brief": "用于零件精确定位的圆柱销",
+      "scene": "装配设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "assembly",
+        "3d_modeling"
+      ],
+      "standard": "GB/T 119.1",
+      "var_en": [
+        "Dowel Pin",
+        "Locating Pin"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "过盈量",
+      "en": "Interference Amount",
+      "brief": "配合中轴径与孔径的差值",
+      "scene": "装配设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Interference Amount"
+      ],
+      "freq": 750
+    },
+    {
+      "zh": "公差等级",
+      "en": "Tolerance Grade",
+      "brief": "按精度划分的公差级别 IT01~IT18",
+      "scene": "公差设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 1800",
+      "var_en": [
+        "IT Grade",
+        "Tolerance Class"
+      ],
+      "freq": 780
+    },
+    {
+      "zh": "加工余量",
+      "en": "Machining Allowance",
+      "brief": "为后续加工预留的材料厚度",
+      "scene": "工艺设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "cam",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Machining Allowance",
+        "Stock Allowance"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "刀具半径补偿",
+      "en": "Cutter Radius Compensation",
+      "brief": "数控加工中补偿刀具半径的指令",
+      "scene": "CAM 加工",
+      "software": [
+        "ug",
+        "solidworks"
+      ],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [
+        "Cutter Compensation",
+        "CRC"
+      ],
+      "freq": 770
+    },
+    {
+      "zh": "刀路",
+      "en": "Toolpath",
+      "brief": "数控加工中刀具运动的轨迹",
+      "scene": "CAM 加工",
+      "software": [
+        "ug",
+        "solidworks"
+      ],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [
+        "Toolpath",
+        "Tool Path"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "粗加工",
+      "en": "Roughing",
+      "brief": "去除大部分余量的加工工序",
+      "scene": "CAM 加工",
+      "software": [
+        "ug",
+        "solidworks"
+      ],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [
+        "Rough Machining",
+        "Roughing"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "精加工",
+      "en": "Finishing",
+      "brief": "保证最终尺寸与表面质量的工序",
+      "scene": "CAM 加工",
+      "software": [
+        "ug",
+        "solidworks"
+      ],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [
+        "Finish Machining",
+        "Finishing"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "过切",
+      "en": "Gouge",
+      "brief": "刀具切入了不应切削的区域",
+      "scene": "CAM 加工检查",
+      "software": [
+        "ug",
+        "solidworks"
+      ],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [
+        "Gouge",
+        "Undercut"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "坐标系",
+      "en": "Coordinate System",
+      "brief": "定义空间位置与方向的参照系",
+      "scene": "建模 / 加工",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "autocad"
+      ],
+      "scene_tags": [
+        "3d_modeling",
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [
+        "CSYS",
+        "Coordinate System"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "原点",
+      "en": "Origin",
+      "brief": "坐标系的基准零点",
+      "scene": "建模基础",
+      "software": [
+        "solidworks",
+        "ug",
+        "autocad"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Origin",
+        "Datum Origin"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "草图",
+      "en": "Sketch",
+      "brief": "二维轮廓，特征建模的基础",
+      "scene": "建模基础",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Sketch",
+        "Profile"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "完全定义",
+      "en": "Fully Defined",
+      "brief": "草图中所有图元都受约束的状态",
+      "scene": "SolidWorks 草图",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Fully Defined",
+        "Fully Constrained"
+      ],
+      "freq": 840
+    },
+    {
+      "zh": "欠定义",
+      "en": "Under Defined",
+      "brief": "草图图元约束不足可自由移动的状态",
+      "scene": "SolidWorks 草图",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Under Defined",
+        "Under Constrained"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "过定义",
+      "en": "Over Defined",
+      "brief": "草图约束冗余冲突的状态",
+      "scene": "SolidWorks 草图",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Over Defined",
+        "Over Constrained"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "几何关系",
+      "en": "Geometric Relation",
+      "brief": "草图中图元间的几何约束关系",
+      "scene": "SolidWorks 草图",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Geometric Relation"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "父子关系",
+      "en": "Parent-Child Relation",
+      "brief": "特征之间存在的依赖引用关系",
+      "scene": "特征管理",
+      "software": [
+        "solidworks",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Parent-Child Relation"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "设计树",
+      "en": "FeatureManager Design Tree",
+      "brief": "SolidWorks 中列出所有特征的树状结构",
+      "scene": "SolidWorks 界面",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "FeatureManager",
+        "Design Tree"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "重建模型",
+      "en": "Rebuild",
+      "brief": "按顺序重新计算并更新模型的操作",
+      "scene": "SolidWorks 操作",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Rebuild"
+      ],
+      "freq": 830
+    },
+    {
+      "zh": "特征",
+      "en": "Feature",
+      "brief": "构成模型的独立几何操作单元",
+      "scene": "建模基础",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia",
+        "inventor"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Feature"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "实体",
+      "en": "Solid Body",
+      "brief": "封闭的有体积的三维几何体",
+      "scene": "建模基础",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Solid Body",
+        "Body"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "曲面",
+      "en": "Surface",
+      "brief": "无厚度或极薄的连续几何面",
+      "scene": "曲面建模",
+      "software": [
+        "solidworks",
+        "ug",
+        "catia"
+      ],
+      "scene_tags": [
+        "surface",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Surface"
+      ],
+      "freq": 880
+    },
+    {
+      "zh": "多实体零件",
+      "en": "Multibody Part",
+      "brief": "一个零件文件中包含多个独立实体",
+      "scene": "SolidWorks 建模",
+      "software": [
+        "solidworks"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Multibody Part",
+        "Multiple Bodies"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "拔模分析",
+      "en": "Draft Analysis",
+      "brief": "检查模型脱模斜度是否合理的工具",
+      "scene": "注塑件检查",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "analysis",
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Draft Analysis"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "底切",
+      "en": "Undercut",
+      "brief": "阻碍脱模的倒扣结构",
+      "scene": "注塑件设计",
+      "software": [
+        "solidworks",
+        "ug"
+      ],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [
+        "Undercut",
+        "Undercut Area"
+      ],
+      "freq": 760
+    },
+    {
+      "zh": "装配约束",
+      "en": "Assembly Constraint",
+      "brief": "限制装配体中零件位置关系的条件",
+      "scene": "装配设计",
+      "software": [
+        "ug",
+        "catia",
+        "creo"
+      ],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [
+        "Assembly Constraint"
+      ],
+      "freq": 850
+    },
+    {
+      "zh": "零件序号",
+      "en": "Balloon",
+      "brief": "图纸上标注装配件序号的圆圈",
+      "scene": "装配图标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 4458.2",
+      "var_en": [
+        "Balloon",
+        "Item Number"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "明细栏",
+      "en": "Parts List",
+      "brief": "装配图中列出零件信息的表格",
+      "scene": "装配图标注",
+      "software": [
+        "solidworks",
+        "autocad",
+        "ug"
+      ],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 10609.2",
+      "var_en": [
+        "Parts List",
+        "BOM Table"
+      ],
+      "freq": 810
+    },
+    {
+      "zh": "焊接符号",
+      "en": "Welding Symbol",
+      "brief": "图纸上表示焊接要求的符号",
+      "scene": "焊接件图纸",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 324",
+      "var_en": [
+        "Weld Symbol"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "焊缝",
+      "en": "Weld Seam",
+      "brief": "焊接后形成的连接缝",
+      "scene": "焊接件设计",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "3d_modeling"
+      ],
+      "standard": "GB/T 324",
+      "var_en": [
+        "Weld Seam",
+        "Weld Bead"
+      ],
+      "freq": 820
+    },
+    {
+      "zh": "角焊缝",
+      "en": "Fillet Weld",
+      "brief": "两构件成角连接处的焊缝",
+      "scene": "焊接符号标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 324",
+      "var_en": [
+        "Fillet Weld"
+      ],
+      "freq": 800
+    },
+    {
+      "zh": "对接焊缝",
+      "en": "Butt Weld",
+      "brief": "两构件对接处的焊缝",
+      "scene": "焊接符号标注",
+      "software": [
+        "solidworks",
+        "autocad"
+      ],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 324",
+      "var_en": [
+        "Butt Weld"
+      ],
+      "freq": 790
+    },
+    {
+      "zh": "右视图",
+      "en": "Right View",
+      "brief": "从右方向左投影得到的视图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "仰视图",
+      "en": "Bottom View",
+      "brief": "从下方向上投影得到的视图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "后视图",
+      "en": "Rear View",
+      "brief": "从背面投影得到的视图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "阶梯剖视图",
+      "en": "Offset Section View",
+      "brief": "用平行的多个剖切面剖切",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 690
+    },
+    {
+      "zh": "断面图",
+      "en": "Sectional View",
+      "brief": "只画剖切面处的截面形状",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "移出断面图",
+      "en": "Removed Section",
+      "brief": "断面图画在视图之外",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "斜视图",
+      "en": "Auxiliary View",
+      "brief": "向不平行于基本投影面的平面投影",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "旋转视图",
+      "en": "Revolved View",
+      "brief": "假想旋转后投影得到的视图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "轴测图",
+      "en": "Isometric Drawing",
+      "brief": "立体感的正等轴测投影图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "爆炸图",
+      "en": "Exploded View",
+      "brief": "零件按装配顺序分解展开",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "向视图",
+      "en": "View in Direction",
+      "brief": "按指定方向投影得到的视图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "透视图",
+      "en": "Perspective View",
+      "brief": "按透视原理绘制的图",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 560
+    },
+    {
+      "zh": "图线",
+      "en": "Line Type",
+      "brief": "图纸中各类线型的统称",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4457.4",
+      "var_en": [],
+      "freq": 600
+    },
+    {
+      "zh": "粗实线",
+      "en": "Thick Continuous Line",
+      "brief": "表示可见轮廓线",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 600
+    },
+    {
+      "zh": "细实线",
+      "en": "Thin Continuous Line",
+      "brief": "表示尺寸线、剖面线等",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 580
+    },
+    {
+      "zh": "点划线",
+      "en": "Center Line",
+      "brief": "表示轴线或对称中心线",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 600
+    },
+    {
+      "zh": "双点划线",
+      "en": "Phantom Line",
+      "brief": "表示假想轮廓或极限位置",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 560
+    },
+    {
+      "zh": "波浪线",
+      "en": "Break Line",
+      "brief": "表示断裂边界",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 540
+    },
+    {
+      "zh": "基本尺寸",
+      "en": "Basic Dimension",
+      "brief": "设计给定的尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d",
+        "tolerance"
+      ],
+      "standard": "GB/T 1800.1",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "实际尺寸",
+      "en": "Actual Size",
+      "brief": "测量所得的尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "极限尺寸",
+      "en": "Limit Size",
+      "brief": "允许尺寸变化的两个界限值",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "上偏差",
+      "en": "Upper Deviation",
+      "brief": "最大极限尺寸减基本尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "下偏差",
+      "en": "Lower Deviation",
+      "brief": "最小极限尺寸减基本尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "尺寸公差",
+      "en": "Dimensional Tolerance",
+      "brief": "允许尺寸的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "GB/T 1800.1",
+      "var_en": [],
+      "freq": 840
+    },
+    {
+      "zh": "最大实体尺寸",
+      "en": "Maximum Material Size",
+      "brief": "允许材料最多的极限尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "最小实体尺寸",
+      "en": "Least Material Size",
+      "brief": "允许材料最少的极限尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 600
+    },
+    {
+      "zh": "形状公差",
+      "en": "Form Tolerance",
+      "brief": "单一要素的形状所允许的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "位置公差",
+      "en": "Position Tolerance",
+      "brief": "关联要素的位置所允许的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "直线度",
+      "en": "Straightness",
+      "brief": "实际直线对其理想直线的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "圆度",
+      "en": "Roundness",
+      "brief": "实际圆对其理想圆的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "圆柱度",
+      "en": "Cylindricity",
+      "brief": "实际圆柱面对其理想圆柱面的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "线轮廓度",
+      "en": "Profile of a Line",
+      "brief": "任意截面轮廓线的形状公差",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "面轮廓度",
+      "en": "Profile of a Surface",
+      "brief": "实际轮廓曲面对理想曲面的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "倾斜度",
+      "en": "Angularity",
+      "brief": "被测要素对基准成给定角度的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "对称度",
+      "en": "Symmetry",
+      "brief": "被测要素对基准中心平面的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "位置度",
+      "en": "True Position",
+      "brief": "被测要素对理想位置的变动量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "基准",
+      "en": "Datum",
+      "brief": "用来确定公差关系的依据",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "基准要素",
+      "en": "Datum Feature",
+      "brief": "建立基准的要素",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "基准目标",
+      "en": "Datum Target",
+      "brief": "基准要素上的点线面区域",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "最大实体要求",
+      "en": "Maximum Material Requirement",
+      "brief": "公差与尺寸相关的公差原则",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "包容要求",
+      "en": "Envelope Requirement",
+      "brief": "要求实际要素不超过最大实体边界",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 600
+    },
+    {
+      "zh": "自由尺寸",
+      "en": "Unspecified Dimension",
+      "brief": "不加公差标注的尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 600
+    },
+    {
+      "zh": "理论正确尺寸",
+      "en": "Basic Dimension",
+      "brief": "不带公差的理想尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "tolerance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "轮廓算术平均偏差",
+      "en": "Roughness Average",
+      "brief": "Ra，表面粗糙度常用参数",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "取样长度",
+      "en": "Sampling Length",
+      "brief": "评定表面粗糙度所取的基准长度",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 560
+    },
+    {
+      "zh": "表面处理",
+      "en": "Surface Treatment",
+      "brief": "改善表面性能的工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "镀铬",
+      "en": "Chrome Plating",
+      "brief": "镀硬铬提高硬度与耐磨性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "镀镍",
+      "en": "Nickel Plating",
+      "brief": "镀镍提高耐蚀与装饰性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "喷丸",
+      "en": "Shot Peening",
+      "brief": "用弹丸撞击表面产生压应力",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "拉丝",
+      "en": "Wire Drawing",
+      "brief": "表面形成丝纹装饰效果",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "抛光",
+      "en": "Polishing",
+      "brief": "降低表面粗糙度的精加工",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "钝化",
+      "en": "Passivation",
+      "brief": "金属表面生成致密氧化膜",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "磷化",
+      "en": "Phosphating",
+      "brief": "表面生成磷酸盐转化膜",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "回火",
+      "en": "Tempering",
+      "brief": "淬火后加热以调整韧性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "正火",
+      "en": "Normalizing",
+      "brief": "加热后空冷细化晶粒",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "退火",
+      "en": "Annealing",
+      "brief": "加热保温后缓冷消除内应力",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "表面淬火",
+      "en": "Surface Hardening",
+      "brief": "仅对表面层进行淬火",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "渗碳",
+      "en": "Carburizing",
+      "brief": "表面渗入碳提高表面硬度",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "渗氮",
+      "en": "Nitriding",
+      "brief": "表面渗入氮提高硬度与耐磨性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "时效",
+      "en": "Aging",
+      "brief": "放置或加热消除内应力稳定尺寸",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "去应力退火",
+      "en": "Stress Relief Annealing",
+      "brief": "消除焊接或加工残余应力",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "半精加工",
+      "en": "Semi-finishing",
+      "brief": "介于粗精之间的加工",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "车削",
+      "en": "Turning",
+      "brief": "用车刀在车床上加工回转面",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "铣削",
+      "en": "Milling",
+      "brief": "用铣刀加工平面或沟槽",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "磨削",
+      "en": "Grinding",
+      "brief": "用砂轮进行精加工",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "钻孔",
+      "en": "Drilling",
+      "brief": "用钻头加工孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "铰孔",
+      "en": "Reaming",
+      "brief": "用铰刀提高孔精度与表面质量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "镗孔",
+      "en": "Boring",
+      "brief": "用镗刀扩大或精加工孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "攻丝",
+      "en": "Tapping",
+      "brief": "加工内螺纹",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "套丝",
+      "en": "Threading",
+      "brief": "加工外螺纹",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "线切割",
+      "en": "Wire EDM",
+      "brief": "电极丝放电切割导电材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "电火花加工",
+      "en": "Electrical Discharge Machining",
+      "brief": "放电蚀除金属的加工方法",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "激光切割",
+      "en": "Laser Cutting",
+      "brief": "用激光束熔化或汽化材料切割",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "水刀切割",
+      "en": "Waterjet Cutting",
+      "brief": "用高压水流加磨料切割",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "弯曲半径",
+      "en": "Bend Radius",
+      "brief": "折弯内侧的圆弧半径",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "回弹",
+      "en": "Springback",
+      "brief": "折弯卸载后角度与半径的回复",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "折弯扣除",
+      "en": "Bend Deduction",
+      "brief": "展开长度计算的扣除量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "K因子",
+      "en": "K-Factor",
+      "brief": "钣金中性层位置系数",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "冲压",
+      "en": "Stamping",
+      "brief": "用模具使板料分离或成形",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "冲孔",
+      "en": "Punching",
+      "brief": "用冲模在板料上冲出孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "落料",
+      "en": "Blanking",
+      "brief": "沿封闭轮廓从板料上分离出工件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "拉伸成形",
+      "en": "Deep Drawing",
+      "brief": "板料被拉入凹模成形为开口件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "焊接",
+      "en": "Welding",
+      "brief": "通过加热或加压使工件结合",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "焊脚尺寸",
+      "en": "Leg Size",
+      "brief": "角焊缝截面直角边的长度",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "满焊",
+      "en": "Full Weld",
+      "brief": "沿接缝全长连续焊接",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "间断焊",
+      "en": "Intermittent Weld",
+      "brief": "沿接缝分段焊接",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "焊缝符号",
+      "en": "Welding Symbol",
+      "brief": "图上表示焊缝形式的符号",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "GB/T 324",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "焊后加工",
+      "en": "Machining After Welding",
+      "brief": "焊接完成后进行的机械加工",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "assembly"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "止挡",
+      "en": "Stop",
+      "brief": "限制运动行程的挡块",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "限位块",
+      "en": "Limit Block",
+      "brief": "限制零件运动范围的挡块",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "支撑",
+      "en": "Support",
+      "brief": "承受载荷的支承结构",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "支承座",
+      "en": "Support Seat",
+      "brief": "安装支承件的底座",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "支架",
+      "en": "Bracket",
+      "brief": "用于支承或固定零件的构件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "支座",
+      "en": "Pedestal",
+      "brief": "支承轴或轴的座体",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "立柱",
+      "en": "Column",
+      "brief": "垂直支承构件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "横梁",
+      "en": "Crossbeam",
+      "brief": "横向承重构件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "底座",
+      "en": "Base Plate",
+      "brief": "设备或构件的底部支承板",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "顶板",
+      "en": "Top Plate",
+      "brief": "位于上部的板件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "底板",
+      "en": "Bottom Plate",
+      "brief": "位于底部的板件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "侧板",
+      "en": "Side Plate",
+      "brief": "位于侧面的板件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "筋板",
+      "en": "Gusset Plate",
+      "brief": "连接两构件提高刚度的板",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "隔板",
+      "en": "Baffle",
+      "brief": "分隔空间或增强刚度的板",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "盖板",
+      "en": "Cover Plate",
+      "brief": "用于封闭或遮盖的板件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "法兰",
+      "en": "Flange",
+      "brief": "用于连接或支承的凸缘",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "轴肩",
+      "en": "Shoulder",
+      "brief": "轴上用于轴向定位的台阶",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "轴环",
+      "en": "Collar",
+      "brief": "轴上套装并定位的环状件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "台阶",
+      "en": "Step",
+      "brief": "不同直径段形成的阶梯",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "凸台",
+      "en": "Boss",
+      "brief": "零件表面局部凸起的圆柱结构",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "凹槽",
+      "en": "Groove",
+      "brief": "零件表面的沟槽",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "退刀槽",
+      "en": "Relief Groove",
+      "brief": "便于刀具退出而加工的槽",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "砂轮越程槽",
+      "en": "Grinding Undercut",
+      "brief": "磨削时供砂轮越出的槽",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "油槽",
+      "en": "Oil Groove",
+      "brief": "储存润滑油起润滑作用的槽",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "中心孔",
+      "en": "Center Hole",
+      "brief": "轴端用于定位的锥孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "工艺孔",
+      "en": "Process Hole",
+      "brief": "为加工或装配方便设置的孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "减重孔",
+      "en": "Lightening Hole",
+      "brief": "为减轻重量而开的孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "过孔",
+      "en": "Clearance Hole",
+      "brief": "供螺栓穿过的通孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "锥孔",
+      "en": "Tapered Hole",
+      "brief": "带锥度的孔",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "异形孔",
+      "en": "Hole Wizard Feature",
+      "brief": "由向导生成的标准孔型",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 680
+    },
+    {
+      "zh": "倒圆",
+      "en": "Fillet",
+      "brief": "以圆弧过渡转角",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "棱边",
+      "en": "Edge",
+      "brief": "两表面的交线",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "扫掠",
+      "en": "Sweep",
+      "brief": "截面沿路径移动生成实体",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "放样",
+      "en": "Loft",
+      "brief": "多个截面过渡生成实体",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "尺寸驱动",
+      "en": "Dimension Driven",
+      "brief": "通过尺寸值控制几何形状",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "参数化",
+      "en": "Parametric",
+      "brief": "以参数和约束驱动模型",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "质量属性",
+      "en": "Mass Properties",
+      "brief": "体积、质量、重心等属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "重心",
+      "en": "Center of Gravity",
+      "brief": "质量集中的等效点",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "转动惯量",
+      "en": "Moment of Inertia",
+      "brief": "衡量物体转动惯性的量",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "传动轴",
+      "en": "Transmission Shaft",
+      "brief": "传递扭矩的轴",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "主轴",
+      "en": "Spindle",
+      "brief": "机床或设备的主要旋转轴",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "直齿轮",
+      "en": "Spur Gear",
+      "brief": "轮齿与轴线平行的齿轮",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "斜齿轮",
+      "en": "Helical Gear",
+      "brief": "轮齿与轴线成螺旋角的齿轮",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "锥齿轮",
+      "en": "Bevel Gear",
+      "brief": "用于相交轴间传动的齿轮",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "齿条",
+      "en": "Rack",
+      "brief": "与齿轮啮合实现直线运动",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "齿顶圆",
+      "en": "Addendum Circle",
+      "brief": "齿顶所在的圆",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "齿根圆",
+      "en": "Dedendum Circle",
+      "brief": "齿根所在的圆",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "同步带",
+      "en": "Timing Belt",
+      "brief": "带齿的传动带保证同步",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "离合器",
+      "en": "Clutch",
+      "brief": "可随时结合或分离的传动装置",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "滑动轴承",
+      "en": "Sliding Bearing",
+      "brief": "依靠滑动摩擦工作的轴承",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "圆锥滚子轴承",
+      "en": "Tapered Roller Bearing",
+      "brief": "可承受径向与轴向联合载荷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 297",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "推力轴承",
+      "en": "Thrust Bearing",
+      "brief": "承受轴向载荷的轴承",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "轴套",
+      "en": "Bushing",
+      "brief": "起滑动轴承作用的套筒",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "挡圈",
+      "en": "Retaining Ring",
+      "brief": "用于轴向定位的环件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 894",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "卡簧",
+      "en": "Circlip",
+      "brief": "装在轴或孔槽内的弹性挡圈",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "垫圈",
+      "en": "Washer",
+      "brief": "分散压力保护被连接件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 97.1",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "螺栓",
+      "en": "Bolt",
+      "brief": "带头的螺纹紧固件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 5782",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "螺钉",
+      "en": "Screw",
+      "brief": "用于连接的螺纹紧固件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 70.1",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "沉头螺钉",
+      "en": "Countersunk Screw",
+      "brief": "头部为锥形可沉入孔内",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 819.1",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "紧定螺钉",
+      "en": "Set Screw",
+      "brief": "用于固定零件相对位置",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 78",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "销",
+      "en": "Pin",
+      "brief": "用于定位或连接的圆柱件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 119.1",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "圆柱销",
+      "en": "Dowel Pin",
+      "brief": "圆柱形定位销",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 119.1",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "圆锥销",
+      "en": "Taper Pin",
+      "brief": "带锥度的定位销",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 117",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "开口销",
+      "en": "Split Pin",
+      "brief": "插入销孔后掰开的防松件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 91",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "铆钉",
+      "en": "Rivet",
+      "brief": "用于永久连接的紧固件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 867",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "垫块",
+      "en": "Spacer",
+      "brief": "调整尺寸或位置的块件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "O形圈",
+      "en": "O-ring",
+      "brief": "截面为圆形的密封圈",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 3452.1",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "弹簧",
+      "en": "Spring",
+      "brief": "利用弹性变形工作的零件",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 840
+    },
+    {
+      "zh": "压缩弹簧",
+      "en": "Compression Spring",
+      "brief": "承受压力变形的弹簧",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "GB/T 2089",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "拉伸弹簧",
+      "en": "Extension Spring",
+      "brief": "承受拉力变形的弹簧",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "扭簧",
+      "en": "Torsion Spring",
+      "brief": "承受扭矩变形的弹簧",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "低碳钢",
+      "en": "Low Carbon Steel",
+      "brief": "含碳量低于0.25%的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "中碳钢",
+      "en": "Medium Carbon Steel",
+      "brief": "含碳量0.25%~0.6%的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "高碳钢",
+      "en": "High Carbon Steel",
+      "brief": "含碳量高于0.6%的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "合金钢",
+      "en": "Alloy Steel",
+      "brief": "加入合金元素改善性能的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "不锈钢",
+      "en": "Stainless Steel",
+      "brief": "耐空气、蒸汽、水等腐蚀的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "工具钢",
+      "en": "Tool Steel",
+      "brief": "制造刀具模具的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "铸铁",
+      "en": "Cast Iron",
+      "brief": "含碳量大于2%的铁碳合金",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "球墨铸铁",
+      "en": "Ductile Iron",
+      "brief": "石墨呈球状的铸铁",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "灰铸铁",
+      "en": "Gray Cast Iron",
+      "brief": "石墨呈片状的铸铁",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "铸钢",
+      "en": "Cast Steel",
+      "brief": "用于铸造的钢",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "铝合金",
+      "en": "Aluminum Alloy",
+      "brief": "以铝为基的合金",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "铜合金",
+      "en": "Copper Alloy",
+      "brief": "以铜为基的合金",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "黄铜",
+      "en": "Brass",
+      "brief": "铜锌合金",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "青铜",
+      "en": "Bronze",
+      "brief": "铜锡合金等铜基合金",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "钛合金",
+      "en": "Titanium Alloy",
+      "brief": "强度高密度小的合金",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "工程塑料",
+      "en": "Engineering Plastic",
+      "brief": "可作结构件的塑料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "ABS",
+      "en": "Acrylonitrile Butadiene Styrene",
+      "brief": "常用工程塑料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "聚甲醛",
+      "en": "Polyoxymethylene",
+      "brief": "POM，高刚度耐磨塑料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "尼龙",
+      "en": "Nylon",
+      "brief": "聚酰胺，耐磨自润滑",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 760
+    },
+    {
+      "zh": "聚四氟乙烯",
+      "en": "PTFE",
+      "brief": "耐腐蚀摩擦系数极低",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "亚克力",
+      "en": "Acrylic",
+      "brief": "PMMA，透明有机玻璃",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "材料牌号",
+      "en": "Material Grade",
+      "brief": "标识材料成分与性能的代号",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 720
+    },
+    {
+      "zh": "毛坯",
+      "en": "Blank",
+      "brief": "加工前的原材料形态",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "型材",
+      "en": "Profile",
+      "brief": "具有特定截面形状的原材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "3d_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "板材",
+      "en": "Sheet",
+      "brief": "厚度较小的平板材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "sheet_metal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 800
+    },
+    {
+      "zh": "棒料",
+      "en": "Bar Stock",
+      "brief": "圆柱形或方形原材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "cam"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 740
+    },
+    {
+      "zh": "铸件",
+      "en": "Casting",
+      "brief": "铸造得到的零件毛坯",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "锻件",
+      "en": "Forging",
+      "brief": "锻造得到的零件毛坯",
+      "scene": "",
+      "software": [],
+      "scene_tags": [
+        "finish"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+# ---- 构建产物（每轮一个新 distN，体积大，不入库）----
+dist*/
+build*/
+*_full.log
+build*_full.log
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---- 打包工具与缓存（9MB 二进制，按 README 自行下载）----
+packaging/tools/
+packaging/_installer_build.iss
+packaging/_b.iss
+
+# ---- 本地运行数据（用户词库 / 记忆库 / 日志）----
+data/user/
+data/export/
+*.db
+*.db-journal
+logs/
+*.log
+
+# ---- 内部工作目录（AI 会话 / 调试脚本 / 记忆）----
+.workbuddy/
+
+# ---- 根目录调试截图 ----
+ocr_probe.png
+p1.png
+p2.png
+
+# ---- 编辑器 / 系统 ----
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

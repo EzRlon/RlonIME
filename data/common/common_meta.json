@@ -1,0 +1,17 @@
+{
+  "count": 82098,
+  "built": "2026-10-16",
+  "sources": [
+    {
+      "name": "CC-CEDICT",
+      "license": "CC BY-SA 4.0",
+      "url": "https://www.mdbg.net/chinese/export/cedict/cedict_1_0_ts_utf-8_mdbg.txt.gz"
+    },
+    {
+      "name": "jieba dict",
+      "license": "MIT",
+      "url": "https://raw.githubusercontent.com/fxsjy/jieba/master/jieba/dict.txt"
+    }
+  ],
+  "note": "全拼由 pypinyin 生成；词频为 jieba 频次归并到 0-1000"
+}

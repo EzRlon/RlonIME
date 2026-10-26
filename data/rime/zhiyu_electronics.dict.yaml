@@ -1,0 +1,146 @@
+---
+name: zhiyu_electronics
+version: "1.0.0"
+sort: by_weight
+columns:
+  - text
+  - code
+  - weight
+...
+原理图	yuanlitu	950
+网络表	wangluobiao	920
+网标	wangbiao	900
+元器件	yuanqijian	930
+封装	fengzhuang	950
+焊盘	hanpan	940
+过孔	guokong	940
+盲孔	mangkong	880
+埋孔	maikong	870
+走线	zouxian	950
+线宽	xiankuan	920
+线距	xianju	910
+铺铜	putong	920
+覆铜	futong	910
+内电层	neidianceng	890
+丝印层	siyinceng	900
+阻焊层	zuhanceng	910
+助焊层	zhuhanceng	890
+装配图	zhuangpeitu	890
+贴片图	tiepiantu	890
+Gerber 文件	Gerber wenjian	910
+钻孔文件	zuankongwenjian	900
+钢网	gangwang	870
+层叠结构	cengdiejiegou	910
+四层板	sicengban	880
+六层板	liucengban	870
+差分对	chafendui	920
+等长走线	dengzhangzouxian	920
+蛇形走线	shexingzouxian	900
+阻抗控制	zukangkongzhi	920
+特征阻抗	tezhengzukang	910
+微带线	weidaixian	890
+带状线	daizhuangxian	890
+参考平面	cankaopingmian	900
+信号完整性	xinhaowanzhengxing	930
+电源完整性	dianyuanwanzhengxing	920
+电磁兼容	diancijianrong	930
+电磁干扰	dianciganrao	920
+共模干扰	gongmoganrao	880
+差模干扰	chamoganrao	880
+去耦电容	quoudianrong	920
+旁路电容	pangludianrong	900
+滤波电容	lvbodianrong	900
+上拉电阻	shangladianzu	910
+下拉电阻	xialadianzu	910
+限流电阻	xianliudianzu	890
+分压电路	fenyadianlu	890
+运算放大器	yunsuanfangdaqi	920
+同相放大	tongxiangfangda	870
+反相放大	fanxiangfangda	870
+增益带宽积	zengyidaikuanji	870
+压摆率	yabailv	860
+共模抑制比	gongmoyizhibi	860
+稳压器	wenyaqi	900
+低压差稳压器	diyachawenyaqi	890
+开关电源	kaiguandianyuan	910
+降压变换器	jiangyabianhuanqi	910
+升压变换器	shengyabianhuanqi	910
+纹波	wenbo	890
+占空比	zhankongbi	890
+单片机	danpianji	930
+晶振	jingzhen	920
+复位电路	fuweidianlu	890
+时钟电路	shizhongdianlu	890
+接口电路	jiekoudianlu	880
+电平转换	dianpingzhuanhuan	890
+隔离电路	gelidianlu	880
+光耦	guangou	900
+TVS 管	TVS guan	890
+ESD 保护	ESD baohu	900
+防反接	fangfanjie	880
+过流保护	guoliubaohu	890
+过温保护	guowenbaohu	880
+可制造性设计	kezhizaoxingsheji	890
+可装配性设计	kezhuangpeixingsheji	880
+可测试性设计	keceshixingsheji	880
+设计规则检查	shejiguizejiancha	920
+电气规则检查	dianqiguizejiancha	910
+布局	buju	920
+布线	buxian	930
+手工布线	shougongbuxian	890
+自动布线	zidongbuxian	880
+布线密度	buxianmidu	850
+飞线	feixian	890
+板边框	banbiankuang	880
+拼板	pinban	880
+工艺边	gongyibian	860
+MARK 点	MARK dian	890
+测试点	ceshidian	880
+BGA 封装	BGA fengzhuang	910
+QFN 封装	QFN fengzhuang	900
+QFP 封装	QFP fengzhuang	890
+SOP 封装	SOP fengzhuang	890
+贴片元件	tiepianyuanjian	900
+插件元件	chajianyuanjian	890
+回流焊	huiliuhan	900
+波峰焊	bofenghan	890
+焊盘间距	hanpanjianju	890
+最小线宽线距	zuixiaoxiankuanxianju	880
+铜厚	tonghou	870
+板厚	banhou	870
+表面处理	biaomianchuli	880
+沉金	chenjin	870
+喷锡	penxi	870
+OSP 工艺	OSP gongyi	860
+仿真分析	fangzhenfenxi	890
+时序分析	shixufenxi	890
+串扰	chuanrao	900
+反射	fanshe	890
+端接电阻	duanjiedianzu	880
+地弹	didan	870
+过孔回流路径	guokonghuiliulujing	860
+散热焊盘	sanrehanpan	890
+散热过孔	sanreguokong	880
+热焊盘	rehanpan	870
+泪滴	leidi	870
+孤岛	gudao	850
+死铜	sitong	850
+EMC 整改	EMC zhenggai	860
+传导发射	chuandaofashe	870
+辐射发射	fushefashe	870
+静电放电	jingdianfangdian	880
+浪涌抗扰度	langyongkangraodu	860
+元器件降额	yuanqijianjiange	860
+故障模式分析	guzhangmoshifenxi	870
+平均无故障时间	pingjunwuguzhangshijian	880
+元器件选型	yuanqijianxuanxing	880
+替代料	tidailiao	870
+物料清单	wuliaoqingdan	910
+版本管理	banbenguanli	870
+设计评审	shejipingshen	880
+打样	dayang	880
+首件确认	shoujianqueren	870
+虚焊	xuhan	870
+立碑	libei	860
+锡珠	xizhu	860
+连线短路	lianxianduanlu	870

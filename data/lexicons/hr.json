@@ -1,0 +1,661 @@
+{
+  "profession": "hr",
+  "name": "人力资源与行政",
+  "version": "1.0.0",
+  "description": "招聘、薪酬、绩效与行政事务术语",
+  "terms": [
+    {
+      "zh": "岗位说明书",
+      "en": "Job Description",
+      "brief": "描述岗位职责与任职要求的文件",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [
+        "JD"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "任职资格",
+      "en": "Job Qualification",
+      "brief": "胜任该岗位所需的条件",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "招聘需求",
+      "en": "Hiring Request",
+      "brief": "用人部门提出的增员申请",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "人才画像",
+      "en": "Talent Persona",
+      "brief": "对目标候选人特征的描述",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "简历筛选",
+      "en": "Resume Screening",
+      "brief": "按条件初筛候选人简历",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "结构化面试",
+      "en": "Structured Interview",
+      "brief": "按统一维度提问评分的面试",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "行为面试法",
+      "en": "Behavioral Interview",
+      "brief": "通过过往行为预测未来表现",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "STAR",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "背调",
+      "en": "Background Check",
+      "brief": "对候选人履历的核实调查",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "offer 发放",
+      "en": "Offer Release",
+      "brief": "向候选人发出的录用通知",
+      "scene": "招聘管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "入职引导",
+      "en": "Onboarding",
+      "brief": "帮助新人快速融入的安排",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "试用期",
+      "en": "Probation Period",
+      "brief": "劳动合同约定的考察期",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "law"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "转正评估",
+      "en": "Regularization Review",
+      "brief": "试用期满的考核转正",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "劳动合同",
+      "en": "Labor Contract",
+      "brief": "确立劳动关系的书面协议",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "law"
+      ],
+      "standard": "劳动合同法",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "劳动关系",
+      "en": "Labor Relations",
+      "brief": "用人单位与劳动者的权利义务关系",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "law"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "社保",
+      "en": "Social Insurance",
+      "brief": "养老医疗失业工伤生育五险统称",
+      "scene": "薪酬福利",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [
+        "五险"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "公积金",
+      "en": "Housing Fund",
+      "brief": "住房公积金制度",
+      "scene": "薪酬福利",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [
+        "一金"
+      ],
+      "freq": 935
+    },
+    {
+      "zh": "工资条",
+      "en": "Payslip",
+      "brief": "列出工资构成明细的凭证",
+      "scene": "薪酬福利",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "个税代扣",
+      "en": "Withholding Tax",
+      "brief": "由单位代扣代缴的个人所得税",
+      "scene": "薪酬福利",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "薪酬结构",
+      "en": "Compensation Structure",
+      "brief": "工资各项组成的比例安排",
+      "scene": "薪酬福利",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "宽带薪酬",
+      "en": "Broadband Salary",
+      "brief": "减少等级、拉宽区间的薪酬体系",
+      "scene": "薪酬福利",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "绩效指标",
+      "en": "Performance Indicator",
+      "brief": "衡量工作结果的量化标准",
+      "scene": "绩效管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "KPI"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "绩效考核",
+      "en": "Performance Appraisal",
+      "brief": "对员工工作业绩的评估",
+      "scene": "绩效管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "目标管理",
+      "en": "Management by Objectives",
+      "brief": "以目标达成情况评价的管理方法",
+      "scene": "绩效管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [
+        "MBO"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "360 度评估",
+      "en": "360-degree Feedback",
+      "brief": "由多方共同评价的考核方式",
+      "scene": "绩效管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "绩效面谈",
+      "en": "Performance Interview",
+      "brief": "就考核结果与员工沟通",
+      "scene": "绩效管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "末位淘汰",
+      "en": "Forced Ranking",
+      "brief": "按排名淘汰末位的管理方式",
+      "scene": "绩效管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "培训计划",
+      "en": "Training Plan",
+      "brief": "安排的培训课程与时间",
+      "scene": "培训发展",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "岗位轮换",
+      "en": "Job Rotation",
+      "brief": "有计划地调换岗位以培养能力",
+      "scene": "培训发展",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "人才梯队",
+      "en": "Talent Pipeline",
+      "brief": "按层级储备的后备人才队伍",
+      "scene": "人才发展",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "胜任力模型",
+      "en": "Competency Model",
+      "brief": "描述岗位所需能力组合的模型",
+      "scene": "人才发展",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "继任计划",
+      "en": "Succession Plan",
+      "brief": "为关键岗位储备接班人",
+      "scene": "人才发展",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "人才盘点",
+      "en": "Talent Review",
+      "brief": "对组织内人才的系统梳理",
+      "scene": "人才发展",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "离职面谈",
+      "en": "Exit Interview",
+      "brief": "员工离职时的沟通访谈",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "离职证明",
+      "en": "Certificate of Resignation",
+      "brief": "证明劳动关系解除的文件",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "劳动仲裁",
+      "en": "Labor Arbitration",
+      "brief": "解决劳动争议的仲裁程序",
+      "scene": "员工关系",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "law",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "三支柱",
+      "en": "HR Three-pillar Model",
+      "brief": "HRBP、COE、SSC 的组织模式",
+      "scene": "组织管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [
+        "HRBP"
+      ],
+      "freq": 890
+    },
+    {
+      "zh": "组织架构",
+      "en": "Organization Chart",
+      "brief": "反映部门与汇报关系的结构",
+      "scene": "组织管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "编制管理",
+      "en": "Headcount Control",
+      "brief": "对岗位人数总量的管控",
+      "scene": "组织管理",
+      "software": [],
+      "scene_tags": [
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "考勤",
+      "en": "Attendance",
+      "brief": "记录员工出勤情况的制度",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "请假流程",
+      "en": "Leave Procedure",
+      "brief": "申请与审批休假的流程",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin",
+        "hr"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "差旅报销",
+      "en": "Travel Reimbursement",
+      "brief": "出差费用的事后报销",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "固定资产登记",
+      "en": "Asset Registration",
+      "brief": "对办公资产的登记造册",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "办公用品申领",
+      "en": "Office Supply Requisition",
+      "brief": "领用办公耗材的申请",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "会议纪要",
+      "en": "Meeting Minutes",
+      "brief": "记录会议要点与决议的文件",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "通知公告",
+      "en": "Notice Announcement",
+      "brief": "面向全员发布的正式通知",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "印章管理",
+      "en": "Seal Management",
+      "brief": "对公章使用的审批与登记",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "人事档案",
+      "en": "Personnel File",
+      "brief": "员工在册信息的档案材料",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "用章申请",
+      "en": "Seal Application",
+      "brief": "使用公司印章的审批流程",
+      "scene": "行政事务",
+      "software": [],
+      "scene_tags": [
+        "admin"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    }
+  ]
+}

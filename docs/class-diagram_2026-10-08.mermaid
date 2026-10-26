@@ -1,0 +1,40 @@
+classDiagram
+    class SingleInstanceGuard {
+        +str name
+        +QLocalServer server
+        +Signal raise_requested(str command)
+        +try_acquire(command: str) bool
+        +_on_new_connection() void
+    }
+    class CrashLogger {
+        <<module crashlog>>
+        +install(log_dir: Path) void
+        +_excepthook(exc_type, exc, tb) void
+        +_rotate(log_dir: Path, keep: int) void
+    }
+    class WelcomeDialog {
+        +QCheckBox dont_show_again
+        +exec_first_run(marker: Path) bool
+        +open_reference() void
+    }
+    class Config {
+        +dict hotkeys
+        +hotkey(name: str, default: str) str
+        +_migrate_legacy_hotkeys() void
+        +_normalize_software_keys() void
+    }
+    class ImeController {
+        +dict hotkey_table
+        +_build_hotkey_table(cfg: Config) void
+    }
+    class ZhiyuApp {
+        +SingleInstanceGuard guard
+        +WelcomeDialog welcome
+        +on_raise_requested(command: str) void
+        +maybe_show_first_run() void
+    }
+    SingleInstanceGuard ..> ZhiyuApp : raise_requested 信号
+    ZhiyuApp --> WelcomeDialog : 首启/速查
+    ZhiyuApp --> Config : hotkey()
+    ImeController --> Config : 热键表来源
+    CrashLogger ..> ZhiyuApp : main() 首行安装

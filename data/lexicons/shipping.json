@@ -1,0 +1,889 @@
+{
+  "profession": "shipping",
+  "name": "船务与外贸",
+  "version": "1.0.0",
+  "description": "国际物流、报关与外贸业务术语",
+  "terms": [
+    {
+      "zh": "订舱",
+      "en": "Booking",
+      "brief": "向船公司预订舱位",
+      "scene": "船务操作",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "装运港",
+      "en": "Port of Loading",
+      "brief": "货物装船的起始港口",
+      "scene": "船务操作",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "POL"
+      ],
+      "freq": 935
+    },
+    {
+      "zh": "目的港",
+      "en": "Port of Discharge",
+      "brief": "货物卸船的到达港口",
+      "scene": "船务操作",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "POD"
+      ],
+      "freq": 935
+    },
+    {
+      "zh": "截关",
+      "en": "Cut-off",
+      "brief": "货物必须完成报关的最后时限",
+      "scene": "船务操作",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "开船",
+      "en": "Departure",
+      "brief": "船舶实际离港日期",
+      "scene": "船务操作",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [
+        "ETD"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "到港",
+      "en": "Arrival",
+      "brief": "船舶预计抵达日期",
+      "scene": "船务操作",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [
+        "ETA"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "提单",
+      "en": "Bill of Lading",
+      "brief": "承运人签发的货物收据与物权凭证",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [
+        "B/L"
+      ],
+      "freq": 955
+    },
+    {
+      "zh": "正本提单",
+      "en": "Original Bill of Lading",
+      "brief": "可凭以提货的原始提单",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "电放提单",
+      "en": "Telex Release",
+      "brief": "以电子方式放货的提单",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "海运单",
+      "en": "Sea Waybill",
+      "brief": "不可转让的海运单据",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "装箱单",
+      "en": "Packing List",
+      "brief": "列明货物包装明细的单据",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "P/L"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "商业发票",
+      "en": "Commercial Invoice",
+      "brief": "报关结汇用的货物价值凭证",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [
+        "C/I"
+      ],
+      "freq": 945
+    },
+    {
+      "zh": "报关单",
+      "en": "Customs Declaration",
+      "brief": "向海关申报进出口的单据",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "报关",
+      "en": "Customs Declaration",
+      "brief": "向海关办理货物进出境手续",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "报检",
+      "en": "Inspection Declaration",
+      "brief": "向检验检疫机构申报",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "清关",
+      "en": "Customs Clearance",
+      "brief": "办结海关手续放行货物",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "查验",
+      "en": "Customs Inspection",
+      "brief": "海关对货物的实际检查",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "关税",
+      "en": "Customs Duty",
+      "brief": "对进出口货物征收的税",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "tax",
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "退单",
+      "en": "Customs Rejection",
+      "brief": "报关资料不符被退回",
+      "scene": "报关",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "产地证",
+      "en": "Certificate of Origin",
+      "brief": "证明货物原产地的文件",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "C/O"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "普惠制产地证",
+      "en": "GSP Certificate",
+      "brief": "享受普惠制关税优惠的产地证",
+      "scene": "单证",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "tax"
+      ],
+      "standard": "",
+      "var_en": [
+        "Form A"
+      ],
+      "freq": 905
+    },
+    {
+      "zh": "信用证",
+      "en": "Letter of Credit",
+      "brief": "银行出具的付款保证文件",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [
+        "L/C"
+      ],
+      "freq": 945
+    },
+    {
+      "zh": "即期信用证",
+      "en": "Sight L/C",
+      "brief": "见单即付的信用证",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "远期信用证",
+      "en": "Usance L/C",
+      "brief": "约定期限付款的信用证",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "电汇",
+      "en": "Telegraphic Transfer",
+      "brief": "通过银行电汇付款",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [
+        "T/T"
+      ],
+      "freq": 935
+    },
+    {
+      "zh": "付款交单",
+      "en": "Documents against Payment",
+      "brief": "付款后才能取得单据",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [
+        "D/P"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "承兑交单",
+      "en": "Documents against Acceptance",
+      "brief": "承兑后即可取得单据",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [
+        "D/A"
+      ],
+      "freq": 915
+    },
+    {
+      "zh": "押汇",
+      "en": "Bill Negotiation",
+      "brief": "以单据向银行融资",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "回款",
+      "en": "Payment Collection",
+      "brief": "收回货款的过程",
+      "scene": "结算",
+      "software": [],
+      "scene_tags": [
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "FOB",
+      "en": "Free on Board",
+      "brief": "装运港船上交货价",
+      "scene": "贸易术语",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "Incoterms 2020",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "CIF",
+      "en": "Cost Insurance and Freight",
+      "brief": "成本加保险费加运费价",
+      "scene": "贸易术语",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "Incoterms 2020",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "CFR",
+      "en": "Cost and Freight",
+      "brief": "成本加运费价",
+      "scene": "贸易术语",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "Incoterms 2020",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "EXW",
+      "en": "Ex Works",
+      "brief": "工厂交货价",
+      "scene": "贸易术语",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "Incoterms 2020",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "DDP",
+      "en": "Delivered Duty Paid",
+      "brief": "完税后交货价",
+      "scene": "贸易术语",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "Incoterms 2020",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "付款方式",
+      "en": "Payment Terms",
+      "brief": "约定的货款支付条件",
+      "scene": "贸易术语",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "询盘",
+      "en": "Inquiry",
+      "brief": "买方向卖方询问价格与条件",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "communication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "报盘",
+      "en": "Offer",
+      "brief": "卖方向买方提出的交易条件",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "communication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "还盘",
+      "en": "Counter Offer",
+      "brief": "对报盘条件提出修改",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "communication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "形式发票",
+      "en": "Proforma Invoice",
+      "brief": "用于报价或申请进口许可的发票",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "P/I"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "销售合同",
+      "en": "Sales Contract",
+      "brief": "买卖双方签订的正式合同",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "contract",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "S/C"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "订单确认",
+      "en": "Order Confirmation",
+      "brief": "确认接受客户订单",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "跟单",
+      "en": "Order Follow-up",
+      "brief": "跟进订单生产与交付进度",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "验货",
+      "en": "Inspection",
+      "brief": "对货物质量的检验",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "样品确认",
+      "en": "Sample Approval",
+      "brief": "客户对样品的书面确认",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "交货期",
+      "en": "Delivery Date",
+      "brief": "约定的货物交付时间",
+      "scene": "外贸业务",
+      "software": [],
+      "scene_tags": [
+        "trade"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "滞期费",
+      "en": "Demurrage",
+      "brief": "超期使用集装箱产生的费用",
+      "scene": "物流成本",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "堆存费",
+      "en": "Storage Charge",
+      "brief": "货物在码头存放的费用",
+      "scene": "物流成本",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 895
+    },
+    {
+      "zh": "海运费",
+      "en": "Ocean Freight",
+      "brief": "海运承运收取的运费",
+      "scene": "物流成本",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "拼箱",
+      "en": "LCL",
+      "brief": "多个货主的货物合装一个集装箱",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [
+        "LCL"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "整箱",
+      "en": "FCL",
+      "brief": "单独使用一个集装箱",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [
+        "FCL"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "空运",
+      "en": "Air Freight",
+      "brief": "通过航空运输货物",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "快递",
+      "en": "Express",
+      "brief": "门到门的快速货运服务",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "货代",
+      "en": "Freight Forwarder",
+      "brief": "代办运输与报关的服务商",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "集装箱号",
+      "en": "Container Number",
+      "brief": "集装箱的唯一识别编号",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "铅封",
+      "en": "Seal",
+      "brief": "集装箱封口的防拆封条",
+      "scene": "物流方式",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "库容",
+      "en": "Warehouse Capacity",
+      "brief": "仓库可存放货物的容量",
+      "scene": "仓储管理",
+      "software": [],
+      "scene_tags": [
+        "shipping"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "库存周转",
+      "en": "Inventory Turnover",
+      "brief": "库存周转的速度指标",
+      "scene": "仓储管理",
+      "software": [],
+      "scene_tags": [
+        "shipping",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "供应商",
+      "en": "Supplier",
+      "brief": "提供货物或服务的厂商",
+      "scene": "采购管理",
+      "software": [],
+      "scene_tags": [
+        "purchase"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "询价比价",
+      "en": "Quotation Comparison",
+      "brief": "多方询价后比较选择",
+      "scene": "采购管理",
+      "software": [],
+      "scene_tags": [
+        "purchase"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "采购订单",
+      "en": "Purchase Order",
+      "brief": "向供应商下达的订购单",
+      "scene": "采购管理",
+      "software": [],
+      "scene_tags": [
+        "purchase",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [
+        "PO"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "交货验收",
+      "en": "Delivery Acceptance",
+      "brief": "对到货的数量与质量验收",
+      "scene": "采购管理",
+      "software": [],
+      "scene_tags": [
+        "purchase",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "质量索赔",
+      "en": "Quality Claim",
+      "brief": "因质量问题向对方索赔",
+      "scene": "采购管理",
+      "software": [],
+      "scene_tags": [
+        "purchase",
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    }
+  ]
+}

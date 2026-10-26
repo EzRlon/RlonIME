@@ -1,0 +1,702 @@
+{
+  "profession": "nursing",
+  "name": "护理",
+  "version": "1.0.0",
+  "description": "临床护理与患者照护常用术语",
+  "terms": [
+    {
+      "zh": "整体护理",
+      "en": "Holistic Nursing",
+      "brief": "以患者为中心的整体照护模式",
+      "scene": "护理模式",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "责任制护理",
+      "en": "Primary Nursing",
+      "brief": "由责任护士全程负责的护理方式",
+      "scene": "护理模式",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "护理评估",
+      "en": "Nursing Assessment",
+      "brief": "对患者护理需求的系统评估",
+      "scene": "护理程序",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "diagnosis"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "护理诊断",
+      "en": "Nursing Diagnosis",
+      "brief": "对护理问题的专业判断",
+      "scene": "护理程序",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "diagnosis"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "护理计划",
+      "en": "Nursing Care Plan",
+      "brief": "针对护理问题拟定的措施",
+      "scene": "护理程序",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "护理措施",
+      "en": "Nursing Intervention",
+      "brief": "为解决问题实施的具体照护",
+      "scene": "护理程序",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "护理评价",
+      "en": "Nursing Evaluation",
+      "brief": "对护理效果的评估",
+      "scene": "护理程序",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "基础护理",
+      "en": "Basic Nursing",
+      "brief": "满足患者基本生活需要的护理",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "专科护理",
+      "en": "Specialty Nursing",
+      "brief": "面向专科疾病的护理技术",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "卧位护理",
+      "en": "Positioning Care",
+      "brief": "协助患者保持合适体位",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "翻身拍背",
+      "en": "Turning and Back Tapping",
+      "brief": "预防压疮与肺部并发症",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "压疮",
+      "en": "Pressure Ulcer",
+      "brief": "长期受压导致的皮肤破损",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [
+        "褥疮"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "皮肤护理",
+      "en": "Skin Care",
+      "brief": "保持皮肤清洁完整的护理",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "口腔护理",
+      "en": "Oral Care",
+      "brief": "清洁口腔预防感染的护理",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "管路护理",
+      "en": "Catheter Care",
+      "brief": "对各类引流管的维护",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "胃管护理",
+      "en": "Gastric Tube Care",
+      "brief": "胃管固定与通畅的维护",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "伤口换药",
+      "en": "Wound Dressing Change",
+      "brief": "清洁伤口并更换敷料",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [
+        "换药"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "无菌敷料",
+      "en": "Sterile Dressing",
+      "brief": "经过灭菌处理的覆盖材料",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "surgery"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "备皮",
+      "en": "Skin Preparation",
+      "brief": "术前对术区皮肤的准备",
+      "scene": "手术室护理",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "器械清点",
+      "en": "Instrument Count",
+      "brief": "手术前后清点器械与纱布",
+      "scene": "手术室护理",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "器械传递",
+      "en": "Instrument Passing",
+      "brief": "向术者递送器械的配合",
+      "scene": "手术室护理",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "巡回护士",
+      "en": "Circulating Nurse",
+      "brief": "手术间内负责协调的护士",
+      "scene": "手术室护理",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "器械护士",
+      "en": "Scrub Nurse",
+      "brief": "台上传递器械的护士",
+      "scene": "手术室护理",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "术中配合",
+      "en": "Intraoperative Assistance",
+      "brief": "手术过程中的护理配合",
+      "scene": "手术室护理",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "重症监护",
+      "en": "Intensive Care",
+      "brief": "对危重患者的密切监护",
+      "scene": "重症护理",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [
+        "ICU"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "机械通气",
+      "en": "Mechanical Ventilation",
+      "brief": "用呼吸机辅助或替代呼吸",
+      "scene": "重症护理",
+      "software": [],
+      "scene_tags": [
+        "treatment",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "气道管理",
+      "en": "Airway Management",
+      "brief": "保持气道通畅的措施",
+      "scene": "重症护理",
+      "software": [],
+      "scene_tags": [
+        "treatment",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "中心静脉压",
+      "en": "Central Venous Pressure",
+      "brief": "反映血容量与心功能指标",
+      "scene": "重症护理",
+      "software": [],
+      "scene_tags": [
+        "examination",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [
+        "CVP"
+      ],
+      "freq": 910
+    },
+    {
+      "zh": "输液泵",
+      "en": "Infusion Pump",
+      "brief": "精确控制输液速度的设备",
+      "scene": "护理设备",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "心电监护仪",
+      "en": "ECG Monitor",
+      "brief": "监测心律与血氧的设备",
+      "scene": "护理设备",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "雾化吸入",
+      "en": "Nebulization",
+      "brief": "把药液雾化后吸入呼吸道",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "灌肠",
+      "en": "Enema",
+      "brief": "经肛门注入液体清洁肠道",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "洗胃",
+      "en": "Gastric Lavage",
+      "brief": "清除胃内毒物或积食",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "皮试",
+      "en": "Skin Test",
+      "brief": "用药前检测过敏反应的试验",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "肌肉注射",
+      "en": "Intramuscular Injection",
+      "brief": "把药液注入肌肉组织",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [
+        "IM"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "皮下注射",
+      "en": "Subcutaneous Injection",
+      "brief": "把药液注入皮下组织",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [
+        "SC"
+      ],
+      "freq": 915
+    },
+    {
+      "zh": "静脉采血",
+      "en": "Venous Blood Sampling",
+      "brief": "从静脉抽取血标本",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "标本采集",
+      "en": "Specimen Collection",
+      "brief": "按要求采集检验标本",
+      "scene": "护理操作",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "核对制度",
+      "en": "Verification Policy",
+      "brief": "操作前核对患者与药物的制度",
+      "scene": "护理安全",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "三查七对",
+      "en": "Three Checks and Seven Rights",
+      "brief": "给药前必须执行的核对规范",
+      "scene": "护理安全",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "输液反应",
+      "en": "Infusion Reaction",
+      "brief": "输液过程中出现的不良反应",
+      "scene": "护理安全",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "跌倒风险",
+      "en": "Fall Risk",
+      "brief": "患者发生跌倒的可能性评估",
+      "scene": "护理安全",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "不良事件",
+      "en": "Adverse Event",
+      "brief": "诊疗护理中发生的意外事件",
+      "scene": "护理安全",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "护理文书",
+      "en": "Nursing Documentation",
+      "brief": "护理过程形成的书面记录",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "交接班制度",
+      "en": "Shift Handover System",
+      "brief": "规范班次交接的制度",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "护理质量",
+      "en": "Nursing Quality",
+      "brief": "护理服务满足要求的程度",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "护理查房",
+      "en": "Nursing Round",
+      "brief": "护士长组织的护理巡查",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "个案护理",
+      "en": "Case Nursing",
+      "brief": "针对单个患者的专项护理",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "健康宣教",
+      "en": "Patient Education",
+      "brief": "向患者讲解疾病与照护知识",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "prevention",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "出院指导",
+      "en": "Discharge Instruction",
+      "brief": "出院时的康复与用药交代",
+      "scene": "护理管理",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    }
+  ]
+}

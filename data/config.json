@@ -1,0 +1,590 @@
+{
+  "version": "3.0.0",
+  "app_name": "RlonIME",
+  "engine": "shuishan-rime-compatible",
+  "profile": {
+    "active_profession": "mechanical",
+    "active_software": "solidworks",
+    "auto_detect_scene": true,
+    "manual_lock": false,
+    "hierarchy": {
+      "industry": "mechanical",
+      "occupation": "structure",
+      "position": "designer"
+    }
+  },
+  "llm": {
+    "enabled": false,
+    "provider": "glm",
+    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+    "model": "glm-4-flash",
+    "api_key": "",
+    "timeout": 15
+  },
+  "professions": {
+    "mechanical": {
+      "name": "机械工程师",
+      "icon": "ME",
+      "lexicon": "mechanical.json",
+      "default_software": "solidworks"
+    },
+    "electrical": {
+      "name": "电气工程师",
+      "icon": "EE",
+      "lexicon": "electrical.json",
+      "default_software": "autocad_electrical"
+    },
+    "architecture": {
+      "name": "建筑设计师",
+      "icon": "AR",
+      "lexicon": "architecture.json",
+      "default_software": "revit"
+    },
+    "electronics": {
+      "name": "电子工程师",
+      "icon": "EL",
+      "lexicon": "electronics.json",
+      "default_software": "altium"
+    },
+    "graphic": {
+      "name": "平面/视觉设计师",
+      "icon": "GD",
+      "lexicon": "graphic.json",
+      "default_software": "illustrator"
+    },
+    "interior": {
+      "name": "室内/方案设计师",
+      "icon": "ID",
+      "lexicon": "interior.json",
+      "default_software": "autocad"
+    },
+    "drafting": {
+      "name": "制图/深化设计师",
+      "icon": "DR",
+      "lexicon": "drafting.json",
+      "default_software": "autocad"
+    },
+    "finance": {
+      "name": "财务/会计",
+      "icon": "FI",
+      "lexicon": "finance.json",
+      "default_software": "excel"
+    },
+    "hr": {
+      "name": "人事/行政",
+      "icon": "HR",
+      "lexicon": "hr.json",
+      "default_software": "excel"
+    },
+    "legal": {
+      "name": "法务/合规",
+      "icon": "LG",
+      "lexicon": "legal.json",
+      "default_software": "winword"
+    },
+    "medical": {
+      "name": "医生/临床",
+      "icon": "MD",
+      "lexicon": "medical.json",
+      "default_software": "his"
+    },
+    "nursing": {
+      "name": "护士/护理",
+      "icon": "NS",
+      "lexicon": "nursing.json",
+      "default_software": "his"
+    },
+    "shipping": {
+      "name": "船务/外贸",
+      "icon": "SH",
+      "lexicon": "shipping.json",
+      "default_software": "excel"
+    },
+    "management": {
+      "name": "老板/经营管理者",
+      "icon": "MG",
+      "lexicon": "management.json",
+      "default_software": "excel"
+    },
+    "packaging": {
+      "name": "包装/道具设计师",
+      "icon": "PK",
+      "lexicon": "packaging.json",
+      "default_software": "illustrator"
+    }
+  },
+  "softwares": {
+    "solidworks": {
+      "name": "SolidWorks",
+      "processes": [
+        "SLDWORKS.exe",
+        "sldworks.exe"
+      ],
+      "profession": "mechanical",
+      "scenes": [
+        "3d_modeling",
+        "drawing_2d",
+        "assembly",
+        "sheet_metal"
+      ]
+    },
+    "autocad": {
+      "name": "AutoCAD",
+      "processes": [
+        "acad.exe",
+        "acadlt.exe"
+      ],
+      "profession": "mechanical",
+      "scenes": [
+        "drawing_2d",
+        "annotation"
+      ]
+    },
+    "ug": {
+      "name": "UG / NX",
+      "processes": [
+        "ugraf.exe",
+        "nx.exe"
+      ],
+      "profession": "mechanical",
+      "scenes": [
+        "3d_modeling",
+        "cam",
+        "drawing_2d"
+      ]
+    },
+    "catia": {
+      "name": "CATIA",
+      "processes": [
+        "CNEXT.exe",
+        "catia.exe"
+      ],
+      "profession": "mechanical",
+      "scenes": [
+        "3d_modeling",
+        "surface",
+        "assembly"
+      ]
+    },
+    "creo": {
+      "name": "Creo / Pro-E",
+      "processes": [
+        "xtop.exe",
+        "proe.exe"
+      ],
+      "profession": "mechanical",
+      "scenes": [
+        "3d_modeling",
+        "drawing_2d"
+      ]
+    },
+    "inventor": {
+      "name": "Inventor",
+      "processes": [
+        "Inventor.exe"
+      ],
+      "profession": "mechanical",
+      "scenes": [
+        "3d_modeling",
+        "drawing_2d"
+      ]
+    },
+    "revit": {
+      "name": "Revit",
+      "processes": [
+        "Revit.exe"
+      ],
+      "profession": "architecture",
+      "scenes": [
+        "bim_modeling",
+        "drawing_2d",
+        "schedule"
+      ]
+    },
+    "autocad_electrical": {
+      "name": "AutoCAD Electrical",
+      "processes": [
+        "acad.exe"
+      ],
+      "profession": "electrical",
+      "scenes": [
+        "schematic",
+        "panel_layout",
+        "annotation"
+      ]
+    },
+    "eplan": {
+      "name": "EPLAN",
+      "processes": [
+        "EPLAN.exe"
+      ],
+      "profession": "electrical",
+      "scenes": [
+        "schematic",
+        "panel_layout"
+      ]
+    },
+    "altium": {
+      "name": "Altium Designer",
+      "processes": [
+        "DXP.exe",
+        "X2.exe"
+      ],
+      "profession": "electronics",
+      "scenes": [
+        "schematic",
+        "pcb_layout"
+      ]
+    },
+    "cadence": {
+      "name": "Cadence Allegro",
+      "processes": [
+        "allegro.exe",
+        "orcad.exe"
+      ],
+      "profession": "electronics",
+      "scenes": [
+        "schematic",
+        "pcb_layout"
+      ]
+    },
+    "sketchup": {
+      "name": "SketchUp",
+      "processes": [
+        "SketchUp.exe"
+      ],
+      "profession": "architecture",
+      "scenes": [
+        "bim_modeling"
+      ]
+    },
+    "notepad": {
+      "name": "通用文本",
+      "processes": [
+        "notepad.exe",
+        "notepad++.exe",
+        "Code.exe"
+      ],
+      "profession": null,
+      "scenes": [
+        "general"
+      ]
+    },
+    "illustrator": {
+      "name": "Adobe Illustrator",
+      "processes": [
+        "Illustrator.exe"
+      ],
+      "profession": "graphic",
+      "scenes": [
+        "vector",
+        "print",
+        "component",
+        "finish"
+      ]
+    },
+    "photoshop": {
+      "name": "Adobe Photoshop",
+      "processes": [
+        "Photoshop.exe"
+      ],
+      "profession": "graphic",
+      "scenes": [
+        "vector",
+        "print"
+      ]
+    },
+    "figma": {
+      "name": "Figma",
+      "processes": [
+        "Figma.exe",
+        "FigmaAgent.exe"
+      ],
+      "profession": "graphic",
+      "scenes": [
+        "ui_design",
+        "vector"
+      ]
+    },
+    "coreldraw": {
+      "name": "CorelDRAW",
+      "processes": [
+        "CorelDRW.exe"
+      ],
+      "profession": "graphic",
+      "scenes": [
+        "vector",
+        "print"
+      ]
+    },
+    "indesign": {
+      "name": "Adobe InDesign",
+      "processes": [
+        "InDesign.exe"
+      ],
+      "profession": "graphic",
+      "scenes": [
+        "print"
+      ]
+    },
+    "sketch_design": {
+      "name": "Sketch",
+      "processes": [
+        "Sketch.exe"
+      ],
+      "profession": "graphic",
+      "scenes": [
+        "ui_design"
+      ]
+    },
+    "3dsmax": {
+      "name": "3ds Max",
+      "processes": [
+        "3dsmax.exe"
+      ],
+      "profession": "interior",
+      "scenes": [
+        "space_plan"
+      ]
+    },
+    "kujiale": {
+      "name": "酷家乐",
+      "processes": [
+        "Kujiale.exe"
+      ],
+      "profession": "interior",
+      "scenes": [
+        "space_plan",
+        "material"
+      ]
+    },
+    "tianzheng": {
+      "name": "天正建筑",
+      "processes": [
+        "acad.exe"
+      ],
+      "profession": "architecture",
+      "scenes": [
+        "drawing_2d",
+        "annotation"
+      ]
+    },
+    "excel": {
+      "name": "Excel / WPS 表格",
+      "processes": [
+        "EXCEL.EXE",
+        "et.exe",
+        "wps.exe"
+      ],
+      "profession": "finance",
+      "scenes": [
+        "report",
+        "accounting"
+      ]
+    },
+    "winword": {
+      "name": "Word / WPS 文字",
+      "processes": [
+        "WINWORD.EXE",
+        "wpp.exe"
+      ],
+      "profession": "legal",
+      "scenes": [
+        "document",
+        "contract"
+      ]
+    },
+    "ppt": {
+      "name": "PowerPoint / WPS 演示",
+      "processes": [
+        "POWERPNT.EXE"
+      ],
+      "profession": "management",
+      "scenes": [
+        "report",
+        "document"
+      ]
+    },
+    "his": {
+      "name": "医院信息系统 HIS",
+      "processes": [
+        "HIS.exe",
+        "emr.exe",
+        "doctor.exe"
+      ],
+      "profession": "medical",
+      "scenes": [
+        "diagnosis",
+        "document"
+      ]
+    },
+    "yonyou": {
+      "name": "用友 U8 / NC",
+      "processes": [
+        "U8Login.exe",
+        "nc.exe"
+      ],
+      "profession": "finance",
+      "scenes": [
+        "accounting",
+        "report"
+      ]
+    },
+    "kingdee": {
+      "name": "金蝶 K3 / 云星空",
+      "processes": [
+        "K3Main.exe",
+        "Kingdee.exe"
+      ],
+      "profession": "finance",
+      "scenes": [
+        "accounting",
+        "report"
+      ]
+    },
+    "outlook": {
+      "name": "Outlook / 邮件",
+      "processes": [
+        "OUTLOOK.EXE"
+      ],
+      "profession": "management",
+      "scenes": [
+        "communication",
+        "document"
+      ]
+    },
+    "wechat": {
+      "name": "企业微信 / 钉钉",
+      "processes": [
+        "WXWork.exe",
+        "DingTalk.exe"
+      ],
+      "profession": "management",
+      "scenes": [
+        "communication"
+      ]
+    },
+    "dingtalk": {
+      "name": "钉钉",
+      "processes": [
+        "DingTalk.exe"
+      ],
+      "profession": "hr",
+      "scenes": [
+        "communication",
+        "hr"
+      ]
+    },
+    "browser": {
+      "name": "浏览器",
+      "processes": [
+        "chrome.exe",
+        "msedge.exe",
+        "firefox.exe"
+      ],
+      "profession": null,
+      "scenes": [
+        "general"
+      ]
+    },
+    "package_cad": {
+      "name": "包装打样/看板",
+      "processes": [],
+      "profession": "packaging",
+      "scenes": [
+        "component",
+        "finish",
+        "assembly",
+        "print"
+      ]
+    },
+    "packaging_cad": {
+      "name": "包装打样看板",
+      "processes": [
+        "PackCAD.exe"
+      ],
+      "profession": "packaging",
+      "scenes": [
+        "component",
+        "finish",
+        "view",
+        "assembly",
+        "tolerance",
+        "print"
+      ]
+    }
+  },
+  "hotkeys": {
+    "translate_selection": "ctrl+alt+q",
+    "mark_correction": "ctrl+alt+w",
+    "toggle_panel": "ctrl+alt+e",
+    "cycle_scope": "ctrl+alt+a",
+    "toggle_llm": "ctrl+alt+s"
+  },
+  "ranking": {
+    "scene_match_bonus": 30,
+    "profession_match_bonus": 20,
+    "history_bonus_per_use": 5,
+    "history_bonus_cap": 40,
+    "frequency_weight": 0.35,
+    "custom_word_bonus": 50,
+    "max_candidates": 9,
+    "rec_badge_margin": 8.0
+  },
+  "insertion": {
+    "method": "send_input",
+    "restore_clipboard": true,
+    "paste_delay_ms": 120
+  },
+  "ui": {
+    "panel_width": 560,
+    "row_height": 38,
+    "max_visible_rows": 5,
+    "font_size": 15,
+    "font_size_zh": 11,
+    "font_size_en": 9,
+    "font_family": "Microsoft YaHei UI",
+    "opacity": 0.99,
+    "theme": "light",
+    "show_english": true,
+    "show_scene_hint": true,
+    "layout": "bar",
+    "bar_width": 560,
+    "bar_pinned": false,
+    "bar_pos": [],
+    "remember_bar_pos": true
+  },
+  "paths": {
+    "lexicon_dir": "data/lexicons",
+    "user_data_dir": "data/user",
+    "log_dir": "logs"
+  },
+  "ime": {
+    "enabled": true,
+    "toggle_hotkey": "ctrl+space",
+    "own_process_passthrough": true,
+    "caret_follow": true,
+    "chars_per_page": 9,
+    "cad_passthrough": true,
+    "cad_processes": [
+      "acad.exe",
+      "acadlt.exe",
+      "zwcad.exe",
+      "gcad.exe",
+      "bricscad.exe",
+      "caxa.exe",
+      "eb.exe",
+      "caxadraft.exe"
+    ],
+    "cad_idle_seconds": 5,
+    "cn_punct": true
+  },
+  "assist": {
+    "auto_replace": true,
+    "store_llm_draft": true,
+    "min_chars": 2,
+    "fuzzy_threshold": 0.85,
+    "show_result_ms": 4200,
+    "free_translate": true
+  }
+}

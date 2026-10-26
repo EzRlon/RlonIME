@@ -1,0 +1,550 @@
+{
+  "profession": "drafting",
+  "name": "工程制图与深化",
+  "version": "1.0.0",
+  "description": "施工图、深化图与竣工资料通用术语，覆盖 AutoCAD / 天正 / Revit 场景",
+  "terms": [
+    {
+      "zh": "图幅",
+      "en": "Drawing Sheet Size",
+      "brief": "图纸的规格尺寸，如 A0-A4",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 14689",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "图框",
+      "en": "Drawing Frame",
+      "brief": "图纸上界定绘图区域的边框",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "标题栏",
+      "en": "Title Block",
+      "brief": "记录图名图号与签署的表格",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "会签栏",
+      "en": "Signature Block",
+      "brief": "各专业签署确认的栏目",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "比例尺",
+      "en": "Scale",
+      "brief": "图上距离与实际距离的比值",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "图层",
+      "en": "Layer",
+      "brief": "按类别组织图形对象的层",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "线型",
+      "en": "Line Type",
+      "brief": "实线虚线点划线等线条样式",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "GB/T 4457.4",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "线宽",
+      "en": "Line Width",
+      "brief": "不同用途线条的规定粗细",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "尺寸标注",
+      "en": "Dimensioning",
+      "brief": "标示长度角度等尺寸的标注",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "GB/T 4458.4",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "引线标注",
+      "en": "Leader Note",
+      "brief": "用引线连接被说明对象的注释",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "标高",
+      "en": "Elevation Marker",
+      "brief": "标示某点垂直高度的符号",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "剖切符号",
+      "en": "Section Mark",
+      "brief": "指示剖切位置与方向的符号",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "索引符号",
+      "en": "Detail Reference",
+      "brief": "指向详图编号位置的符号",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "图例",
+      "en": "Legend",
+      "brief": "图纸中符号与含义的对照表",
+      "scene": "制图规范",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "总平面图",
+      "en": "Site Plan",
+      "brief": "反映场地总体布置的图纸",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "平面图",
+      "en": "Plan",
+      "brief": "水平剖切后向下投影的图纸",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "轴测图",
+      "en": "Axonometric Drawing",
+      "brief": "能同时表现长宽高的立体图",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "大样图",
+      "en": "Enlarged Detail",
+      "brief": "局部放大表达的详图",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "设计变更",
+      "en": "Design Change",
+      "brief": "施工过程中对设计的修改通知",
+      "scene": "图纸管理",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "技术核定单",
+      "en": "Technical Confirmation Sheet",
+      "brief": "确认技术处理意见的书面文件",
+      "scene": "图纸管理",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "图纸会审",
+      "en": "Drawing Joint Review",
+      "brief": "各专业集中审查图纸的会议",
+      "scene": "图纸管理",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "竣工图",
+      "en": "As-built Drawing",
+      "brief": "反映最终实际完成情况的图纸",
+      "scene": "竣工资料",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "晒图",
+      "en": "Blueprint Copy",
+      "brief": "把图纸复制成蓝图的过程",
+      "scene": "出图流程",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "出图",
+      "en": "Plotting",
+      "brief": "把电子图输出为图纸文件",
+      "scene": "出图流程",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "打印样式",
+      "en": "Plot Style",
+      "brief": "控制出图线宽与颜色的配置",
+      "scene": "出图流程",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "外部参照",
+      "en": "External Reference",
+      "brief": "把外部图纸引用到当前图",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "Xref"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "块",
+      "en": "Block",
+      "brief": "可重复引用的图形对象组合",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "属性块",
+      "en": "Attribute Block",
+      "brief": "带可编辑文字属性的块",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "布局",
+      "en": "Layout",
+      "brief": "图纸空间中的出图页面设置",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "视口",
+      "en": "Viewport",
+      "brief": "布局中显示模型空间的窗口",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "坐标系",
+      "en": "Coordinate System",
+      "brief": "定义绘图位置的参照体系",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "捕捉",
+      "en": "Snap",
+      "brief": "自动吸附到特征点的辅助功能",
+      "scene": "制图操作",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "图集",
+      "en": "Standard Atlas",
+      "brief": "可引用的标准化构造做法汇编",
+      "scene": "规范引用",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "国标图集",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "工程量",
+      "en": "Quantity",
+      "brief": "按图纸计算的工程量数据",
+      "scene": "算量",
+      "software": [],
+      "scene_tags": [
+        "schedule",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "材料表",
+      "en": "Bill of Materials",
+      "brief": "列出所需材料的清单表",
+      "scene": "算量",
+      "software": [],
+      "scene_tags": [
+        "schedule"
+      ],
+      "standard": "",
+      "var_en": [
+        "BOM"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "门窗表",
+      "en": "Door and Window Schedule",
+      "brief": "统计门窗规格与数量的表格",
+      "scene": "算量",
+      "software": [],
+      "scene_tags": [
+        "schedule"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "做法表",
+      "en": "Construction Method Schedule",
+      "brief": "列出各部位构造做法的表格",
+      "scene": "算量",
+      "software": [],
+      "scene_tags": [
+        "schedule"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "技术交底",
+      "en": "Technical Disclosure",
+      "brief": "把图纸要求传达给施工方",
+      "scene": "施工管理",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "深化设计",
+      "en": "Detailed Design",
+      "brief": "把方案图细化为可施工的图",
+      "scene": "深化设计",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "综合管线图",
+      "en": "Combined MEP Drawing",
+      "brief": "把各专业管线叠加核对",
+      "scene": "深化设计",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d",
+        "bim_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "碰撞检查",
+      "en": "Clash Detection",
+      "brief": "检测模型或图纸中部件冲突",
+      "scene": "深化设计",
+      "software": [],
+      "scene_tags": [
+        "bim_modeling"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    }
+  ]
+}

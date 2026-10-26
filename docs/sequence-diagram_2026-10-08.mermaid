@@ -1,0 +1,32 @@
+sequenceDiagram
+    participant U as 用户(二次启动)
+    participant P2 as 第二进程
+    participant G as SingleInstanceGuard
+    participant P1 as 主进程 ZhiyuApp
+    U->>P2: ZhiyuIME.exe [--settings]
+    P2->>G: try_acquire(cmd)
+    G->>G: QLocalSocket.connectToServer(name, 200ms)
+    alt 已有实例
+        G->>P1: 写入命令字节
+        P2-->>U: sys.exit(0)（不建钩子不开窗）
+        P1->>P1: raise_requested(cmd)
+        alt cmd == settings
+            P1->>P1: open_settings()
+        else 无参
+            P1->>P1: 托盘气泡「智语已在运行」
+        end
+    else 无实例
+        G->>G: removeServer + listen → 成为主实例
+    end
+
+    participant M as main()
+    participant C as crashlog
+    participant W as WelcomeDialog
+    M->>C: install(%APPDATA%/ZhiyuIME/logs)
+    M->>G: try_acquire（先于 ZhiyuApp 构建）
+    M->>P1: ZhiyuApp()
+    P1->>P1: maybe_show_first_run()
+    alt first_run.done 不存在
+        P1->>W: exec_first_run()
+        W-->>P1: 关闭 → 写标记文件
+    end

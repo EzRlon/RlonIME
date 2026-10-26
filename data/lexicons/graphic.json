@@ -1,0 +1,866 @@
+{
+  "profession": "graphic",
+  "name": "平面与视觉设计",
+  "version": "1.0.0",
+  "description": "品牌视觉、平面物料与 UI 设计常用术语，覆盖 Illustrator / Photoshop / Figma / CorelDRAW 场景",
+  "terms": [
+    {
+      "zh": "矢量图",
+      "en": "Vector Graphic",
+      "brief": "由数学路径描述、可无损缩放的图形",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "位图",
+      "en": "Bitmap",
+      "brief": "由像素点阵构成的图像，放大会失真",
+      "scene": "图像处理",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "分辨率",
+      "en": "Resolution",
+      "brief": "单位长度内的像素数量，印刷常要求 300dpi",
+      "scene": "输出设置",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "300 DPI",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "出血",
+      "en": "Bleed",
+      "brief": "印刷品裁切预留的超出部分，通常 3mm",
+      "scene": "印刷输出",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "3 mm",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "裁切线",
+      "en": "Crop Marks",
+      "brief": "标示成品裁切位置的角线",
+      "scene": "印刷输出",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "专色",
+      "en": "Spot Color",
+      "brief": "脱离 CMYK 单独调制的油墨色，如 Pantone",
+      "scene": "印刷工艺",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "Pantone",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "四色印刷",
+      "en": "CMYK Printing",
+      "brief": "青品黄黑四色叠印的彩色印刷方式",
+      "scene": "印刷工艺",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "CMYK",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "色域",
+      "en": "Color Gamut",
+      "brief": "设备或印刷能表现的颜色范围",
+      "scene": "色彩管理",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 850
+    },
+    {
+      "zh": "套印",
+      "en": "Overprint",
+      "brief": "后色叠印在前色上而不留白的处理",
+      "scene": "印刷工艺",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 830
+    },
+    {
+      "zh": "拼版",
+      "en": "Imposition",
+      "brief": "把多个版面拼排到一张印版上",
+      "scene": "印前处理",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "专色打样",
+      "en": "Spot Color Proof",
+      "brief": "用实际油墨或数码方式验证颜色",
+      "scene": "印前校色",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 780
+    },
+    {
+      "zh": "字体版权",
+      "en": "Font License",
+      "brief": "字体的商业使用授权，商用需购买",
+      "scene": "版权合规",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "字重",
+      "en": "Font Weight",
+      "brief": "同一字族中笔画的粗细等级",
+      "scene": "排版设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "字距",
+      "en": "Tracking",
+      "brief": "统一调整一段文字的字间距离",
+      "scene": "排版设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "行距",
+      "en": "Leading",
+      "brief": "两行文字基线之间的垂直距离",
+      "scene": "排版设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "栅格系统",
+      "en": "Grid System",
+      "brief": "用等分栅格约束版面元素对齐",
+      "scene": "版式设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design",
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "留白",
+      "en": "Negative Space",
+      "brief": "版面中不做填充的空白区域",
+      "scene": "版式设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "视觉层级",
+      "en": "Visual Hierarchy",
+      "brief": "通过大小色彩引导阅读优先次序",
+      "scene": "版式设计",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "视觉锤",
+      "en": "Visual Hammer",
+      "brief": "反复出现、强化品牌记忆的视觉符号",
+      "scene": "品牌设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 790
+    },
+    {
+      "zh": "品牌规范",
+      "en": "Brand Guidelines",
+      "brief": "品牌标志、色彩、字体的使用规范手册",
+      "scene": "VI 设计",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "标志组合",
+      "en": "Logo Lockup",
+      "brief": "标志与标准字的固定组合方式",
+      "scene": "VI 设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 820
+    },
+    {
+      "zh": "辅助图形",
+      "en": "Supporting Graphic",
+      "brief": "从标志延伸出的品牌辅助图案",
+      "scene": "VI 设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 830
+    },
+    {
+      "zh": "延展设计",
+      "en": "Brand Extension",
+      "brief": "把主视觉延展到各类应用物料",
+      "scene": "品牌设计",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 850
+    },
+    {
+      "zh": "主视觉",
+      "en": "Key Visual",
+      "brief": "活动或品牌的核心视觉形象",
+      "scene": "品牌设计",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "海报",
+      "en": "Poster",
+      "brief": "用于张贴宣传的单页视觉作品",
+      "scene": "平面物料",
+      "software": [],
+      "scene_tags": [
+        "print",
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "画册",
+      "en": "Brochure",
+      "brief": "多页装订的品牌或产品宣传册",
+      "scene": "平面物料",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "折页",
+      "en": "Folded Leaflet",
+      "brief": "折叠形式的宣传印刷品",
+      "scene": "平面物料",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "单页",
+      "en": "Flyer",
+      "brief": "单张双面印刷的宣发物料",
+      "scene": "平面物料",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "易拉宝",
+      "en": "Roll-up Banner",
+      "brief": "可卷收的立式展架广告",
+      "scene": "终端物料",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "展板",
+      "en": "Display Board",
+      "brief": "展会展示用的大幅面板",
+      "scene": "终端物料",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 850
+    },
+    {
+      "zh": "包装设计",
+      "en": "Packaging Design",
+      "brief": "产品外包装的结构与视觉设计",
+      "scene": "包装设计",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "刀版图",
+      "en": "Die-cut Template",
+      "brief": "包装模切位置的结构图纸",
+      "scene": "包装设计",
+      "software": [],
+      "scene_tags": [
+        "print"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "黏度",
+      "en": "Mockup",
+      "brief": "把设计稿合成到真实载体的效果图",
+      "scene": "方案汇报",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [
+        "Mock-up"
+      ],
+      "freq": 900
+    },
+    {
+      "zh": "样机",
+      "en": "Mockup",
+      "brief": "把设计稿合成到真实载体的效果图",
+      "scene": "方案汇报",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 850
+    },
+    {
+      "zh": "设计规范",
+      "en": "Design Spec",
+      "brief": "统一视觉与交互的设计规则文档",
+      "scene": "设计交付",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "设计系统",
+      "en": "Design System",
+      "brief": "组件化的可复用设计资产体系",
+      "scene": "设计交付",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "组件库",
+      "en": "Component Library",
+      "brief": "可复用界面组件的集合",
+      "scene": "设计交付",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "交互稿",
+      "en": "Interaction Spec",
+      "brief": "描述界面流转与反馈的稿件",
+      "scene": "交互设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "高保真原型",
+      "en": "High-fidelity Prototype",
+      "brief": "接近最终效果的交互原型",
+      "scene": "交互设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "线框图",
+      "en": "Wireframe",
+      "brief": "只体现结构与层级的低保真草图",
+      "scene": "交互设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "切图",
+      "en": "Slice",
+      "brief": "导出给开发的界面图片资源",
+      "scene": "设计交付",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "标注",
+      "en": "Annotation",
+      "brief": "在稿件上标明尺寸与样式的说明",
+      "scene": "设计交付",
+      "software": [],
+      "scene_tags": [
+        "ui_design",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "设计稿评审",
+      "en": "Design Review",
+      "brief": "对设计方案进行集体评审",
+      "scene": "设计管理",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "改稿",
+      "en": "Revision",
+      "brief": "按反馈对设计稿进行修改",
+      "scene": "设计协作",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "创意提案",
+      "en": "Creative Proposal",
+      "brief": "面向客户阐释创意思路的提案",
+      "scene": "方案汇报",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "设计简报",
+      "en": "Design Brief",
+      "brief": "明确设计目标与要求的任务书",
+      "scene": "设计管理",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "主色调",
+      "en": "Primary Color",
+      "brief": "品牌或界面中使用的主色",
+      "scene": "色彩设计",
+      "software": [],
+      "scene_tags": [
+        "vector",
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "对比度",
+      "en": "Contrast Ratio",
+      "brief": "前景与背景的明度差异，影响可读性",
+      "scene": "色彩设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "WCAG AA",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "渐变色",
+      "en": "Gradient",
+      "brief": "两种以上颜色之间的平滑过渡",
+      "scene": "色彩设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "透明度",
+      "en": "Opacity",
+      "brief": "图层不透明程度的百分比",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "图层",
+      "en": "Layer",
+      "brief": "图形软件中独立可编辑的层",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "蒙版",
+      "en": "Mask",
+      "brief": "遮罩图层局部显示范围的工具",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "图层混合模式",
+      "en": "Blend Mode",
+      "brief": "控制图层间颜色叠加方式",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "路径",
+      "en": "Path",
+      "brief": "矢量图形中由锚点和曲线构成的轮廓",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "锚点",
+      "en": "Anchor Point",
+      "brief": "定义路径形状的控制点",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "贝塞尔曲线",
+      "en": "Bézier Curve",
+      "brief": "由锚点与控制柄定义的平滑曲线",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "布尔运算",
+      "en": "Boolean Operation",
+      "brief": "对图形进行并集差集等运算",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "描边",
+      "en": "Stroke",
+      "brief": "图形轮廓线的粗细与样式",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "填充",
+      "en": "Fill",
+      "brief": "图形内部区域的填色",
+      "scene": "图形软件",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "图标规范",
+      "en": "Icon Guideline",
+      "brief": "图标的栅格、线宽与风格规范",
+      "scene": "UI 设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design",
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "响应式布局",
+      "en": "Responsive Layout",
+      "brief": "随屏幕尺寸自适应调整的布局",
+      "scene": "UI 设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "暗色模式",
+      "en": "Dark Mode",
+      "brief": "深色背景的界面主题方案",
+      "scene": "UI 设计",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "设计走查",
+      "en": "Design QA",
+      "brief": "开发实现后对照设计稿的验收检查",
+      "scene": "设计交付",
+      "software": [],
+      "scene_tags": [
+        "ui_design"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "品牌升级",
+      "en": "Rebranding",
+      "brief": "对既有品牌形象进行系统更新",
+      "scene": "品牌设计",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "设计总监",
+      "en": "Design Director",
+      "brief": "统筹设计团队与视觉标准的负责人",
+      "scene": "设计管理",
+      "software": [],
+      "scene_tags": [
+        "vector"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 850
+    }
+  ]
+}

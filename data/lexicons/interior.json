@@ -1,0 +1,668 @@
+{
+  "profession": "interior",
+  "name": "室内与家装设计",
+  "version": "1.0.0",
+  "description": "住宅、商业空间与软装设计术语，覆盖 AutoCAD / SketchUp / 3ds Max / 酷家乐场景",
+  "terms": [
+    {
+      "zh": "平面布置图",
+      "en": "Floor Plan Layout",
+      "brief": "表达家具与功能分区的水平投影图",
+      "scene": "方案设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "原始结构图",
+      "en": "Existing Structure Plan",
+      "brief": "反映房屋原始墙体与结构的图纸",
+      "scene": "现场勘测",
+      "software": [],
+      "scene_tags": [
+        "space_plan",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "拆改图",
+      "en": "Demolition Plan",
+      "brief": "标注墙体拆改位置与方式的图纸",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "地面铺装图",
+      "en": "Flooring Plan",
+      "brief": "标注地面材料与铺贴方式的图纸",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "天花图",
+      "en": "Reflected Ceiling Plan",
+      "brief": "表达吊顶造型与灯位的顶面图",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [
+        "RCP"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "立面图",
+      "en": "Elevation",
+      "brief": "表达墙面造型与做法的正投影图",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "剖面图",
+      "en": "Section",
+      "brief": "沿剖切面展示内部构造的图纸",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "节点详图",
+      "en": "Detail Drawing",
+      "brief": "交代细部做法与收口的放大图",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d",
+        "annotation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "水电点位图",
+      "en": "MEP Point Plan",
+      "brief": "标注给排水与电气点位位置",
+      "scene": "机电图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "动线",
+      "en": "Circulation",
+      "brief": "人在空间中活动的路径",
+      "scene": "方案设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "动静分区",
+      "en": "Activity Zoning",
+      "brief": "把活动区与休息区分离的布局思路",
+      "scene": "方案设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "干湿分离",
+      "en": "Dry-wet Separation",
+      "brief": "把用水区与干燥区隔开的设计",
+      "scene": "方案设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "玄关",
+      "en": "Entryway",
+      "brief": "入户过渡与收纳空间",
+      "scene": "空间设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "收纳系统",
+      "en": "Storage System",
+      "brief": "整体规划储物空间的体系",
+      "scene": "空间设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan",
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "全屋定制",
+      "en": "Whole-house Customization",
+      "brief": "柜体家具按户型整体定制",
+      "scene": "定制设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan",
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "衣柜分区",
+      "en": "Wardrobe Zoning",
+      "brief": "把衣柜划分为挂放叠放等区域",
+      "scene": "定制设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "橱柜",
+      "en": "Cabinet",
+      "brief": "厨房整体橱柜系统",
+      "scene": "定制设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan",
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "台面",
+      "en": "Countertop",
+      "brief": "橱柜或操作台的表面板材",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "踢脚线",
+      "en": "Skirting",
+      "brief": "墙脚处遮挡缝隙的装饰线条",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "收口",
+      "en": "Joint Detail",
+      "brief": "不同材料交接处的处理做法",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material",
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "阳角",
+      "en": "External Corner",
+      "brief": "墙体向外凸出的转角",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "阴角",
+      "en": "Internal Corner",
+      "brief": "墙体向内凹进的转角",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "轻钢龙骨",
+      "en": "Light Steel Keel",
+      "brief": "吊顶与隔墙用的轻质骨架",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "石膏板吊顶",
+      "en": "Gypsum Board Ceiling",
+      "brief": "用石膏板做的室内顶面造型",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "乳胶漆",
+      "en": "Emulsion Paint",
+      "brief": "墙面常用的水性涂料",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "艺术漆",
+      "en": "Art Paint",
+      "brief": "带纹理效果的装饰性涂料",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 860
+    },
+    {
+      "zh": "壁布",
+      "en": "Wall Covering",
+      "brief": "整幅粘贴的墙面装饰材料",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "大理石",
+      "en": "Marble",
+      "brief": "纹理美观的天然石材",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "岩板",
+      "en": "Sintered Stone",
+      "brief": "可大规格应用的人造饰面板材",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "复合地板",
+      "en": "Laminate Flooring",
+      "brief": "多层结构复合而成的地板",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "实木地板",
+      "en": "Solid Wood Flooring",
+      "brief": "整块实木加工的地板",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "瓷砖",
+      "en": "Ceramic Tile",
+      "brief": "陶土烧制的面层装饰材料",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "美缝",
+      "en": "Tile Grouting",
+      "brief": "填补瓷砖缝隙的装饰工艺",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 880
+    },
+    {
+      "zh": "防水层",
+      "en": "Waterproofing Layer",
+      "brief": "防止渗漏的构造层",
+      "scene": "材料构造",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "GB 50208",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "闭水试验",
+      "en": "Ponding Test",
+      "brief": "蓄水检验防水层是否渗漏",
+      "scene": "施工验收",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "隐蔽工程",
+      "en": "Concealed Works",
+      "brief": "完工后被覆盖、需先行验收的工程",
+      "scene": "施工验收",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "水电改造",
+      "en": "MEP Renovation",
+      "brief": "对给排水与电路进行的改造",
+      "scene": "施工验收",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "软装方案",
+      "en": "Soft Furnishing Scheme",
+      "brief": "家具灯具布艺的搭配方案",
+      "scene": "软装设计",
+      "software": [],
+      "scene_tags": [
+        "material",
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "陈设",
+      "en": "Furnishing",
+      "brief": "对空间内物品的布置与搭配",
+      "scene": "软装设计",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "色卡",
+      "en": "Color Swatch",
+      "brief": "标准化的颜色样卡便于比选",
+      "scene": "软装设计",
+      "software": [],
+      "scene_tags": [
+        "material"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "效果图",
+      "en": "Rendering",
+      "brief": "表现最终空间效果的三维图像",
+      "scene": "方案汇报",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "全景图",
+      "en": "Panorama",
+      "brief": "可 360° 查看的沉浸式效果图",
+      "scene": "方案汇报",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "漫游动画",
+      "en": "Walkthrough Animation",
+      "brief": "沿路径浏览空间的动画演示",
+      "scene": "方案汇报",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "施工图深化",
+      "en": "Construction Drawing Detailing",
+      "brief": "把方案落为可施工的详细图纸",
+      "scene": "施工图",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "设计交底",
+      "en": "Design Disclosure",
+      "brief": "向施工方讲解设计意图的会议",
+      "scene": "设计管理",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "现场复核",
+      "en": "Site Verification",
+      "brief": "到现场核实尺寸与条件的差异",
+      "scene": "现场管理",
+      "software": [],
+      "scene_tags": [
+        "drawing_2d"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "户型优化",
+      "en": "Layout Optimization",
+      "brief": "在不改承重的前提下重组平面",
+      "scene": "方案设计",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "承重墙",
+      "en": "Load-bearing Wall",
+      "brief": "承担结构荷载、不得拆除的墙体",
+      "scene": "结构安全",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "梁下净高",
+      "en": "Clear Height",
+      "brief": "梁底到地面的可用高度",
+      "scene": "空间测量",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 870
+    },
+    {
+      "zh": "设计总监",
+      "en": "Design Director",
+      "brief": "统筹设计团队与标准的负责人",
+      "scene": "设计管理",
+      "software": [],
+      "scene_tags": [
+        "space_plan"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 840
+    }
+  ]
+}

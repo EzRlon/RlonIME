@@ -1,0 +1,763 @@
+{
+  "profession": "legal",
+  "name": "法务与合规",
+  "version": "1.0.0",
+  "description": "合同审查、诉讼仲裁与知识产权术语",
+  "terms": [
+    {
+      "zh": "合同主体",
+      "en": "Contracting Party",
+      "brief": "签订合同的当事方资格",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "民法典",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "要约",
+      "en": "Offer",
+      "brief": "希望与他人订立合同的意思表示",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "承诺",
+      "en": "Acceptance",
+      "brief": "受要约人同意要约的意思表示",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "标的",
+      "en": "Subject Matter",
+      "brief": "合同权利义务指向的对象",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "价款",
+      "en": "Contract Price",
+      "brief": "合同约定的货币对价",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "违约责任",
+      "en": "Liability for Breach",
+      "brief": "一方违约应承担的法律后果",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "违约金",
+      "en": "Liquidated Damages",
+      "brief": "约定或法定的一次性赔偿金额",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "定金",
+      "en": "Earnest Money",
+      "brief": "作为担保的预付金额，适用定金罚则",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "不可抗力",
+      "en": "Force Majeure",
+      "brief": "不能预见、不能避免并不能克服的客观情况",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "免责条款",
+      "en": "Exemption Clause",
+      "brief": "约定免除或限制责任的条款",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "管辖法院",
+      "en": "Jurisdiction Court",
+      "brief": "约定争议由哪个法院审理",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "仲裁条款",
+      "en": "Arbitration Clause",
+      "brief": "约定争议提交仲裁的条款",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "格式条款",
+      "en": "Standard Terms",
+      "brief": "预先拟定重复使用的条款",
+      "scene": "合同审查",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "合同解除",
+      "en": "Contract Termination",
+      "brief": "提前终止合同效力的行为",
+      "scene": "合同履行",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "合同变更",
+      "en": "Contract Amendment",
+      "brief": "对已生效合同内容的修改",
+      "scene": "合同履行",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "履约保证金",
+      "en": "Performance Bond",
+      "brief": "保证合同履行的担保金",
+      "scene": "合同履行",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "对账单",
+      "en": "Reconciliation Statement",
+      "brief": "核对双方往来账目的文件",
+      "scene": "合同履行",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "催告函",
+      "en": "Letter of Demand",
+      "brief": "催促对方履行义务的正式函件",
+      "scene": "合同履行",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "律师函",
+      "en": "Lawyer's Letter",
+      "brief": "由律师出具主张权利的专业函件",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "证据保全",
+      "en": "Evidence Preservation",
+      "brief": "对可能灭失的证据先行固定",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "诉讼时效",
+      "en": "Statute of Limitations",
+      "brief": "主张权利的法定有效期间",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "民法典",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "一审",
+      "en": "First Instance",
+      "brief": "案件的第一审程序",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "二审",
+      "en": "Second Instance",
+      "brief": "对一审判决不服提起的上诉审理",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [
+        "上诉"
+      ],
+      "freq": 905
+    },
+    {
+      "zh": "执行",
+      "en": "Enforcement",
+      "brief": "对生效裁判的强制执行",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "调解",
+      "en": "Mediation",
+      "brief": "在第三方主持下协商解决争议",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "保全措施",
+      "en": "Preservation Measure",
+      "brief": "防止财产转移的临时性措施",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "判决书",
+      "en": "Judgment",
+      "brief": "法院对案件作出的裁判文书",
+      "scene": "争议解决",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "litigation",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "商标注册",
+      "en": "Trademark Registration",
+      "brief": "向商标局申请取得商标专用权",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip",
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "商标类别",
+      "en": "Trademark Class",
+      "brief": "商标注册的商品服务分类",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "尼斯分类",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "商标续展",
+      "en": "Trademark Renewal",
+      "brief": "商标有效期届满前的延展",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 890
+    },
+    {
+      "zh": "商标异议",
+      "en": "Trademark Opposition",
+      "brief": "对初审公告商标提出反对",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip",
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 885
+    },
+    {
+      "zh": "专利申请",
+      "en": "Patent Application",
+      "brief": "向专利局提交的申请文件",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "发明专利",
+      "en": "Invention Patent",
+      "brief": "对产品方法等技术方案的专利",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "实用新型",
+      "en": "Utility Model",
+      "brief": "对产品形状构造的实用性专利",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "外观设计",
+      "en": "Design Patent",
+      "brief": "对产品外观设计的专利保护",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "专利检索",
+      "en": "Patent Search",
+      "brief": "检索在先技术避免侵权",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "权利要求书",
+      "en": "Claims",
+      "brief": "界定专利保护范围的文件",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "著作权",
+      "en": "Copyright",
+      "brief": "对文学艺术科学作品的专有权利",
+      "scene": "知识产权",
+      "software": [],
+      "scene_tags": [
+        "ip",
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [
+        "版权"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "商业秘密",
+      "en": "Trade Secret",
+      "brief": "不为公众所知悉的技术经营信息",
+      "scene": "合规管理",
+      "software": [],
+      "scene_tags": [
+        "compliance",
+        "ip"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "保密协议",
+      "en": "Non-disclosure Agreement",
+      "brief": "约定保守秘密的协议",
+      "scene": "合规管理",
+      "software": [],
+      "scene_tags": [
+        "compliance",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [
+        "NDA"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "竞业限制",
+      "en": "Non-compete",
+      "brief": "限制离职后从事竞争业务",
+      "scene": "合规管理",
+      "software": [],
+      "scene_tags": [
+        "compliance",
+        "hr",
+        "law"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "反商业贿赂",
+      "en": "Anti-bribery",
+      "brief": "禁止以财物谋取不当利益",
+      "scene": "合规管理",
+      "software": [],
+      "scene_tags": [
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "合规审查",
+      "en": "Compliance Review",
+      "brief": "对业务是否合规的检查",
+      "scene": "合规管理",
+      "software": [],
+      "scene_tags": [
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "尽职调查",
+      "en": "Due Diligence",
+      "brief": "对交易对象的全面核查",
+      "scene": "合规管理",
+      "software": [],
+      "scene_tags": [
+        "compliance",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "DD"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "授权书",
+      "en": "Power of Attorney",
+      "brief": "授予他人代理权限的文书",
+      "scene": "法务事务",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "法人",
+      "en": "Legal Representative",
+      "brief": "代表法人行使职权的负责人",
+      "scene": "法务事务",
+      "software": [],
+      "scene_tags": [
+        "legal"
+      ],
+      "standard": "民法典",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "营业执照",
+      "en": "Business License",
+      "brief": "企业合法经营的凭证",
+      "scene": "法务事务",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "公章",
+      "en": "Company Seal",
+      "brief": "代表公司对外意思表示的印章",
+      "scene": "法务事务",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "法律意见书",
+      "en": "Legal Opinion",
+      "brief": "就法律问题出具的书面意见",
+      "scene": "法务事务",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "公司章程",
+      "en": "Articles of Association",
+      "brief": "规范公司组织与行为的基本文件",
+      "scene": "法务事务",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "股权转让",
+      "en": "Equity Transfer",
+      "brief": "股东之间或对外转让股权",
+      "scene": "公司治理",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "股东会决议",
+      "en": "Shareholders' Resolution",
+      "brief": "股东会作出的决议文件",
+      "scene": "公司治理",
+      "software": [],
+      "scene_tags": [
+        "legal",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "增资扩股",
+      "en": "Capital Increase",
+      "brief": "增加注册资本并吸收新股东",
+      "scene": "公司治理",
+      "software": [],
+      "scene_tags": [
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "清算",
+      "en": "Liquidation",
+      "brief": "终止经营后了结债权债务的程序",
+      "scene": "公司治理",
+      "software": [],
+      "scene_tags": [
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 895
+    }
+  ]
+}

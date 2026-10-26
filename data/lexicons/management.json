@@ -1,0 +1,875 @@
+{
+  "profession": "management",
+  "name": "经营与管理",
+  "version": "1.0.0",
+  "description": "企业经营管理、销售与运营综合术语",
+  "terms": [
+    {
+      "zh": "经营目标",
+      "en": "Business Objective",
+      "brief": "企业在一定期间要达到的结果",
+      "scene": "战略管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "年度经营计划",
+      "en": "Annual Business Plan",
+      "brief": "年度目标与实施安排",
+      "scene": "战略管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "budget"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "战略规划",
+      "en": "Strategic Planning",
+      "brief": "对长期方向与路径的谋划",
+      "scene": "战略管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "商业模式",
+      "en": "Business Model",
+      "brief": "企业创造与获取价值的方式",
+      "scene": "战略管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "核心竞争力",
+      "en": "Core Competence",
+      "brief": "区别于对手的关键能力",
+      "scene": "战略管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "市场份额",
+      "en": "Market Share",
+      "brief": "企业销量占市场总量的比重",
+      "scene": "市场分析",
+      "software": [],
+      "scene_tags": [
+        "marketing",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "竞品分析",
+      "en": "Competitive Analysis",
+      "brief": "对竞争对手产品的对比研究",
+      "scene": "市场分析",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "市场调研",
+      "en": "Market Research",
+      "brief": "收集分析市场信息的活动",
+      "scene": "市场分析",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "目标客户",
+      "en": "Target Customer",
+      "brief": "企业重点服务的客户群",
+      "scene": "市场分析",
+      "software": [],
+      "scene_tags": [
+        "marketing",
+        "sales"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "客户画像",
+      "en": "Customer Profile",
+      "brief": "对典型客户特征的描述",
+      "scene": "市场分析",
+      "software": [],
+      "scene_tags": [
+        "marketing",
+        "sales"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "营收",
+      "en": "Revenue",
+      "brief": "企业主营业务实现的收入",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [
+        "营业收入"
+      ],
+      "freq": 950
+    },
+    {
+      "zh": "毛利",
+      "en": "Gross Profit",
+      "brief": "收入减去营业成本后的余额",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "净利润",
+      "en": "Net Profit",
+      "brief": "扣除全部成本费用后的利润",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "回款率",
+      "en": "Collection Rate",
+      "brief": "实际回款占应收的比重",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "达成率",
+      "en": "Achievement Rate",
+      "brief": "实际完成占目标的比例",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "同比增长",
+      "en": "Year-on-year Growth",
+      "brief": "与去年同期相比的增长",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "YoY"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "环比增长",
+      "en": "Month-on-month Growth",
+      "brief": "与上一期间相比的增长",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "MoM"
+      ],
+      "freq": 920
+    },
+    {
+      "zh": "盈亏平衡点",
+      "en": "Break-even Point",
+      "brief": "收入与成本相等的临界点",
+      "scene": "经营指标",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "accounting"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "经营分析会",
+      "en": "Business Review Meeting",
+      "brief": "定期复盘经营情况的会议",
+      "scene": "经营管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "月度报表",
+      "en": "Monthly Report",
+      "brief": "按月汇总的经营数据报表",
+      "scene": "经营管理",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "目标分解",
+      "en": "Target Breakdown",
+      "brief": "把总目标拆解到部门与个人",
+      "scene": "经营管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "责任到人",
+      "en": "Accountability Assignment",
+      "brief": "把任务明确落实到责任人",
+      "scene": "经营管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "绩效考核",
+      "en": "Performance Review",
+      "brief": "对部门与个人业绩的考核",
+      "scene": "经营管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "激励方案",
+      "en": "Incentive Plan",
+      "brief": "激发员工积极性的奖励安排",
+      "scene": "经营管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "客户拜访",
+      "en": "Customer Visit",
+      "brief": "到客户处进行沟通洽谈",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "客户关系",
+      "en": "Customer Relationship",
+      "brief": "与客户建立的长期联系",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales"
+      ],
+      "standard": "",
+      "var_en": [
+        "CRM"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "销售漏斗",
+      "en": "Sales Funnel",
+      "brief": "从线索到成交的转化过程",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "商机",
+      "en": "Sales Opportunity",
+      "brief": "有成交可能的销售线索",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "报价单",
+      "en": "Quotation",
+      "brief": "向客户提供的价格清单",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "商务谈判",
+      "en": "Business Negotiation",
+      "brief": "就交易条件进行的磋商",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "legal"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "合同评审",
+      "en": "Contract Review",
+      "brief": "签约前对合同条款的审查",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "legal",
+        "contract"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "销售预测",
+      "en": "Sales Forecast",
+      "brief": "对未来销量的预估",
+      "scene": "销售管理",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "售后服务",
+      "en": "After-sales Service",
+      "brief": "交付后的技术支持与服务",
+      "scene": "客户服务",
+      "software": [],
+      "scene_tags": [
+        "sales"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "客诉处理",
+      "en": "Complaint Handling",
+      "brief": "处理客户投诉的流程",
+      "scene": "客户服务",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "客户满意度",
+      "en": "Customer Satisfaction",
+      "brief": "客户对产品或服务的评价",
+      "scene": "客户服务",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "复购率",
+      "en": "Repurchase Rate",
+      "brief": "客户重复购买的比重",
+      "scene": "客户服务",
+      "software": [],
+      "scene_tags": [
+        "sales",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "品牌定位",
+      "en": "Brand Positioning",
+      "brief": "品牌在客户心中的独特位置",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "品牌传播",
+      "en": "Brand Communication",
+      "brief": "把品牌信息传递给目标人群",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "整合营销",
+      "en": "Integrated Marketing",
+      "brief": "多渠道协同的营销方式",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "推广预算",
+      "en": "Promotion Budget",
+      "brief": "用于市场推广的费用安排",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing",
+        "budget"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "转化率",
+      "en": "Conversion Rate",
+      "brief": "访问者转化为客户的比重",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "获客成本",
+      "en": "Customer Acquisition Cost",
+      "brief": "获取单个客户的平均花费",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [
+        "CAC"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "私域运营",
+      "en": "Private Domain Operation",
+      "brief": "在自有渠道运营用户",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "新媒体运营",
+      "en": "New Media Operation",
+      "brief": "在社交平台的内容运营",
+      "scene": "品牌营销",
+      "software": [],
+      "scene_tags": [
+        "marketing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "项目立项",
+      "en": "Project Initiation",
+      "brief": "项目正式启动的审批",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "项目计划",
+      "en": "Project Plan",
+      "brief": "项目范围进度与资源的安排",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "schedule"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "里程碑",
+      "en": "Milestone",
+      "brief": "项目中的关键节点",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "schedule"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "进度偏差",
+      "en": "Schedule Variance",
+      "brief": "实际进度与计划的差异",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "schedule"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "风险登记册",
+      "en": "Risk Register",
+      "brief": "记录与跟踪项目风险清单",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "交付物",
+      "en": "Deliverable",
+      "brief": "项目需要产出的成果",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "验收",
+      "en": "Acceptance",
+      "brief": "对交付成果的确认接受",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "复盘",
+      "en": "Retrospective",
+      "brief": "项目结束后总结经验教训",
+      "scene": "项目管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "周报",
+      "en": "Weekly Report",
+      "brief": "按周汇报工作进展",
+      "scene": "团队管理",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "例会",
+      "en": "Regular Meeting",
+      "brief": "按固定周期召开的会议",
+      "scene": "团队管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "授权",
+      "en": "Delegation",
+      "brief": "把职权授予下属行使",
+      "scene": "团队管理",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "团队建设",
+      "en": "Team Building",
+      "brief": "提升团队凝聚力与协作",
+      "scene": "团队管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "人才梯队",
+      "en": "Talent Pipeline",
+      "brief": "分层储备的后备人才",
+      "scene": "团队管理",
+      "software": [],
+      "scene_tags": [
+        "hr",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "降本增效",
+      "en": "Cost Reduction and Efficiency Improvement",
+      "brief": "降低成本同时提升效率",
+      "scene": "运营改善",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "流程优化",
+      "en": "Process Optimization",
+      "brief": "改进业务流程提升效率",
+      "scene": "运营改善",
+      "software": [],
+      "scene_tags": [
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "标准化作业",
+      "en": "Standard Operating Procedure",
+      "brief": "按统一规范执行操作",
+      "scene": "运营改善",
+      "software": [],
+      "scene_tags": [
+        "management",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [
+        "SOP"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "产能利用率",
+      "en": "Capacity Utilization",
+      "brief": "实际产出占产能的比重",
+      "scene": "运营改善",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "管理驾驶舱",
+      "en": "Management Dashboard",
+      "brief": "汇总核心指标的决策看板",
+      "scene": "数据决策",
+      "software": [],
+      "scene_tags": [
+        "report",
+        "management"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "数据看板",
+      "en": "Dashboard",
+      "brief": "集中展示关键数据的界面",
+      "scene": "数据决策",
+      "software": [],
+      "scene_tags": [
+        "report"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    }
+  ]
+}

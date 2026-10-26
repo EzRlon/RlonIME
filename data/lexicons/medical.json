@@ -1,0 +1,840 @@
+{
+  "profession": "medical",
+  "name": "临床医疗",
+  "version": "1.0.0",
+  "description": "门诊、病房与手术诊疗常用医学表述",
+  "terms": [
+    {
+      "zh": "主诉",
+      "en": "Chief Complaint",
+      "brief": "患者就诊时最主要的症状与病程",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "diagnosis",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "现病史",
+      "en": "History of Present Illness",
+      "brief": "本次疾病的发生发展过程",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "diagnosis",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "既往史",
+      "en": "Past Medical History",
+      "brief": "患者过去的健康状况与疾病史",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "diagnosis",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "体格检查",
+      "en": "Physical Examination",
+      "brief": "通过视触叩听获取的体征",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [
+        "查体"
+      ],
+      "freq": 945
+    },
+    {
+      "zh": "辅助检查",
+      "en": "Auxiliary Examination",
+      "brief": "实验室与影像等检查项目",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "初步诊断",
+      "en": "Preliminary Diagnosis",
+      "brief": "入院时给出的初步判断",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "diagnosis",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "鉴别诊断",
+      "en": "Differential Diagnosis",
+      "brief": "排除相似疾病的推演过程",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "diagnosis"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "诊疗计划",
+      "en": "Treatment Plan",
+      "brief": "拟定的检查与治疗方案",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "病程记录",
+      "en": "Progress Note",
+      "brief": "住院期间病情变化的连续记录",
+      "scene": "病历书写",
+      "software": [],
+      "scene_tags": [
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "医嘱",
+      "en": "Medical Order",
+      "brief": "医师下达的诊治指令",
+      "scene": "病房管理",
+      "software": [],
+      "scene_tags": [
+        "treatment",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 950
+    },
+    {
+      "zh": "长期医嘱",
+      "en": "Standing Order",
+      "brief": "需持续执行的医嘱",
+      "scene": "病房管理",
+      "software": [],
+      "scene_tags": [
+        "treatment",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "临时医嘱",
+      "en": "PRN Order",
+      "brief": "一次性或临时执行的医嘱",
+      "scene": "病房管理",
+      "software": [],
+      "scene_tags": [
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "医嘱执行",
+      "en": "Order Execution",
+      "brief": "护士按医嘱实施并记录",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "入院评估",
+      "en": "Admission Assessment",
+      "brief": "对入院患者状况的全面评估",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "diagnosis"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "生命体征",
+      "en": "Vital Signs",
+      "brief": "体温脉搏呼吸与血压",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "查房",
+      "en": "Ward Round",
+      "brief": "医师到病房巡查患者病情",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "diagnosis",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 945
+    },
+    {
+      "zh": "会诊",
+      "en": "Consultation",
+      "brief": "请其他科室协助诊治",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "diagnosis",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 940
+    },
+    {
+      "zh": "病例讨论",
+      "en": "Case Discussion",
+      "brief": "对疑难病例的集体讨论",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "diagnosis"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "知情同意书",
+      "en": "Informed Consent",
+      "brief": "患者知情后签署的同意文件",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "document",
+        "compliance"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "术前讨论",
+      "en": "Preoperative Discussion",
+      "brief": "手术前对方案的集体论证",
+      "scene": "围术期",
+      "software": [],
+      "scene_tags": [
+        "surgery"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "术前准备",
+      "en": "Preoperative Preparation",
+      "brief": "手术前的检查与准备工作",
+      "scene": "围术期",
+      "software": [],
+      "scene_tags": [
+        "surgery"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "麻醉评估",
+      "en": "Anesthesia Assessment",
+      "brief": "评估麻醉风险与方案",
+      "scene": "围术期",
+      "software": [],
+      "scene_tags": [
+        "surgery"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "术后访视",
+      "en": "Postoperative Visit",
+      "brief": "术后对患者的随访观察",
+      "scene": "围术期",
+      "software": [],
+      "scene_tags": [
+        "surgery"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "手术记录",
+      "en": "Operative Note",
+      "brief": "记录手术过程的正式文书",
+      "scene": "围术期",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "手术方案",
+      "en": "Surgical Plan",
+      "brief": "拟定的术式与入路安排",
+      "scene": "围术期",
+      "software": [],
+      "scene_tags": [
+        "surgery"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "无菌操作",
+      "en": "Aseptic Technique",
+      "brief": "防止微生物污染的操作规范",
+      "scene": "感染控制",
+      "software": [],
+      "scene_tags": [
+        "surgery",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "院内感染",
+      "en": "Nosocomial Infection",
+      "brief": "住院期间获得的感染",
+      "scene": "感染控制",
+      "software": [],
+      "scene_tags": [
+        "prevention",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "消毒隔离",
+      "en": "Disinfection and Isolation",
+      "brief": "控制传染源传播的措施",
+      "scene": "感染控制",
+      "software": [],
+      "scene_tags": [
+        "prevention",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "分级护理",
+      "en": "Graded Nursing",
+      "brief": "按病情轻重划分的护理级别",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "静脉输液",
+      "en": "Intravenous Infusion",
+      "brief": "经静脉滴注药液的治疗",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [
+        "IV"
+      ],
+      "freq": 940
+    },
+    {
+      "zh": "留置针",
+      "en": "Indwelling Needle",
+      "brief": "可留置血管内的穿刺针",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 910
+    },
+    {
+      "zh": "导尿",
+      "en": "Catheterization",
+      "brief": "留置导尿管引流尿液",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "鼻饲",
+      "en": "Nasogastric Feeding",
+      "brief": "经鼻胃管给予营养",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "吸氧",
+      "en": "Oxygen Therapy",
+      "brief": "给予氧气改善缺氧",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "心电监护",
+      "en": "ECG Monitoring",
+      "brief": "连续监测心律与心率",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [
+        "ECG"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "血压监测",
+      "en": "Blood Pressure Monitoring",
+      "brief": "定时测量血压变化",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "血糖监测",
+      "en": "Blood Glucose Monitoring",
+      "brief": "检测血液葡萄糖水平",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "交班报告",
+      "en": "Shift Handover Report",
+      "brief": "班次交接时的情况说明",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "护理记录单",
+      "en": "Nursing Record",
+      "brief": "记录护理措施与效果的文书",
+      "scene": "护理执行",
+      "software": [],
+      "scene_tags": [
+        "nursing",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "用药指导",
+      "en": "Medication Guidance",
+      "brief": "向患者说明用药方法",
+      "scene": "药学服务",
+      "software": [],
+      "scene_tags": [
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "处方审核",
+      "en": "Prescription Review",
+      "brief": "核对处方合理性的过程",
+      "scene": "药学服务",
+      "software": [],
+      "scene_tags": [
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "配伍禁忌",
+      "en": "Drug Incompatibility",
+      "brief": "药物之间不能同时使用的限制",
+      "scene": "药学服务",
+      "software": [],
+      "scene_tags": [
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "不良反应",
+      "en": "Adverse Reaction",
+      "brief": "用药后出现的有害反应",
+      "scene": "药学服务",
+      "software": [],
+      "scene_tags": [
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [
+        "ADR"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "抗菌药物",
+      "en": "Antibacterial Agent",
+      "brief": "抑制或杀灭细菌的药物",
+      "scene": "药学服务",
+      "software": [],
+      "scene_tags": [
+        "medication"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "静脉滴注速度",
+      "en": "Infusion Rate",
+      "brief": "控制药液滴入的速度",
+      "scene": "药学服务",
+      "software": [],
+      "scene_tags": [
+        "medication",
+        "nursing"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "影像学检查",
+      "en": "Imaging Examination",
+      "brief": "X 线 CT 与磁共振等检查",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "CT 增强扫描",
+      "en": "Contrast-enhanced CT",
+      "brief": "注射造影剂后扫描",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "超声检查",
+      "en": "Ultrasound Examination",
+      "brief": "利用超声成像的检查",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [
+        "B 超"
+      ],
+      "freq": 925
+    },
+    {
+      "zh": "病理检查",
+      "en": "Pathological Examination",
+      "brief": "对组织标本的镜下检查",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination",
+        "diagnosis"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 925
+    },
+    {
+      "zh": "血液生化",
+      "en": "Blood Biochemistry",
+      "brief": "检测血液生化指标",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "血常规",
+      "en": "Complete Blood Count",
+      "brief": "检测血细胞数量的常规项目",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination"
+      ],
+      "standard": "",
+      "var_en": [
+        "CBC"
+      ],
+      "freq": 930
+    },
+    {
+      "zh": "危急值",
+      "en": "Critical Value",
+      "brief": "提示危及生命的检验结果",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination",
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "影像报告",
+      "en": "Imaging Report",
+      "brief": "影像科出具的诊断报告",
+      "scene": "辅助检查",
+      "software": [],
+      "scene_tags": [
+        "examination",
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "转科",
+      "en": "Transfer to Another Department",
+      "brief": "住院期间转入其他科室",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 905
+    },
+    {
+      "zh": "转院",
+      "en": "Hospital Transfer",
+      "brief": "转到其他医疗机构继续治疗",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 900
+    },
+    {
+      "zh": "出院小结",
+      "en": "Discharge Summary",
+      "brief": "出院时对诊疗过程的总结",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "document"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 935
+    },
+    {
+      "zh": "随访",
+      "en": "Follow-up",
+      "brief": "出院后的跟踪观察",
+      "scene": "医疗管理",
+      "software": [],
+      "scene_tags": [
+        "treatment"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "康复训练",
+      "en": "Rehabilitation Training",
+      "brief": "恢复功能的系统性训练",
+      "scene": "康复医疗",
+      "software": [],
+      "scene_tags": [
+        "treatment",
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    },
+    {
+      "zh": "健康宣教",
+      "en": "Health Education",
+      "brief": "向患者普及健康知识",
+      "scene": "预防保健",
+      "software": [],
+      "scene_tags": [
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 915
+    },
+    {
+      "zh": "疫苗接种",
+      "en": "Vaccination",
+      "brief": "接种疫苗获得免疫保护",
+      "scene": "预防保健",
+      "software": [],
+      "scene_tags": [
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 930
+    },
+    {
+      "zh": "疫情防控",
+      "en": "Epidemic Prevention and Control",
+      "brief": "针对传染病的防控措施",
+      "scene": "预防保健",
+      "software": [],
+      "scene_tags": [
+        "prevention"
+      ],
+      "standard": "",
+      "var_en": [],
+      "freq": 920
+    }
+  ]
+}
