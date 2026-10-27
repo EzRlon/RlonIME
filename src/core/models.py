@@ -46,6 +46,10 @@ class Candidate:
     score: float = 0.0
     match_type: str = ""      # full_pinyin / abbr / prefix / en
     detail: dict[str, float] = field(default_factory=dict)
+    # v3.0.3 候选分区：pro = 专业/智能词库，common = 通用输入法词库。
+    # 候选条据此把两组视觉分开，用户一眼能看出"哪几个是工程词、
+    # 哪几个是日常字"，而不是被混排挤在一起。
+    group: str = ""
 
     @property
     def zh(self) -> str:

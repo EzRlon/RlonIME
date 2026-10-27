@@ -125,7 +125,7 @@ class TermEngine:
                     pool[key].detail["base"] = base
                     pool[key].match_type = match_type
                 return
-            c = Candidate(term=term, match_type=match_type)
+            c = Candidate(term=term, match_type=match_type, group="pro")
             c.detail["base"] = base
             pool[key] = c
 
@@ -198,10 +198,14 @@ class TermEngine:
         # 5) 通用词库（v2.3 常规输入）—— 没有匹配就回归「输入法本来的能力」
         #    低优先级层：profession 为空、不加领域分；专业精确命中时仅少量补位。
         #    数据：CC-CEDICT × jieba 词频（含英文释义，候选译法列直接可用）。
+        # v3.0.3：short = 1~2 个字母。此时"精确单字"几乎没有意义
+        # （k → 卡/喀/咔/咖 全是生僻字），用户一定在打更长的词，
+        # 所以前缀常用字要给足位置、并把分提到精确档附近。
+        short_q = len(q_low) <= 2
         common_pool: list[Candidate] = []
         if q_low.isascii() and self.lexicons.common_loaded:
             zh_have = {c.term.zh for c in pool.values()}
-            cap = 3 if (exact_hit or abbr_exact) else limit
+            cap = 3 if (exact_hit or abbr_exact) and not short_q else limit
 
             def _add_common(zh: str, en: str, fq: int, code: str,
                             base: float, mtype: str) -> None:
@@ -211,18 +215,30 @@ class TermEngine:
                 zh_have.add(zh)
                 t = Term(zh=zh, en=en, freq=fq, profession="")
                 t.pinyin = code
-                c = Candidate(term=t, match_type=mtype)
+                c = Candidate(term=t, match_type=mtype, group="common")
                 c.detail["base"] = base
                 common_pool.append(c)
 
+            exact_base = 78.0 if short_q else 100.0
             for zh, en, fq, _raw in self.lexicons.common_exact(q_low)[:cap]:
-                _add_common(zh, en, fq, q_low, 100.0, "common")
+                _add_common(zh, en, fq, q_low,
+                            exact_base + min(fq, 500) / 100.0, "common")
             if len(common_pool) < cap:
-                for zh, en, fq, code, extra in self.lexicons.common_starts(
-                        q_low, cap - len(common_pool)):
-                    b = max(30.0, 88.0 - extra * 9.0)
-                    if exact_hit or abbr_exact:
-                        b = min(b, 79.0)
+                # 短查询要跨拼音组挑高频（否则 k 的前几个永远是 ka 组的
+                # 卡/咖/喀/咔，看不到 开/看/可/口）——多取几倍再按词频排。
+                need = cap - len(common_pool)
+                if short_q:
+                    starts = self.lexicons.common_top_prefix(q_low, need * 2)
+                else:
+                    starts = self.lexicons.common_starts(q_low, need)
+                for zh, en, fq, code, extra in starts:
+                    if short_q:
+                        # 单字母/双字母：前缀词按词频给分（开/看/可 要压过 喀/咔）
+                        b = 80.0 + min(fq, 900) / 60.0 - extra * 1.5
+                    else:
+                        b = max(30.0, 88.0 - extra * 9.0)
+                        if exact_hit or abbr_exact:
+                            b = min(b, 79.0)
                     _add_common(zh, en, fq, code, b, "common_prefix")
 
         # ---------------- 打分 ----------------
@@ -232,7 +248,8 @@ class TermEngine:
             self._score(c, scene)
 
         # 领域过滤：非跨领域模式下，压制其他领域结果（不硬删，保留但降权）
-        candidates.sort(key=lambda c: c.score, reverse=True)
+        # v3.0.3：先按「匹配完整度」分层，再按分数排 —— 见 _rank_of 的说明。
+        candidates.sort(key=lambda c: (self._rank_of(c, short_q), -c.score))
 
         ranked = [c for c in candidates if c.score > 0]
         if not cross_profession:
@@ -262,7 +279,20 @@ class TermEngine:
                 continue
             seen_zh.add(c.term.zh)
             dedup.append(c)
-        ranked = dedup[:limit]
+        ranked = dedup
+        # 分区配额（v3.0.3）：整词命中的一堆日常字不能把专业词全挤掉。
+        # 打 chen 时前 6 位是陈/称/趁/填/宸/尘，第 7 位起要能看到「沉孔」——
+        # 这正是用户说的"智能匹配 + 正常输入法匹配两个区域"。
+        if not short_q:
+            top = [c for c in ranked if self._rank_of(c, short_q) == 0]
+            rest = [c for c in ranked if self._rank_of(c, short_q) > 0]
+            if rest and len(top) >= limit:
+                keep = max(limit - 3, (limit * 5) // 9)
+                ranked = top[:keep] + rest[:limit - keep]
+            else:
+                ranked = ranked[:limit]
+        else:
+            ranked = ranked[:limit]
 
         # ★ 一个都不命中 → 前缀退化，绝不允许凭空造候选。
         # 上一版在这里做了「补足同领域高频词」，结果用户敲 zhizhang 会看到
@@ -294,6 +324,37 @@ class TermEngine:
         #   · `chenkog` 少打字母 → 前缀匹配 + _prefix_fallback 救回
         #   · `chen`    想继续打 → 前缀匹配已列出 chen* 全部词
         return ranked
+
+    # ---------------- 匹配档次（v3.0.3） ----------------
+    # 用户反馈：打 shei 出不来「谁」，打 shi 前 8 位全是实体/蚀刻/石墨 ——
+    # 「是」根本看不见。根因是纯分数混排：专业词有领域加权，前缀命中
+    # （base 88）能压过通用词的精确命中（base 100 但零加权）。
+    #
+    # 现在改成「先看匹配得有多完整，再看分」：
+    #   0 整词对上（全拼/简拼/句库/通用词/中文前缀）
+    #   1 英文反查
+    #   2 专业前缀延伸
+    #   3 通用前缀延伸
+    # 1~2 个字母是特例：用户几乎总在打常用字（k→开/看/可），
+    # 此时通用前缀提到第 1 层，专业短别名（K Factor）沉到后面。
+    _RANK0 = frozenset({"full_pinyin", "abbr", "phrase", "common",
+                        "segment", "zh_prefix"})
+
+    def _rank_of(self, c: Candidate, short: bool) -> int:
+        mt = c.match_type
+        if mt in self._RANK0:
+            return 0
+        if short:
+            if mt == "common_prefix":
+                return 1
+            if mt in ("en", "en_short"):
+                return 2
+            return 3
+        if mt in ("en", "en_short", "zh_contains"):
+            return 1
+        if mt in ("prefix", "prefix_partial", "en_prefix"):
+            return 2
+        return 3
 
     # ---------------- 整句分段（v2.3 常规输入的最后一块拼图） ----------------
     def _segment_candidates(self, q: str, scene: SceneContext

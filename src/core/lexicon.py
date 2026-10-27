@@ -251,6 +251,34 @@ class LexiconManager:
         out.sort(key=lambda r: (r[4], -r[2]))
         return out[:limit]
 
+    def common_top_prefix(self, code: str, limit: int) -> list[
+            tuple[str, str, int, str, int]]:
+        """短查询（1~2 字母）专用：跨拼音组按词频取前 limit 个。
+
+        为什么不能直接用 common_starts：它按字典序扫描，敲 `k` 时先扫完
+        ka 组（卡/咖/喀/咔/胩…），`开/看/可/口` 根本进不来。这里每个拼音组
+        只取最高频那条，再全局按词频排，不同后缀的常用字才有机会。
+        """
+        if not self.common_keys:
+            return []
+        keys = self.common_keys
+        i = bisect.bisect_left(keys, code)
+        out: list[tuple[str, str, int, str, int]] = []
+        while i < len(keys):
+            k = keys[i]
+            i += 1
+            if not k.startswith(code):
+                break
+            extra = len(k) - len(code)
+            if extra > 4:
+                continue
+            recs = self.common_index.get(k)
+            if recs:
+                zh, en, fq, _raw = recs[0]
+                out.append((zh, en, fq, k, extra))
+        out.sort(key=lambda r: -r[2])
+        return out[:limit]
+
     def seg_codes(self) -> dict[str, tuple[str, str, int, int]]:
         """整句分段用码表：全拼 -> 最佳 (zh, en, 归一词频, 原始词频)（惰性构建）。
 

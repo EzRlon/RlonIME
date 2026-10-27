@@ -111,6 +111,7 @@ class Chip(QWidget):
         super().__init__(parent)
         self.index = -1
         self.is_badge = False       # 「…+N」溢出徽标（不参与选词/序号）
+        self._group = ""            # v3.0.3：pro/common，用于视觉分区
         self._zh = ""
         self._sel = False
         self._hover = False
@@ -179,6 +180,17 @@ class Chip(QWidget):
         self.setFixedWidth(self._w)
         self.update()
 
+    def set_group(self, group: str) -> None:
+        """候选来源分组：pro（工程/智能词库）带极浅主色底，common 留白。
+
+        用户要的是"一眼看出哪几个是工程词、哪几个是日常字"，所以用底色
+        而不是边框 —— 边框在浅色主题下几乎看不见。
+        """
+        g = group or ""
+        if self._group != g:
+            self._group = g
+            self.update()
+
     def set_selected(self, on: bool) -> None:
         if self._sel != on:
             self._sel = on
@@ -227,6 +239,12 @@ class Chip(QWidget):
         elif self._hover:
             p.setPen(Qt.PenStyle.NoPen)
             p.setBrush(QColor(pal_soft))
+            p.drawRoundedRect(r, d.CHIP_RADIUS, d.CHIP_RADIUS)
+        elif self._group == "pro":
+            tint = QColor(d.PRIMARY)
+            tint.setAlpha(26)          # ~10%：能看出分区，不抢文字
+            p.setPen(Qt.PenStyle.NoPen)
+            p.setBrush(tint)
             p.drawRoundedRect(r, d.CHIP_RADIUS, d.CHIP_RADIUS)
 
         sel = self._sel
@@ -989,6 +1007,7 @@ class CandidateBar(QWidget):
             for c in self.chips:
                 c.is_badge = False
                 c.reset_palette()
+                c.set_group("")
                 c.hide()
             self._page_idx = 0
             self._chips_end = 0
@@ -1019,11 +1038,13 @@ class CandidateBar(QWidget):
                 i = start + k
                 max_w = (CHIPS_AVAIL_W - self._badge_w - DS.GAP
                          if has_badge and k == cnt - 1 else CHIPS_AVAIL_W)
+                c.set_group(self.candidates[i].group)
                 c.set_content(i, self.candidates[i].zh, max_w=max_w)
                 c.set_selected(i == self.active_index)
                 c.show()
             elif has_badge and k == cnt:
                 c.is_badge = True
+                c.set_group("")
                 c.set_content(-1, f"…+{total - start - cnt}")
                 c.setToolTip("还有 %d 个候选：滚轮 / PgDn / = 翻页"
                              "（点这里也行）" % (total - start - cnt))

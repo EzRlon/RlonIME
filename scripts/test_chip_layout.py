@@ -345,6 +345,20 @@ def main() -> int:
         settle(b)
         ck("点徽标能翻页", b._page_idx == 1, b._page_idx)
 
+    # ---------------- v3.0.3：来源分区 ----------------
+    print("[v303] 候选分区：pro 带底色、common 留白")
+    b = build([])
+    b.candidates = [
+        Candidate(term=Term(zh="是", en=""), match_type="common", group="common"),
+        Candidate(term=Term(zh="实体", en=""), match_type="prefix", group="pro"),
+    ]
+    b._exact_match = True
+    b.active_index = 0
+    b._layout_chips()
+    settle(b)
+    ck("通用词胶囊 group=common", b.chips[0]._group == "common", b.chips[0]._group)
+    ck("专业词胶囊 group=pro", b.chips[1]._group == "pro", b.chips[1]._group)
+
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")
     for f in FAIL:

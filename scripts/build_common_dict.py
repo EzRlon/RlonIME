@@ -96,10 +96,30 @@ def main() -> int:
             pass
     print(f"  既有词库词条 {len(existing)}（从通用词库中排除）")
 
-    from pypinyin import lazy_pinyin, Style
+    from pypinyin import lazy_pinyin, pinyin, Style
+
+    def cedict_code(pin: str) -> str:
+        """CC-CEDICT 的 "shui2 zi5" → "shuizi"（去声调数字）。"""
+        return "".join(re.sub(r"[^a-z]", "", p.lower()) for p in pin.split())
+
+    def heteronym_codes(ch: str) -> list[str]:
+        """单字的多读音（谁 → shei/shui）。词级读音由 pypinyin 词组规则负责。"""
+        try:
+            rs = pinyin(ch, style=Style.NORMAL, heteronym=True)[0]
+        except Exception:
+            return []
+        out: list[str] = []
+        for r in rs:
+            r = re.sub(r"[^a-z]", "", (r or "").lower())
+            if r and r not in out:
+                out.append(r)
+        return out
 
     print("[2/4] 解析 CC-CEDICT")
     entries: dict[str, str] = {}
+    # 同一简体词在 CC-CEDICT 里可能有多条（不同读音，如 便宜 bian4yi2 / pian2yi5）。
+    # 以前只留了最后一条释义、拼音完全弃用，于是 "shei" 这类异读永远打不出字。
+    pins: dict[str, set[str]] = {}
     with gzip.open(cgz, "rt", encoding="utf-8") as f:
         for line in f:
             if line.startswith("#"):
@@ -110,6 +130,9 @@ def main() -> int:
             _trad, simp, _pin, gloss = m.groups()
             if simp not in entries:
                 entries[simp] = gloss
+            _c = cedict_code(_pin)
+            if _c:
+                pins.setdefault(simp, set()).add(_c)
     print(f"  cedict 词条 {len(entries)}")
 
     print("[3/4] 合并词频 + 生成全拼 + 清洗释义")
@@ -134,16 +157,29 @@ def main() -> int:
         if not g:
             stat["no_gloss"] += 1
             continue
-        code = "".join(lazy_pinyin(simp, style=Style.NORMAL))
-        if not code or not code.isascii() or not code.isalpha():
+        codes: list[str] = []
+        base = "".join(lazy_pinyin(simp, style=Style.NORMAL))
+        if base:
+            codes.append(base)
+        for c in sorted(pins.get(simp, ())):
+            if c not in codes:
+                codes.append(c)
+        if len(simp) == 1:                      # 单字补异读：谁 shei/shui
+            for c in heteronym_codes(simp):
+                if c not in codes:
+                    codes.append(c)
+        codes = [c for c in codes if c.isascii() and c.isalpha()][:3]
+        if not codes:
             stat["bad_py"] += 1
             continue
+        stat["multi_code"] = stat.get("multi_code", 0) + (1 if len(codes) > 1 else 0)
         if jf > 0:
             # 0.4 次幂归并：高频词上限 1000，低频段仍有分辨率（避免大量并列）
             fq = min(1000, max(1, int((jf ** 0.4) * 4)))
         else:
             fq = 1
-        rows.append((code, simp, jf if jf > 0 else 1, fq, g))
+        for code in codes:
+            rows.append((code, simp, jf if jf > 0 else 1, fq, g))
     print(f"  收录 {len(rows)} 条；过滤明细 {stat}")
 
     print("[4/4] 写出 common.tsv.gz")
