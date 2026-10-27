@@ -165,6 +165,10 @@ def main() -> int:
         def follow_caret(self):
             self.calls += 1
 
+        def release_pin_if_other_screen(self, pt):
+            # 假对象：固定时视为"同屏固定"（不跟随）；未固定时允许继续
+            return not self.pinned
+
     from main import ZhiyuApp
     for visible, pinned, composing, want in ((True, False, True, 1),
                                              (True, True, True, 0),
@@ -265,6 +269,92 @@ def main() -> int:
     b.follow_caret()
     app.processEvents()
     ck("固定坐标非法时不崩、退回跟随", b.bar_pinned is False)
+
+    # ---------------- [8] 跨屏：固定点在别的屏 → 自动解除并跟随 ----------------
+    # 用户反馈（2026-10-27）：在另一块屏点击输入，候选条还在原来那块屏。
+    # 实测根因是 ui.bar_pinned=true + bar_pos 落在副屏，跟随逻辑看到"钉住"
+    # 就直接 return —— 与 DPI 换算无关。
+    print("[8] 跨屏：固定点在别的屏 → 自动解除并跟随")
+    primary = QApplication.primaryScreen()
+    g_main = primary.geometry()
+    others = [s for s in QApplication.screens() if s is not primary]
+    if not others:
+        print("  SKIP 当前只有一块屏，跨屏用例无法验证")
+    else:
+        g_other = others[0].geometry()
+        print(f"  主屏 {g_main.x()},{g_main.y()} {g_main.width()}x{g_main.height()}"
+              f" · 副屏 {g_other.x()},{g_other.y()} "
+              f"{g_other.width()}x{g_other.height()}")
+
+        # 固定在副屏 → 插入符在主屏
+        b = make_bar()
+        b.bar_pinned = True
+        b._bar_pos = [g_other.x() + 20, g_other.y() + 20]
+        bm.get_caret_info = lambda: CaretInfo(
+            g_main.x() + 120, g_main.y() + 120, "caret", 0, 0, 0, 1.0)
+        b.follow_caret()
+        app.processEvents()
+        ck("跨屏输入自动解除固定", b.bar_pinned is False, b._bar_pos)
+        ck("条子回到插入符所在屏",
+           QApplication.screenAt(b.pos()) is primary,
+           (b.pos(), QApplication.screenAt(b.pos()) and
+            QApplication.screenAt(b.pos()).name()))
+        ck("解除固定已落盘",
+           any(v.get("bar_pinned") is False for _, v in persisted),
+           persisted[-1:])
+
+        # 反向：固定在主屏 → 插入符在副屏
+        b = make_bar()
+        b.bar_pinned = True
+        b._bar_pos = [g_main.x() + 40, g_main.y() + 40]
+        bm.get_caret_info = lambda: CaretInfo(
+            g_other.x() + 100, g_other.y() + 100, "caret", 0, 0, 0, 1.0)
+        b.follow_caret()
+        app.processEvents()
+        ck("反方向跨屏也解除固定", b.bar_pinned is False)
+        ck("条子跟到副屏",
+           QApplication.screenAt(b.pos()) is not primary,
+           (b.pos(), QApplication.screenAt(b.pos()) and
+            QApplication.screenAt(b.pos()).name()))
+
+        # 同屏：固定必须保持（那是用户主动钉的）
+        b = make_bar()
+        b.bar_pinned = True
+        pin = [g_main.x() + 60, g_main.y() + 60]
+        b._bar_pos = list(pin)
+        bm.get_caret_info = lambda: CaretInfo(
+            g_main.x() + 900, g_main.y() + 500, "caret", 0, 0, 0, 1.0)
+        b.follow_caret()
+        app.processEvents()
+        ck("同屏固定不被解除", b.bar_pinned is True)
+        ck("同屏固定位置不变",
+           abs(b.pos().x() - pin[0]) <= 2 and abs(b.pos().y() - pin[1]) <= 2,
+           (b.pos(), pin))
+
+        # 点击语义：同屏返回 False（不跟随），跨屏返回 True（继续跟随）
+        b = make_bar()
+        b.bar_pinned = True
+        b._bar_pos = [g_other.x() + 20, g_other.y() + 20]
+        same = b.release_pin_if_other_screen(
+            QPoint(g_other.x() + 60, g_other.y() + 60))
+        ck("点击同一块屏：保持固定、不跟随", same is False and b.bar_pinned is True)
+        cross = b.release_pin_if_other_screen(
+            QPoint(g_main.x() + 60, g_main.y() + 60))
+        ck("点击另一块屏：解除固定、继续跟随",
+           cross is True and b.bar_pinned is False)
+
+        # 启动体检：屏幕外的固定点必须清掉
+        b = make_bar()
+        b.bar_pinned = True
+        b._bar_pos = [99999, 99999]
+        b.sanitize_pinned()
+        ck("启动体检清掉屏外固定点", b.bar_pinned is False, b._bar_pos)
+
+        b = make_bar()
+        b.bar_pinned = True
+        b._bar_pos = [g_other.x() + 30, g_other.y() + 30]
+        b.sanitize_pinned()
+        ck("启动体检保留屏内固定点", b.bar_pinned is True)
 
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")

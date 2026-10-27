@@ -1150,26 +1150,13 @@ class CandidateBar(QWidget):
         按「该点所在显示器」的物理原点与缩放换算。旧口径 `物理/scale` 在
         主屏 100% + 副屏 250% 的组合下会把副屏的点算回主屏 —— 表现就是
         "点了输入位置，候选条却出现在另一块屏上"。
+
+        v3.0.2：**固定只在同一块屏内有效**。用户换到另一块屏输入，说明固定点
+        已经没有意义（条子留在旧屏 = 完全看不见），此时自动解除固定并跟随。
+        这是用户反馈「在另一个屏幕点击输入，条子还在原来的屏」的真正原因：
+        旧配置里 `ui.bar_pinned=true` + `bar_pos` 落在副屏，而跟随逻辑看到
+        钉住就无条件返回，永远不会过去。
         """
-        if self.bar_pinned and len(self._bar_pos) == 2:
-            try:
-                px, py = int(self._bar_pos[0]), int(self._bar_pos[1])
-            except (TypeError, ValueError):
-                self._bar_pos = []          # 配置被手改坏：当作未固定
-                self.bar_pinned = False
-            else:
-                scr = self._screen_for_point(px + 4, py + 4)
-                if scr is None:
-                    # 副屏被拔掉/改了分辨率：固定点已在所有屏幕之外，
-                    # 继续硬贴会让条子永久不可见 → 自动回到跟随。
-                    self.bar_pinned = False
-                    self._bar_pos = []
-                    self.refresh_icons()
-                else:
-                    geo = scr.availableGeometry()
-                    self.move(max(geo.left(), min(px, geo.right() - self.width())),
-                              max(geo.top(), min(py, geo.bottom() - self.height())))
-                    return
         info: CaretInfo = get_caret_info()
         if info.source == "caret" and (info.phys_x or info.phys_y):
             anchor = logical_point(info.phys_x, info.phys_y)
@@ -1178,6 +1165,27 @@ class CandidateBar(QWidget):
             anchor = QPoint(info.x, info.y)
         else:
             anchor = cursor_logical()
+
+        if self.bar_pinned and len(self._bar_pos) == 2:
+            try:
+                px, py = int(self._bar_pos[0]), int(self._bar_pos[1])
+            except (TypeError, ValueError):
+                self._release_pin("位置配置无效 · 已恢复跟随")
+            else:
+                scr = self._screen_for_point(px + 4, py + 4)
+                cur = self._screen_for_point(anchor.x(), anchor.y())
+                if scr is None:
+                    # 副屏被拔掉/改了分辨率：固定点已在所有屏幕之外，
+                    # 继续硬贴会让条子永久不可见 → 自动回到跟随。
+                    self._release_pin("固定点已失效 · 已恢复跟随")
+                elif cur is not None and cur is not scr:
+                    self._release_pin("跨屏输入 · 已恢复跟随")
+                else:
+                    geo = scr.availableGeometry()
+                    self.move(max(geo.left(), min(px, geo.right() - self.width())),
+                              max(geo.top(), min(py, geo.bottom() - self.height())))
+                    return
+
         w, h = self.width(), self.height()
         nx, ny = anchor.x() + 2, anchor.y() + 20
         scr = (self._screen_for_point(anchor.x(), anchor.y())
@@ -1193,6 +1201,56 @@ class CandidateBar(QWidget):
         if ny + h > geo.bottom():
             ny = max(geo.top() + 6, anchor.y() - h - 14)
         self.move(int(nx), int(ny))
+
+    # ---------------- 固定态管理（v3.0.2） ----------------
+    def _release_pin(self, hint: str = "") -> None:
+        """解除固定并落盘。hint 走顶行小字，绝不切到提示态（会吞掉候选行）。"""
+        self.bar_pinned = False
+        self._bar_pos = []
+        self.refresh_icons()
+        self._persist_drag()
+        if hint:
+            self._set_mode_hint(hint)
+            QTimer.singleShot(2200, lambda: self._set_mode_hint(""))
+
+    def release_pin_if_other_screen(self, pt) -> bool:
+        """固定点在别的屏 → 解除固定并返回 True（调用方继续跟随）。
+
+        同一块屏内返回 False：固定是用户主动要的，不许乱解。
+        """
+        if not self.bar_pinned or len(self._bar_pos) != 2:
+            return True
+        try:
+            px, py = int(self._bar_pos[0]), int(self._bar_pos[1])
+        except (TypeError, ValueError):
+            self._release_pin("位置配置无效 · 已恢复跟随")
+            return True
+        pin = self._screen_for_point(px + 4, py + 4)
+        cur = self._screen_for_point(int(pt.x()), int(pt.y()))
+        if pin is None or (cur is not None and cur is not pin):
+            self._release_pin("跨屏点击 · 已恢复跟随")
+            return True
+        return False
+
+    def sanitize_pinned(self) -> None:
+        """启动体检：固定点必须落在某块屏内，否则回到跟随。
+
+        旧版（v2.5 及更早）"拖动即固定"会写进 `ui.bar_pinned/bar_pos`；
+        用户换屏或改分辨率后这个点可能已经在屏幕外，表现为"条子不见了"或
+        "怎么点都不跟随"。启动时就纠正，不等用户触发一次跟随才修。
+        """
+        if not self.bar_pinned:
+            return
+        if len(self._bar_pos) != 2:
+            self._release_pin()
+            return
+        try:
+            px, py = int(self._bar_pos[0]), int(self._bar_pos[1])
+        except (TypeError, ValueError):
+            self._release_pin()
+            return
+        if self._screen_for_point(px + 4, py + 4) is None:
+            self._release_pin()
 
     # ---------------- 拖动（鼠标事件直移窗口，绝不 activateWindow） ----------------
     def wheelEvent(self, e) -> None:  # noqa: N802
@@ -1233,6 +1291,11 @@ class CandidateBar(QWidget):
                 self._bar_pos = [self.pos().x(), self.pos().y()]
                 self._persist_drag()
                 self.refresh_icons()
+                # v3.0.2：固定是被动进入的状态（用户只是想把条子挪开），
+                # 必须让他知道"现在不跟光标了"，否则下一次换输入位置就会
+                # 认为是"跟随坏了"。顶行小字，不切提示态、不吞候选。
+                self._set_mode_hint("已固定 · 点 📌 恢复跟随")
+                QTimer.singleShot(2600, lambda: self._set_mode_hint(""))
             self._drag_origin = None
             self._drag_moved = False
 

@@ -169,6 +169,8 @@ class ZhiyuApp:
         self.bar.open_ai.connect(self.open_ai)
         self.bar.open_about.connect(self.open_about)
         self.bar.ui_persist = self._persist      # 拖动/固定位置落盘（QA 阻断项）
+        # v3.0.2：老配置里可能残留"屏幕外/旧屏"的固定点，启动即纠正
+        self.bar.sanitize_pinned()
         self.bar.pause_clicked.connect(self.toggle_ime)
         # v2.5（U02 用户拍板）：候选条 ✕ = 收起进托盘，不再直接退出。
         # 退出唯一入口是托盘右键菜单——误触零代价。
@@ -301,7 +303,11 @@ class ZhiyuApp:
         看起来像不跟随；钉住（📌）时按用户意图不跟随。
         """
         try:
-            if not self.bar.isVisible() or self.bar.bar_pinned:
+            if not self.bar.isVisible():
+                return
+            # v3.0.2：固定点落在别的屏 → 用户是换屏工作，解除固定再跟随；
+            # 同一块屏内保持固定（那是用户主动钉的）。
+            if not self.bar.release_pin_if_other_screen(pos):
                 return
             # 只在"正在拼字"时跟随：否则任务栏/桌面/浏览器随便一点，
             # 候选条都会被甩到那个位置（QA 抓到）。双击=两次 clicked，去抖。

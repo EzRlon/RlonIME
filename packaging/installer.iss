@@ -17,7 +17,7 @@
 
 #define MyAppName "RlonIME · 专业领域词汇助手"
 #define MyAppShortName "RlonIME"
-#define MyAppVersion "3.0.1"
+#define MyAppVersion "3.0.2"
 #define MyAppPublisher "Rlon"
 #define MyAppExeName "ZhiyuIME.exe"
 #define SourceDir "..\dist25\ZhiyuIME"
