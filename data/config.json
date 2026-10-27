@@ -1,5 +1,5 @@
 {
-  "version": "3.0.4",
+  "version": "4.0.0",
   "app_name": "RlonIME",
   "engine": "shuishan-rime-compatible",
   "profile": {
@@ -550,8 +550,11 @@
     "show_scene_hint": true,
     "layout": "bar",
     "bar_width": 560,
-    "bar_pinned": false,
-    "bar_pos": [],
+    "bar_pinned": true,
+    "bar_pos": [
+      1263,
+      242
+    ],
     "remember_bar_pos": true,
     "candidate_mode": "auto"
   },

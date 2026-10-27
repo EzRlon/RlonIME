@@ -43,7 +43,7 @@ def wait_named_pipe(name: str, timeout_s: float = 20.0) -> bool:
 
 def main() -> int:
     user = getpass.getuser() or "user"
-    server_name = f"ZhiyuIME-SingleInstance-{user}"
+    server_name = f"RlonIME-SingleInstance-{user}"
     flag = Path(tempfile.gettempdir()) / f"zhiyu_raise_{int(time.time())}.flag"
 
     print("[1] 启动进程 A（主实例）")

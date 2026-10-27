@@ -22,7 +22,7 @@ RlonIME · 专业领域词汇助手 — 主程序入口
     ui/popups.py       配套弹窗（加词条/行业/AI/关于；设置中心已并入）
 
 v2.2：托盘净化（仅图标）；显示名 RlonIME，内部进程名与
-数据目录保留 ZhiyuIME（老用户数据免迁移）。
+数据目录保留 RlonIME（老用户数据免迁移）。
 v2.3.1：多显示器下候选条/弹窗按「光标所在屏幕」贴合（修复副屏被拉回主屏）；
 托盘双击不再退出（防误触），改为显示/隐藏候选条，退出走候选条 ✕。
 """
@@ -779,7 +779,7 @@ def _arg_value(name: str) -> str | None:
 
 def main() -> int:
     bootstrap()
-    # 崩溃日志三件套：先于 QApplication，落 %APPDATA%\ZhiyuIME\logs
+    # 崩溃日志三件套：先于 QApplication，落 %APPDATA%\RlonIME\logs
     crashlog.install(user_data_root() / "logs")
     app = QApplication(sys.argv)
     app.setQuitOnLastWindowClosed(False)

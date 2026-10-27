@@ -1765,11 +1765,28 @@ class CandidateBar(QWidget):
         与空格/回车的口径完全一致（M3）：只有精确命中才替用户选词，
         前缀命中时直出原文，绝不假装用户已经打完了。
         """
-        if self.candidates and self._exact_match:
-            i = (self.active_index
-                 if 0 <= self.active_index < len(self.candidates) else 0)
-            return self.candidates[i].zh or pinyin
-        return pinyin
+        p = (pinyin or "").strip()
+        if not p:
+            return ""
+        cands = self.candidates
+        exact = self._exact_match
+        if not cands:
+            # v4.0：候选条可能刚被 Esc/上屏关掉，或 25ms 定时器还没跑完 ——
+            # 此时按 ← 不能因为"内存里没有候选"就把拼音原文吐进文档。
+            # 现场再算一次（0.2ms 级），拿不到才退回原文。
+            try:
+                cands = self.engine.search(
+                    p, self.scene,
+                    mode=getattr(self, "candidate_mode", "auto"))
+                exact = any(c.match_type in ("full_pinyin", "abbr", "segment",
+                                             "phrase", "common")
+                            for c in cands)
+            except Exception:
+                cands, exact = [], False
+        if cands and exact:
+            i = self.active_index if 0 <= self.active_index < len(cands) else 0
+            return cands[i].zh or p
+        return p
 
     def _commit_nav(self, pinyin: str, vk: int) -> None:
         """组合态按编辑键：先上屏当前内容，再把该键交给目标程序。

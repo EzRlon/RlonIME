@@ -3,7 +3,7 @@
 RlonIME — PyInstaller 打包配置（v2.2 D6 体积优化）
 
 产物：
-  distN/ZhiyuIME/ZhiyuIME.exe      主程序（onedir，启动快、杀软误报低）
+  distN/RlonIME/RlonIME.exe      主程序（onedir，启动快、杀软误报低）
   然后由 Inno Setup 打成 setup.exe 安装向导
 
 D6 口径（用户拍板：全量 UPX）：
@@ -123,7 +123,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="ZhiyuIME",
+    name="RlonIME",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -142,5 +142,5 @@ coll = COLLECT(
     strip=False,
     upx=True,                # D6：全量 UPX（dll/pyd）
     upx_exclude=[],
-    name="ZhiyuIME",
+    name="RlonIME",
 )

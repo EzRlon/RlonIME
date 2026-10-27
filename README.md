@@ -58,11 +58,17 @@
 
 ### 安装版
 
-到 [Releases](../../releases) 下载 `RlonIME_Setup_v3.0.0.exe`，双击安装（per-user，**不需要管理员权限**）。
+到 [Releases](../../releases) 下载 `RlonIME_Setup_v4.0.0.exe`，双击安装（per-user，**不需要管理员权限**）。
 
-- 安装目录：`%LOCALAPPDATA%\Programs\ZhiyuIME`
-- 用户数据：`%APPDATA%\ZhiyuIME`（卸载不删，词库与记忆库会保留）
+- 安装目录：`%LOCALAPPDATA%\Programs\RlonIME`
+- 用户数据：`%APPDATA%\RlonIME`（卸载不删，词库与记忆库会保留）
 - 开机自启：安装时可选，之后可在「Ⓘ 关于」里开关
+
+> **从旧版（ZhiyuIME）升级**：v4.0.0 起品牌统一，进程名、安装目录、数据目录都改为
+> RlonIME。升级时会自动把旧安装目录的 `config.json` 与 `%APPDATA%\ZhiyuIME` 下的
+> 记忆库、自定义词、使用记录**复制**到新目录（旧目录原样保留，可回退旧版）。
+> 迁移完成后，旧目录 `%LOCALAPPDATA%\Programs\ZhiyuIME` 与 `%APPDATA%\ZhiyuIME`
+> 可以手动删除。
 
 ### 源码运行
 

@@ -115,6 +115,13 @@ def main() -> int:
         results.append((name, bool(cond), extra))
         print(f"  {'OK ' if cond else 'FAIL'} {name}{'' if cond else '  ' + extra}")
 
+    # 清掉上一轮可能残留的实例：单实例守卫会让新进程秒退，或留下孤儿候选窗，
+    # 表现为"启动后就有窗口 / 字母打到别处"的假失败。
+    for _name in ("RlonIME.exe", "ZhiyuIME.exe"):
+        subprocess.run(["taskkill", "/IM", _name, "/F"],
+                       capture_output=True, check=False)
+    time.sleep(0.6)
+
     print("[0] 启动真实主程序 src/main.py")
     proc = subprocess.Popen(target_cmd(),
                             cwd=str(ROOT), stdout=subprocess.DEVNULL,
@@ -160,6 +167,16 @@ def main() -> int:
                 _imm32.ImmReleaseContext(hwnd, himc)
         except Exception:
             pass
+
+    def tapk(vk: int) -> None:
+        """注入按键前先关掉接收窗的系统输入法。
+
+        本机实测：微软拼音处于中文态时会抢在智语之前吃掉注入的字母，
+        甚至把字母转成全角括号（"CH（ENKON）G"）—— 断言会全部失真。
+        每个键都关一次（ImmSetOpenStatus 是幂等的）。
+        """
+        close_system_ime()
+        tap(vk)
 
     def pump(ms: int) -> None:
         end = time.time() + ms / 1000.0
@@ -235,7 +252,7 @@ def main() -> int:
 
         print("[1] 模拟真人敲 chenkong")
         for ch in "chenkong":
-            tap(ord(ch.upper()))
+            tapk(ord(ch.upper()))
         pump(1000)
         ck("字母被系统级吞掉（接收窗为空）", edit.toPlainText() == "",
            repr(edit.toPlainText()))
@@ -250,7 +267,7 @@ def main() -> int:
            f"rect={rect}")
 
         print("[2] 敲数字 1 选首候选")
-        tap(0x31)
+        tapk(0x31)
         pump(1000)
         ck("术语上屏到焦点窗口", edit.toPlainText().startswith("沉孔"),
            repr(edit.toPlainText()))
@@ -266,12 +283,12 @@ def main() -> int:
         print("[3] 真实引擎检索 + Backspace + Esc")
         n0 = len(edit.toPlainText())
         for ch in "daojiao":
-            tap(ord(ch.upper()))
+            tapk(ord(ch.upper()))
         pump(800)
         ck("候选窗再次弹出", len(panels()) >= 1)
-        tap(0x08)
+        tapk(0x08)
         pump(300)
-        tap(0x1B)
+        tapk(0x1B)
         pump(600)
         ck("Esc 取消后未误上屏", len(edit.toPlainText()) == n0,
            repr(edit.toPlainText()))
@@ -282,7 +299,7 @@ def main() -> int:
         pump(500)
         close_system_ime()          # Ctrl+Space 会同时切到系统输入法，关掉它
         for ch in "xy":
-            tap(ord(ch.upper()))
+            tapk(ord(ch.upper()))
         pump(700)
         ck("关闭接管后字母直通窗口", edit.toPlainText().endswith("xy"),
            repr(edit.toPlainText()))
@@ -294,7 +311,7 @@ def main() -> int:
         before = edit.toPlainText()
         for ch in "kong":
             close_system_ime()      # 每个字母前都确保系统输入法是关的
-            tap(ord(ch.upper()))
+            tapk(ord(ch.upper()))
         pump(800)
         ck("接管恢复后字母又被吞", edit.toPlainText() == before,
            repr(edit.toPlainText()))
@@ -302,22 +319,24 @@ def main() -> int:
         # 实测在桌面繁忙时枚举会漏窗口（同一个条子 [1] 能测到、这里测不到），
         # 属于测试手段的噪声，不是产品行为。改为验证真正的结果：
         # 恢复接管后按数字键必须能把候选词打进文档（走的是同一条候选通路）。
-        tap(0x31)                       # 1 = 本页首候选
+        tapk(0x31)                       # 1 = 本页首候选
         pump(900)
         ck("接管恢复后仍能选词上屏", edit.toPlainText() != before,
            repr(edit.toPlainText()))
 
         print("[6] 组合态按 ← ：上屏的是词，不是拼音原文（v3.0）")
-        tap(0x1B)                       # 先清掉上一步的半截组合
+        focus_self()                    # 上屏靠 SendInput 打前台窗口，必须确认焦点
+        pump(200)
+        tapk(0x1B)                       # 先清掉上一步的半截组合
         pump(400)
         pre = edit.toPlainText()
         for ch in "chenkong":
             close_system_ime()
-            tap(ord(ch.upper()))
+            tapk(ord(ch.upper()))
         pump(900)
         ck("组合态已建立（窗口未变化）", edit.toPlainText() == pre,
            repr(edit.toPlainText()))
-        tap(0x25)                       # ←
+        tapk(0x25)                       # ←
         pump(1000)
         cur = edit.toPlainText()
         added = cur[len(pre):]

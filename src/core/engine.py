@@ -259,17 +259,28 @@ class TermEngine:
 
         # 领域过滤：非跨领域模式下，压制其他领域结果（不硬删，保留但降权）
         # v3.0.3：先按「匹配完整度」分层，再按分数排 —— 见 _rank_of 的说明。
-        candidates.sort(key=lambda c: (self._rank_of(c, short_q), -c.score))
+        # v4.0：行业维度也进入排序键（同行业/共享层在前，跨行业在后），
+        # **不再硬删**。原因（用户实测）：配置是「包装」行业时打 chenkong，
+        # 「沉孔」属于机械，旧逻辑在精确命中时把它过滤掉；虽然最后被
+        # _prefix_fallback 捡回来，但 match_type 降级成 prefix_partial，
+        # 于是"精确命中"判定为 False → 按空格/← 直出拼音而不是上屏沉孔。
+        active_prof = scene.profession_key
+
+        def _sort_key(c: Candidate):
+            rank = self._rank_of(c, short_q)
+            other = 0 if (not active_prof
+                          or c.term.profession in (active_prof, "")) else 1
+            return (rank, other, -c.score)
+
+        candidates.sort(key=_sort_key)
 
         ranked = [c for c in candidates if c.score > 0]
         if not cross_profession:
-            # 优先保留当前领域 + 通用词，其他领域若分数很低则剔除
             active = scene.profession_key
             if exact_hit and active:
-                # UX-P0-7：精确命中时跨行业硬过滤——用户全拼都打完了，
-                # 其他行业的同音词（score>=60 逃逸口）一律不得入列。
-                ranked = [c for c in ranked
-                          if c.term.profession in (active, "")]
+                # 精确命中：只剔除"分数低到没有参考价值"的候选，
+                # 跨行业的同音词保留在队尾（用户可能正好要它）。
+                ranked = [c for c in ranked if c.score >= 55]
             else:
                 # 无精确命中时维持现状：跨行业高分词仍可见，保召回
                 ranked = [

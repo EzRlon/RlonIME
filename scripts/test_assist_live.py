@@ -168,7 +168,7 @@ def main() -> int:
     # ---- 用临时 APPDATA 启动主程序，避免污染真实记忆库 ----
     tmp = Path(tempfile.mkdtemp(prefix="zhiyu_live_"))
     env = {**os.environ, "APPDATA": str(tmp)}
-    db = tmp / "ZhiyuIME" / "memory.db"
+    db = tmp / "RlonIME" / "memory.db"
     db.parent.mkdir(parents=True, exist_ok=True)
 
     print("[0] 预热记忆库 + 启动真实主程序")

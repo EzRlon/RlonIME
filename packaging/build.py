@@ -3,7 +3,7 @@
 
 流程：
   1. 生成应用图标（纯代码绘制）
-  2. PyInstaller 打包 -> dist2/ZhiyuIME/ （若被占用自动换目录）
+  2. PyInstaller 打包 -> dist2/RlonIME/ （若被占用自动换目录）
   3. Inno Setup 编译 -> dist/installer/智语输入法_Setup_vX.exe
 
 用法：
@@ -85,7 +85,7 @@ def build_exe() -> Path:
         log("打包失败：")
         print((r.stderr or "")[-3000:])
         sys.exit(1)
-    out = dist / "ZhiyuIME"
+    out = dist / "RlonIME"
     log(f"  打包完成 -> {out}")
     return out
 
@@ -138,12 +138,12 @@ def build_installer(src_dir: Path) -> Path:
 
 
 def find_latest_build() -> Path | None:
-    """在所有 dist* 目录中找最新产出的 ZhiyuIME，按 exe 修改时间排序。"""
+    """在所有 dist* 目录中找最新产出的 RlonIME，按 exe 修改时间排序。"""
     cands = []
     for d in ROOT.glob("dist*"):
-        exe = d / "ZhiyuIME" / "ZhiyuIME.exe"
+        exe = d / "RlonIME" / "RlonIME.exe"
         if exe.exists():
-            cands.append((exe.stat().st_mtime, d / "ZhiyuIME"))
+            cands.append((exe.stat().st_mtime, d / "RlonIME"))
     if not cands:
         return None
     cands.sort(reverse=True)

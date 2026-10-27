@@ -4,6 +4,75 @@
 每次发版必须同步三处：`src/core/config.py`（APP_VERSION）、
 `packaging/installer.iss`（MyAppVersion）、`data/config.json`（version）。
 
+## v4.0.0 — 2026-10-27
+
+**品牌统一：ZhiyuIME → RlonIME（全量改名，含进程名 / 安装目录 / 数据目录）。**
+
+### 改了什么
+
+| 项 | 旧 | 新 |
+|---|---|---|
+| 可执行文件 | `ZhiyuIME.exe` | `RlonIME.exe` |
+| 安装目录 | `%LOCALAPPDATA%\Programs\ZhiyuIME` | `%LOCALAPPDATA%\Programs\RlonIME` |
+| 用户数据 | `%APPDATA%\ZhiyuIME` | `%APPDATA%\RlonIME` |
+| 开机自启项 | Run\ZhiyuIME | Run\RlonIME |
+| 单实例管道 | `ZhiyuIME-SingleInstance-*` | `RlonIME-SingleInstance-*` |
+| 安装显示名 | RlonIME · 专业领域词汇助手 | RlonIME · 工程领域中文输入法 |
+
+### 升级不会丢东西（三条迁移，按顺序执行）
+
+`core.paths.bootstrap()` 现在是：
+
+1. **`migrate_legacy_install()`** —— 从旧安装目录把 `data/config.json`（热键、AI Key、
+   候选模式、固定位置）复制到新目录。必须在释放内置资源**之前**，否则新目录已经有
+   一份默认配置，就判断不出该不该迁。
+2. `ensure_seed_data()` —— 补齐词库/句库等内置资源（已存在的不覆盖）。
+3. **`migrate_legacy_data()`** —— 把 `%APPDATA%\ZhiyuIME` 的 `memory.db`、`usage.db`、
+   `custom_terms.json`、`first_run.done`、`msime_export/` 复制到 `RlonIME`。
+
+三条原则：**复制不移动**（旧目录原样保留，可回退旧版）、**逐文件判断**（新目录已有
+同名文件不覆盖）、**可重试**（旧版正在运行时 `memory.db` 被占用 → 下次启动再试）。
+
+### 安装器同步处理
+
+- `AppId` 保持不变 → 新版被识别为「同一软件升级」，不会并存两份
+- `PrepareToInstall` 先 `taskkill` 旧进程（`ZhiyuIME.exe` 文件名不同，Inno 的
+  `CloseApplications` 检测不到，留着会继续占键盘钩子）
+- `[Registry]` 无条件删除旧的开机自启项（否则会留两个自启，两个进程抢钩子）
+- `[InstallDelete]` 只删旧目录的 `ZhiyuIME.exe` 与 `_internal`，**保留 `data/`**
+  （用户可能改过词库；配置迁移由程序完成）
+
+### 顺带修掉一个真 bug（跨行业时"精确命中"被降级）
+
+配置为「包装」行业时打 `chenkong`：
+
+1. 旧逻辑在**精确命中**时按行业**硬过滤**，把机械词「沉孔」直接删掉；
+2. `_prefix_fallback`（末尾容错）又把它捡回来，但 `match_type` 降级成
+   `prefix_partial`；
+3. 于是「精确命中」判定为 False → 按空格/← 时**直出拼音 `chenkong`**，
+   而不是上屏「沉孔」。
+
+现在行业只参与排序（同行业/共享层在前，跨行业排后），**不再删除**；跨行业用户
+（包装厂也做机械件）不会被行业设置锁死。`chenkong` 在任意行业下都是
+`full_pinyin` 精确命中。
+
+另外 `_chosen_text()` 增加现场检索兜底：候选条刚被 Esc/上屏关掉、或 25ms 定时器
+还没跑完时，按 ← 不会因为"内存里没有候选"就把拼音吐进文档。
+
+### 验证
+
+新增 `scripts/test_paths_migration.py`（13 条）：目录名常量、四件套复制、
+`msime_export` 整目录、幂等、不覆盖新数据、无旧目录时安全返回、
+`bootstrap` 三步顺序断言。
+实测本机升级：`%APPDATA%\RlonIME` 已生成且含 `memory.db / usage_db / custom_terms.json /
+first_run.done / msime_export`，旧目录完整保留。
+
+其余回归：ime 126 / leak 61 / common 72 / chip 56 / ime_ui 25 / bar_move 38 /
+free 40 全绿；`dist36` 安装版 `test_ime_live` **18/18**。
+
+`test_ime_live` 同时做了两处稳定性修复：每个按键前关闭接收窗的系统输入法
+（微软拼音中文态会抢走注入的字母并转成全角括号），以及开跑前清理残留实例。
+
 ## v3.0.4 — 2026-10-27
 
 四条用户反馈一次做完。

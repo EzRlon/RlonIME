@@ -3,7 +3,7 @@
 
 这是全系统最有价值的一层：用户每纠正一次，系统就聪明一分。
 
-存放在 %APPDATA%/ZhiyuIME/memory.db：
+存放在 %APPDATA%/RlonIME/memory.db：
   - 不放在安装目录 → 升级、卸载、换版本都不会丢
   - 永不上传     → 图纸术语是商业机密，只在本机
   - 只增不删     → 除非用户主动清理
@@ -311,7 +311,7 @@ if __name__ == "__main__":
     import json
     import tempfile
 
-    tmp = Path(tempfile.gettempdir()) / "zhiyu_memory_selftest.db"
+    tmp = Path(tempfile.gettempdir()) / "rlon_memory_selftest.db"
     if tmp.exists():
         tmp.unlink()
     m = TranslationMemory(tmp)

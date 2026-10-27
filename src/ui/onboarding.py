@@ -2,7 +2,7 @@
 RlonIME — 首启引导 / 快捷键速查（一页图文，最小实现）
 
 两个入口：
-1. 首启引导：%APPDATA%\\ZhiyuIME\\first_run.done 不存在时由 main 弹出
+1. 首启引导：%APPDATA%\\RlonIME\\first_run.done 不存在时由 main 弹出
    （模态，勾选「不再显示」关闭后写标记；标记放用户目录，卸载不删、
    重装不重复弹）。
 2. 快捷键速查：WelcomeDialog().open_reference() 可随时重开（纯展示）。

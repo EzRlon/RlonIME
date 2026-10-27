@@ -31,7 +31,7 @@ class SingleInstanceGuard(QObject):
         super().__init__(parent)
         user = getpass.getuser() or "user"
         # named pipe 按会话隔离；用户名后缀防多用户/RDP 冲突
-        self.name = name or f"ZhiyuIME-SingleInstance-{user}"
+        self.name = name or f"RlonIME-SingleInstance-{user}"
         self.server: QLocalServer | None = None
         # 启动竞态缓冲：管道就绪早于 ZhiyuApp 完成构建，此间到达的唤起命令
         # 不能丢（用户双击图标后立刻再双击是真实场景），由主实例构建完后取走。
