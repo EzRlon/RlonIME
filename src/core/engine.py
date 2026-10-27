@@ -86,6 +86,12 @@ class UsageStore:
         return list(cur.fetchall())
 
 
+# 候选条一页能放几枚（与 ui/bar.py 的 CHIPS_AVAIL_W 口径一致：
+# 560 宽、每枚短词约 48~60px，实测稳定 9 枚）。engine 不 import UI，
+# 这里只作为"分区配额按页计算"的基准值。
+_PAGE_SIZE = 9
+
+
 class TermEngine:
     """术语检索引擎。"""
 
@@ -104,11 +110,14 @@ class TermEngine:
         scene: SceneContext,
         limit: int | None = None,
         cross_profession: bool = False,
+        mode: str = "auto",
     ) -> list[Candidate]:
         """
         query: 用户输入的拼音串或中文
         scene: 当前场景（决定领域与场景加权）
         cross_profession: 是否跨领域召回（默认只召当前领域 + 无领域属性词）
+        mode: auto = 专业+通用混合（默认）；plain = 只用通用词库（像系统输入法）；
+              pro = 只用专业词库。过滤在候选池成型后统一做，见 _filter_mode。
         """
         q = (query or "").strip()
         if not q:
@@ -205,7 +214,8 @@ class TermEngine:
         common_pool: list[Candidate] = []
         if q_low.isascii() and self.lexicons.common_loaded:
             zh_have = {c.term.zh for c in pool.values()}
-            cap = 3 if (exact_hit or abbr_exact) and not short_q else limit
+            cap = (3 if (exact_hit or abbr_exact) and not short_q
+                   and mode != "plain" else limit)
 
             def _add_common(zh: str, en: str, fq: int, code: str,
                             base: float, mtype: str) -> None:
@@ -286,11 +296,13 @@ class TermEngine:
         if not short_q:
             top = [c for c in ranked if self._rank_of(c, short_q) == 0]
             rest = [c for c in ranked if self._rank_of(c, short_q) > 0]
-            if rest and len(top) >= limit:
-                keep = max(limit - 3, (limit * 5) // 9)
-                ranked = top[:keep] + rest[:limit - keep]
-            else:
-                ranked = ranked[:limit]
+            if rest and len(top) >= _PAGE_SIZE:
+                # 按"一页"分配，而不是按整个候选池：候选池 27 条时若按 24/3
+                # 分，专业词会被挤到第 3 页（翻三页才看到沉孔 = 等于没有）。
+                head = top[:_PAGE_SIZE - 3] + rest[:3]
+                tail = top[_PAGE_SIZE - 3:] + rest[3:]
+                ranked = head + tail
+            ranked = ranked[:limit]
         else:
             ranked = ranked[:limit]
 
@@ -299,10 +311,11 @@ class TermEngine:
         # 沉孔/圆角/倒角/拉伸凸台 —— 与输入毫无关系的词。这比候选空着严重得多：
         # 用户会直接判定整个工具是坏的。
         if not ranked:
-            seg = self._segment_candidates(q_low, scene)
+            seg = self._filter_mode(self._segment_candidates(q_low, scene), mode)
             if seg:
-                return seg
-            return self._prefix_fallback(q, scene, limit)
+                return seg[:limit]
+            fb = self._prefix_fallback(q, scene, limit)
+            return self._filter_mode(fb, mode)[:limit]
 
         # ★ 版本三：把「候选不足 4 条就补同领域高频词」整段删除。
         #
@@ -323,7 +336,7 @@ class TermEngine:
         # 相关的近音/近形候选已由上面两路覆盖，无需兜底：
         #   · `chenkog` 少打字母 → 前缀匹配 + _prefix_fallback 救回
         #   · `chen`    想继续打 → 前缀匹配已列出 chen* 全部词
-        return ranked
+        return self._filter_mode(ranked, mode)[:limit]
 
     # ---------------- 匹配档次（v3.0.3） ----------------
     # 用户反馈：打 shei 出不来「谁」，打 shi 前 8 位全是实体/蚀刻/石墨 ——
@@ -339,6 +352,15 @@ class TermEngine:
     # 此时通用前缀提到第 1 层，专业短别名（K Factor）沉到后面。
     _RANK0 = frozenset({"full_pinyin", "abbr", "phrase", "common",
                         "segment", "zh_prefix"})
+
+    @staticmethod
+    def _filter_mode(cands: list[Candidate], mode: str) -> list[Candidate]:
+        """按候选模式过滤来源（auto 不动）。"""
+        if mode == "plain":
+            return [c for c in cands if c.group != "pro"]
+        if mode == "pro":
+            return [c for c in cands if c.group != "common"]
+        return cands
 
     def _rank_of(self, c: Candidate, short: bool) -> int:
         mt = c.match_type

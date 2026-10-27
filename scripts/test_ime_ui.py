@@ -29,7 +29,7 @@ def ck(name: str, cond: bool, extra: str = "") -> None:
 
 
 def main() -> int:
-    from PySide6.QtWidgets import QApplication
+    from PySide6.QtWidgets import QApplication, QLabel
     import core.ime as imemod
     from core.engine import TermEngine
     from core.models import Candidate, SceneContext, Term
@@ -39,13 +39,16 @@ def main() -> int:
 
     app = QApplication([])
     engine = TermEngine()
+    persisted_mode: list[tuple] = []
 
     def build(words: list[str], mtype: str = "prefix") -> CandidateBar:
-        engine.search = lambda q, s, limit=None, cross_profession=False: [
+        engine.search = lambda q, s, limit=None, cross_profession=False, \
+            mode="auto": [
             Candidate(term=Term(zh=w, en=""), match_type=mtype) for w in words]
         b = CandidateBar(engine, SceneDetector(), Inserter())
         b.sent: list[str] = []
         b._emit_text = lambda text: (b.sent.append(text), True)[1]
+        b.ui_persist = lambda sec, vals: persisted_mode.append((sec, dict(vals)))
         return b
 
     print("[1] 组合态编辑键：文字在前，原按键在后")
@@ -144,6 +147,36 @@ def main() -> int:
        b2._hide_timer.remainingTime())
     ck("无术语问题时标签为空",
        "术语" not in b2._preview_full, b2._preview_full)
+
+    print("[5] 候选模式：智 / 普 / 专")
+    b = build(["称", "沉孔"])
+    b.candidate_mode = "auto"
+    b._update_mode_label()
+    ck("auto 显示「智」", b.mode_label.text() == "智", b.mode_label.text())
+    ck("auto tooltip 说明分组",
+       "智能" in b.mode_label.toolTip(), b.mode_label.toolTip())
+    b._cycle_candidate_mode()
+    ck("切到 plain 显示「普」",
+       b.candidate_mode == "plain" and b.mode_label.text() == "普",
+       (b.candidate_mode, b.mode_label.text()))
+    b._cycle_candidate_mode()
+    ck("切到 pro 显示「专」",
+       b.candidate_mode == "pro" and b.mode_label.text() == "专",
+       (b.candidate_mode, b.mode_label.text()))
+    b._cycle_candidate_mode()
+    ck("再点回到 auto", b.candidate_mode == "auto", b.candidate_mode)
+    ck("模式落盘", any(v.get("candidate_mode") == "auto"
+                    for _, v in persisted_mode), persisted_mode)
+
+    print("[6] 关于页：不再有导出水杉词库")
+    from ui.popups import AboutPopup
+    from PySide6.QtWidgets import QPushButton
+    ap = AboutPopup(version="3.0.4")
+    texts = [x.text() for x in ap.findChildren(QPushButton)]
+    ck("关于页无「导出水杉词库」", not any("水杉" in t for t in texts), texts)
+    ck("关于页有配置目录入口", any("配置" in t for t in texts), texts)
+    labels = [x.text() for x in ap.findChildren(QLabel)]
+    ck("关于页版本号显示正确", any("3.0.4" in t for t in labels), labels)
 
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")

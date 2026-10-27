@@ -44,7 +44,7 @@ class _Base:
 
     # ---- 旧版语义色名（指向新令牌；悬停底色仍被候选条引用）----
     BG_BAR = "#FAFBFD"
-    PRIMARY_SOFT_2 = "#D2F4EC"
+    PRIMARY_SOFT_2 = "#DCFCE7"
     ACCENT_EN = "#0E7490"
     ACCENT_SUG = "#0E9F6E"
     ACCENT_OK = "#1E9E5A"
@@ -71,11 +71,14 @@ class LIGHT(_Base):
     TEXT_MUTED = "#708078"
     TEXT_FAINT = "#97A69F"
 
-    PRIMARY = "#0D9488"
-    PRIMARY_HI = "#0FA896"
-    PRIMARY_SOFT = "#D2F4EC"
-    SEL_TEXT = "#FFFFFF"
-    SEL_SUB = "#D8F3EC"
+    # v3.0.4：主色由翠青 #0D9488 换成亮绿 #4ADE80（用户指定）。
+    # 亮绿底上白字对比度只有 1.9:1（不可读），所以选中态文字改深墨绿
+    # #052E16（对比约 11:1）。渐变顶比主色更亮一档，保持原来的立体感。
+    PRIMARY = "#4ADE80"
+    PRIMARY_HI = "#86EFAC"
+    PRIMARY_SOFT = "#DCFCE7"
+    SEL_TEXT = "#052E16"
+    SEL_SUB = "#166534"
 
     EN = "#0E7490"
     OK = "#1E9E5A"
@@ -101,9 +104,9 @@ class LIGHT(_Base):
     MD3_OUTLINE = "#A8BDB6"
     MD3_OUTLINE_VARIANT = LINE_SOFT
     MD3_PRIMARY = PRIMARY
-    MD3_ON_PRIMARY = "#FFFFFF"
-    MD3_PRIMARY_CONTAINER = "#D2F4EC"
-    MD3_ON_PRIMARY_CONTAINER = "#0A3F38"
+    MD3_ON_PRIMARY = "#052E16"
+    MD3_PRIMARY_CONTAINER = "#DCFCE7"
+    MD3_ON_PRIMARY_CONTAINER = "#052E16"
     MD3_ERROR = ERR
     MD3_ERROR_CONTAINER = ERR_SOFT
     MD3_SWITCH_TRACK_OFF = "#DCE8E4"

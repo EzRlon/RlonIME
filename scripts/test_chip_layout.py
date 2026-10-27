@@ -62,8 +62,8 @@ def main() -> int:
         return out
 
     def build(words: list[str], mtype: str = "prefix") -> CandidateBar:
-        engine.search = lambda q, s, limit=None, cross_profession=False: \
-            make_cands(words, mtype)
+        engine.search = lambda q, s, limit=None, cross_profession=False, \
+            mode="auto": make_cands(words, mtype)
         b = CandidateBar(engine, SceneDetector(), Inserter())
         b._emit_text = lambda text: True       # 不真上屏
         return b

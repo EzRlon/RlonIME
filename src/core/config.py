@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 # config.json —— 否则老用户升级后托盘/关于页仍显示旧名与旧版本号。
 # 更新发布版本时改这里 + packaging/installer.iss + data/config.json 三处。
 APP_NAME = "RlonIME"
-APP_VERSION = "3.0.3"
+APP_VERSION = "3.0.4"
 
 # 热键内置默认值（全项目唯一允许出现热键字符串硬编码的地方，
 # 其余模块一律经 Config.hotkey() 取值）。
@@ -55,7 +55,9 @@ class RankingConfig:
     history_bonus_cap: int = 40
     frequency_weight: float = 0.35
     custom_word_bonus: int = 50
-    max_candidates: int = 9
+    # v3.0.4：候选池 9 → 27。以前只算 9 个，候选条一页就装下，
+    # 翻页键（- / = / PgUp/PgDn）永远按了没反应。27 = 3 页（每页 9）。
+    max_candidates: int = 27
     rec_badge_margin: float = 8.0    # 「推荐」标：第一名领先第二名的最小分差
 
 
@@ -77,6 +79,11 @@ class UIConfig:
     bar_pinned: bool = False       # 候选条拖动后固定（=不再跟随光标）
     bar_pos: list = field(default_factory=list)   # 固定位置 [x, y]（全局一份）
     remember_bar_pos: bool = True  # 拖动结束是否持久化位置
+    # v3.0.4 候选模式（候选条「智/普/专」按钮）：
+    #   auto  = 智能：专业词 + 通用词混排分区（默认）
+    #   plain = 普通：只用通用词库，像系统输入法（工程词完全不出现）
+    #   pro   = 专业：只用专业词库（日常字不出现）
+    candidate_mode: str = "auto"
 
 
 @dataclass

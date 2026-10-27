@@ -646,7 +646,9 @@ class InputPanel(QWidget):
             self.refresh_suggestions(text)
 
     def refresh_candidates(self, query: str) -> None:
-        self.candidates = self.engine.search(query, self.scene)
+        # v3.0.4：沿用候选条上的「智/普/专」模式（旧面板已弃用，仅保持一致）
+        _mode = str(getattr(self.config.ui, "candidate_mode", "auto") or "auto")
+        self.candidates = self.engine.search(query, self.scene, mode=_mode)
         self.active_index = 0
         self.list.clear()
 

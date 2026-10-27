@@ -67,7 +67,8 @@ def main() -> int:
     check("refresh_icons 可跑", True)
 
     # ---- 新配色令牌（D8）----
-    check("浅色主色=翠青", design.LIGHT.PRIMARY == "#0D9488")
+    check("浅色主色=亮绿 #4ADE80", design.LIGHT.PRIMARY == "#4ADE80")
+    check("亮绿底用深墨绿字（对比度）", design.LIGHT.SEL_TEXT == "#052E16")
     check("深色主色=金", design.DARK.PRIMARY == "#E3C15E")
     check("联想色令牌存在", bool(design.LIGHT.AI_HI and design.DARK.AI_HI))
 

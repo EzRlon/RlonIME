@@ -431,70 +431,63 @@ class AiPopup(_CardPopup):
 
 
 # ================================================================
-# ④ 关于弹窗（D3：Ⓘ → 版本/作者 + 导出水杉词库）
+# ④ 关于弹窗（v3.0.4：正常关于页 —— 版本 / 定位 / 数据来源 / 许可）
 # ================================================================
 class AboutPopup(_CardPopup):
-    def __init__(self, version: str = "2.2", parent=None):
-        super().__init__("关于", width=232, parent=parent)
+    def __init__(self, version: str = "3.0", parent=None):
+        super().__init__("关于", width=268, parent=parent)
 
         name = QLabel("RlonIME")
         name.setStyleSheet(
             f"color: {DS.TEXT}; font-size: 17px; font-weight: 700;")
-        sub = QLabel(f"v{version} · 作者 Rlon")
+        sub = QLabel(f"v{version} · 工程领域中文输入法")
         sub.setStyleSheet(f"color: {DS.TEXT_MUTED}; font-size: 11px;")
         self.body.addWidget(name)
         self.body.addWidget(sub)
 
-        src = QLabel("通用词库数据：CC-CEDICT (CC BY-SA 4.0) · jieba (MIT)")
-        src.setStyleSheet(f"color: {DS.TEXT_FAINT}; font-size: 10px;")
-        src.setWordWrap(True)
-        self.body.addWidget(src)
+        desc = QLabel(
+            "贴着光标工作的输入法：敲拼音直接出工程术语，选中中文一键译成"
+            "规范英文。术语优先、普通词照常，候选条永不抢焦点。")
+        desc.setWordWrap(True)
+        desc.setStyleSheet(f"color: {DS.TEXT_SUB}; font-size: 11px;")
+        self.body.addWidget(desc)
 
         line = QFrame()
         line.setFixedHeight(1)
         line.setStyleSheet(f"background: {DS.LINE_SOFT};")
         self.body.addWidget(line)
 
-        self.btn_export = QPushButton("导出水杉词库")
-        self.btn_export.setObjectName("btnPrimary")
-        self.btn_export.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.btn_export.clicked.connect(self._export)
-        self.body.addWidget(self.btn_export)
+        for text in (
+            "作者：Rlon　·　许可：MIT License",
+            "通用词库：CC-CEDICT (CC BY-SA 4.0) × jieba (MIT)",
+            "术语库：本项目整理（15 个行业）",
+        ):
+            lab = QLabel(text)
+            lab.setWordWrap(True)
+            lab.setStyleSheet(f"color: {DS.TEXT_FAINT}; font-size: 10px;")
+            self.body.addWidget(lab)
 
-        self.btn_open = QPushButton("打开导出目录")
-        self.btn_open.setObjectName("btnGhost")
-        self.btn_open.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.btn_open.clicked.connect(self._open_dir)
-        self.btn_open.hide()
-        self.body.addWidget(self.btn_open)
-
-        self.status = QLabel("")
-        self.status.setWordWrap(True)
-        self.status.setStyleSheet(f"color: {DS.TEXT_MUTED}; font-size: 11px;")
-        self.status.setText("导出给水杉输入法使用的词库与翻译对照文件。")
-        self.body.addWidget(self.status)
-        self._export_dir = None
-
-    def _export(self) -> None:
-        try:
-            from core.msime_bridge import export_all
-            res = export_all()
-        except Exception as e:
-            self.status.setStyleSheet(f"color: {DS.ERR}; font-size: 11px;")
-            self.status.setText(f"导出失败：{e}")
-            return
-        files = getattr(res, "files", [])
-        self._export_dir = files[0][1].parent if files else None
-        self.status.setStyleSheet(f"color: {DS.OK}; font-size: 11px;")
-        self.status.setText(
-            f"✓ 已导出 {len(files)} 个文件，共 {res.total()} 条数据")
-        if self._export_dir is not None:
-            self.btn_open.show()
+        row = QHBoxLayout()
+        row.addStretch(1)
+        btn_dir = QPushButton("打开配置目录")
+        btn_dir.setObjectName("btnGhost")
+        btn_dir.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn_dir.clicked.connect(self._open_dir)
+        btn_ok = QPushButton("关闭")
+        btn_ok.setObjectName("btnPrimary")
+        btn_ok.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn_ok.clicked.connect(self.close)
+        row.addWidget(btn_dir)
+        row.addWidget(btn_ok)
+        self.body.addLayout(row)
 
     def _open_dir(self) -> None:
-        d = self._export_dir
-        if d and Path(d).exists():
+        try:
+            from core.paths import user_data_root
+            os.startfile(str(user_data_root()))     # noqa: S606
+        except Exception:
             try:
-                os.startfile(str(d))     # noqa: S606
-            except Exception as e:
-                self.status.setText(f"打开目录失败：{e}")
+                from core.config import get_config
+                os.startfile(str(get_config().path.parent))   # noqa: S606
+            except Exception:
+                pass

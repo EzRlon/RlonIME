@@ -102,8 +102,16 @@ def main() -> int:
         """CC-CEDICT 的 "shui2 zi5" → "shuizi"（去声调数字）。"""
         return "".join(re.sub(r"[^a-z]", "", p.lower()) for p in pin.split())
 
+    # pypinyin 的 heteronym 来自《汉语大字典》，含大量方言/古音（完 kuan、
+    # 刻 kei、呈 kuang、混 gun）—— 全量启用会让正常输入冒出无关候选
+    # （敲 k 弹出「完/刻/呈」，实测）。只对**日常真有异读**的字启用。
+    _HETERONYMS = set(
+        "谁血薄剥削给秘露熟色角觉率差参藏行乐重长便得地着了还都曾单解降系传转")
+
     def heteronym_codes(ch: str) -> list[str]:
         """单字的多读音（谁 → shei/shui）。词级读音由 pypinyin 词组规则负责。"""
+        if ch not in _HETERONYMS:
+            return []
         try:
             rs = pinyin(ch, style=Style.NORMAL, heteronym=True)[0]
         except Exception:

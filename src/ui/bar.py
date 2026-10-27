@@ -353,8 +353,15 @@ class EnRow(QWidget):
         d = DS
         r = QRectF(0.5, 0.5, self.width() - 1.0, self.height() - 1.0)
         if self._star:
+            # v3.0.4：首选译法整行铺底。主色换亮绿后 PRIMARY_SOFT 大面积
+            # 铺开太抢眼，改用 10% 主色（与 pro 胶囊同一档），hover 再换中性底。
+            if self._hover:
+                tint = QColor(d.BG_HOVER)
+            else:
+                tint = QColor(d.PRIMARY)
+                tint.setAlpha(24)
             p.setPen(Qt.PenStyle.NoPen)
-            p.setBrush(QColor(d.PRIMARY_SOFT if not self._hover else d.BG_HOVER))
+            p.setBrush(tint)
             p.drawRoundedRect(r, 5, 5)
         elif self._hover:
             p.setPen(Qt.PenStyle.NoPen)
@@ -497,6 +504,9 @@ class CandidateBar(QWidget):
         # M3：本次输入是否存在「全拼/简拼/整串完整覆盖」级别的精确命中。
         # 只有精确命中时空格/回车才取首候选；否则直出原文（不替用户选词）。
         self._exact_match = False
+        # v3.0.4 候选模式：auto（智能）/ plain（只通用词）/ pro（只专业词）
+        _m = str(getattr(self.config.ui, "candidate_mode", "auto") or "auto")
+        self.candidate_mode = _m if _m in ("auto", "plain", "pro") else "auto"
         self._noact_applied = False
         self.collapsed = False       # 用户点了 ✕ 收起（后台提示不得再弹条）
         self._anim = None
@@ -539,6 +549,7 @@ class CandidateBar(QWidget):
 
         self.apply_scope()
         self.refresh_scene()
+        self._update_mode_label()
 
     # ---------------- 窗口 ----------------
     def _setup_window(self) -> None:
@@ -595,6 +606,14 @@ class CandidateBar(QWidget):
         self.state_label.mousePressEvent = (  # type: ignore[method-assign]
             lambda e: self._toggle_state()
             if e.button() == Qt.MouseButton.LeftButton else None)
+        # 候选模式按钮（v3.0.4）：智能 / 普通 / 专业。用户反馈"专业词混进来
+        # 让正常输入不像输入法"，所以给一个显式开关，而不是让他猜排序逻辑。
+        self.mode_label = QLabel("智")
+        self.mode_label.setObjectName("modeTag")
+        self.mode_label.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.mode_label.mousePressEvent = (  # type: ignore[method-assign]
+            lambda e: self._cycle_candidate_mode()
+            if e.button() == Qt.MouseButton.LeftButton else None)
         self.lead = QLabel("")
         self.lead.setObjectName("lead")
         # 匹配状态提示：「无匹配 · 空格直出」/「前缀 zhi」/「无译法 · 可开 AI」
@@ -637,6 +656,7 @@ class CandidateBar(QWidget):
                            self.btn_close]
 
         top.addWidget(self.state_label)
+        top.addWidget(self.mode_label)
         top.addWidget(self.lead_icon)
         top.addWidget(self.lead)
         top.addWidget(self.mode_hint)
@@ -723,6 +743,15 @@ class CandidateBar(QWidget):
                 font-size: {fs_zh}px;
                 font-family: "Consolas", "{fam}";
                 font-weight: 600;
+            }}
+            #modeTag {{
+                color: {d.PRIMARY};
+                font-size: {max(9, fs_zh - 2)}px;
+                font-family: "{fam}";
+                font-weight: 700;
+                padding: 0 3px;
+                border: 1px solid {d.PRIMARY};
+                border-radius: 4px;
             }}
             #stateTag {{
                 color: {d.PRIMARY};
@@ -820,6 +849,43 @@ class CandidateBar(QWidget):
         self.state_label.setToolTip(
             "当前：中文输入 · 单击切换中/英（也可双击 Shift）" if on
             else "当前：英文直通 · 单击切换中/英（也可双击 Shift）")
+
+    _MODE_ORDER = ("auto", "plain", "pro")
+    _MODE_TEXT = {"auto": "智", "plain": "普", "pro": "专"}
+    _MODE_TIP = {
+        "auto": "候选来源：智能（工程词 + 日常词，分组显示）· 单击切换",
+        "plain": "候选来源：普通（只用日常词库，不出现工程词）· 单击切换",
+        "pro": "候选来源：专业（只用工程词库，不出现日常字）· 单击切换",
+    }
+
+    def _update_mode_label(self) -> None:
+        m = self.candidate_mode
+        self.mode_label.setText(self._MODE_TEXT.get(m, "智"))
+        color = {"auto": DS.PRIMARY, "plain": DS.TEXT_FAINT,
+                 "pro": DS.AI}.get(m, DS.PRIMARY)
+        self.mode_label.setStyleSheet(
+            f"color:{color}; border:1px solid {color};"
+            f"border-radius:4px; padding:0 3px; font-weight:700;")
+        self.mode_label.setToolTip(self._MODE_TIP.get(m, ""))
+
+    def _cycle_candidate_mode(self) -> None:
+        """点「智/普/专」循环切换，立即重算当前候选并落盘。"""
+        try:
+            i = self._MODE_ORDER.index(self.candidate_mode)
+        except ValueError:
+            i = 0
+        self.candidate_mode = self._MODE_ORDER[(i + 1) % len(self._MODE_ORDER)]
+        self._update_mode_label()
+        self.config.ui.candidate_mode = self.candidate_mode
+        if callable(self.ui_persist):
+            self.ui_persist("ui", {"candidate_mode": self.candidate_mode})
+        tip = {"auto": "智能：工程词 + 日常词",
+               "plain": "普通：只用日常词库",
+               "pro": "专业：只用工程词库"}[self.candidate_mode]
+        self._set_mode_hint("候选 · " + tip)
+        QTimer.singleShot(2000, lambda: self._set_mode_hint(""))
+        if self._last_query:
+            self.refresh_candidates(self._last_query)
 
     def _toggle_state(self) -> None:
         """点徽标 = 切中/英。走内核开关，事件回流后标签自动同步。"""
@@ -1441,7 +1507,8 @@ class CandidateBar(QWidget):
     def refresh_candidates(self, query: str) -> None:
         self.hover.cancel()
         self._last_query = query or ""
-        self.candidates = self.engine.search(query, self.scene)
+        self.candidates = self.engine.search(query, self.scene,
+                                             mode=self.candidate_mode)
         # M3：判定本次是否有「精确命中」。segment（整句完整覆盖）也算精确，
         # 因为整串拼音被逐音节吃干净了，不存在"半截输入"。
         # v2.5：**common（通用词库全拼精确）必须算精确** —— 否则日常打

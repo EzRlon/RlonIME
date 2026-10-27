@@ -414,7 +414,7 @@ try:
     class IconWidget(QWidget):
         """只画矢量图标的轻量控件，可动态改色/换图标/悬停变色。"""
 
-        def __init__(self, name: str, size: int = 14, color: str = "#0D9488",
+        def __init__(self, name: str, size: int = 14, color: str = "#4ADE80",
                      parent=None):
             super().__init__(parent)
             self._name = name
