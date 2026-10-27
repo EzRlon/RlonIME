@@ -346,7 +346,7 @@ class AiPopup(_CardPopup):
         self.chk_free.setChecked(bool(free_on))
         self.chk_free.toggled.connect(self._on_free_toggled)
         self.body.addWidget(self.chk_free)
-        free_tip = QLabel("免费翻译由 MyMemory / Google 公共接口提供，"
+        free_tip = QLabel("免费翻译由腾讯交互翻译 / 有道 / MyMemory 等公共接口提供（国内优先），"
                           "会把「选中的文字」发送到公开服务；纯本地场景请关掉。"
                           "若提示「网络受限」，在下面「代理」填本机代理地址即可。")
         free_tip.setWordWrap(True)

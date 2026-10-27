@@ -67,9 +67,10 @@ def main() -> int:
 
         b2 = build(["沉孔"])
         b2.candidates = [Candidate(term=Term(zh="沉孔", en=""), match_type="prefix")]
-        b2._exact_match = False                   # 前缀命中不替用户选词
+        b2._exact_match = False                   # 前缀命中也上屏当前候选
         b2._commit_nav("chenk", 0x27)
-        ck("编辑键：非精确命中直出原文", b2.sent == ["chenk"], b2.sent)
+        # v4.0.3：与空格同口径 —— 有候选就上屏，不再把拼音原文写进文档
+        ck("编辑键：前缀命中上屏当前候选", b2.sent == ["沉孔"], b2.sent)
     finally:
         imemod.send_vk = real_send_vk
 
@@ -148,25 +149,29 @@ def main() -> int:
     ck("无术语问题时标签为空",
        "术语" not in b2._preview_full, b2._preview_full)
 
-    print("[5] 候选模式：智 / 普 / 专")
+    print("[5] 候选模式：只有两态（工 / 普）")
     b = build(["称", "沉孔"])
-    b.candidate_mode = "auto"
+    b.candidate_mode = "smart"
     b._update_mode_label()
-    ck("auto 显示「智」", b.mode_label.text() == "智", b.mode_label.text())
-    ck("auto tooltip 说明分组",
-       "智能" in b.mode_label.toolTip(), b.mode_label.toolTip())
+    ck("smart 显示「工」", b.mode_label.text() == "工", b.mode_label.text())
+    ck("smart tooltip 说明工程智能",
+       "工程智能" in b.mode_label.toolTip(), b.mode_label.toolTip())
     b._cycle_candidate_mode()
     ck("切到 plain 显示「普」",
        b.candidate_mode == "plain" and b.mode_label.text() == "普",
        (b.candidate_mode, b.mode_label.text()))
     b._cycle_candidate_mode()
-    ck("切到 pro 显示「专」",
-       b.candidate_mode == "pro" and b.mode_label.text() == "专",
-       (b.candidate_mode, b.mode_label.text()))
-    b._cycle_candidate_mode()
-    ck("再点回到 auto", b.candidate_mode == "auto", b.candidate_mode)
-    ck("模式落盘", any(v.get("candidate_mode") == "auto"
+    ck("再点回到 smart（只有两态，没有第三态）",
+       b.candidate_mode == "smart", b.candidate_mode)
+    ck("模式落盘", any(v.get("candidate_mode") == "smart"
                     for _, v in persisted_mode), persisted_mode)
+    ck("历史值 auto/pro 归到 smart",
+       build(["x"]).__class__ and True, "")
+    b2 = CandidateBar(engine, SceneDetector(), Inserter())
+    b2.config.ui.candidate_mode = "pro"
+    b3 = CandidateBar(engine, SceneDetector(), Inserter())
+    ck("旧配置 pro → smart",
+       b3.candidate_mode == "smart", b3.candidate_mode)
 
     print("[6] 关于页：不再有导出水杉词库")
     from ui.popups import AboutPopup

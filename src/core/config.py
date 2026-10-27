@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 # config.json —— 否则老用户升级后托盘/关于页仍显示旧名与旧版本号。
 # 更新发布版本时改这里 + packaging/installer.iss + data/config.json 三处。
 APP_NAME = "RlonIME"
-APP_VERSION = "4.0.2"
+APP_VERSION = "4.0.3"
 
 # 热键内置默认值（全项目唯一允许出现热键字符串硬编码的地方，
 # 其余模块一律经 Config.hotkey() 取值）。
@@ -79,11 +79,13 @@ class UIConfig:
     bar_pinned: bool = False       # 候选条拖动后固定（=不再跟随光标）
     bar_pos: list = field(default_factory=list)   # 固定位置 [x, y]（全局一份）
     remember_bar_pos: bool = True  # 拖动结束是否持久化位置
-    # v3.0.4 候选模式（候选条「智/普/专」按钮）：
-    #   auto  = 智能：专业词 + 通用词混排分区（默认）
-    #   plain = 普通：只用通用词库，像系统输入法（工程词完全不出现）
-    #   pro   = 专业：只用专业词库（日常字不出现）
-    candidate_mode: str = "auto"
+    # v4.0.3：用户拖拽右边缘设定的宽度（0 = 跟随内容自适应）。
+    # 与 bar_width（旧字段，固定 560）区分：这里是"用户手动值"。
+    bar_width_custom: int = 0
+    # v4.0.3 候选模式（候选条「工/普」按钮，**只有两态**）：
+    #   smart = 工程智能：专业词优先，日常词照常（默认）
+    #   plain = 普通输入法：只用通用词库，工程词完全不出现
+    candidate_mode: str = "smart"
 
 
 @dataclass
@@ -96,7 +98,7 @@ class AssistConfig:
     min_chars: int = 2
     fuzzy_threshold: float = 0.85
     show_result_ms: int = 4200
-    # v2.6：没有 API Key 时，选中即译走免费在线翻译（MyMemory → Google）。
+    # v2.6：没有 API Key 时，选中即译走免费在线翻译（v4.0.3 起国内优先：腾讯 → 有道 → MyMemory → Google）。
     # 关掉 = 纯本地 + 大模型二选一（保密场景）。local_only=True 时强制关闭。
     free_translate: bool = True
     # v2.8：截图取词（Windows 内置 OCR，离线）。没有语言包时自动降级提示。

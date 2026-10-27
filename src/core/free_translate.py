@@ -4,11 +4,11 @@ RlonIME — 无 Key 免费翻译（v2.6）
 背景：AI 增强要用户自己申请 API Key（还有网络与费用门槛）。但「选中即译」
 是这个软件的核心动作，没有 Key 就完全不能用，体验上是断的。
 
-方案：两级**完全免费、无需注册**的公共翻译接口，按可靠性排序——
-  1. MyMemory（api.mymemory.translated.net）：匿名可用，国内可达性好；
-     单次请求有长度限制，超长自动切段。
-  2. Google 翻译的免 Key 端点（translate.googleapis.com/translate_a/single）：
-     质量更好，但国内可能不可达，故只作后备。
+方案：四级**完全免费、无需注册**的公共接口，国内优先——
+  1. 腾讯交互翻译（transmart.qq.com/api/imt）：网页端同款，国内直连、质量最好；
+  2. 有道智云 demo（aidemo.youdao.com/trans）：免 Key，国内可达；
+  3. MyMemory（api.mymemory.translated.net）：匿名可用，长句要切段；
+  4. Google 免 Key 端点：境外，只作最后兜底。
 
 三条原则：
   · **只在用户显式动作时使用**（Ctrl+Alt+Q / 悬浮「译」钮），绝不后台偷跑；
@@ -34,6 +34,12 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from typing import Callable
 
+# 国内免费端点（v4.0.3 起为首选：无需注册、无需 Key、国内直连可达）。
+# 腾讯交互翻译是网页端在用的接口，返回质量明显好于 MyMemory；
+# 有道智云 demo 端点作为第二备选。
+_TRANSMART = "https://transmart.qq.com/api/imt"
+_YOUDAO = "https://aidemo.youdao.com/trans"
+_TM_KEY = "browser-chrome-120.0.0-Windows-10"
 _MYMEMORY = "https://api.mymemory.translated.net/get"
 _GOOGLE = "https://translate.googleapis.com/translate_a/single"
 _UA = "RlonIME/2.6 (Windows IME; free translate)"
@@ -138,15 +144,21 @@ def _is_link_blocked(exc: BaseException) -> bool:
     return code in _BLOCKED_WINERR
 
 
-def _open(url: str, timeout: float, proxy: str) -> str:
-    """按指定路由发一次 GET。proxy="" 表示用系统/环境默认方式。"""
+def _open(url: str, timeout: float, proxy: str,
+          data: bytes | None = None,
+          headers: dict | None = None) -> str:
+    """按指定路由发一次请求（GET/POST 由 data 决定）。proxy="" 用系统默认。"""
     if proxy:
         handler = urllib.request.ProxyHandler(
             {"http": f"http://{proxy}", "https": f"http://{proxy}"})
         opener = urllib.request.build_opener(handler)
     else:
         opener = urllib.request.build_opener()
-    req = urllib.request.Request(url, headers={"User-Agent": _UA})
+    hdrs = {"User-Agent": _UA}
+    hdrs.update(headers or {})
+    req = urllib.request.Request(
+        url, data=data, headers=hdrs,
+        method="POST" if data is not None else "GET")
     with opener.open(req, timeout=timeout) as resp:
         return resp.read().decode("utf-8", "ignore")
 
@@ -159,7 +171,9 @@ def reset_route() -> None:
         _PORT_STATE.clear()
 
 
-def _http_get(url: str, timeout: float, prefer: str = "") -> str:
+def _http_get(url: str, timeout: float, prefer: str = "",
+              data: bytes | None = None,
+              headers: dict | None = None) -> str:
     """GET 一次；直连被系统拒绝时自动改用本机代理并记住可用路由。
 
     为什么需要这一层（2026-10-27 用户反馈）：本机直连公共接口被系统策略
@@ -174,7 +188,7 @@ def _http_get(url: str, timeout: float, prefer: str = "") -> str:
     with _ROUTE_LOCK:
         known = _WORKING_ROUTE
     if known is not None and not prefer:
-        return _open(url, timeout, known)
+        return _open(url, timeout, known, data, headers)
 
     first: BaseException | None = None
     routes: list[str] = []
@@ -183,7 +197,7 @@ def _http_get(url: str, timeout: float, prefer: str = "") -> str:
     routes.append("")                       # 系统/环境默认（大多数机器只走这条）
     for route in routes:
         try:
-            body = _open(url, timeout, route)
+            body = _open(url, timeout, route, data, headers)
         except Exception as e:
             if first is None:
                 first = e
@@ -198,7 +212,7 @@ def _http_get(url: str, timeout: float, prefer: str = "") -> str:
         if candidate == prefer or not _port_open(candidate):
             continue
         try:
-            body = _open(url, timeout, candidate)
+            body = _open(url, timeout, candidate, data, headers)
         except Exception:
             continue
         with _ROUTE_LOCK:
@@ -206,6 +220,37 @@ def _http_get(url: str, timeout: float, prefer: str = "") -> str:
         print(f"[INFO] 免费翻译改走本机代理 {candidate}", file=sys.stderr)
         return body
     raise first if first is not None else urllib.error.URLError("网络不可用")
+
+
+# ---------------------------------------------------------------- HTTP 门面
+class _Fetcher:
+    """provider 用的 HTTP 门面：GET 走代理回退，POST 供国内接口使用。
+
+    测试注入的是「只支持 GET」的普通函数，所以 POST 在注入模式下直接报错
+    （由 translate 捕获后换下一个 provider），不会真的联网。
+    """
+
+    def __init__(self, get=None, prefer: str = ""):
+        self._custom = get is not None
+        self._getter = get or (lambda url, timeout: _http_get(url, timeout, prefer))
+        self.prefer = prefer
+
+    def __call__(self, url: str, timeout: float) -> str:
+        return self._getter(url, timeout)
+
+    def post_json(self, url: str, payload: dict, timeout: float) -> str:
+        return self._post(url, json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+                          "application/json", timeout)
+
+    def post_form(self, url: str, fields: dict, timeout: float) -> str:
+        return self._post(url, urllib.parse.urlencode(fields).encode("utf-8"),
+                          "application/x-www-form-urlencoded", timeout)
+
+    def _post(self, url: str, data: bytes, ctype: str, timeout: float) -> str:
+        if self._custom:
+            raise FreeTranslateError("注入模式不支持 POST")
+        return _http_get(url, timeout, prefer=self.prefer, data=data,
+                         headers={"Content-Type": ctype})
 
 
 # ---------------------------------------------------------------- 提供方
@@ -242,8 +287,63 @@ def _google(text: str, src: str, dst: str, timeout: float,
     return out
 
 
+def _tm_lang(code: str) -> str:
+    """腾讯交互翻译只认 zh / en 两个粗粒度代码。"""
+    return "zh" if (code or "").lower().startswith("zh") else "en"
+
+
+def _yd_lang(code: str) -> str:
+    """有道用 zh-CHS / en。"""
+    return "zh-CHS" if (code or "").lower().startswith("zh") else "en"
+
+
+def _transmart(text: str, src: str, dst: str, timeout: float,
+               fetch: _Fetcher = _http_get) -> str:
+    """腾讯交互翻译（网页端同款接口，无需 Key）。
+
+    为什么放第一位：国内直连可达、质量明显好于 MyMemory，
+    且不需要任何注册 —— 正是用户要的「国内免费、不过大模型 API」。
+    """
+    payload = {
+        "header": {"fn": "auto_translation", "client_key": _TM_KEY},
+        "type": "plain", "model_category": "normal",
+        "source": {"lang": _tm_lang(src), "text_list": [text]},
+        "target": {"lang": _tm_lang(dst)},
+    }
+    raw = fetch.post_json(_TRANSMART, payload, timeout)
+    data = json.loads(raw)
+    segs = data.get("auto_translation") or []
+    if isinstance(segs, str):
+        out = segs.strip()
+    else:
+        out = "".join(str(x) for x in segs).strip()
+    if not out:
+        raise FreeTranslateError("腾讯翻译无有效译文")
+    return out
+
+
+def _youdao(text: str, src: str, dst: str, timeout: float,
+            fetch: _Fetcher = _http_get) -> str:
+    """有道智云 demo 端点（免 Key，国内可达）。"""
+    raw = fetch.post_form(_YOUDAO, {"q": text, "from": _yd_lang(src),
+                                    "to": _yd_lang(dst)}, timeout)
+    data = json.loads(raw)
+    rows = data.get("translateResult") or []
+    out = ""
+    for row in rows:
+        if row and isinstance(row, list) and row[0]:
+            out += str(row[0].get("t") or "")
+    out = out.strip()
+    if not out:
+        raise FreeTranslateError("有道翻译无有效译文")
+    return out
+
+
 # 提供方签名：(文本, 源语言, 目标语言, 超时, fetcher) -> 译文
+# 顺序 = 先用国内（无 Key、可达性好），境外两个只做兜底。
 _PROVIDERS: list[tuple[str, Callable[..., str]]] = [
+    ("腾讯翻译", _transmart),
+    ("有道翻译", _youdao),
     ("MyMemory", _mymemory),
     ("Google", _google),
 ]
@@ -281,13 +381,9 @@ class FreeTranslator:
         self.last_provider = ""
         # 用户在设置里手填的代理（host:port）；留空 = 自动探测。
         self.proxy = _split_hostport(proxy)
-        self._fetch = fetcher      # 测试注入；None 时走带代理回退的 _http_get
+        # 测试可注入纯 GET 函数；生产走带代理回退的 _Fetcher（GET + POST）
+        self._fetch = _Fetcher(fetcher, self.proxy)
         self._providers = providers or _PROVIDERS
-
-    def _get(self, url: str, timeout: float) -> str:
-        if self._fetch is not None:
-            return self._fetch(url, timeout)
-        return _http_get(url, timeout, prefer=self.proxy)
 
     @property
     def available(self) -> bool:
@@ -305,7 +401,7 @@ class FreeTranslator:
         blocked = False
         for name, fn in self._providers:
             try:
-                parts = [fn(chunk, src, dst, self.timeout, self._get)
+                parts = [fn(chunk, src, dst, self.timeout, self._fetch)
                          for chunk in _split(text)]
                 out = " ".join(p for p in parts if p).strip()
                 if out:

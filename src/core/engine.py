@@ -367,10 +367,10 @@ class TermEngine:
     @staticmethod
     def _filter_mode(cands: list[Candidate], mode: str) -> list[Candidate]:
         """按候选模式过滤来源（auto 不动）。"""
+        # v4.0.3：只有 smart / plain 两态。smart 不做过滤（工程词排前面），
+        # plain 只留通用词库。历史值 auto 一律按 smart 处理。
         if mode == "plain":
             return [c for c in cands if c.group != "pro"]
-        if mode == "pro":
-            return [c for c in cands if c.group != "common"]
         return cands
 
     def _rank_of(self, c: Candidate, short: bool) -> int:

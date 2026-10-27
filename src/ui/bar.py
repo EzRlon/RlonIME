@@ -75,6 +75,7 @@ EN_COL_MAX_W = 420      # 译法列最大内容宽
 CHIPS_AVAIL_W = DS.BAR_MAX_W - 2 * DS.PAD_X - 4
 BADGE_W = 42            # 「…+N」徽标预留宽度（最多 "…+8"，够用）
 DRAG_MIN_PX = 4         # 拖动判定阈值：手抖 1px 不算拖动（v2.6）
+RESIZE_EDGE = 7         # 右边缘拖拽改宽的命中区（v4.0.3）
 
 
 def make_no_activate(widget) -> bool:
@@ -504,9 +505,11 @@ class CandidateBar(QWidget):
         # M3：本次输入是否存在「全拼/简拼/整串完整覆盖」级别的精确命中。
         # 只有精确命中时空格/回车才取首候选；否则直出原文（不替用户选词）。
         self._exact_match = False
-        # v3.0.4 候选模式：auto（智能）/ plain（只通用词）/ pro（只专业词）
-        _m = str(getattr(self.config.ui, "candidate_mode", "auto") or "auto")
-        self.candidate_mode = _m if _m in ("auto", "plain", "pro") else "auto"
+        # v4.0.3 候选模式只有两态：smart（工程智能）/ plain（普通输入法）。
+        # 历史配置里的 auto / pro（三态时代）统一归到 smart —— 用户明确要求
+        # "只有两种模式"，多出来的"专"反而让人以为漏了东西。
+        _m = str(getattr(self.config.ui, "candidate_mode", "smart") or "").lower()
+        self.candidate_mode = "plain" if _m == "plain" else "smart"
         self._noact_applied = False
         self.collapsed = False       # 用户点了 ✕ 收起（后台提示不得再弹条）
         self._anim = None
@@ -538,6 +541,11 @@ class CandidateBar(QWidget):
         self._drag_origin: QPoint | None = None
         self._drag_start = QPoint(0, 0)
         self._drag_moved = False
+        # v4.0.3：用户手动拖宽（0 = 跟随内容自适应）。双击右边缘恢复自适应。
+        self._user_w = int(getattr(self.config.ui, "bar_width_custom", 0) or 0)
+        self._resize_from = None
+        self._resize_start_w = 0
+        self.setMouseTracking(True)
 
         self._setup_window()
         self._build()
@@ -850,19 +858,19 @@ class CandidateBar(QWidget):
             "当前：中文输入 · 单击切换中/英（也可双击 Shift）" if on
             else "当前：英文直通 · 单击切换中/英（也可双击 Shift）")
 
-    _MODE_ORDER = ("auto", "plain", "pro")
-    _MODE_TEXT = {"auto": "智", "plain": "普", "pro": "专"}
+    # 两态（v4.0.3）：工 = 工程智能匹配；普 = 普通输入法。
+    _MODE_ORDER = ("smart", "plain")
+    _MODE_TEXT = {"smart": "工", "plain": "普"}
     _MODE_TIP = {
-        "auto": "候选来源：智能（工程词 + 日常词，分组显示）· 单击切换",
-        "plain": "候选来源：普通（只用日常词库，不出现工程词）· 单击切换",
-        "pro": "候选来源：专业（只用工程词库，不出现日常字）· 单击切换",
+        "smart": "工程智能匹配：工程术语优先，日常词照常出 · 单击切到普通",
+        "plain": "普通输入法：只用日常词库，不出现工程术语 · 单击切回工程",
     }
 
     def _update_mode_label(self) -> None:
         m = self.candidate_mode
         self.mode_label.setText(self._MODE_TEXT.get(m, "智"))
-        color = {"auto": DS.PRIMARY_TEXT, "plain": DS.TEXT_FAINT,
-                 "pro": DS.AI}.get(m, DS.PRIMARY_TEXT)
+        color = {"smart": DS.PRIMARY_TEXT,
+                 "plain": DS.TEXT_FAINT}.get(m, DS.PRIMARY_TEXT)
         self.mode_label.setStyleSheet(
             f"color:{color}; border:1px solid {color};"
             f"border-radius:4px; padding:0 3px; font-weight:700;")
@@ -879,9 +887,8 @@ class CandidateBar(QWidget):
         self.config.ui.candidate_mode = self.candidate_mode
         if callable(self.ui_persist):
             self.ui_persist("ui", {"candidate_mode": self.candidate_mode})
-        tip = {"auto": "智能：工程词 + 日常词",
-               "plain": "普通：只用日常词库",
-               "pro": "专业：只用工程词库"}[self.candidate_mode]
+        tip = {"smart": "工程智能：工程词优先 + 日常词",
+               "plain": "普通输入法：只用日常词库"}[self.candidate_mode]
         self._set_mode_hint("候选 · " + tip)
         QTimer.singleShot(2000, lambda: self._set_mode_hint(""))
         if self._last_query:
@@ -931,20 +938,73 @@ class CandidateBar(QWidget):
         self._elide()
 
     # ---------------- 尺寸 ----------------
+    def _top_content_w(self) -> int:
+        """顶行除图标外需要多宽（状态 / 模式 / 拼音 / 提示 / 翻页指示）。
+
+        按**文字实测宽度**算，不用 QLabel.width()：标签宽度是上一次赋值后
+        的缓存值，切到短输入时还留着旧宽度（"1/4 · PgDn" 108px），
+        会把条子撑宽 100 多像素。
+        """
+        d = DS
+        total = 0
+        count = 0
+        for w in (self.state_label, self.mode_label, self.lead,
+                  self.mode_hint if self.mode_hint.isVisible() else None,
+                  self.tail):
+            if w is None or not w.isVisible():
+                continue
+            fm = QFontMetrics(w.font())
+            total += fm.horizontalAdvance(w.text()) + 6      # 边框/内边距
+            count += 1
+        if self.lead_icon.isVisible():
+            total += self.lead_icon.width()
+            count += 1
+        return total + d.GAP * max(count - 1, 0)
+
+    def _icon_slots(self, content_w: int) -> int:
+        """按顶行内容宽度决定排几枚图标（v4.0.3，用户反馈图标重叠）。
+
+        原因：以前宽度按"所有图标都显示"算，但漏算了布局间距（少算约 9 个
+        GAP≈27px），于是短输入时候选条压得更窄，📌 直接盖住拼音。
+        现在改成：内容越短 → 条越窄 → **少排几枚图标**（从左往右收起，
+        ✕ 永远保留），既不会重叠，也不会为了塞图标把细条撑得老宽。
+        """
+        n = len(self._icon_btns)
+        if content_w <= 150:
+            return min(3, n)          # 只剩 Ⓘ ✕ 这类随时要点的
+        if content_w <= 235:
+            return min(5, n)
+        return n
+
+    def _apply_icon_slots(self, n: int) -> None:
+        n = max(1, min(n, len(self._icon_btns)))
+        for i, b in enumerate(self._icon_btns):
+            b.setVisible(i >= len(self._icon_btns) - n)
+
+    def _set_user_width(self, w: int, persist: bool = False) -> None:
+        """右边缘拖拽改宽：先重排胶囊（页数会变），再按新宽收敛。"""
+        d = DS
+        self._user_w = max(d.BAR_MIN_W, min(d.BAR_MAX_W, int(w)))
+        self._layout_chips()
+        self._fit_geometry()
+        if persist:
+            self.config.ui.bar_width_custom = self._user_w
+            if callable(self.ui_persist):
+                self.ui_persist("ui", {"bar_width_custom": self._user_w})
+
     def _fit_geometry(self) -> None:
         """三段布局自适应：宽取三行内容最大需求，高 = 可见行之和。"""
         if self.mode in (MODE_RESULT, MODE_HINT):
             return                      # 结果/提示态各自定宽定高
         d = DS
-        icons_w = (sum(b.width() for b in self._icon_btns)
-                   + d.GAP * len(self._icon_btns))
-        top_need = (self.lead.width()
-                    + (self.lead_icon.width()
-                       if self.lead_icon.isVisible() else 0)
-                    + (self.mode_hint.width() + d.GAP
-                       if self.mode_hint.isVisible() else 0)
-                    + QFontMetrics(self.tail.font()).horizontalAdvance(
-                        self.tail.text()) + icons_w + d.GAP * 3)
+        content_w = self._top_content_w()
+        # 先按「不含图标」算基线宽度，再看能匀出多少位置给图标 ——
+        # 内容短 → 条子窄 → 图标自然少排几枚（正是用户要的效果）。
+        base_w = max(content_w, 0)
+        slots = self._icon_slots(base_w)
+        self._apply_icon_slots(slots)
+        icons_w = slots * 17 + d.GAP * max(slots - 1, 0)
+        top_need = content_w + icons_w + d.GAP * 2
         chips_need = 0
         pool = self.sug_chips if self.mode == MODE_SUGGEST else self.chips
         for c in pool:
@@ -959,6 +1019,21 @@ class CandidateBar(QWidget):
                         and hasattr(self, "_preview_full") else 0)
         width = max(top_need, chips_need, en_need, preview_need,
                     120) + d.PAD_X * 2
+        # 宽度定了之后再收敛一次图标数：宽度富余就多排几枚，紧张就少排。
+        unit = 17 + d.GAP
+        room = width - content_w - d.PAD_X * 2 - d.GAP * 2
+        fit = 0 if room < 17 else int((room + d.GAP) // unit)
+        cache = getattr(self, "_slots_cache", None)
+        if cache != fit:
+            self._slots_cache = fit
+            self._apply_icon_slots(fit)
+        fit = max(1, min(fit, len(self._icon_btns)))
+        # 按最终图标数再兜一次宽度：不这么写会出现 1~2px 的压边
+        # （五枚图标比预算多出半个间隙，实测 woshigongchengshi 差 2px）。
+        width = max(width, content_w + fit * 17 + d.GAP * max(fit - 1, 0)
+                    + d.GAP * 2 + d.PAD_X * 2 + 2)
+        if self._user_w:
+            width = max(width, self._user_w)
         self.setFixedWidth(max(d.BAR_MIN_W, min(d.BAR_MAX_W, width)))
 
         h = d.TOP_ROW_H + 8
@@ -1067,7 +1142,13 @@ class CandidateBar(QWidget):
         只渲染「包含当前选中项」的那一页，所以方向键/翻页不会出现
         "选中了但看不见"的情况。
         """
-        self._pages = self._compute_pages(CHIPS_AVAIL_W)
+        # v4.0.3：用户把条子拖窄后，一页放不下原来那么多胶囊，必须按实际
+        # 可用宽度重算页数（否则胶囊会顶到边缘/被图标压住）。
+        self._avail_w = CHIPS_AVAIL_W
+        if self._user_w:
+            self._avail_w = max(140, min(CHIPS_AVAIL_W,
+                                         self._user_w - 2 * DS.PAD_X))
+        self._pages = self._compute_pages(self._avail_w)
         total = len(self.candidates)
         if not self._pages:
             for c in self.chips:
@@ -1102,8 +1183,8 @@ class CandidateBar(QWidget):
             c.setToolTip("")
             if k < cnt:
                 i = start + k
-                max_w = (CHIPS_AVAIL_W - self._badge_w - DS.GAP
-                         if has_badge and k == cnt - 1 else CHIPS_AVAIL_W)
+                max_w = (self._avail_w - self._badge_w - DS.GAP
+                         if has_badge and k == cnt - 1 else self._avail_w)
                 c.set_group(self.candidates[i].group)
                 c.set_content(i, self.candidates[i].zh, max_w=max_w)
                 c.set_selected(i == self.active_index)
@@ -1352,14 +1433,30 @@ class CandidateBar(QWidget):
 
     def mousePressEvent(self, e) -> None:  # noqa: N802
         if e.button() == Qt.MouseButton.LeftButton:
+            # 右边缘 = 改宽度（v4.0.3 用户要求：条子可以手动拖大小）
+            if e.position().x() >= self.width() - RESIZE_EDGE:
+                self._resize_from = e.globalPosition().toPoint()
+                self._resize_start_w = self.width()
+                e.accept()
+                return
             p = e.globalPosition().toPoint()
             self._drag_start = p
             self._drag_origin = p - self.pos()
             self._drag_moved = False
 
     def mouseMoveEvent(self, e) -> None:  # noqa: N802
-        if (self._drag_origin is None
-                or not (e.buttons() & Qt.MouseButton.LeftButton)):
+        if self._resize_from is not None:
+            if e.buttons() & Qt.MouseButton.LeftButton:
+                dx = e.globalPosition().toPoint().x() - self._resize_from.x()
+                self._set_user_width(self._resize_start_w + dx)
+                e.accept()
+            return
+        if not (e.buttons() & Qt.MouseButton.LeftButton):
+            near = e.position().x() >= self.width() - RESIZE_EDGE
+            self.setCursor(Qt.CursorShape.SizeHorCursor if near
+                           else Qt.CursorShape.ArrowCursor)
+            return
+        if self._drag_origin is None:
             return
         cur = e.globalPosition().toPoint()
         if not self._drag_moved:
@@ -1371,6 +1468,12 @@ class CandidateBar(QWidget):
         self.move(cur - self._drag_origin)
 
     def mouseReleaseEvent(self, e) -> None:  # noqa: N802
+        if self._resize_from is not None:
+            self._resize_from = None
+            self._set_user_width(self.width(), persist=True)
+            self._set_mode_hint("宽度已保存 · 双击右边缘恢复自适应")
+            QTimer.singleShot(2200, lambda: self._set_mode_hint(""))
+            return
         if self._drag_origin is not None:
             if self._drag_moved:
                 # 拖动即固定（老行为），但走统一入口以同步图标状态
@@ -1388,6 +1491,17 @@ class CandidateBar(QWidget):
 
     def mouseDoubleClickEvent(self, e) -> None:  # noqa: N802
         if e.button() == Qt.MouseButton.LeftButton:
+            # 双击右边缘 = 恢复自适应宽度（清掉手动值）
+            if e.position().x() >= self.width() - RESIZE_EDGE:
+                self._user_w = 0
+                self.config.ui.bar_width_custom = 0
+                if callable(self.ui_persist):
+                    self.ui_persist("ui", {"bar_width_custom": 0})
+                self._layout_chips()
+                self._fit_geometry()
+                self._set_mode_hint("宽度已恢复自适应")
+                QTimer.singleShot(1800, lambda: self._set_mode_hint(""))
+                return
             # 双击顶行空白 = 恢复跟随（保留老手势，主入口是 📌 按钮）
             tl = self.top_row.mapTo(self, QPoint(0, 0))
             if QRect(tl, self.top_row.size()).contains(
@@ -1760,10 +1874,10 @@ class CandidateBar(QWidget):
         return self.inserter.insert(text)
 
     def _chosen_text(self, pinyin: str) -> str:
-        """组合态"该上屏什么"：精确命中取当前高亮候选，否则用拼音原文。
+        """组合态"该上屏什么"：有候选就取当前高亮项，没候选才用拼音原文。
 
-        与空格/回车的口径完全一致（M3）：只有精确命中才替用户选词，
-        前缀命中时直出原文，绝不假装用户已经打完了。
+        v4.0.3 起与空格/回车同一口径（用户要求）：候选列表非空即上屏选中项，
+        不再区分精确/前缀 —— 前缀命中时用户也可能就是要那第一个词。
         """
         p = (pinyin or "").strip()
         if not p:
@@ -1783,7 +1897,7 @@ class CandidateBar(QWidget):
                             for c in cands)
             except Exception:
                 cands, exact = [], False
-        if cands and exact:
+        if cands:
             i = self.active_index if 0 <= self.active_index < len(cands) else 0
             return cands[i].zh or p
         return p
@@ -1926,15 +2040,11 @@ class CandidateBar(QWidget):
                 self._emit_text(raw)
             self.close_panel()
             return
-        # M3（S1-B 非精确不选词）：空格/回车只在「精确命中」（全拼/简拼/
-        # 整串完整覆盖）时才取首候选。只有前缀命中时替用户选一个词，等于
-        # 替他决定了他还没打完的输入 —— 直出原文更诚实。
-        # 数字键不走这里（明确选词，不受影响）；Tab 上英文也不受此限。
-        if idx < 0 and raw and not self._exact_match:
-            self._emit_text(raw)
-            self.candidates = []
-            self.close_panel()
-            return
+        # v4.0.3（用户反馈）：空格/回车 = **上屏当前选中候选**，与主流输入法
+        # 一致。以前有 M3 的「非精确不选词」门槛，打 chen/k 这类前缀时按空格
+        # 会直接把拼音原文塞进文档，用户的原话是"选择候选词后按空格，你把拼音
+        # 填到后面了"。现在只要候选列表非空就取 active_index；只有一条候选
+        # 都没有时才直出 raw（那时也确实没有可选的）。
         i = self.active_index if idx < 0 else idx
         if i < 0 or i >= len(self.candidates):
             i = 0

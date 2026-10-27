@@ -213,7 +213,7 @@ def main() -> int:
     real_open, real_port, real_cand = ft._open, ft._port_open, ft._candidate_proxies
     calls: list[str] = []
 
-    def fake_open(url, timeout, proxy):
+    def fake_open(url, timeout, proxy, data=None, headers=None):
         calls.append(proxy)
         if proxy == "":
             raise urllib.error.URLError(OSError(10013, "拒绝访问"))
@@ -237,8 +237,8 @@ def main() -> int:
         # 非链路错误不做代理探测
         ft._WORKING_ROUTE = None
         calls.clear()
-        ft._open = lambda url, timeout, proxy: (_ for _ in ()).throw(
-            ValueError("坏 JSON"))
+        ft._open = lambda url, timeout, proxy, data=None, headers=None: (
+            _ for _ in ()).throw(ValueError("坏 JSON"))
         try:
             ft._http_get("https://example.invalid", 3.0)
             raised = False
@@ -278,7 +278,7 @@ def main() -> int:
         ft._WORKING_ROUTE = None
         calls.clear()
 
-        def open_by_route(url, timeout, proxy):
+        def open_by_route(url, timeout, proxy, data=None, headers=None):
             calls.append(proxy)
             if proxy in ("", "127.0.0.1:9999"):
                 raise urllib.error.URLError(OSError(10013, "denied"))
@@ -298,6 +298,75 @@ def main() -> int:
     finally:
         ft._open, ft._port_open, ft._candidate_proxies = real_open, real_port, real_cand
         ft._WORKING_ROUTE = None
+
+    # ---------------- [9] 国内免费接口（v4.0.3） ----------------
+    print("[9] 国内免费接口：腾讯交互翻译 / 有道")
+    from core.free_translate import (_PROVIDERS, _transmart, _youdao,
+                                     _yd_lang, _tm_lang)
+
+    ck("默认首选=腾讯翻译", _PROVIDERS[0][0] == "腾讯翻译", _PROVIDERS[0][0])
+    ck("第二备选=有道翻译", _PROVIDERS[1][0] == "有道翻译", _PROVIDERS[1][0])
+    ck("语言码：腾讯 zh/en", (_tm_lang("zh-CN"), _tm_lang("en")) == ("zh", "en"))
+    ck("语言码：有道 zh-CHS/en",
+       (_yd_lang("zh-CN"), _yd_lang("en")) == ("zh-CHS", "en"))
+
+    class _Stub:
+        """假 fetcher：只记录调用并返回预置 JSON。"""
+
+        def __init__(self, raw: str):
+            self.raw = raw
+            self.calls: list = []
+
+        def post_json(self, url, payload, timeout):
+            self.calls.append(("json", url, payload))
+            return self.raw
+
+        def post_form(self, url, fields, timeout):
+            self.calls.append(("form", url, fields))
+            return self.raw
+
+    stub = _Stub(json.dumps(
+        {"header": {"ret_code": "succ"},
+         "auto_translation": ["Counterbore 8 mm deep."]}))
+    out = _transmart("沉孔深8毫米", "zh-CN", "en", 4.0, stub)
+    ck("腾讯：取出译文", out == "Counterbore 8 mm deep.", out)
+    _kind, _url, payload = stub.calls[0]
+    ck("腾讯：POST JSON + fn=auto_translation",
+       _kind == "json" and payload["header"]["fn"] == "auto_translation",
+       payload.get("header"))
+    ck("腾讯：源/目标语言正确",
+       payload["source"]["lang"] == "zh" and payload["target"]["lang"] == "en",
+       (payload["source"], payload["target"]))
+
+    stub2 = _Stub(json.dumps(
+        {"errorCode": 0, "translateResult": [[{"t": "Counterbore"}],
+                                             [{"t": " 8 mm"}]]}))
+    out = _youdao("沉孔8毫米", "zh-CN", "en", 4.0, stub2)
+    ck("有道：拼接多段译文", out == "Counterbore 8 mm", out)
+    ck("有道：POST 表单",
+       stub2.calls[0][0] == "form" and stub2.calls[0][2]["from"] == "zh-CHS",
+       stub2.calls[0][2])
+
+    class _BadStub(_Stub):
+        def post_json(self, url, payload, timeout):
+            return json.dumps({"auto_translation": []})
+
+    try:
+        _transmart("x", "zh", "en", 4.0, _BadStub("{}"))
+        ck("腾讯空译文应报错", False)
+    except Exception:
+        ck("腾讯空译文 → 抛错（换下一个源）", True)
+
+    # 提供方链：第一个失败，第二个成功
+    def _boom(*a, **k):
+        raise RuntimeError("transmart down")
+
+    chain = FreeTranslator(
+        fetcher=make_fetch(), providers=[("腾讯翻译", _boom),
+                                         ("有道翻译", lambda *a, **k: "ok")])
+    out2, name2 = chain.translate("测试")
+    ck("链路回退：第一个挂了下一位接上", out2 == "ok" and name2 == "有道翻译",
+       (out2, name2))
 
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")

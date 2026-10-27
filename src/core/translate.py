@@ -50,7 +50,7 @@ class TranslationResult:
     elapsed_ms: float = 0.0
     error: str = ""
     direction: str = "zh2en"
-    provider: str = ""            # 免费翻译的提供方（MyMemory / Google）      # zh2en（中→英）/ en2zh（英→中，v2.4.0 N1）
+    provider: str = ""            # 免费翻译的提供方（腾讯 / 有道 / MyMemory / Google）      # zh2en（中→英）/ en2zh（英→中，v2.4.0 N1）
 
     @property
     def ok(self) -> bool:
@@ -86,7 +86,7 @@ class Translator:
         self.engine = engine
         self.memory = memory or TranslationMemory()
         self.llm = llm or LLMClient()
-        # v2.6：没有 API Key 时的免费在线翻译（MyMemory → Google）。
+        # v2.6：没有 API Key 时的免费在线翻译（v4.0.3 起国内优先）。
         # None = 关闭（纯本地 + AI 二选一）。
         self.free = free
         self.fuzzy_threshold = fuzzy_threshold

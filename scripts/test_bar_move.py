@@ -356,6 +356,43 @@ def main() -> int:
         b.sanitize_pinned()
         ck("启动体检保留屏内固定点", b.bar_pinned is True)
 
+    # ---------------- [7] v4.0.3：窄条图标不重叠 + 右边缘拖宽 ----------------
+    print("[7] 窄条图标不重叠 / 右边缘拖宽")
+    b = make_bar()
+    b.show_input("chenkong")
+    b.refresh_candidates("chenkong")
+    settle(220)
+    icons = [i for i in b._icon_btns if i.isVisible()]
+    ck("至少保留 1 枚图标（✕ 必须能收起）", len(icons) >= 1, len(icons))
+    ck("图标不压拼音", icons and min(i.x() for i in icons)
+       >= b.lead.x() + b.lead.width(),
+       (min(i.x() for i in icons) if icons else None,
+        b.lead.x() + b.lead.width()))
+    ck("窄条自动减少图标数", len(icons) < len(b._icon_btns),
+       f"{len(icons)}/{len(b._icon_btns)}")
+
+    b._set_user_width(240, persist=True)
+    settle(120)
+    ck("拖宽生效（不小于 240）", b.width() >= 240, b.width())
+    ck("宽度已落盘", any(v.get("bar_width_custom") for _, v in persisted),
+       persisted)
+    old_pages = len(b._pages)
+    b._set_user_width(560, persist=True)
+    settle(120)
+    ck("拖宽后胶囊重排（页数变化或仍一页）",
+       len(b._pages) <= max(old_pages, 1), (old_pages, len(b._pages)))
+
+    # 双击右边缘 = 恢复自适应
+    ev = QMouseEvent(QEvent.Type.MouseButtonDblClick,
+                     QPointF(b.width() - 3, 10), QPointF(b.width() - 3, 10),
+                     Qt.MouseButton.LeftButton, Qt.MouseButton.LeftButton,
+                     Qt.KeyboardModifier.NoModifier)
+    b.mouseDoubleClickEvent(ev)
+    settle(120)
+    ck("双击右边缘恢复自适应", b._user_w == 0, b._user_w)
+    ck("恢复自适应也会落盘", persisted[-1][1].get("bar_width_custom") == 0,
+       persisted[-1] if persisted else None)
+
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")
     for f in FAIL:

@@ -230,8 +230,8 @@ def main() -> int:
     b.commit_combo(0)                         # Ctrl+数字 = 中英
     ck("Ctrl+数字 上屏中英对照",
        emitted and emitted[0] == f"{first.zh} {first.en}", emitted)
-    # ---------------- [8] M3 非精确不选词 ----------------
-    print("[8] 非精确命中：空格直出原文 / 数字键仍可选词")
+    # ---------------- [8] 空格上屏口径（v4.0.3 改） ----------------
+    print("[8] 空格=上屏当前选中（前缀命中同样上屏）/ 无候选才直出原文")
     emitted: list[str] = []
 
     def emit_hook(t: str) -> bool:
@@ -245,7 +245,9 @@ def main() -> int:
     b._emit_text = emit_hook
     ck("标记为非精确", b._exact_match is False)
     b.commit_index(-1, False, "k")
-    ck("非精确：空格直出原文", emitted == ["k"], emitted)
+    # v4.0.3：用户明确要求「选择候选词后按空格=键入当前选择」，
+    # 前缀命中不再把拼音原文写进文档。
+    ck("前缀命中：空格上屏首候选", emitted == [K_WORDS[0]], emitted)
 
     emitted.clear()
     b = build(K_WORDS, "prefix")
@@ -254,7 +256,7 @@ def main() -> int:
     settle(b)
     b._emit_text = emit_hook
     b.commit_digit(1)
-    ck("非精确：数字键仍能选词", emitted == [K_WORDS[1]], emitted)
+    ck("数字键选词不受影响", emitted == [K_WORDS[1]], emitted)
 
     emitted.clear()
     b = build(K_WORDS, "full_pinyin")       # 全拼精确命中
