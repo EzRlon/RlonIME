@@ -190,6 +190,115 @@ def main() -> int:
 
     mem.close()
     tmp.unlink(missing_ok=True)
+
+    # ---------------- v3.0.1：直连被系统拒绝 → 自动改走本机代理 ----------------
+    print("[8] 直连被拒（WinError 10013/18013）时的代理回退")
+    import urllib.error
+    import core.free_translate as ft
+
+    ck("18013 判定为链路受限",
+       ft._is_link_blocked(urllib.error.URLError(OSError(18013, "denied"))))
+    ck("10013 判定为链路受限",
+       ft._is_link_blocked(urllib.error.URLError(OSError(10013, "denied"))))
+    ck("DNS 失败判定为链路受限",
+       ft._is_link_blocked(urllib.error.URLError(
+           __import__("socket").gaierror(11001, "getaddrinfo failed"))))
+    ck("HTTP 逻辑错误不当作链路问题",
+       not ft._is_link_blocked(ValueError("bad json")))
+
+    ck("代理串归一：带 scheme", ft._split_hostport("http://127.0.0.1:7890") == "127.0.0.1:7890")
+    ck("代理串归一：带账号", ft._split_hostport("user:pw@127.0.0.1:7897") == "127.0.0.1:7897")
+    ck("代理串归一：非法串丢弃", ft._split_hostport("not-a-proxy") == "")
+
+    real_open, real_port, real_cand = ft._open, ft._port_open, ft._candidate_proxies
+    calls: list[str] = []
+
+    def fake_open(url, timeout, proxy):
+        calls.append(proxy)
+        if proxy == "":
+            raise urllib.error.URLError(OSError(10013, "拒绝访问"))
+        return '{"ok":1}'
+
+    try:
+        ft._WORKING_ROUTE = None
+        ft._open = fake_open
+        ft._port_open = lambda hp, timeout=0.12: hp == "127.0.0.1:7890"
+        ft._candidate_proxies = lambda: ["127.0.0.1:7891", "127.0.0.1:7890"]
+        body = ft._http_get("https://example.invalid", 3.0)
+        ck("直连被拒后改走可用代理", body == '{"ok":1}', body)
+        ck("记住可用路由", ft._WORKING_ROUTE == "127.0.0.1:7890", ft._WORKING_ROUTE)
+        ck("跳过没在监听的端口", calls == ["", "127.0.0.1:7890"], calls)
+
+        calls.clear()
+        ft._http_get("https://example.invalid", 3.0)
+        ck("之后直接用缓存路由（不再试直连）",
+           calls == ["127.0.0.1:7890"], calls)
+
+        # 非链路错误不做代理探测
+        ft._WORKING_ROUTE = None
+        calls.clear()
+        ft._open = lambda url, timeout, proxy: (_ for _ in ()).throw(
+            ValueError("坏 JSON"))
+        try:
+            ft._http_get("https://example.invalid", 3.0)
+            raised = False
+        except ValueError:
+            raised = True
+        ck("非链路错误直接抛出", raised and calls == [], calls)
+
+        # 用户看到的文案
+        def boom(text, src, dst, timeout, fetch):
+            raise urllib.error.URLError(OSError(18013, "拒绝访问"))
+
+        tr_bad = FreeTranslator(providers=[("MyMemory", boom)])
+        try:
+            tr_bad.translate("沉孔")
+            msg = ""
+        except ft.FreeTranslateError as e:
+            msg = str(e)
+        ck("网络受限给可操作提示（不甩 urlopen 堆栈）",
+           "网络受限" in msg and "urlopen" not in msg, msg)
+        ck("原始错误留在 last_detail 供诊断",
+           "18013" in tr_bad.last_detail or "WinError" in tr_bad.last_detail,
+           tr_bad.last_detail)
+
+        # 手填代理（设置里的「代理」）优先于自动探测
+        ft._WORKING_ROUTE = None
+        ft._open = fake_open                 # proxy=="" 时失败，其余成功
+        calls.clear()
+        tr_p = FreeTranslator(proxy="http://127.0.0.1:7890")
+        tr_p._providers = [(
+            "MyMemory",
+            lambda text, src, dst, timeout, fetch: fetch("https://x", timeout))]
+        out = tr_p.translate("沉孔")
+        ck("手填代理作为首选路由", calls == ["127.0.0.1:7890"], calls)
+        ck("手填代理能拿到译文", out[0] == '{"ok":1}', out)
+
+        # 手填错了不能把链路堵死：继续回落自动探测
+        ft._WORKING_ROUTE = None
+        calls.clear()
+
+        def open_by_route(url, timeout, proxy):
+            calls.append(proxy)
+            if proxy in ("", "127.0.0.1:9999"):
+                raise urllib.error.URLError(OSError(10013, "denied"))
+            return '{"ok":2}'
+
+        ft._open = open_by_route
+        ft._candidate_proxies = lambda: ["127.0.0.1:7890"]
+        ft._port_open = lambda hp, timeout=0.12: True
+        tr_p2 = FreeTranslator(proxy="127.0.0.1:9999")
+        tr_p2._providers = [(
+            "MyMemory",
+            lambda text, src, dst, timeout, fetch: fetch("https://x", timeout))]
+        out2 = tr_p2.translate("沉孔")
+        ck("手填代理不可用时继续自动探测",
+           out2[0] == '{"ok":2}' and calls == ["127.0.0.1:9999", "", "127.0.0.1:7890"],
+           calls)
+    finally:
+        ft._open, ft._port_open, ft._candidate_proxies = real_open, real_port, real_cand
+        ft._WORKING_ROUTE = None
+
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")
     for f in FAIL:

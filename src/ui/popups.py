@@ -332,7 +332,8 @@ class AiPopup(_CardPopup):
     saved = Signal(dict)              # {enabled, base_url, model, api_key}
     free_toggled = Signal(bool)       # v2.6：无 Key 时的免费在线翻译
 
-    def __init__(self, llm_cfg: dict, parent=None, free_on: bool = True):
+    def __init__(self, llm_cfg: dict, parent=None, free_on: bool = True,
+                 proxy: str = ""):
         super().__init__("AI 增强", width=320, parent=parent)
         cfg = llm_cfg or {}
 
@@ -346,7 +347,8 @@ class AiPopup(_CardPopup):
         self.chk_free.toggled.connect(self._on_free_toggled)
         self.body.addWidget(self.chk_free)
         free_tip = QLabel("免费翻译由 MyMemory / Google 公共接口提供，"
-                          "会把「选中的文字」发送到公开服务；纯本地场景请关掉。")
+                          "会把「选中的文字」发送到公开服务；纯本地场景请关掉。"
+                          "若提示「网络受限」，在下面「代理」填本机代理地址即可。")
         free_tip.setWordWrap(True)
         free_tip.setStyleSheet(f"color: {DS.TEXT_FAINT}; font-size: 10px;")
         self.body.addWidget(free_tip)
@@ -360,12 +362,18 @@ class AiPopup(_CardPopup):
         self.ed_api_key = QLineEdit()
         self.ed_api_key.setEchoMode(QLineEdit.EchoMode.Password)
         self.ed_api_key.setPlaceholderText("API Key（仅存本机）")
+        # v3.0.1：网络代理。企业内网/防火墙常禁止程序直连外网，
+        # 此时 AI 与免费翻译都会报 WinError 10013/18013，填这里即可。
+        self.ed_proxy = QLineEdit()
+        self.ed_proxy.setPlaceholderText("127.0.0.1:7890（留空=自动）")
         self.ed_base_url.setText(cfg.get("base_url", ""))
         self.ed_model.setText(cfg.get("model", ""))
         self.ed_api_key.setText(cfg.get("api_key", ""))
+        self.ed_proxy.setText(proxy or "")
         for lab, ed in (("接口", self.ed_base_url),
                         ("模型", self.ed_model),
-                        ("Key", self.ed_api_key)):
+                        ("Key", self.ed_api_key),
+                        ("代理", self.ed_proxy)):
             row = QHBoxLayout()
             row.setSpacing(6)
             t = QLabel(lab)
@@ -417,6 +425,7 @@ class AiPopup(_CardPopup):
             "base_url": self.ed_base_url.text().strip(),
             "model": self.ed_model.text().strip(),
             "api_key": self.ed_api_key.text().strip(),
+            "proxy": self.ed_proxy.text().strip(),
         })
         self.close()
 

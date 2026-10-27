@@ -154,8 +154,17 @@ class LLMClient:
             },
             method="POST",
         )
+        # v3.0.1：企业内网/防火墙常禁止直连外网，手填代理后 AI 才能出网。
+        # 这里不自动探测本地端口：base_url 可能是内网 Ollama，探测代理反而会坏事。
+        proxy = str(self.cfg.get("proxy", "") or "").strip()
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
+            if proxy:
+                opener = urllib.request.build_opener(
+                    urllib.request.ProxyHandler(
+                        {"http": f"http://{proxy}", "https": f"http://{proxy}"}))
+            else:
+                opener = urllib.request.build_opener()
+            with opener.open(req, timeout=timeout) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as e:
             body = ""
@@ -167,6 +176,12 @@ class LLMClient:
             raise LLMError(self.last_error) from e
         except Exception as e:
             self.last_error = f"{type(e).__name__}: {e}"
+            reason = getattr(e, "reason", e)
+            code = int(getattr(reason, "winerror", 0)
+                       or getattr(reason, "errno", 0) or 0)
+            if code in (10013, 18013, 10061, 10060, 10065, 10051, 10054) \
+                    or isinstance(reason, TimeoutError):
+                raise LLMError("网络受限 · 请在 Ⓐ 里填写代理地址") from e
             raise LLMError(self.last_error) from e
 
         try:

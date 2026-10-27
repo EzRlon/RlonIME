@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 # config.json —— 否则老用户升级后托盘/关于页仍显示旧名与旧版本号。
 # 更新发布版本时改这里 + packaging/installer.iss + data/config.json 三处。
 APP_NAME = "RlonIME"
-APP_VERSION = "3.0.0"
+APP_VERSION = "3.0.1"
 
 # 热键内置默认值（全项目唯一允许出现热键字符串硬编码的地方，
 # 其余模块一律经 Config.hotkey() 取值）。
@@ -94,6 +94,10 @@ class AssistConfig:
     free_translate: bool = True
     # v2.8：截图取词（Windows 内置 OCR，离线）。没有语言包时自动降级提示。
     ocr: bool = True
+    # v3.0.1：网络代理（"127.0.0.1:7890" 这种 host:port）。
+    # 留空 = 自动：先按系统/环境代理直连，被拒时再探测本机常见代理端口。
+    # 企业内网/防火墙禁止直连时，填这一项最稳（AI 与免费翻译共用）。
+    proxy: str = ""
 
 
 @dataclass

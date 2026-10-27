@@ -142,13 +142,19 @@ class ZhiyuApp:
         self.inserter = Inserter()
 
         # ---- 词汇助手三件套 ----
-        self.llm = LLMClient(getattr(self.config, "llm", {}) or {})
+        # v3.0.1：代理是 AI 与免费翻译共用的网络通道（assist.proxy 唯一来源）
+        _proxy = str(getattr(self.config.assist, "proxy", "") or "")
+        _llm_cfg = dict(getattr(self.config, "llm", {}) or {})
+        if _proxy:
+            _llm_cfg["proxy"] = _proxy
+        self.llm = LLMClient(_llm_cfg)
         self.memory = TranslationMemory(
             threshold=float(getattr(self.config.assist, "fuzzy_threshold", 0.85)))
         self._free_enabled = bool(getattr(self.config.assist,
                                           "free_translate", True)) and not bool(
             getattr(self.config.assist, "local_only", False))
-        self.free_translator = FreeTranslator(enabled=self._free_enabled)
+        self.free_translator = FreeTranslator(enabled=self._free_enabled,
+                                              proxy=_proxy)
         self.translator = Translator(self.engine, self.memory, self.llm,
                                      self.memory.threshold,
                                      free=self.free_translator)
@@ -558,11 +564,12 @@ class ZhiyuApp:
         self.bar.show_hint(f"行业范围：{ind.name}", "ok")
 
     def open_ai(self) -> None:
-        """Ⓐ：AI 增强设置弹窗（开关 + 接口地址 + 模型 + API Key）。"""
+        """Ⓐ：AI 增强设置弹窗（开关 + 接口地址 + 模型 + API Key + 代理）。"""
         if self._popup_ai is not None:
             self._popup_ai.close()
         pop = AiPopup(dict(getattr(self.config, "llm", {}) or {}),
-                      free_on=self._free_enabled)
+                      free_on=self._free_enabled,
+                      proxy=str(getattr(self.config.assist, "proxy", "") or ""))
         pop.saved.connect(self.apply_llm)
         pop.free_toggled.connect(self.apply_free_translate)
         self._popup_ai = pop
@@ -573,6 +580,20 @@ class ZhiyuApp:
         for k in ("enabled", "base_url", "model", "api_key"):
             if k in (cfg or {}):
                 merged[k] = cfg[k]
+        # v3.0.1：代理是「网络通道」设置，AI 与免费翻译共用，存在 assist 段。
+        proxy = str((cfg or {}).get("proxy", "") or "").strip()
+        if "proxy" in (cfg or {}):
+            self.config.assist.proxy = proxy
+            merged["proxy"] = proxy
+            self._persist("assist", {"proxy": proxy})
+            try:
+                from core.free_translate import reset_route, _split_hostport
+                if self.free_translator is not None:
+                    self.free_translator.proxy = _split_hostport(proxy)
+                # 用户刚改过代理，之前缓存的路由必须失效
+                reset_route()
+            except Exception:
+                pass
         self.llm.configure(merged)
         self.config.llm = merged
         self._persist("llm", merged)
