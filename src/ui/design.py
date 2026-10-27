@@ -44,7 +44,7 @@ class _Base:
 
     # ---- 旧版语义色名（指向新令牌；悬停底色仍被候选条引用）----
     BG_BAR = "#FAFBFD"
-    PRIMARY_SOFT_2 = "#DCFCE7"
+    PRIMARY_SOFT_2 = "#D8F0DC"
     ACCENT_EN = "#0E7490"
     ACCENT_SUG = "#0E9F6E"
     ACCENT_OK = "#1E9E5A"
@@ -58,7 +58,7 @@ class _Base:
 
 
 class LIGHT(_Base):
-    """翠青 · 白。"""
+    """青苹果绿 · 白（v4.0.2：主色 #34C759）。"""
     BG = "#FFFFFF"
     BG_TOP = "#FFFFFF"
     BG_BOTTOM = "#F6FAF8"
@@ -71,14 +71,21 @@ class LIGHT(_Base):
     TEXT_MUTED = "#708078"
     TEXT_FAINT = "#97A69F"
 
-    # v3.0.4：主色由翠青 #0D9488 换成亮绿 #4ADE80（用户指定）。
-    # 亮绿底上白字对比度只有 1.9:1（不可读），所以选中态文字改深墨绿
-    # #052E16（对比约 11:1）。渐变顶比主色更亮一档，保持原来的立体感。
-    PRIMARY = "#4ADE80"
-    PRIMARY_HI = "#86EFAC"
-    PRIMARY_SOFT = "#DCFCE7"
+    # v4.0.2：主色 #4ADE80 → #34C759。上一个亮绿饱和度高、渐变顶又接近白，
+    # 长时间盯着候选条会"晃眼"（用户反馈）。现在：
+    #   · 主色换成苹果绿 #34C759（低一档亮度）；
+    #   · 渐变顶只比主色亮 1.11:1（原来 #86EFAC 与主色差 1.6:1），
+    #     立体感靠色相微差，不靠高光；
+    #   · 选中态文字 #052E16（6.7:1），副行深绿 #0B4A21（4.7:1，原 #166534 只有 3.2:1）；
+    #   · 悬停/浅底也同步降饱和，避免大片荧光绿。
+    PRIMARY = "#34C759"
+    # 小字号主色文字必须更深：纯主色在白底上只有 2.2:1，9~11px 会糊成一片。
+    # #15803D 是 4.6:1，够清楚又不发黑。
+    PRIMARY_TEXT = "#15803D"
+    PRIMARY_HI = "#45D06B"
+    PRIMARY_SOFT = "#DFF6E3"
     SEL_TEXT = "#052E16"
-    SEL_SUB = "#166534"
+    SEL_SUB = "#0B4A21"
 
     EN = "#0E7490"
     OK = "#1E9E5A"
@@ -105,7 +112,7 @@ class LIGHT(_Base):
     MD3_OUTLINE_VARIANT = LINE_SOFT
     MD3_PRIMARY = PRIMARY
     MD3_ON_PRIMARY = "#052E16"
-    MD3_PRIMARY_CONTAINER = "#DCFCE7"
+    MD3_PRIMARY_CONTAINER = "#DFF6E3"
     MD3_ON_PRIMARY_CONTAINER = "#052E16"
     MD3_ERROR = ERR
     MD3_ERROR_CONTAINER = ERR_SOFT
@@ -128,6 +135,7 @@ class DARK(_Base):
     TEXT_FAINT = "#6B675C"
 
     PRIMARY = "#E3C15E"
+    PRIMARY_TEXT = "#E3C15E"
     PRIMARY_HI = "#F0D07A"
     PRIMARY_SOFT = "#3B3420"
     SEL_TEXT = "#1C1A12"

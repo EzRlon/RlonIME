@@ -419,7 +419,7 @@ class InputPanel(QWidget):
                 font-family: "{base}";
             }}
             #tagChip {{
-                color: {d.PRIMARY};
+                color: {d.PRIMARY_TEXT};
                 background: {d.PRIMARY_SOFT};
                 border-radius: 3px;
                 padding: 1px 6px;
@@ -529,7 +529,7 @@ class InputPanel(QWidget):
                 border: 1px solid #E4DCFF;
             }}
             #identText {{
-                color: {d.PRIMARY};
+                color: {d.PRIMARY_TEXT};
                 font-size: 11px;
                 font-family: "{base}";
             }}

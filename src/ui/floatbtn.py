@@ -196,7 +196,7 @@ class FloatTranslateButton(QWidget):
         d = DS
         r = QRectF(0.5, 0.5, self.width() - 1.0, self.height() - 1.0)
         bg = QColor(d.PRIMARY if self._hover else d.BG)
-        fg = QColor(d.SEL_TEXT if self._hover else d.PRIMARY)
+        fg = QColor(d.SEL_TEXT if self._hover else d.PRIMARY_TEXT)
         p.setPen(QPen(QColor(d.PRIMARY if self._hover else d.LINE), 1.0))
         p.setBrush(bg)
         p.drawRoundedRect(r, 8, 8)

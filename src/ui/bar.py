@@ -382,7 +382,7 @@ class EnRow(QWidget):
         text = fm.elidedText(self._text, Qt.TextElideMode.ElideRight,
                              max(int(avail), 30))
         p.setFont(self._f_en)
-        p.setPen(QColor(d.EN if not self._star else d.PRIMARY))
+        p.setPen(QColor(d.EN if not self._star else d.PRIMARY_TEXT))
         p.drawText(QRectF(x, 0, avail, h),
                    int(Qt.AlignmentFlag.AlignVCenter
                        | Qt.AlignmentFlag.AlignLeft), text)
@@ -745,21 +745,21 @@ class CandidateBar(QWidget):
                 font-weight: 600;
             }}
             #modeTag {{
-                color: {d.PRIMARY};
+                color: {d.PRIMARY_TEXT};
                 font-size: {max(9, fs_zh - 2)}px;
                 font-family: "{fam}";
                 font-weight: 700;
                 padding: 0 3px;
-                border: 1px solid {d.PRIMARY};
+                border: 1px solid {d.PRIMARY_TEXT};
                 border-radius: 4px;
             }}
             #stateTag {{
-                color: {d.PRIMARY};
+                color: {d.PRIMARY_TEXT};
                 font-size: {max(9, fs_zh - 2)}px;
                 font-family: "{fam}";
                 font-weight: 700;
                 padding: 0 3px;
-                border: 1px solid {d.PRIMARY};
+                border: 1px solid {d.PRIMARY_TEXT};
                 border-radius: 4px;
             }}
             #modeHint {{
@@ -861,8 +861,8 @@ class CandidateBar(QWidget):
     def _update_mode_label(self) -> None:
         m = self.candidate_mode
         self.mode_label.setText(self._MODE_TEXT.get(m, "智"))
-        color = {"auto": DS.PRIMARY, "plain": DS.TEXT_FAINT,
-                 "pro": DS.AI}.get(m, DS.PRIMARY)
+        color = {"auto": DS.PRIMARY_TEXT, "plain": DS.TEXT_FAINT,
+                 "pro": DS.AI}.get(m, DS.PRIMARY_TEXT)
         self.mode_label.setStyleSheet(
             f"color:{color}; border:1px solid {color};"
             f"border-radius:4px; padding:0 3px; font-weight:700;")

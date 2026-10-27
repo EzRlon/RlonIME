@@ -84,8 +84,8 @@ def make_tray_icon(state: str = "") -> QIcon:
     """
     theme = str(getattr(get_config().ui, "theme", "light")).lower()
     dark = theme.startswith("dark")
-    # v3.0.4：主色换亮绿 #4ADE80。托盘图标不跟主色 —— 亮绿在浅色任务栏上
-    # 几乎看不见，改用同色系的中绿 #16A34A（白字对比 4.6:1）。
+    # v4.0.2：主色 #34C759。托盘图标仍用更深一档的 #16A34A —— 浅色任务栏上
+    # 直接铺主色会发灰看不清（白字对比只有 2.2:1，深绿是 4.6:1）。
     bg = QColor("#141519" if dark else "#16A34A")
     fg = QColor("#E3C15E" if dark else "#FFFFFF")
     pix = QPixmap(64, 64)

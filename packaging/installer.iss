@@ -18,7 +18,7 @@
 
 #define MyAppName "RlonIME · 工程领域中文输入法"
 #define MyAppShortName "RlonIME"
-#define MyAppVersion "4.0.1"
+#define MyAppVersion "4.0.2"
 #define MyAppPublisher "Rlon"
 #define MyAppExeName "RlonIME.exe"
 #define LegacyExeName "ZhiyuIME.exe"
