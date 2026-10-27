@@ -22,7 +22,7 @@ LEX_DIR = ROOT / "data" / "lexicons"
 # 分类 -> 基础词频
 _CAT_FREQ = {
     "材料": 700, "材料属性": 660, "表面处理": 700, "加工工艺": 700,
-    "制造流程": 640, "通用件": 720,
+    "制造流程": 640, "通用件": 720, "表面缺陷": 620,
 }
 
 # pypinyin 多音字修正（专业读音优先）：工程术语里错一次就是「打不出来」。
@@ -31,6 +31,28 @@ _PINYIN_FIX = {
     "钻削": "zuanxiao",
     "铣床": "xichuang",
     "伺服电机": "sifudianji",  # 伺：伺服读 sì，pypinyin 误作 cì
+    # ---- v4.0.1 补充：材料 / 表面 / 工艺 里的多音字与「率/削」读音 ----
+    "切削速度": "qiexiaosudu",      # 切削 qiēxiāo，不是 qiēxuē
+    "切削深度": "qiexiaoshendu",
+    "切削用量": "qiexiaoyongliang",
+    "易切削钢": "yiqiexiaogang",
+    "锪孔": "huokong",              # 锪 huō，pypinyin 偶作 huò
+    "铬酸盐处理": "gesuanyanchuli",  # 铬 gè
+    "镀硬铬": "duyingge",
+    "断面收缩率": "duanmianshousulv",  # 率 lǜ = lv，不是 shuai
+    "导电率": "daodianlv",
+    "屈服强度": "qufuqiangdu",       # 屈 qū，防被读成 qu-e
+    "芯部硬度": "xinbuyingdu",
+    "冷镦": "lengdun",               # 镦 dūn，pypinyin 误作 duī
+    "冷镦钢": "lengdungang",
+    "拉削": "laxiao",                # 机械加工里「削」读 xiāo，不是 xuē
+}
+
+# 备用读音：两读都在用、只存一个必然有一半人打不出来（模具 mú/mó）。
+_ALT_PINYIN = {
+    "模具": ["moju"],
+    "单冲模": ["danchongmo"],
+    "级进模": ["jijinmu"],
 }
 
 # (中文, 英文, 分类, [英文别名...])
@@ -369,6 +391,282 @@ _T = [
     ("模具", "Mold", "通用件", ["Mould", "Die"]),
     ("定位块", "Locating Block", "通用件", []),
     ("支座", "Support Bracket", "通用件", []),
+
+    # ================= v4.0.1 补充：材料 / 材质 / 表面处理 / 工艺 =================
+    # 背景：用户按「材料 材质 表面处理 工艺」四个维度要求补词。原有 326 条覆盖到
+    # 「铝合金/阳极氧化/淬火」这一层，缺的是**具体牌号、型材规格、涂层细分、
+    # 工序名称与常见表面缺陷** —— 恰好是画图、写技术要求、发外协时天天要敲的词。
+    # 英文按 ASME/ISO 惯例写法给，var_en 里放缩写，保证「选中即译」反查也对得上。
+
+    # ---------------- 材料：钢种与牌号 ----------------
+    ("冷镦钢", "Cold Heading Steel", "材料", ["CH Steel"]),
+    ("耐候钢", "Weathering Steel", "材料", ["Corten Steel"]),
+    ("易切削钢", "Free-cutting Steel", "材料", ["Free Machining Steel"]),
+    ("硅钢", "Silicon Steel", "材料", ["Electrical Steel"]),
+    ("锰钢", "Manganese Steel", "材料", []),
+    ("双相不锈钢", "Duplex Stainless Steel", "材料", ["Duplex SS"]),
+    ("奥氏体不锈钢", "Austenitic Stainless Steel", "材料",
+     ["Austenitic SS"]),
+    ("马氏体不锈钢", "Martensitic Stainless Steel", "材料",
+     ["Martensitic SS"]),
+    ("沉淀硬化不锈钢", "Precipitation Hardening Stainless Steel", "材料",
+     ["PH Stainless Steel", "17-4PH"]),
+    # ---------------- 材料：有色金属 ----------------
+    ("纯铝", "Pure Aluminum", "材料", ["Aluminium 1050"]),
+    ("硬铝", "Duralumin", "材料", ["2024 Aluminum"]),
+    ("防锈铝", "Anti-corrosion Aluminum", "材料", ["5052 Aluminum"]),
+    ("铸铝", "Cast Aluminum", "材料", []),
+    ("铝镁合金", "Aluminum-Magnesium Alloy", "材料", ["Al-Mg Alloy"]),
+    ("纯钛", "Pure Titanium", "材料", ["Titanium Grade 2"]),
+    ("钛板", "Titanium Plate", "材料", []),
+    ("白铜", "Cupronickel", "材料", []),
+    ("磷青铜", "Phosphor Bronze", "材料", []),
+    ("锡青铜", "Tin Bronze", "材料", []),
+    ("铅黄铜", "Leaded Brass", "材料", []),
+    ("钨铜", "Tungsten Copper", "材料", ["CuW Alloy"]),
+    ("镁板", "Magnesium Plate", "材料", []),
+    ("锌板", "Zinc Plate", "材料", []),
+    # ---------------- 材料：型材与规格形态 ----------------
+    ("圆钢", "Round Steel Bar", "材料", ["Round Bar"]),
+    ("方钢", "Square Steel Bar", "材料", ["Square Bar"]),
+    ("扁钢", "Flat Steel Bar", "材料", ["Flat Bar"]),
+    ("角钢", "Angle Steel", "材料", ["Angle Iron"]),
+    ("槽钢", "Channel Steel", "材料", ["U-Channel"]),
+    ("工字钢", "I-beam", "材料", ["H-beam", "Universal Beam"]),
+    ("无缝管", "Seamless Tube", "材料", ["SMLS Tube"]),
+    ("焊管", "Welded Tube", "材料", ["ERW Tube"]),
+    ("方管", "Square Tube", "材料", []),
+    ("矩形管", "Rectangular Tube", "材料", ["Rect Tube"]),
+    ("六角棒", "Hexagon Bar", "材料", ["Hex Bar"]),
+    ("钢板", "Steel Plate", "材料", []),
+    ("铁板", "Iron Plate", "材料", []),
+    ("铝板", "Aluminum Plate", "材料", ["Aluminium Sheet"]),
+    ("铝管", "Aluminum Tube", "材料", []),
+    ("铝棒", "Aluminum Rod", "材料", []),
+    ("铜排", "Copper Busbar", "材料", ["Busbar"]),
+    ("铜管", "Copper Tube", "材料", []),
+    ("弹簧钢丝", "Spring Steel Wire", "材料", []),
+    ("焊丝", "Welding Wire", "材料", []),
+    ("焊条", "Welding Electrode", "材料", []),
+    ("药芯焊丝", "Flux-cored Wire", "材料", ["FCAW Wire"]),
+    # ---------------- 材料：塑料 / 橡胶 / 复合材料 ----------------
+    ("聚苯乙烯", "Polystyrene", "材料", ["PS"]),
+    ("聚酰胺", "Polyamide", "材料", ["PA"]),
+    ("聚酰亚胺", "Polyimide", "材料", ["PI"]),
+    ("聚砜", "Polysulfone", "材料", ["PSU"]),
+    ("聚苯硫醚", "Polyphenylene Sulfide", "材料", ["PPS"]),
+    ("液晶聚合物", "Liquid Crystal Polymer", "材料", ["LCP"]),
+    ("热塑性弹性体", "Thermoplastic Elastomer", "材料", ["TPE"]),
+    ("热塑性聚氨酯", "Thermoplastic Polyurethane", "材料", ["TPU"]),
+    ("硅橡胶", "Silicone Rubber", "材料", []),
+    ("氟橡胶", "Fluororubber", "材料", ["FKM", "Viton"]),
+    ("天然橡胶", "Natural Rubber", "材料", ["NR"]),
+    ("氯丁橡胶", "Neoprene", "材料", ["CR"]),
+    ("丁苯橡胶", "Styrene Butadiene Rubber", "材料", ["SBR"]),
+    ("电木", "Bakelite", "材料", ["Phenolic Resin Board"]),
+    ("环氧板", "Epoxy Board", "材料", ["FR4"]),
+    ("玻纤板", "Fiberglass Board", "材料", ["FR4 Board"]),
+    ("特氟龙板", "PTFE Sheet", "材料", ["Teflon Sheet"]),
+    ("尼龙板", "Nylon Sheet", "材料", []),
+    ("塑料板", "Plastic Sheet", "材料", []),
+    ("亚克力板", "Acrylic Sheet", "材料", ["PMMA Sheet"]),
+    ("碳纤维板", "Carbon Fiber Sheet", "材料", ["CFRP Sheet"]),
+    ("蜂窝板", "Honeycomb Panel", "材料", []),
+    ("铝蜂窝板", "Aluminum Honeycomb Panel", "材料", []),
+    ("夹芯板", "Sandwich Panel", "材料", []),
+    ("芳纶纤维", "Aramid Fiber", "材料", ["Kevlar"]),
+    # ---------------- 材料：陶瓷 / 玻璃 / 木材 ----------------
+    ("氧化铝陶瓷", "Alumina Ceramic", "材料", ["Al2O3 Ceramic"]),
+    ("氧化锆陶瓷", "Zirconia Ceramic", "材料", ["ZrO2 Ceramic"]),
+    ("石英玻璃", "Quartz Glass", "材料", []),
+    ("钢化玻璃", "Tempered Glass", "材料", []),
+    ("有机玻璃", "Plexiglass", "材料", ["PMMA"]),
+    ("胶合板", "Plywood", "材料", []),
+    ("密度板", "MDF Board", "材料", ["Medium Density Fiberboard"]),
+    ("实木", "Solid Wood", "材料", []),
+
+    # ---------------- 材质：规格属性与质保文件 ----------------
+    ("料厚", "Material Thickness", "材料属性", []),
+    ("板厚", "Sheet Thickness", "材料属性", []),
+    ("材质证明", "Material Certificate", "材料属性", ["Mill Cert"]),
+    ("材质单", "Mill Certificate", "材料属性", []),
+    ("化学成分", "Chemical Composition", "材料属性", []),
+    ("含碳量", "Carbon Content", "材料属性", []),
+    ("母材", "Base Metal", "材料属性", ["Parent Metal"]),
+    ("焊材", "Filler Metal", "材料属性", []),
+    ("辅料", "Auxiliary Material", "材料属性", []),
+    ("耗材", "Consumable", "材料属性", []),
+    ("表面硬度", "Surface Hardness", "材料属性", []),
+    ("芯部硬度", "Core Hardness", "材料属性", []),
+    ("硬化层深度", "Case Depth", "材料属性", []),
+    ("力学性能", "Mechanical Properties", "材料属性", []),
+    ("冲击韧性", "Impact Toughness", "材料属性", []),
+    ("断面收缩率", "Reduction of Area", "材料属性", []),
+    ("热膨胀系数", "Coefficient of Thermal Expansion", "材料属性",
+     ["CTE"]),
+    ("导电率", "Electrical Conductivity", "材料属性", []),
+    ("耐温性", "Temperature Resistance", "材料属性", []),
+    ("阻燃等级", "Flame Retardant Grade", "材料属性", ["UL94"]),
+
+    # ---------------- 表面处理：氧化 / 电镀 / 镀膜 ----------------
+    ("本色阳极氧化", "Clear Anodizing", "表面处理",
+     ["Natural Anodizing", "Clear Anodized"]),
+    ("黑色阳极氧化", "Black Anodizing", "表面处理", ["Black Anodized"]),
+    ("硬质氧化", "Hard Anodizing", "表面处理", ["Hard Anodized"]),
+    ("化学氧化", "Chemical Oxidation", "表面处理", []),
+    ("导电氧化", "Conductive Oxidation", "表面处理", ["Chrome-free"]),
+    ("铬酸盐处理", "Chromate Conversion Coating", "表面处理",
+     ["Chromating"]),
+    ("镀硬铬", "Hard Chrome Plating", "表面处理", ["Hard Chrome"]),
+    ("镀装饰铬", "Decorative Chrome Plating", "表面处理", []),
+    ("化学镀镍", "Electroless Nickel Plating", "表面处理", ["EN Plating"]),
+    ("镀金", "Gold Plating", "表面处理", []),
+    ("镀银", "Silver Plating", "表面处理", []),
+    ("真空镀膜", "Vacuum Coating", "表面处理", ["Vacuum Metallizing"]),
+    ("物理气相沉积", "Physical Vapor Deposition", "表面处理", ["PVD"]),
+    ("磁控溅射", "Magnetron Sputtering", "表面处理", []),
+    ("镀层", "Plating Layer", "表面处理", ["Coating Layer"]),
+    # ---------------- 表面处理：喷涂 / 涂装 ----------------
+    ("喷粉", "Powder Coating", "表面处理", []),
+    ("粉末喷涂", "Powder Spraying", "表面处理", []),
+    ("氟碳喷涂", "Fluorocarbon Coating", "表面处理", ["PVDF Coating"]),
+    ("电泳漆", "Electrophoretic Paint", "表面处理", ["E-coat"]),
+    ("陶瓷涂层", "Ceramic Coating", "表面处理", []),
+    ("二硫化钼涂层", "Molybdenum Disulfide Coating", "表面处理",
+     ["MoS2 Coating"]),
+    ("橡胶漆", "Rubberized Coating", "表面处理", ["Soft-touch Coating"]),
+    ("手感漆", "Soft-touch Paint", "表面处理", []),
+    ("热喷涂", "Thermal Spraying", "表面处理", []),
+    ("遮喷", "Masking", "表面处理", []),
+    ("保护膜", "Protective Film", "表面处理", []),
+    # ---------------- 表面处理：打磨 / 前处理 / 检验 ----------------
+    ("镜面抛光", "Mirror Polishing", "表面处理", []),
+    ("雪花砂", "Snowflake Sanding", "表面处理", []),
+    ("玻璃砂", "Glass Bead Blasting", "表面处理", []),
+    ("棕刚玉", "Brown Fused Alumina", "表面处理", []),
+    ("除油", "Degreasing", "表面处理", []),
+    ("酸洗", "Pickling", "表面处理", []),
+    ("前处理", "Pre-treatment", "表面处理", ["Pretreatment"]),
+    ("水洗", "Water Rinsing", "表面处理", []),
+    ("烘干", "Drying", "表面处理", []),
+    ("固化", "Curing", "表面处理", []),
+    ("附着力", "Adhesion", "表面处理", []),
+    ("膜厚", "Coating Thickness", "表面处理", ["Film Thickness"]),
+    ("氧化膜", "Oxide Film", "表面处理", []),
+    ("盐雾试验", "Salt Spray Test", "表面处理", ["Salt Spray"]),
+    ("百格测试", "Cross-cut Test", "表面处理", ["Cross Hatch Test"]),
+    ("铅笔硬度", "Pencil Hardness", "表面处理", []),
+    ("皮纹", "Leather Grain", "表面处理", []),
+    ("雾面", "Matte Finish", "表面处理", ["Matte"]),
+    ("高光", "Gloss Finish", "表面处理", ["High Gloss"]),
+    # ---------------- 表面缺陷（检验/客诉高频） ----------------
+    ("毛刺", "Burr", "表面缺陷", []),
+    ("碰伤", "Dent", "表面缺陷", []),
+    ("缩水", "Sink Mark", "表面缺陷", []),
+    ("飞边", "Flash", "表面缺陷", ["Burr Flash"]),
+    ("砂眼", "Blowhole", "表面缺陷", ["Porosity"]),
+    ("凹坑", "Pit", "表面缺陷", []),
+    ("压伤", "Press Mark", "表面缺陷", []),
+    ("水纹", "Flow Mark", "表面缺陷", []),
+    ("熔接线", "Weld Line", "表面缺陷", ["Knit Line"]),
+    ("银纹", "Silver Streak", "表面缺陷", []),
+
+    # ---------------- 加工工艺：切削与机床 ----------------
+    ("开粗", "Roughing", "加工工艺", ["Rough Machining"]),
+    ("清角", "Corner Cleaning", "加工工艺", []),
+    ("扩孔", "Hole Enlarging", "加工工艺", ["Counterboring"]),
+    ("锪孔", "Spot Facing", "加工工艺", []),
+    ("深孔钻", "Deep Hole Drilling", "加工工艺", []),
+    ("滚花", "Knurling", "加工工艺", []),
+    ("拉削", "Broaching", "加工工艺", []),
+    ("插齿", "Gear Shaping", "加工工艺", []),
+    ("滚齿", "Gear Hobbing", "加工工艺", []),
+    ("剃齿", "Gear Shaving", "加工工艺", []),
+    ("磨齿", "Gear Grinding", "加工工艺", []),
+    ("超精加工", "Superfinishing", "加工工艺", []),
+    ("倒钝", "Edge Breaking", "加工工艺", ["Edge Blunting"]),
+    ("加工中心", "Machining Center", "加工工艺", ["CNC Center"]),
+    ("数控机床", "CNC Machine Tool", "加工工艺", ["CNC"]),
+    ("数控编程", "CNC Programming", "加工工艺", ["CAM Programming"]),
+    ("刀具", "Cutting Tool", "加工工艺", []),
+    ("刀柄", "Tool Holder", "加工工艺", []),
+    ("量具", "Measuring Tool", "加工工艺", []),
+    ("千分尺", "Micrometer", "加工工艺", []),
+    ("三坐标", "Coordinate Measuring Machine", "加工工艺", ["CMM"]),
+    ("粗糙度仪", "Roughness Tester", "加工工艺", []),
+    ("硬度计", "Hardness Tester", "加工工艺", []),
+    ("切削速度", "Cutting Speed", "加工工艺", []),
+    ("切削深度", "Depth of Cut", "加工工艺", []),
+    ("切削用量", "Cutting Parameters", "加工工艺", []),
+    ("主轴转速", "Spindle Speed", "加工工艺", []),
+    ("装夹", "Clamping", "加工工艺", ["Fixturing"]),
+    ("找正", "Alignment", "加工工艺", []),
+    ("对刀", "Tool Setting", "加工工艺", []),
+    # ---------------- 加工工艺：成形与模具 ----------------
+    ("冷镦", "Cold Heading", "加工工艺", []),
+    ("温锻", "Warm Forging", "加工工艺", []),
+    ("精铸", "Precision Casting", "加工工艺", []),
+    ("低压铸造", "Low-pressure Die Casting", "加工工艺", ["LPDC"]),
+    ("重力铸造", "Gravity Casting", "加工工艺", []),
+    ("级进模", "Progressive Die", "加工工艺", []),
+    ("单冲模", "Single-station Die", "加工工艺", []),
+    ("模具间隙", "Die Clearance", "加工工艺", []),
+    ("试模", "Mold Trial", "加工工艺", ["Trial Run"]),
+    ("修模", "Mold Repair", "加工工艺", []),
+    ("开模", "Mold Making", "加工工艺", []),
+    ("模具寿命", "Mold Life", "加工工艺", []),
+    # ---------------- 加工工艺：焊接 ----------------
+    ("电弧焊", "Arc Welding", "加工工艺", []),
+    ("埋弧焊", "Submerged Arc Welding", "加工工艺", ["SAW"]),
+    ("电阻焊", "Resistance Welding", "加工工艺", []),
+    ("段焊", "Stitch Welding", "加工工艺", []),
+    ("断续焊", "Intermittent Welding", "加工工艺", []),
+    ("焊脚", "Weld Leg", "加工工艺", []),
+    ("焊前预热", "Preheating", "加工工艺", []),
+    ("焊后热处理", "Post-weld Heat Treatment", "加工工艺", ["PWHT"]),
+    ("焊接变形", "Welding Distortion", "加工工艺", []),
+    ("焊缝打磨", "Weld Seam Grinding", "加工工艺", []),
+    # ---------------- 加工工艺：热处理 ----------------
+    ("感应淬火", "Induction Hardening", "加工工艺", []),
+    ("真空热处理", "Vacuum Heat Treatment", "加工工艺", []),
+    ("等温淬火", "Austempering", "加工工艺", []),
+    ("固溶处理", "Solution Treatment", "加工工艺", []),
+    ("固溶时效", "Solution Treatment and Aging", "加工工艺", ["T6"]),
+    ("球化退火", "Spheroidizing Annealing", "加工工艺", []),
+    ("氮化", "Nitriding", "加工工艺", []),
+    ("淬火介质", "Quenching Medium", "加工工艺", []),
+    # ---------------- 加工工艺：装配与工装 ----------------
+    ("压装", "Press Fit", "加工工艺", []),
+    ("热装", "Shrink Fit", "加工工艺", []),
+    ("冷装", "Cold Fit", "加工工艺", []),
+    ("铆压", "Riveting", "加工工艺", []),
+    ("螺纹锁固", "Thread Locking", "加工工艺", []),
+    ("点胶", "Dispensing", "加工工艺", []),
+    ("打胶", "Sealing", "加工工艺", []),
+    ("试装", "Trial Assembly", "加工工艺", []),
+    ("预装", "Pre-assembly", "加工工艺", []),
+    ("拆装", "Disassembly", "加工工艺", []),
+    # ---------------- 制造流程：工艺文件与参数 ----------------
+    ("工艺文件", "Process Document", "制造流程", []),
+    ("工艺卡", "Process Card", "制造流程", []),
+    ("工序卡", "Operation Card", "制造流程", []),
+    ("工艺参数", "Process Parameters", "制造流程", []),
+    ("工艺规程", "Process Specification", "制造流程", []),
+    ("工步", "Operation Step", "制造流程", []),
+    ("工时", "Man-hour", "制造流程", []),
+    ("标准工时", "Standard Time", "制造流程", []),
+    # ---------------- 制造流程：包装印刷工序 ----------------
+    ("模切", "Die Cutting", "制造流程", ["Die-cut"]),
+    ("刀模", "Cutting Die", "制造流程", ["Die Board"]),
+    ("裱纸", "Mounting", "制造流程", []),
+    ("糊盒", "Box Gluing", "制造流程", []),
+    ("压痕", "Creasing", "制造流程", ["Crease"]),
+    ("开槽", "Slotting", "制造流程", []),
+    # ---------------- 制造流程：检测量具 ----------------
+    ("色差仪", "Colorimeter", "制造流程", []),
+    ("光泽度计", "Gloss Meter", "制造流程", []),
+    ("膜厚仪", "Coating Thickness Gauge", "制造流程", []),
+    ("附着力测试", "Adhesion Test", "制造流程", []),
 ]
 
 
@@ -396,6 +694,9 @@ def main() -> int:
         # 多音字专业读音修正（只改全拼；abbr 由首字母生成，不受读音影响）
         if zh in _PINYIN_FIX:
             item["pinyin"] = _PINYIN_FIX[zh]
+        # 备用读音：命中同样走 term_index，等同于「两种打字习惯都认」
+        if zh in _ALT_PINYIN:
+            item["pinyin_alt"] = list(_ALT_PINYIN[zh])
         terms.append(item)
 
     # 注：与专业词库同词也照收（v2.3 修正）——共享层意义在于「任何场景都可命中」；
@@ -404,7 +705,7 @@ def main() -> int:
         "name": "工程通用词库",
         "description": "材料 / 表面处理 / 加工工艺 / 制造流程 / 通用件"
                        "—— 全行业共享词汇层（v2.3）",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "terms": terms,
     }
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n",

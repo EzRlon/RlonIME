@@ -178,6 +178,15 @@ def main() -> int:
     labels = [x.text() for x in ap.findChildren(QLabel)]
     ck("关于页版本号显示正确", any("3.0.4" in t for t in labels), labels)
 
+    print("[7] 系统 IME 组合态：别的进程的候选窗不能算进来（v4.0.1）")
+    from core.sysime import system_ime_composing
+    ck("无窗口句柄 → False", system_ime_composing(0) is False)
+    # 本机微信常驻一个可见的 CandidateWindow 宿主；旧逻辑会因此恒为 True，
+    # 智语就"全程放行"，表现为输入法突然不管用。
+    ck("本窗口本身不算组合中",
+       system_ime_composing(int(b.winId())) is False,
+       f"hwnd={int(b.winId())}")
+
     print()
     print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")
     for f in FAIL:

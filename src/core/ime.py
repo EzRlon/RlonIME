@@ -957,6 +957,10 @@ class ImeController:
         ok = self.hook.start()
         if not ok:
             print(f"[WARN] 键盘钩子未启动：{self.hook.error}", file=sys.stderr)
+        else:
+            # 就绪信号：端到端测试靠它判断「现在按键才会被接管」，
+            # 而不是死等固定秒数 —— 冷启动慢时会出现"字母直通"的假失败。
+            print("[READY] 键盘钩子已启动", file=sys.stderr, flush=True)
         return ok
 
     def stop(self) -> None:

@@ -161,6 +161,31 @@ check("[counter] 英文反查仍置主位（首位=沉孔）", r and r[0] == "�
 
 print()
 print("=" * 68)
+print("D. 材料 / 材质 / 表面处理 / 工艺（v4.0.1 扩充）")
+print("=" * 68)
+# 这四个维度是用户点名要的：每条都在「打错一个字母就出不来」的边缘上，
+# 所以固定成回归项 —— 以后改词库/改拼音优先规则，先过这一组。
+check("[cailiao] 首位=材料", (lambda x: x and x[0] == "材料")(zh_of("cailiao")),
+      f"实际 {zh_of('cailiao')[:4]}")
+check("[caizhi] 首位=材质", (lambda x: x and x[0] == "材质")(zh_of("caizhi")),
+      f"实际 {zh_of('caizhi')[:4]}")
+check("[biaomianchuli] 表面处理",
+      "表面处理" in zh_of("biaomianchuli"), f"实际 {zh_of('biaomianchuli')[:4]}")
+check("[gongyi] 首位=工艺", (lambda x: x and x[0] == "工艺")(zh_of("gongyi")),
+      f"实际 {zh_of('gongyi')[:4]}")
+check("[lengdungang] 冷镦钢（镦 dūn，不是 duī）",
+      "冷镦钢" in zh_of("lengdungang"), f"实际 {zh_of('lengdungang')[:4]}")
+check("[qiexiaosudu] 切削速度（削 xiāo，不是 xuē）",
+      "切削速度" in zh_of("qiexiaosudu"), f"实际 {zh_of('qiexiaosudu')[:4]}")
+check("[yingzhiyanghua] 硬质氧化",
+      "硬质氧化" in zh_of("yingzhiyanghua"), f"实际 {zh_of('yingzhiyanghua')[:4]}")
+check("[moju] 模具（mó 读音）", "模具" in zh_of("moju"), f"实际 {zh_of('moju')[:4]}")
+check("[muju] 模具（mú 读音也认）", "模具" in zh_of("muju"), f"实际 {zh_of('muju')[:4]}")
+check("[duyingge] 镀硬铬（铬 gè）",
+      "镀硬铬" in zh_of("duyingge"), f"实际 {zh_of('duyingge')[:4]}")
+
+print()
+print("=" * 68)
 print(f"结果：{total - len(fails)}/{total} 通过")
 if fails:
     print("失败项：")

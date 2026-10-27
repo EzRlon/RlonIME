@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 # config.json —— 否则老用户升级后托盘/关于页仍显示旧名与旧版本号。
 # 更新发布版本时改这里 + packaging/installer.iss + data/config.json 三处。
 APP_NAME = "RlonIME"
-APP_VERSION = "4.0.0"
+APP_VERSION = "4.0.1"
 
 # 热键内置默认值（全项目唯一允许出现热键字符串硬编码的地方，
 # 其余模块一律经 Config.hotkey() 取值）。

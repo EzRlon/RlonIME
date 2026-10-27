@@ -1,7 +1,7 @@
 {
   "name": "工程通用词库",
   "description": "材料 / 表面处理 / 加工工艺 / 制造流程 / 通用件—— 全行业共享词汇层（v2.3）",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "terms": [
     {
       "zh": "材料",
@@ -1033,7 +1033,8 @@
       "scene_tags": [],
       "standard": "",
       "var_en": [],
-      "freq": 660
+      "freq": 660,
+      "pinyin": "qufuqiangdu"
     },
     {
       "zh": "伸长率",
@@ -3825,7 +3826,10 @@
         "Mould",
         "Die"
       ],
-      "freq": 720
+      "freq": 720,
+      "pinyin_alt": [
+        "moju"
+      ]
     },
     {
       "zh": "定位块",
@@ -3848,6 +3852,2866 @@
       "standard": "",
       "var_en": [],
       "freq": 720
+    },
+    {
+      "zh": "冷镦钢",
+      "en": "Cold Heading Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CH Steel"
+      ],
+      "freq": 700,
+      "pinyin": "lengdungang"
+    },
+    {
+      "zh": "耐候钢",
+      "en": "Weathering Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Corten Steel"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "易切削钢",
+      "en": "Free-cutting Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Free Machining Steel"
+      ],
+      "freq": 700,
+      "pinyin": "yiqiexiaogang"
+    },
+    {
+      "zh": "硅钢",
+      "en": "Silicon Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Electrical Steel"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "锰钢",
+      "en": "Manganese Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "双相不锈钢",
+      "en": "Duplex Stainless Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Duplex SS"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "奥氏体不锈钢",
+      "en": "Austenitic Stainless Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Austenitic SS"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "马氏体不锈钢",
+      "en": "Martensitic Stainless Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Martensitic SS"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "沉淀硬化不锈钢",
+      "en": "Precipitation Hardening Stainless Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PH Stainless Steel",
+        "17-4PH"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "纯铝",
+      "en": "Pure Aluminum",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Aluminium 1050"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "硬铝",
+      "en": "Duralumin",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "2024 Aluminum"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "防锈铝",
+      "en": "Anti-corrosion Aluminum",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "5052 Aluminum"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "铸铝",
+      "en": "Cast Aluminum",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铝镁合金",
+      "en": "Aluminum-Magnesium Alloy",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Al-Mg Alloy"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "纯钛",
+      "en": "Pure Titanium",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Titanium Grade 2"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "钛板",
+      "en": "Titanium Plate",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "白铜",
+      "en": "Cupronickel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "磷青铜",
+      "en": "Phosphor Bronze",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "锡青铜",
+      "en": "Tin Bronze",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铅黄铜",
+      "en": "Leaded Brass",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "钨铜",
+      "en": "Tungsten Copper",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CuW Alloy"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "镁板",
+      "en": "Magnesium Plate",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "锌板",
+      "en": "Zinc Plate",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "圆钢",
+      "en": "Round Steel Bar",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Round Bar"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "方钢",
+      "en": "Square Steel Bar",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Square Bar"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "扁钢",
+      "en": "Flat Steel Bar",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Flat Bar"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "角钢",
+      "en": "Angle Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Angle Iron"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "槽钢",
+      "en": "Channel Steel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "U-Channel"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "工字钢",
+      "en": "I-beam",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "H-beam",
+        "Universal Beam"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "无缝管",
+      "en": "Seamless Tube",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "SMLS Tube"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "焊管",
+      "en": "Welded Tube",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "ERW Tube"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "方管",
+      "en": "Square Tube",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "矩形管",
+      "en": "Rectangular Tube",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Rect Tube"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "六角棒",
+      "en": "Hexagon Bar",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Hex Bar"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "钢板",
+      "en": "Steel Plate",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铁板",
+      "en": "Iron Plate",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铝板",
+      "en": "Aluminum Plate",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Aluminium Sheet"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "铝管",
+      "en": "Aluminum Tube",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铝棒",
+      "en": "Aluminum Rod",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铜排",
+      "en": "Copper Busbar",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Busbar"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "铜管",
+      "en": "Copper Tube",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "弹簧钢丝",
+      "en": "Spring Steel Wire",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "焊丝",
+      "en": "Welding Wire",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "焊条",
+      "en": "Welding Electrode",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "药芯焊丝",
+      "en": "Flux-cored Wire",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "FCAW Wire"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "聚苯乙烯",
+      "en": "Polystyrene",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PS"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "聚酰胺",
+      "en": "Polyamide",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PA"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "聚酰亚胺",
+      "en": "Polyimide",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PI"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "聚砜",
+      "en": "Polysulfone",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PSU"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "聚苯硫醚",
+      "en": "Polyphenylene Sulfide",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PPS"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "液晶聚合物",
+      "en": "Liquid Crystal Polymer",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "LCP"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "热塑性弹性体",
+      "en": "Thermoplastic Elastomer",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "TPE"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "热塑性聚氨酯",
+      "en": "Thermoplastic Polyurethane",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "TPU"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "硅橡胶",
+      "en": "Silicone Rubber",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "氟橡胶",
+      "en": "Fluororubber",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "FKM",
+        "Viton"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "天然橡胶",
+      "en": "Natural Rubber",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "NR"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "氯丁橡胶",
+      "en": "Neoprene",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CR"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "丁苯橡胶",
+      "en": "Styrene Butadiene Rubber",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "SBR"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "电木",
+      "en": "Bakelite",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Phenolic Resin Board"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "环氧板",
+      "en": "Epoxy Board",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "FR4"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "玻纤板",
+      "en": "Fiberglass Board",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "FR4 Board"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "特氟龙板",
+      "en": "PTFE Sheet",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Teflon Sheet"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "尼龙板",
+      "en": "Nylon Sheet",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "塑料板",
+      "en": "Plastic Sheet",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "亚克力板",
+      "en": "Acrylic Sheet",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PMMA Sheet"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "碳纤维板",
+      "en": "Carbon Fiber Sheet",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CFRP Sheet"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "蜂窝板",
+      "en": "Honeycomb Panel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铝蜂窝板",
+      "en": "Aluminum Honeycomb Panel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "夹芯板",
+      "en": "Sandwich Panel",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "芳纶纤维",
+      "en": "Aramid Fiber",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Kevlar"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "氧化铝陶瓷",
+      "en": "Alumina Ceramic",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Al2O3 Ceramic"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "氧化锆陶瓷",
+      "en": "Zirconia Ceramic",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "ZrO2 Ceramic"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "石英玻璃",
+      "en": "Quartz Glass",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "钢化玻璃",
+      "en": "Tempered Glass",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "有机玻璃",
+      "en": "Plexiglass",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PMMA"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "胶合板",
+      "en": "Plywood",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "密度板",
+      "en": "MDF Board",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Medium Density Fiberboard"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "实木",
+      "en": "Solid Wood",
+      "brief": "材料",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "料厚",
+      "en": "Material Thickness",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "板厚",
+      "en": "Sheet Thickness",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "材质证明",
+      "en": "Material Certificate",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Mill Cert"
+      ],
+      "freq": 660
+    },
+    {
+      "zh": "材质单",
+      "en": "Mill Certificate",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "化学成分",
+      "en": "Chemical Composition",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "含碳量",
+      "en": "Carbon Content",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "母材",
+      "en": "Base Metal",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Parent Metal"
+      ],
+      "freq": 660
+    },
+    {
+      "zh": "焊材",
+      "en": "Filler Metal",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "辅料",
+      "en": "Auxiliary Material",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "耗材",
+      "en": "Consumable",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "表面硬度",
+      "en": "Surface Hardness",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "芯部硬度",
+      "en": "Core Hardness",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660,
+      "pinyin": "xinbuyingdu"
+    },
+    {
+      "zh": "硬化层深度",
+      "en": "Case Depth",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "力学性能",
+      "en": "Mechanical Properties",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "冲击韧性",
+      "en": "Impact Toughness",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "断面收缩率",
+      "en": "Reduction of Area",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660,
+      "pinyin": "duanmianshousulv"
+    },
+    {
+      "zh": "热膨胀系数",
+      "en": "Coefficient of Thermal Expansion",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CTE"
+      ],
+      "freq": 660
+    },
+    {
+      "zh": "导电率",
+      "en": "Electrical Conductivity",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660,
+      "pinyin": "daodianlv"
+    },
+    {
+      "zh": "耐温性",
+      "en": "Temperature Resistance",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 660
+    },
+    {
+      "zh": "阻燃等级",
+      "en": "Flame Retardant Grade",
+      "brief": "材料属性",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "UL94"
+      ],
+      "freq": 660
+    },
+    {
+      "zh": "本色阳极氧化",
+      "en": "Clear Anodizing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Natural Anodizing",
+        "Clear Anodized"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "黑色阳极氧化",
+      "en": "Black Anodizing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Black Anodized"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "硬质氧化",
+      "en": "Hard Anodizing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Hard Anodized"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "化学氧化",
+      "en": "Chemical Oxidation",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "导电氧化",
+      "en": "Conductive Oxidation",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Chrome-free"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "铬酸盐处理",
+      "en": "Chromate Conversion Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Chromating"
+      ],
+      "freq": 700,
+      "pinyin": "gesuanyanchuli"
+    },
+    {
+      "zh": "镀硬铬",
+      "en": "Hard Chrome Plating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Hard Chrome"
+      ],
+      "freq": 700,
+      "pinyin": "duyingge"
+    },
+    {
+      "zh": "镀装饰铬",
+      "en": "Decorative Chrome Plating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "化学镀镍",
+      "en": "Electroless Nickel Plating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "EN Plating"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "镀金",
+      "en": "Gold Plating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "镀银",
+      "en": "Silver Plating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "真空镀膜",
+      "en": "Vacuum Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Vacuum Metallizing"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "物理气相沉积",
+      "en": "Physical Vapor Deposition",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PVD"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "磁控溅射",
+      "en": "Magnetron Sputtering",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "镀层",
+      "en": "Plating Layer",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Coating Layer"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "喷粉",
+      "en": "Powder Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "粉末喷涂",
+      "en": "Powder Spraying",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "氟碳喷涂",
+      "en": "Fluorocarbon Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PVDF Coating"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "电泳漆",
+      "en": "Electrophoretic Paint",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "E-coat"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "陶瓷涂层",
+      "en": "Ceramic Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "二硫化钼涂层",
+      "en": "Molybdenum Disulfide Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "MoS2 Coating"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "橡胶漆",
+      "en": "Rubberized Coating",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Soft-touch Coating"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "手感漆",
+      "en": "Soft-touch Paint",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "热喷涂",
+      "en": "Thermal Spraying",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "遮喷",
+      "en": "Masking",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "保护膜",
+      "en": "Protective Film",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "镜面抛光",
+      "en": "Mirror Polishing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "雪花砂",
+      "en": "Snowflake Sanding",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "玻璃砂",
+      "en": "Glass Bead Blasting",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "棕刚玉",
+      "en": "Brown Fused Alumina",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "除油",
+      "en": "Degreasing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "酸洗",
+      "en": "Pickling",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "前处理",
+      "en": "Pre-treatment",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Pretreatment"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "水洗",
+      "en": "Water Rinsing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "烘干",
+      "en": "Drying",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "固化",
+      "en": "Curing",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "附着力",
+      "en": "Adhesion",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "膜厚",
+      "en": "Coating Thickness",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Film Thickness"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "氧化膜",
+      "en": "Oxide Film",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "盐雾试验",
+      "en": "Salt Spray Test",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Salt Spray"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "百格测试",
+      "en": "Cross-cut Test",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Cross Hatch Test"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "铅笔硬度",
+      "en": "Pencil Hardness",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "皮纹",
+      "en": "Leather Grain",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "雾面",
+      "en": "Matte Finish",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Matte"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "高光",
+      "en": "Gloss Finish",
+      "brief": "表面处理",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "High Gloss"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "毛刺",
+      "en": "Burr",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "碰伤",
+      "en": "Dent",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "缩水",
+      "en": "Sink Mark",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "飞边",
+      "en": "Flash",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Burr Flash"
+      ],
+      "freq": 620
+    },
+    {
+      "zh": "砂眼",
+      "en": "Blowhole",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Porosity"
+      ],
+      "freq": 620
+    },
+    {
+      "zh": "凹坑",
+      "en": "Pit",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "压伤",
+      "en": "Press Mark",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "水纹",
+      "en": "Flow Mark",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "熔接线",
+      "en": "Weld Line",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Knit Line"
+      ],
+      "freq": 620
+    },
+    {
+      "zh": "银纹",
+      "en": "Silver Streak",
+      "brief": "表面缺陷",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 620
+    },
+    {
+      "zh": "开粗",
+      "en": "Roughing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Rough Machining"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "清角",
+      "en": "Corner Cleaning",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "扩孔",
+      "en": "Hole Enlarging",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Counterboring"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "锪孔",
+      "en": "Spot Facing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin": "huokong"
+    },
+    {
+      "zh": "深孔钻",
+      "en": "Deep Hole Drilling",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "滚花",
+      "en": "Knurling",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "拉削",
+      "en": "Broaching",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin": "laxiao"
+    },
+    {
+      "zh": "插齿",
+      "en": "Gear Shaping",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "滚齿",
+      "en": "Gear Hobbing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "剃齿",
+      "en": "Gear Shaving",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "磨齿",
+      "en": "Gear Grinding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "超精加工",
+      "en": "Superfinishing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "倒钝",
+      "en": "Edge Breaking",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Edge Blunting"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "加工中心",
+      "en": "Machining Center",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CNC Center"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "数控机床",
+      "en": "CNC Machine Tool",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CNC"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "数控编程",
+      "en": "CNC Programming",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CAM Programming"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "刀具",
+      "en": "Cutting Tool",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "刀柄",
+      "en": "Tool Holder",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "量具",
+      "en": "Measuring Tool",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "千分尺",
+      "en": "Micrometer",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "三坐标",
+      "en": "Coordinate Measuring Machine",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "CMM"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "粗糙度仪",
+      "en": "Roughness Tester",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "硬度计",
+      "en": "Hardness Tester",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "切削速度",
+      "en": "Cutting Speed",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin": "qiexiaosudu"
+    },
+    {
+      "zh": "切削深度",
+      "en": "Depth of Cut",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin": "qiexiaoshendu"
+    },
+    {
+      "zh": "切削用量",
+      "en": "Cutting Parameters",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin": "qiexiaoyongliang"
+    },
+    {
+      "zh": "主轴转速",
+      "en": "Spindle Speed",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "装夹",
+      "en": "Clamping",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Fixturing"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "找正",
+      "en": "Alignment",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "对刀",
+      "en": "Tool Setting",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "冷镦",
+      "en": "Cold Heading",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin": "lengdun"
+    },
+    {
+      "zh": "温锻",
+      "en": "Warm Forging",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "精铸",
+      "en": "Precision Casting",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "低压铸造",
+      "en": "Low-pressure Die Casting",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "LPDC"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "重力铸造",
+      "en": "Gravity Casting",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "级进模",
+      "en": "Progressive Die",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin_alt": [
+        "jijinmu"
+      ]
+    },
+    {
+      "zh": "单冲模",
+      "en": "Single-station Die",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700,
+      "pinyin_alt": [
+        "danchongmo"
+      ]
+    },
+    {
+      "zh": "模具间隙",
+      "en": "Die Clearance",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "试模",
+      "en": "Mold Trial",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Trial Run"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "修模",
+      "en": "Mold Repair",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "开模",
+      "en": "Mold Making",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "模具寿命",
+      "en": "Mold Life",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "电弧焊",
+      "en": "Arc Welding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "埋弧焊",
+      "en": "Submerged Arc Welding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "SAW"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "电阻焊",
+      "en": "Resistance Welding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "段焊",
+      "en": "Stitch Welding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "断续焊",
+      "en": "Intermittent Welding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "焊脚",
+      "en": "Weld Leg",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "焊前预热",
+      "en": "Preheating",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "焊后热处理",
+      "en": "Post-weld Heat Treatment",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "PWHT"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "焊接变形",
+      "en": "Welding Distortion",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "焊缝打磨",
+      "en": "Weld Seam Grinding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "感应淬火",
+      "en": "Induction Hardening",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "真空热处理",
+      "en": "Vacuum Heat Treatment",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "等温淬火",
+      "en": "Austempering",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "固溶处理",
+      "en": "Solution Treatment",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "固溶时效",
+      "en": "Solution Treatment and Aging",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "T6"
+      ],
+      "freq": 700
+    },
+    {
+      "zh": "球化退火",
+      "en": "Spheroidizing Annealing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "氮化",
+      "en": "Nitriding",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "淬火介质",
+      "en": "Quenching Medium",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "压装",
+      "en": "Press Fit",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "热装",
+      "en": "Shrink Fit",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "冷装",
+      "en": "Cold Fit",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "铆压",
+      "en": "Riveting",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "螺纹锁固",
+      "en": "Thread Locking",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "点胶",
+      "en": "Dispensing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "打胶",
+      "en": "Sealing",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "试装",
+      "en": "Trial Assembly",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "预装",
+      "en": "Pre-assembly",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "拆装",
+      "en": "Disassembly",
+      "brief": "加工工艺",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 700
+    },
+    {
+      "zh": "工艺文件",
+      "en": "Process Document",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "工艺卡",
+      "en": "Process Card",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "工序卡",
+      "en": "Operation Card",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "工艺参数",
+      "en": "Process Parameters",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "工艺规程",
+      "en": "Process Specification",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "工步",
+      "en": "Operation Step",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "工时",
+      "en": "Man-hour",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "标准工时",
+      "en": "Standard Time",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "模切",
+      "en": "Die Cutting",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Die-cut"
+      ],
+      "freq": 640
+    },
+    {
+      "zh": "刀模",
+      "en": "Cutting Die",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Die Board"
+      ],
+      "freq": 640
+    },
+    {
+      "zh": "裱纸",
+      "en": "Mounting",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "糊盒",
+      "en": "Box Gluing",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "压痕",
+      "en": "Creasing",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [
+        "Crease"
+      ],
+      "freq": 640
+    },
+    {
+      "zh": "开槽",
+      "en": "Slotting",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "色差仪",
+      "en": "Colorimeter",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "光泽度计",
+      "en": "Gloss Meter",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "膜厚仪",
+      "en": "Coating Thickness Gauge",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
+    },
+    {
+      "zh": "附着力测试",
+      "en": "Adhesion Test",
+      "brief": "制造流程",
+      "scene": "",
+      "software": [],
+      "scene_tags": [],
+      "standard": "",
+      "var_en": [],
+      "freq": 640
     }
   ]
 }

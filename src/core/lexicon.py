@@ -149,6 +149,9 @@ class LexiconManager:
         for t in self.all_terms:
             if t.pinyin:
                 self.term_index[t.pinyin].append(t)
+            for alt in t.pinyin_alt:
+                if alt and alt != t.pinyin:
+                    self.term_index[alt].append(t)
             if t.abbr:
                 self.abbr_index[t.abbr].append(t)
             # 中文按前缀建索引，支持"螺" -> "螺纹孔"

@@ -33,6 +33,12 @@ user32.GetForegroundWindow.argtypes = ()
 user32.GetForegroundWindow.restype = wintypes.HWND
 user32.IsWindowVisible.argtypes = (wintypes.HWND,)
 user32.IsWindowVisible.restype = wintypes.BOOL
+# 64 位下不声明 argtypes 会把 HWND 截断成 32 位（历史上踩过，pid 恒为 0）。
+user32.GetWindowThreadProcessId.argtypes = (wintypes.HWND,
+                                            ctypes.POINTER(wintypes.DWORD))
+user32.GetWindowThreadProcessId.restype = wintypes.DWORD
+user32.GetClassNameW.argtypes = (wintypes.HWND, wintypes.LPWSTR, ctypes.c_int)
+user32.GetClassNameW.restype = ctypes.c_int
 
 if imm32 is not None:
     imm32.ImmGetContext.argtypes = (wintypes.HWND,)
@@ -59,8 +65,21 @@ def _has_composition(hwnd: int) -> bool:
         imm32.ImmReleaseContext(hwnd, himc)
 
 
-def _ime_candidate_visible() -> bool:
-    """兜底判据：存在可见的系统 IME 候选窗（类名含 ime/candidate）。"""
+def _ime_candidate_visible(fg_hwnd: int) -> bool:
+    """兜底判据：**前台窗口所属进程**存在可见的 IME 候选窗。
+
+    v4.0.1 修：以前只按类名全局枚举，任何常驻的候选窗宿主都会被当成
+    「系统输入法正在组合」。本机实测微信常驻一个可见的
+    `Microsoft.IME.UIManager.CandidateWindow.Host / CandidateWindow`（pid 属于微信），
+    于是 system_ime_composing() 恒为 True —— 智语全程放行所有按键，
+    表现为"输入法突然不管用了"，且端到端测试随机全红。
+    别的进程的候选窗与本窗口输入状态无关，必须按 pid 过滤。
+    """
+    fg_pid = wintypes.DWORD(0)
+    if not user32.GetWindowThreadProcessId(fg_hwnd, ctypes.byref(fg_pid)):
+        return False
+    if not fg_pid.value:
+        return False
     found = False
 
     @ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
@@ -69,12 +88,21 @@ def _ime_candidate_visible() -> bool:
         if found or not user32.IsWindowVisible(hwnd):
             return True
         buf = ctypes.create_unicode_buffer(64)
-        if user32.GetClassNameW(hwnd, buf, 64):
-            name = buf.value.lower()
-            if "ime" in name or "candidate" in name:
-                found = True
-                return False
-        return True
+        if not user32.GetClassNameW(hwnd, buf, 64):
+            return True
+        name = buf.value.lower()
+        # MSCTFIME UI / Default IME 是每个线程都有的 IME 宿主窗口，
+        # 开着 IME 就存在，不代表"正在组合"—— 一律跳过。
+        if name in ("msctfime ui", "default ime", "ime"):
+            return True
+        if "cand" not in name and not name.startswith(("sopy", "qqpinyin")):
+            return True
+        pid = wintypes.DWORD(0)
+        user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+        if pid.value != fg_pid.value:
+            return True                  # 别的程序的候选窗，与本窗口无关
+        found = True
+        return False
 
     try:
         user32.EnumWindows(_enum_proc, 0)
@@ -96,6 +124,6 @@ def system_ime_composing(hwnd: int | None = None) -> bool:
             return False
         if _has_composition(hwnd):
             return True
-        return _ime_candidate_visible()
+        return _ime_candidate_visible(hwnd)
     except Exception:
         return False

@@ -143,22 +143,47 @@ class Translator:
 
     def extract_terms_back(self, src: str, limit: int = 24
                            ) -> list[tuple[str, str]]:
-        """从英文源句里抽出术语对（中文, 标准英文），供反向提示词做术语表。"""
-        words = [w for w in re.split(r"[^A-Za-z\-]+", src or "")
-                 if len(w) >= 3]
+        """从英文源句里抽出术语对（中文, 标准英文），供反向提示词做术语表。
+
+        v4.0.1 改成**短语级最长匹配**（原来按空格切词后逐词反查）。
+        为什么必须改：en_index 为了输入法反查会把英文切成单词，于是
+        "coating thickness" 里的 thickness 会命中「抽壳厚度」，
+        "aluminum housing" 里的 housing 会命中「公积金」—— 术语表被这些
+        跨词命中污染，等于把错译名写进提示词。现在只在词边界上按整短语
+        匹配，thickness 单独不再当作术语。
+        """
+        m = self.term_map_back()
+        text = re.sub(r"\s+", " ", (src or "")).strip().lower()
         out: list[tuple[str, str]] = []
+        if not m or len(text) < 3:
+            return out
         seen: set[str] = set()
-        for w in words:
-            try:
-                hits = self.engine.lexicons.find_by_en(w)[:3]
-            except Exception:
-                hits = []
-            for t in hits:
-                if not t.en or len(t.zh) < 2 or t.zh in seen:
-                    continue
-                seen.add(t.zh)
-                out.append((t.zh, t.en))
-                break
+        max_len = max((len(k) for k in m), default=0)
+        n = len(text)
+
+        def _is_word(ch: str) -> bool:
+            return ch.isalnum() or ch in "-/"
+
+        i = 0
+        while i < n:
+            hit = ""
+            if i == 0 or not _is_word(text[i - 1]):
+                for L in range(min(max_len, n - i), 1, -1):
+                    cand = text[i:i + L]
+                    if cand not in m:
+                        continue
+                    if i + L < n and _is_word(text[i + L]):
+                        continue
+                    hit = cand
+                    break
+            if hit:
+                zh = m[hit]
+                if zh not in seen:
+                    seen.add(zh)
+                    out.append((zh, hit))
+                i += len(hit)
+            else:
+                i += 1
             if len(out) >= limit:
                 break
         return out

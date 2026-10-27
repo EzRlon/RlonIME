@@ -222,8 +222,8 @@ _tmp.write_text(_json.dumps({
     ensure_ascii=False), encoding="utf-8")
 assoc2 = AssociationProvider(eng.lexicons, _tmp)
 sug2 = assoc2.suggest("沉孔", scene)
-check("白名单外词被丢弃（锪孔 / 不存在的词XYZ）",
-      "锪孔" not in sug2 and "不存在的词XYZ" not in sug2, f"-> {sug2}")
+check("白名单外词被丢弃（锪铣复合 / 不存在的词XYZ）",
+      "锪铣复合" not in sug2 and "不存在的词XYZ" not in sug2, f"-> {sug2}")
 check("白名单内词保留（通孔）", "通孔" in sug2, f"-> {sug2}")
 _tmp.unlink(missing_ok=True)
 

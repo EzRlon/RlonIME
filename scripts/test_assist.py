@@ -103,6 +103,17 @@ def test_translate() -> None:
     check("贪心最长匹配（螺纹孔不被切成 螺纹+孔）",
           ("螺纹孔", "Tapped Hole") in terms, str(terms))
 
+    # v4.0.1：英→中术语表改成「短语级最长匹配」。之前按空格切词反查，
+    # thickness 会单独命中「抽壳厚度」、housing 命中「公积金」，
+    # 术语表被污染后等于把错译名写进提示词。
+    back = tr.extract_terms_back(
+        "Black anodized aluminum housing, coating thickness min. 15um.")
+    zh_back = [z for z, _ in back]
+    check("英→中短语匹配（coating thickness→膜厚）", "膜厚" in zh_back, str(back))
+    check("英→中不把 thickness 乱配成抽壳厚度",
+          "抽壳厚度" not in zh_back, str(back))
+    check("英→中不把 housing 当成公积金", "公积金" not in zh_back, str(back))
+
     # L3 术语库整段覆盖
     r = tr.translate_local("沉孔、倒角", sc)
     check("L3 术语整段覆盖", r is not None and r.source == "term",

@@ -19,6 +19,9 @@ class Term:
     en: str                              # 英文术语，如 "Counterbore"
     pinyin: str = ""                     # 全拼，如 "chenkong"（构建期自动生成）
     abbr: str = ""                       # 首字母简拼，如 "ck"
+    # 备用读音（v4.0.1）：模具 mú/mó、单冲模 dān chōng mú/mó 这类两读都有人用，
+    # 只存一个拼写必然有一半人"打不出来"。备用读音单独建索引，命中同样算精确。
+    pinyin_alt: list[str] = field(default_factory=list)
     brief: str = ""                      # 简述
     scene: str = ""                      # 使用场景描述，如 "工程图孔标注"
     software: list[str] = field(default_factory=list)   # 适用软件 key

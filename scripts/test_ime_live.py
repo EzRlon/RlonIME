@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import ctypes
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -24,6 +25,29 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from PySide6.QtWidgets import QApplication, QTextEdit, QVBoxLayout, QWidget
 from core.ime import INPUT, KEYBDINPUT, KEYEVENTF_KEYUP, user32
+
+_PID_FILE = Path(os.environ.get("TEMP") or ".") / "rlon_live_src.pid"
+
+
+def _kill_src_instances() -> None:
+    """杀掉上一轮遗留的源码版实例（用 pid 文件，不按进程名扫）。
+
+    为什么不能 taskkill /IM python.exe：会把测试进程自己一起杀掉。
+    为什么不用 wmic 扫命令行：本机安全策略把 wmic.exe 拉黑了。
+    pid 文件覆盖"上一次正常启动过"的场景；被强杀的残留由人工清理。
+    """
+    try:
+        pid = int(_PID_FILE.read_text(encoding="utf-8").strip())
+    except Exception:
+        return
+    if pid <= 0 or pid == os.getpid():
+        return
+    try:
+        os.kill(pid, signal.SIGTERM)
+        print(f"[0] 清理源码版残留实例 pid={pid}")
+    except Exception:
+        pass
+
 
 def target_cmd() -> list:
     """被测程序：默认源码版；设 ZHIYU_TARGET 指向 exe 即可验安装版。
@@ -74,10 +98,13 @@ def _send(vk: int, up: bool) -> None:
     user32.SendInput(1, ctypes.byref(inp), _S)
 
 
-def tap(vk: int, gap: float = 0.012) -> None:
+def tap(vk: int, gap: float = 0.012, settle: float = 0.02) -> None:
     _send(vk, False)
     time.sleep(gap)
     _send(vk, True)
+    # 机器速度连打会让按键在队列里追尾（实测出现 c→y 这种乱序），
+    # 20ms 的收尾间隔接近人手速度，也让候选条 25ms 轮询跟得上。
+    time.sleep(settle)
 
 
 def chord(*vks: int) -> None:
@@ -120,12 +147,25 @@ def main() -> int:
     for _name in ("RlonIME.exe", "ZhiyuIME.exe"):
         subprocess.run(["taskkill", "/IM", _name, "/F"],
                        capture_output=True, check=False)
+    # 源码版更要清：它们都叫 python.exe，按名字杀会误伤自己；
+    # 残留实例会继续持有钩子，于是"候选条属于另一个 pid"，断言全乱。
+    _kill_src_instances()
     time.sleep(0.6)
 
     print("[0] 启动真实主程序 src/main.py")
+    # stderr 落文件：一是为了等 [READY]（钩子装好）再按键，二是失败时能看现场。
+    _log_path = Path(os.environ.get("TEMP") or ".") / "rlon_live_target.log"
+    try:
+        _log_fp = open(_log_path, "w", encoding="utf-8", errors="replace")
+    except Exception:
+        _log_fp = subprocess.DEVNULL
     proc = subprocess.Popen(target_cmd(),
                             cwd=str(ROOT), stdout=subprocess.DEVNULL,
-                            stderr=subprocess.DEVNULL)
+                            stderr=_log_fp)
+    try:
+        _PID_FILE.write_text(str(proc.pid), encoding="utf-8")
+    except Exception:
+        pass
     app = QApplication(sys.argv)
     win = QWidget()
     win.setWindowTitle("整机联调接收窗")
@@ -207,21 +247,29 @@ def main() -> int:
         return False
 
     def panels() -> list:
-        """候选窗 = 可见的、宽度落在 [168,640] 的 Qt Tool 窗口。
+        """候选窗 = **被测进程**的、可见的、宽度落在 [168,640] 的 Qt Tool 窗口。
 
-        全局枚举难免抓到别的程序的浮动 Tool 窗，因此叠加尺寸判据：
-        候选条是 FixedWidth 的无边框横条（自适应 168~640，高 36），很特征化。
+        v4.0.1 起按 pid 过滤：以前只按类名+宽度全局枚举，桌面上任何程序的
+        浮动 Tool 窗（微信提示、录屏浮层、SolidWorks 弹窗）都会被当成
+        「智语的候选条」，于是「启动后无候选窗常驻屏幕」随机假失败。
+        尺寸判据保留，用来排除同进程里的悬浮译钮等小窗。
         """
         out: list[int] = []
+        target_pid = proc.pid
 
         def cb(hwnd, _lp):
             cls = ctypes.create_unicode_buffer(200)
             user32.GetClassNameW(hwnd, cls, 200)
-            if "QWindowTool" in cls.value and user32.IsWindowVisible(hwnd):
-                r = (ctypes.c_long * 4)()
-                user32.GetWindowRect(hwnd, r)
-                if 168 <= (r[2] - r[0]) <= 640:
-                    out.append(int(hwnd))
+            if "QWindowTool" not in cls.value or not user32.IsWindowVisible(hwnd):
+                return True
+            _pid = wintypes.DWORD(0)
+            user32.GetWindowThreadProcessId(hwnd, ctypes.byref(_pid))
+            if _pid.value != target_pid:
+                return True
+            r = (ctypes.c_long * 4)()
+            user32.GetWindowRect(hwnd, r)
+            if 168 <= (r[2] - r[0]) <= 640:
+                out.append(int(hwnd))
             return True
 
         user32.EnumWindows(WNDENUMPROC(cb), 0)
@@ -235,8 +283,30 @@ def main() -> int:
         user32.GetWindowRect(ps[0], r)
         return (r[0], r[1], r[2] - r[0], r[3] - r[1])
 
+    def wait_ready(timeout: float = 25.0) -> bool:
+        """等到被测进程打印 [READY]（键盘钩子已安装）再开始按键。
+
+        固定 sleep 在桌面繁忙时不够：冷启动要加载 8 万条通用词库再装钩子，
+        实测偶发超过 3.5s；那段空窗里注入的字母会原样落进接收窗，
+        整段断言全部失真（表现为"字母没被吞""拼音直出"）。
+        """
+        end = time.time() + timeout
+        while time.time() < end:
+            try:
+                txt = _log_path.read_text(encoding="utf-8", errors="replace")
+            except Exception:
+                txt = ""
+            if "[READY]" in txt:
+                return True
+            if proc.poll() is not None:
+                return False
+            pump(100)
+        return False
+
     try:
-        pump(3500)
+        ck("主程序已就绪（键盘钩子已安装）", wait_ready(),
+           f"log={_log_path}")
+        pump(300)
         ck("主程序存活", proc.poll() is None)
         ck("启动后无候选窗常驻屏幕", len(panels()) == 0,
            f"窗口={panels()}")
@@ -258,7 +328,7 @@ def main() -> int:
            repr(edit.toPlainText()))
         popped = panels()
         ck("候选窗自动弹出", len(popped) >= 1,
-           f"候选窗={panels()}")
+           f"候选窗={panels()} proc={proc.pid}")
         ck("候选窗没抢走焦点",
            int(user32.GetForegroundWindow() or 0) == int(win.winId()),
            f"fg={user32.GetForegroundWindow()} self={int(win.winId())}")
@@ -269,7 +339,9 @@ def main() -> int:
         print("[2] 敲数字 1 选首候选")
         tapk(0x31)
         pump(1000)
-        ck("术语上屏到焦点窗口", edit.toPlainText().startswith("沉孔"),
+        ck("术语上屏到焦点窗口",
+           edit.toPlainText().endswith("沉孔")
+           and "chenkong" not in edit.toPlainText(),
            repr(edit.toPlainText()))
         # T04 起：上屏后可能进入「联想态」（联想词窗口保持约 3 秒后自动收起）。
         # 这里验的是终态：要么立即收起，要么联想态在 3.5s 内自动收起。
@@ -297,6 +369,7 @@ def main() -> int:
         focus_self()
         chord(0x11, 0x20)
         pump(500)
+        focus_self()                # Ctrl+Space 可能把前台交给系统输入法状态窗
         close_system_ime()          # Ctrl+Space 会同时切到系统输入法，关掉它
         for ch in "xy":
             tapk(ord(ch.upper()))
@@ -307,6 +380,7 @@ def main() -> int:
         print("[5] 再按 Ctrl+Space 恢复接管")
         chord(0x11, 0x20)
         pump(500)
+        focus_self()                # 同上：上屏走 SendInput，前台必须是接收窗
         close_system_ime()
         before = edit.toPlainText()
         for ch in "kong":
