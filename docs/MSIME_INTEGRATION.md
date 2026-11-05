@@ -88,7 +88,7 @@ DeepSeek / OpenAI / SiliconFlow / Groq。RlonIME 生成 3 套专业术语导向�
 
 启动 RlonIME → 候选条顶行点 **Ⓘ（关于）** → 点 **「导出水杉词库」**。
 
-产物位于 `%APPDATA%\ZhiyuIME\msime_export\`：
+产物位于 `%APPDATA%\RlonIME\msime_export\`：
 
 | 文件 | 用途 |
 |---|---|
@@ -106,7 +106,7 @@ DeepSeek / OpenAI / SiliconFlow / Groq。RlonIME 生成 3 套专业术语导向�
 **重启输入法**生效。
 
 ```powershell
-Copy-Item "$env:APPDATA\ZhiyuIME\msime_export\custom_translations.txt" `
+Copy-Item "$env:APPDATA\RlonIME\msime_export\custom_translations.txt" `
           "$env:LOCALAPPDATA\metasequoiaime\" -Force
 ```
 

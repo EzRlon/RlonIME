@@ -1,4 +1,4 @@
-# RlonIME（智语）· 工程领域中文输入法与术语翻译助手
+# RlonIME · 工程领域中文输入法与术语翻译助手
 
 **一个真正接管键盘的输入法，不是弹窗工具。** 在任意 Windows 软件里敲拼音直接出专业术语候选；
 选中中文按一次热键，就地替换成符合行业术语规范的英文。
@@ -58,7 +58,7 @@
 
 ### 安装版
 
-到 [Releases](../../releases) 下载 `RlonIME_Setup_v4.0.0.exe`，双击安装（per-user，**不需要管理员权限**）。
+到 [Releases](../../releases/latest) 下载最新的 `RlonIME_Setup_v4.0.3.exe`，双击安装（per-user，**不需要管理员权限**）。
 
 - 安装目录：`%LOCALAPPDATA%\Programs\RlonIME`
 - 用户数据：`%APPDATA%\RlonIME`（卸载不删，词库与记忆库会保留）
@@ -141,7 +141,7 @@ python packaging/build.py --skip-exe   # 只重打安装包
 - 打包依赖：`pip install pyinstaller`、[Inno Setup 6](https://jrsoftware.org/isinfo.php)
 - UPX（可选）：把 `upx.exe` 放到 `packaging/tools/upx/`。**不加 `--clean`**，
   每轮自动使用新的 `distN` 目录（源码里有防呆）
-- 输出：`distN/ZhiyuIME/` 与 `distN/installer/RlonIME_Setup_vX.Y.Z.exe`
+- 输出：`distN/RlonIME/` 与 `distN/installer/RlonIME_Setup_vX.Y.Z.exe`
 
 ## 测试
 
