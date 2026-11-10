@@ -26,6 +26,7 @@ from PySide6.QtWidgets import (
 )
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from core import secrets as _secrets                   # noqa: E402  S03
 from core.config import get_config                    # noqa: E402
 from ui.design import DS                              # noqa: E402
 from ui.icons import IconWidget                       # noqa: E402
@@ -329,7 +330,7 @@ class IndustryPopup(_CardPopup):
 # ③ AI 增强弹窗（D3：Ⓐ → 开关 + 接口 + Key）
 # ================================================================
 class AiPopup(_CardPopup):
-    saved = Signal(dict)              # {enabled, base_url, model, api_key}
+    saved = Signal(dict)              # {enabled, base_url, model, api_key(密文), proxy}
     free_toggled = Signal(bool)       # v2.6：无 Key 时的免费在线翻译
 
     def __init__(self, llm_cfg: dict, parent=None, free_on: bool = True,
@@ -346,8 +347,11 @@ class AiPopup(_CardPopup):
         self.chk_free.setChecked(bool(free_on))
         self.chk_free.toggled.connect(self._on_free_toggled)
         self.body.addWidget(self.chk_free)
-        free_tip = QLabel("免费翻译由腾讯交互翻译 / 有道 / MyMemory 等公共接口提供（国内优先），"
-                          "会把「选中的文字」发送到公开服务；纯本地场景请关掉。"
+        free_tip = QLabel("开启后会把「选中的文字」发送到公开服务。"
+                          "默认只走境内两家：腾讯交互翻译(TranSmart)、有道；"
+                          "MyMemory / Google 等境外端点默认关闭，"
+                          "需在配置里显式开启 allow_overseas 才会兜底。"
+                          "纯本地/保密场景请保持关闭。"
                           "若提示「网络受限」，在下面「代理」填本机代理地址即可。")
         free_tip.setWordWrap(True)
         free_tip.setStyleSheet(f"color: {DS.TEXT_FAINT}; font-size: 10px;")
@@ -361,14 +365,17 @@ class AiPopup(_CardPopup):
         self.ed_model.setPlaceholderText("glm-4-flash")
         self.ed_api_key = QLineEdit()
         self.ed_api_key.setEchoMode(QLineEdit.EchoMode.Password)
-        self.ed_api_key.setPlaceholderText("API Key（仅存本机）")
+        self.ed_api_key.setPlaceholderText("API Key（DPAPI 加密后存本机配置）")
         # v3.0.1：网络代理。企业内网/防火墙常禁止程序直连外网，
         # 此时 AI 与免费翻译都会报 WinError 10013/18013，填这里即可。
         self.ed_proxy = QLineEdit()
         self.ed_proxy.setPlaceholderText("127.0.0.1:7890（留空=自动）")
         self.ed_base_url.setText(cfg.get("base_url", ""))
         self.ed_model.setText(cfg.get("model", ""))
-        self.ed_api_key.setText(cfg.get("api_key", ""))
+        # S03：回显时把 DPAPI 密文解密成明文（仍是 Password 掩码显示）；
+        # 老用户配置里的明文 Key 由 unprotect 原样返回，兼容不丢。
+        self.ed_api_key.setText(
+            _secrets.unprotect(str(cfg.get("api_key", "") or "")))
         self.ed_proxy.setText(proxy or "")
         for lab, ed in (("接口", self.ed_base_url),
                         ("模型", self.ed_model),
@@ -420,11 +427,14 @@ class AiPopup(_CardPopup):
         self.free_toggled.emit(bool(on))
 
     def _save(self) -> None:
+        # S03：落盘前用 DPAPI 加密，payload 键名不变，写进 config.json 的
+        # 不含明文；protect 失败返回空串（宁可让用户重填，也不写明文）。
+        raw_key = self.ed_api_key.text().strip()
         self.saved.emit({
             "enabled": self.chk_llm.isChecked(),
             "base_url": self.ed_base_url.text().strip(),
             "model": self.ed_model.text().strip(),
-            "api_key": self.ed_api_key.text().strip(),
+            "api_key": _secrets.protect(raw_key) if raw_key else "",
             "proxy": self.ed_proxy.text().strip(),
         })
         self.close()

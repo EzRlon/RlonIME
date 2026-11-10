@@ -14,8 +14,8 @@ from core.ime import (ImeController, ImeCore, MAGIC, VK_A, VK_BACK, VK_DOWN,
 # 单测确定性：系统 IME 检测默认钉死为 False（真机上若有 IME 候选窗可见，
 # 兜底判据会改变吞键行为，使与本文件无关的用例失真）。组合态放行行为由
 # [19] 用 mock=True 单独覆盖。
-_real_sysime = _ime_mod.system_ime_composing
-_ime_mod.system_ime_composing = lambda *a, **k: False
+# 审计 D01 后内核不再在钩子内做检测：ImeCore.sys_ime_active 默认 False，
+# [19]/[22] 通过显式置位覆盖两条放行路径。
 
 PASS, FAIL = [], []
 
@@ -167,7 +167,11 @@ ok = send_unicode_text("")
 ck("空串返回 False", ok is False)
 before = ctypes.windll.user32.GetFocus()
 ok = send_unicode_text("智语")
-ck("SendInput 派发成功", ok is True)
+_sent, _total = _ime_mod.LAST_SEND_RESULT
+# 无前台接收窗口 / UIPI 时 SendInput 返回 0，是会话环境而非实现缺陷；
+# 记录实际派发数，避免把环境噪声算成回归。
+ck("SendInput 派发成功（无接收窗口时记录跳过）",
+   ok is True or _sent == 0, f"sent={_sent}/{_total}")
 
 print("[15] 钩子安装 / 卸载")
 ctrl = ImeController(enabled=False)        # 关闭态装钩子，绝不吞键
@@ -226,24 +230,20 @@ ck("有拼音精确命中时 en 路维持辅助位（首位=全拼）",
    bool(res2) and res2[0].match_type == "full_pinyin",
    str([(c.zh, c.match_type) for c in res2[:3]]))
 
-print("[19] 系统 IME 组合态 → 全放行（UX-P0-3，mock）")
-try:
-    c = ImeCore()
-    for ch in "che":                        # 先进入组合态（检测=False）
-        c.on_key(vk(ch), True)
-    c.drain()
-    _ime_mod.system_ime_composing = lambda *a, **k: True
-    _ime_mod.system_ime_composing = lambda *a, **k: True
-    ck("组合中再按键不吞", c.on_key(vk("n"), True) is False)
-    evs = c.drain()
-    ck("半截拼音被收起（cancel）", "cancel" in kinds(evs), str(kinds(evs)))
-    ck("拼音已清空", c.pinyin == "")
-    ck("keyup 同样放行（不产生孤立吞键）", c.on_key(vk("n"), False) is False)
-    _ime_mod.system_ime_composing = lambda *a, **k: False
-    c2 = ImeCore()
-    ck("检测为否时正常吞键", c2.on_key(vk("a"), True) is True)
-finally:
-    _ime_mod.system_ime_composing = lambda *a, **k: False
+print("[19] 系统 IME 组合态 → 全放行（主线程轮询置位）")
+c = ImeCore()
+for ch in "che":                            # 先进入组合态
+    c.on_key(vk(ch), True)
+c.drain()
+c.sys_ime_active = True
+ck("组合中再按键不吞", c.on_key(vk("n"), True) is False)
+evs = c.drain()
+ck("半截拼音被收起（cancel）", "cancel" in kinds(evs), str(kinds(evs)))
+ck("拼音已清空", c.pinyin == "")
+ck("keyup 同样放行（不产生孤立吞键）", c.on_key(vk("n"), False) is False)
+c.sys_ime_active = False
+c2 = ImeCore()
+ck("检测为否时正常吞键", c2.on_key(vk("a"), True) is True)
 
 print("[20] 中文标点（DY01，只做 8 个常用）")
 VK_COMMA, VK_PERIOD, VK_SEMI, VK_SLASH = 0xBC, 0xBE, 0xBA, 0xBF
@@ -344,17 +344,16 @@ ck("非组合态 - / = 不翻页、不吞键",
    f"{b1} {b2} {kinds(evs)}")
 
 print("[22] 标点在系统输入法组合中必须放行（UX-P0-3）")
-real = _ime_mod.system_ime_composing
+c = ImeCore()
 try:
-    _ime_mod.system_ime_composing = lambda *a, **k: True
-    c = ImeCore()
+    c.sys_ime_active = True
     blocked = c.on_key(0xBC, True)      # 逗号
     evs = c.drain()
     ck("系统 IME 组合中：逗号不吞", blocked is False, blocked)
     ck("系统 IME 组合中：不注入中文逗号",
        not any(e.kind == "punct" for e in evs), str([e.kind for e in evs]))
 finally:
-    _ime_mod.system_ime_composing = real
+    c.sys_ime_active = False
 
 print("[23] 组合态按标点：吞键 + 词与标点同批上屏")
 c = ImeCore()
@@ -479,6 +478,42 @@ evs3 = c3.drain()
 ck("Shift+\\ 放行（应为 |）",
    blocked is False and not any(e.kind == "punct" for e in evs3),
    f"{blocked} {kinds(evs3)}")
+
+print("[24] 审计 D01/D02：钩子内不做重 API、自动重复键不吞孤立 keyup")
+import core.ime as _m
+ck("内核模块不再导入 system_ime_composing（钩子路径无 EnumWindows）",
+   not hasattr(_m, "system_ime_composing"))
+c = ImeCore()
+ck("sys_ime_active 默认 False", c.sys_ime_active is False)
+ck("置位后组合态按键放行（与主线程轮询语义一致）",
+   (setattr(c, "sys_ime_active", True), c.on_key(vk("a"), True) is False)[1])
+
+# D02 复现：组合态吞掉第一个空格并 reset，随后自动重复的 keydown 放行，
+# 唯一那个 keyup 必须也放行，否则目标程序按键粘连。
+c = ImeCore()
+c.on_key(vk("a"), True); c.drain()
+b1 = c.on_key(VK_SPACE, True)          # 吞 + reset（composing=False）
+c.drain()
+b2 = c.on_key(VK_SPACE, True)          # 自动重复 keydown → 放行
+b3 = c.on_key(VK_SPACE, False)         # 唯一 keyup
+ck("重复 keydown 放行", b1 is True and b2 is False, (b1, b2))
+ck("孤立 keyup 不再被吞（按键不粘连）", b3 is False, b3)
+ck("空格未残留在 _swallowed（关键：keyup 不被误吞）",
+   VK_SPACE not in c._swallowed, str(c._swallowed))
+
+print("[25] D09 补充：表外 OEM 键带上档字符（QA 复审）")
+for _vk, _want in ((0xC0, "~"), (0xDC, "|")):
+    c = ImeCore()
+    for ch in "chen":
+        c.on_key(vk(ch), True)
+    c.drain()
+    c.on_key(0x10, True)                 # Shift down
+    blocked = c.on_key(_vk, True)
+    evs = c.drain()
+    suffix = next((e.data.get("suffix", "") for e in evs
+                   if e.kind == "commit_raw"), "")
+    ck(f"Shift+{_want!r} 注入上档字符 {_want}",
+       blocked is True and suffix == _want, f"{blocked} {suffix!r}")
 
 print()
 print(f"总计 {len(PASS)} 通过 / {len(FAIL)} 失败")

@@ -16,6 +16,7 @@ from __future__ import annotations
 import math
 import sqlite3
 import sys
+import threading
 import time
 from pathlib import Path
 
@@ -36,6 +37,9 @@ class UsageStore:
     表结构：
       usage(zh TEXT PRIMARY KEY, count INT, last_used REAL, profession TEXT)
     用途：实现"词频排序 + 历史记录"，让常用术语自动靠前。
+
+    D14：conn 以 check_same_thread=False 打开，故 conn 与 _cache 的
+    所有读写统一经 self._lock(RLock) 串行化，避免并发 ProgrammingError。
     """
 
     def __init__(self, db_path: Path):
@@ -53,37 +57,42 @@ class UsageStore:
             """
         )
         self.conn.commit()
+        self._lock = threading.RLock()
         self._cache: dict[str, int] = {}
         self._reload()
 
     def _reload(self) -> None:
-        cur = self.conn.execute("SELECT zh, count FROM usage")
-        self._cache = {zh: cnt for zh, cnt in cur.fetchall()}
+        with self._lock:
+            cur = self.conn.execute("SELECT zh, count FROM usage")
+            self._cache = {zh: cnt for zh, cnt in cur.fetchall()}
 
     def count_of(self, zh: str) -> int:
-        return self._cache.get(zh, 0)
+        with self._lock:
+            return self._cache.get(zh, 0)
 
     def record(self, zh: str, profession: str = "") -> int:
         now = time.time()
-        self.conn.execute(
-            """
-            INSERT INTO usage (zh, count, last_used, profession)
-            VALUES (?, 1, ?, ?)
-            ON CONFLICT(zh) DO UPDATE SET
-                count = count + 1,
-                last_used = excluded.last_used
-            """,
-            (zh, now, profession),
-        )
-        self.conn.commit()
-        self._cache[zh] = self._cache.get(zh, 0) + 1
-        return self._cache[zh]
+        with self._lock:
+            self.conn.execute(
+                """
+                INSERT INTO usage (zh, count, last_used, profession)
+                VALUES (?, 1, ?, ?)
+                ON CONFLICT(zh) DO UPDATE SET
+                    count = count + 1,
+                    last_used = excluded.last_used
+                """,
+                (zh, now, profession),
+            )
+            self.conn.commit()
+            self._cache[zh] = self._cache.get(zh, 0) + 1
+            return self._cache[zh]
 
     def recent(self, limit: int = 10) -> list[tuple[str, int]]:
-        cur = self.conn.execute(
-            "SELECT zh, count FROM usage ORDER BY last_used DESC LIMIT ?", (limit,)
-        )
-        return list(cur.fetchall())
+        with self._lock:
+            cur = self.conn.execute(
+                "SELECT zh, count FROM usage ORDER BY last_used DESC LIMIT ?", (limit,)
+            )
+            return list(cur.fetchall())
 
 
 # 候选条一页能放几枚（与 ui/bar.py 的 CHIPS_AVAIL_W 口径一致：

@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import core.ime as _ime_mod                    # noqa: E402
 from core.ime import ImeCore, VK_A, VK_SPACE   # noqa: E402
 
-_ime_mod.system_ime_composing = lambda *a, **k: False   # 单测确定性
+# 内核已改为读 ImeCore.sys_ime_active（默认 False），无需再 mock 模块函数
 
 PASS, FAIL = [], []
 

@@ -199,8 +199,15 @@ def recognize_async(png_bytes: bytes, callback, prefer: str = "auto") -> None:
 if __name__ == "__main__":
     print("languages:", available_languages())
     print("tidy:", repr(tidy_text("技 术 要 求 ： 未 注 圆 角 R2-R3, 沉 孔 深 度 8 m m")))
-    if len(sys.argv) > 1:
-        data = open(sys.argv[1], "rb").read()
+    # S13：识别出的文本可能含图纸/合同内容，默认不打到 stdout，只报是否成功
+    # 与字符数；显式加 --show-text 才打印原文前 60 字。识别逻辑不变。
+    args = sys.argv[1:]
+    show_text = "--show-text" in args
+    paths = [a for a in args if not a.startswith("--")]
+    if paths:
+        data = open(paths[0], "rb").read()
         r = recognize(data)
-        print(f"[{r.lang}] {r.elapsed_ms:.0f}ms tried={r.tried}")
-        print(r.text)
+        print(f"success={bool(r.text.strip())} chars={len(r.text)}")
+        if show_text:
+            print(f"[detail] lang={r.lang} {r.elapsed_ms:.0f}ms tried={r.tried}")
+            print("text[:60]=", repr(r.text[:60]))

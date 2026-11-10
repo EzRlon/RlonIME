@@ -14,16 +14,27 @@
 ;  - v4.0 品牌统一：进程名 / 安装目录 / 数据目录全部改为 RlonIME。
 ;    升级时由程序把旧目录的 config.json 与 %APPDATA%\ZhiyuIME 的用户数据搬过来；
 ;    本脚本负责关掉旧进程、清掉旧的开机自启项、删掉旧的可执行文件（保留 data）。
+;
+;  S01 待架构改造：配置需先全部迁到 %APPDATA% 才能收紧安装目录权限。
+;  本轮**不改权限**（保持 {autopf}\RlonIME 与 PrivilegesRequired=lowest），原因：
+;    · 配置 data/config.json 实际写在安装目录 {app}\data，不是 %APPDATA%
+;      （src/core/paths.py 的 install_root()/data_root()，src/core/config.py:135，
+;       src/main.py 保存设置时也写回这里）。
+;    · 且 {app}\data 运行时要写：ensure_seed_data() 首次释放 seed、
+;      migrate_legacy_install() 搬旧配置、_upgrade_copied_config() 改写配置。
+;      所以它不是「只读 seed 资源」，普通用户权限必须对 {app}\data 可写。
+;    · 若改成 {pf}\RlonIME + PrivilegesRequired=admin，普通用户运行时写不进
+;      Program Files，配置保存和首次资源释放都会失败。先迁移配置再谈收紧。
 ; ============================================================
 
 #define MyAppName "RlonIME · 工程领域中文输入法"
 #define MyAppShortName "RlonIME"
-#define MyAppVersion "4.0.3"
+#define MyAppVersion "4.1.0"
 #define MyAppPublisher "Rlon"
 #define MyAppExeName "RlonIME.exe"
 #define LegacyExeName "ZhiyuIME.exe"
 ; SourceDir / OutputDir 由 packaging/build.py 在编译前动态改写
-#define SourceDir "..\dist33\RlonIME"
+#define SourceDir "..\dist43\RlonIME"
 
 [Setup]
 ; AppId 保持不变：让新版被识别为「同一软件升级」，而不是并存安装两份。
@@ -35,7 +46,7 @@ AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\RlonIME
 DefaultGroupName={#MyAppShortName}
 DisableProgramGroupPage=yes
-OutputDir=..\dist33\installer
+OutputDir=..\dist43\installer
 OutputBaseFilename=RlonIME_Setup_v{#MyAppVersion}
 SetupIconFile=zhiyu.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}

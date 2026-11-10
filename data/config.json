@@ -1,5 +1,5 @@
 {
-  "version": "4.0.3",
+  "version": "4.1.0",
   "app_name": "RlonIME",
   "engine": "shuishan-rime-compatible",
   "profile": {
@@ -587,7 +587,9 @@
     "min_chars": 2,
     "fuzzy_threshold": 0.85,
     "show_result_ms": 4200,
-    "free_translate": true,
-    "proxy": ""
+    "free_translate": false,
+    "proxy": "",
+    "free_translate_declined": false,
+    "allow_overseas": false
   }
 }

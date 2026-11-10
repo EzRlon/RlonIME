@@ -4,6 +4,60 @@
 每次发版必须同步三处：`src/core/config.py`（APP_VERSION）、
 `packaging/installer.iss`（MyAppVersion）、`data/config.json`（version）。
 
+## v4.1.0 — 2026-11-10
+
+「全局审计整改」——按 `docs/audit_global_2026-11-10.md` 的 B0/B1 批次施工
+
+### 阻断项（B0）
+- **钩子内重 API 外移（D01）**：`ImeCore` 只读主线程轮询写入的 `sys_ime_active`；
+  `system_ime_composing()`（内部全局 EnumWindows + 跨进程 ImmGetContext）全项目仅
+  `_poll_sysime` 一处调用，间隔 250ms。修掉注释与实现矛盾。
+- **自动重复键按键粘连（D02）**：放行 keydown 时清掉 `_swallowed` 残留；加 3s 陈旧项
+  判定与集合上限。
+- **兜底热键跨线程调 Qt（D03）**：`keyboard` 回调只投递命令名，主线程 `_drain_results`
+  统一分发；删掉不再需要的 `HotkeyBridge`。
+
+### 输入与数据
+- D09 组合态表外符号与拼音同批上屏（不再出现符号跑到词前）；D16 SendInput 部分成功
+  不再整句重发；D17 `stop()` 超时显式卸钩、`start()` 拒绝并存两个全局钩子。
+- D04 `seg_codes()` 随词库加载失效（整句分段终于用上通用词库）；D15 `load_all()` 幂等；
+  D14 `UsageStore` 加锁 + 自定义词补中文索引；D07 记忆库返回副本、`_dirty` 进锁。
+- D08 超长无标点段按 480 字硬切；D21 英→中段间不插空格；D12 改代理即时生效；
+  D13 剪贴板 `try/finally` 还原 + 重入锁；D10/D11 动画复用与分页宽度口径统一；
+  D05 `close_panel()` 统一置 `collapsed`；D24 浮钮 NOACTIVATE 失败可重试。
+
+### 安全与合规
+- **S14/S15 免费翻译默认关闭 + 首次显式 opt-in**：同意弹窗列出全部接收方与出境提示，
+  默认「暂不开启」；`license.txt` 隐私声明按真实行为重写（原声明「不上传任何用户数据」
+  与实际外发矛盾，且写了不存在的热键）。境外兜底端点默认关闭（`allow_overseas`）。
+- **S03 API Key 用 Windows DPAPI 加密落盘**（`core/secrets.py`），兼容旧明文配置。
+- **S04 自定义端点校验**：拒绝 http 明文（本地自建除外）、私网/元数据/loopback、
+  非 http(s) scheme 与 userinfo；**S07** 响应体 1 MiB 上限；**S09** 词库路径不得越出
+  项目根目录；**S08** 词库/通用词典加载加大小、行数与字段校验。
+- S05 失败不再把同一文本重发到 4 家（生产路径境内两家）；S10 依赖双边区间 + 补齐
+  winrt 声明；S13 OCR 自检输出脱敏；D23 `EnumWindows` 补 ctypes 签名。
+
+### 功能：OCR 终于接线（A01）
+`Ctrl+Alt+O` / 托盘「截图取词」→ 框选 → Windows 内置离线 OCR → 结果卡 →
+复制或还原截图前窗口后插入。`core/ocr.py` / `ui/ocrcap.py` / `ui/ocrpopup.py`
+这 472 行原本是零接线死代码；spec 现在收集 `winrt` 命名空间包。
+本机实测 `zh-Hans-CN` 可用；英文图纸识别偏弱，需另装 `en-US` 语言包。
+
+### 本轮未做（如实说明）
+- **S01 安装目录权限**：`data/config.json` 就写在 `{app}\data`，硬改 Program Files +
+  admin 会让程序写不进配置；需先把全部用户数据迁到 %APPDATA% 才能收紧权限，留到下版。
+- **S02 密码框/安全桌面避让**：Win32 实现被环境安全策略拦下，本轮未实现、未绕过。
+- **上帝对象拆分**（A02/A03/A05 等）：`bar.py` 2186 行 / `main.py` 866 行 /
+  `hierarchy.py` 1000 行的结构性重构，动面过大，放到下一轮单独做。
+
+### 测试与交付
+安装版 dist43 冒烟：启动存活 / 单实例秒退 / `[READY]` / 无 Traceback；
+`ime_live`、`assist_live` 因当前会话**无前台窗口**（`GetForegroundWindow()==0`）连锁失真，属环境噪声，
+待用户回到桌面后真机验收。打包时另修正 `installer.iss` 源目录曾指向 dist33（v4.0.0 旧代码）的问题。
+源码 15 套全绿：ime 134 / leak 61 / common 82 / assist 54 / single 7 / chip 56 /
+cad 28 / floatbtn 31 / free 51 / dpi 8 / bar_move 46 / bar_qa 25 / ocr_wiring 20 /
+smoke_ui ALL / smoke_tray 22。新增 `test_bar_qa.py`、`test_ocr_wiring.py`。
+
 ## v4.0.3 — 2026-10-27
 
 按用户反馈修五处，其中两条是"用起来不对"的硬问题。

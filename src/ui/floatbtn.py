@@ -159,8 +159,10 @@ class FloatTranslateButton(QWidget):
         self.move(self.place_for(pos, (self.W, self.H)))
         self.show()
         if not self._noact:
-            make_no_activate(self)
-            self._noact = True
+            # D24：仅 Win32 标志位真正加上时才置位；
+            # 失败留待下次 popup 重试，绝不永久跳过。
+            if make_no_activate(self):
+                self._noact = True
         self.raise_()
         self._timer.start(AUTO_HIDE_MS)
 

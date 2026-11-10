@@ -40,6 +40,13 @@ user32.GetWindowThreadProcessId.restype = wintypes.DWORD
 user32.GetClassNameW.argtypes = (wintypes.HWND, wintypes.LPWSTR, ctypes.c_int)
 user32.GetClassNameW.restype = ctypes.c_int
 
+# D23：EnumWindows 不声明 argtypes 时，64 位下 LPARAM 会被按 32 位传递，
+# 回调原型也不匹配 —— 补上完整签名。WNDENUMPROC 提到模块级，供下面
+# _enum_proc 的装饰器直接复用（不再在函数内重复构造类型）。
+WNDENUMPROC = ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+user32.EnumWindows.argtypes = (WNDENUMPROC, wintypes.LPARAM)
+user32.EnumWindows.restype = wintypes.BOOL
+
 if imm32 is not None:
     imm32.ImmGetContext.argtypes = (wintypes.HWND,)
     imm32.ImmGetContext.restype = ctypes.c_void_p            # HIMC
@@ -82,7 +89,7 @@ def _ime_candidate_visible(fg_hwnd: int) -> bool:
         return False
     found = False
 
-    @ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+    @WNDENUMPROC
     def _enum_proc(hwnd, _lparam):
         nonlocal found
         if found or not user32.IsWindowVisible(hwnd):
@@ -115,7 +122,9 @@ def system_ime_composing(hwnd: int | None = None) -> bool:
     """系统输入法是否正处于组合态（有未决拼音串 / 候选窗可见）。
 
     任一判据命中即 True；任何异常一律返回 False（宁放行，不误吞）。
-    调用成本微秒级，可在键盘钩子决策路径内同步调用。
+    ⚠️ 审计 D01：本函数会做全局 EnumWindows 与跨进程 ImmGetContext，
+       只能在主线程轮询路径调用，结果写入 ImeCore.sys_ime_active；
+       **绝不可在 WH_KEYBOARD_LL 回调内同步调用**。
     """
     try:
         if hwnd is None:

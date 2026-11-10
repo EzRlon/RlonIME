@@ -31,7 +31,10 @@ from functools import lru_cache
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from core import secrets as _secrets                    # noqa: E402  S03
 from core.config import get_config
+# S04/S07：端点校验与响应上限直接复用 llm 模块，避免两份实现漂移（无循环依赖）
+from core.llm import read_limited, validate_endpoint    # noqa: E402
 from core.models import Candidate, SceneContext, Term
 
 
@@ -322,9 +325,15 @@ class SmartRecommender:
         self, query: str, scene: SceneContext, accepted: list[str],
         base: list[Suggestion]
     ) -> list[str]:
-        """实际发起大模型请求（OpenAI 兼容接口）。失败返回空列表。"""
-        api_key = self._llm_cfg.get("api_key", "")
-        base_url = self._llm_cfg.get("base_url", "https://api.openai.com/v1")
+        """实际发起大模型请求（OpenAI 兼容接口）。失败返回空列表。
+
+        S03：api_key 可能是 DPAPI 密文或旧明文，统一解密后再放进 Authorization。
+        S04：请求发出前校验端点；S07：响应体有字节上限。任何异常都降级为空列表。
+        """
+        # S03：兼容配置里的密文（新）与明文（老用户）
+        api_key = _secrets.unprotect(str(self._llm_cfg.get("api_key", "") or ""))
+        base_url = str(self._llm_cfg.get(
+            "base_url", "https://api.openai.com/v1") or "").rstrip("/")
         model = self._llm_cfg.get("model", "gpt-4o-mini")
         if not api_key:
             return []
@@ -345,18 +354,23 @@ class SmartRecommender:
             "temperature": 0.3,
             "max_tokens": 120,
         }
-        req = urllib.request.Request(
-            f"{base_url.rstrip('/')}/chat/completions",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {api_key}",
-            },
-            method="POST",
-        )
         try:
+            # S04：拒绝不安全的自定义端点，绝不静默改用别的地址
+            ok, why = validate_endpoint(base_url)
+            if not ok:
+                raise ValueError(f"接口地址不安全：{why}")
+            req = urllib.request.Request(
+                f"{base_url}/chat/completions",
+                data=json.dumps(payload).encode("utf-8"),
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {api_key}",
+                },
+                method="POST",
+            )
+            # S07：带字节上限读取，防被劫持端点把托盘进程撑爆
             with urllib.request.urlopen(req, timeout=6) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
+                data = json.loads(read_limited(resp).decode("utf-8"))
             text = data["choices"][0]["message"]["content"]
             return [p.strip() for p in re.split(r"[、,，\n]", text) if p.strip()][:8]
         except Exception:

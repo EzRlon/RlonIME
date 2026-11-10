@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 # config.json —— 否则老用户升级后托盘/关于页仍显示旧名与旧版本号。
 # 更新发布版本时改这里 + packaging/installer.iss + data/config.json 三处。
 APP_NAME = "RlonIME"
-APP_VERSION = "4.0.3"
+APP_VERSION = "4.1.0"
 
 # 热键内置默认值（全项目唯一允许出现热键字符串硬编码的地方，
 # 其余模块一律经 Config.hotkey() 取值）。
@@ -100,7 +100,10 @@ class AssistConfig:
     show_result_ms: int = 4200
     # v2.6：没有 API Key 时，选中即译走免费在线翻译（v4.0.3 起国内优先：腾讯 → 有道 → MyMemory → Google）。
     # 关掉 = 纯本地 + 大模型二选一（保密场景）。local_only=True 时强制关闭。
-    free_translate: bool = True
+    # v4.1（审计 S14/S15）：默认关闭，首次使用前必须显式 opt-in。
+    free_translate: bool = False
+    free_translate_declined: bool = False   # 用户已拒绝过，不再反复弹窗
+    allow_overseas: bool = False            # 境外兜底端点（MyMemory/Google）
     # v2.8：截图取词（Windows 内置 OCR，离线）。没有语言包时自动降级提示。
     ocr: bool = True
     # v3.0.1：网络代理（"127.0.0.1:7890" 这种 host:port）。
@@ -272,7 +275,16 @@ class Config:
         local = data_root() / "lexicons"
         if local.exists():
             return local
-        return PROJECT_ROOT / self._raw_paths.get("lexicon_dir", "data/lexicons")
+        # 审计 S09：config.json 可被当前用户改写，路径不能越出项目根目录，
+        # 否则可诱导程序读取任意位置的 JSON。
+        raw = str(self._raw_paths.get("lexicon_dir", "data/lexicons") or "")
+        root = PROJECT_ROOT.resolve()
+        cand = (root / raw).resolve()
+        try:
+            cand.relative_to(root)
+        except ValueError:
+            cand = root / "data" / "lexicons"
+        return cand
 
     @property
     def common_dict_path(self) -> Path:

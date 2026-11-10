@@ -48,6 +48,8 @@ if os.path.exists(_assoc):
 hiddenimports = (
     collect_submodules("pypinyin")
     + ["keyboard", "pyperclip", "psutil", "pygetwindow"]
+    # v4.1：Windows 内置 OCR（winrt 命名空间包是动态导入，PyInstaller 扫不到）
+    + collect_submodules("winrt")
 )
 
 a = Analysis(

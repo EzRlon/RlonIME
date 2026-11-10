@@ -47,7 +47,8 @@ from core.config import (DEFAULT_HOTKEYS, Config,    # noqa: E402
                          get_config)
 from core.engine import TermEngine           # noqa: E402
 from core.free_translate import FreeTranslator  # noqa: E402
-from core.ime import ImeController, foreground_is_own_process   # noqa: E402
+from core.ime import (ImeController, foreground_is_own_process,  # noqa: E402
+                      send_unicode_text, set_foreground)
 from core.llm import PRESETS, LLMClient      # noqa: E402
 from core.memory import TranslationMemory    # noqa: E402
 from core.paths import bootstrap, user_data_root  # noqa: E402
@@ -59,7 +60,8 @@ from scene.detector import (SceneDetector, get_foreground_hwnd,  # noqa: E402
 from ui.bar import CandidateBar              # noqa: E402
 from ui.floatbtn import FloatTranslateButton, SelectionWatcher  # noqa: E402
 from ui.inserter import Inserter             # noqa: E402
-from ui.onboarding import WelcomeDialog, marker_path  # noqa: E402
+from ui.onboarding import (WelcomeDialog, marker_path,  # noqa: E402
+                           request_free_translate_consent)
 from ui.popups import (AboutPopup, AddWordPopup,      # noqa: E402
                        AiPopup, IndustryPopup)
 
@@ -122,13 +124,6 @@ def make_tray_icon(state: str = "") -> QIcon:
     return QIcon(pix)
 
 
-class HotkeyBridge(QObject):
-    """把后台线程事件安全投递到 Qt 主线程。"""
-
-    cycle_scope = Signal()
-    toggle_llm = Signal()
-
-
 class ZhiyuApp:
     def __init__(self, guard: SingleInstanceGuard | None = None):
         # 单实例门卫（main() 在构建本对象前已完成 try_acquire）
@@ -152,11 +147,14 @@ class ZhiyuApp:
         self.llm = LLMClient(_llm_cfg)
         self.memory = TranslationMemory(
             threshold=float(getattr(self.config.assist, "fuzzy_threshold", 0.85)))
+        # 审计 S14/S15：默认关闭，绝不未经同意外发选中文本。
         self._free_enabled = bool(getattr(self.config.assist,
-                                          "free_translate", True)) and not bool(
+                                          "free_translate", False)) and not bool(
             getattr(self.config.assist, "local_only", False))
         self.free_translator = FreeTranslator(enabled=self._free_enabled,
                                               proxy=_proxy)
+        self.free_translator.allow_overseas = bool(
+            getattr(self.config.assist, "allow_overseas", False))
         self.translator = Translator(self.engine, self.memory, self.llm,
                                      self.memory.threshold,
                                      free=self.free_translator)
@@ -189,6 +187,7 @@ class ZhiyuApp:
 
         # ---- 异步翻译结果回收（子线程 -> 主线程）----
         self._results: queue.Queue = queue.Queue()
+        self._fallback_hotkeys: queue.Queue = queue.Queue()   # D03
         self._pump = QTimer()
         self._pump.setInterval(50)
         self._pump.timeout.connect(self._drain_results)
@@ -197,6 +196,13 @@ class ZhiyuApp:
         self._free_told = False                      # 免费翻译首用提示只弹一次
         self._last_follow = 0.0                      # 单击跟随去抖（双击会发两次）
         self._busy = False
+        # ---- v4.1 审计整改 ----
+        self._translate_gen = 0          # D06：丢弃过期异步结果
+        self._translate_hwnd = 0         # D06：结果只回原窗口
+        self.ocr_overlay = None          # A01：截图取词
+        self.ocr_popup = None
+        self._ocr_hwnd = 0
+        self._ocr_busy = False
 
         # v2.2 配套弹窗（懒建；设置中心已并入候选条顶行图标）
         self._popup_add: AddWordPopup | None = None
@@ -232,7 +238,7 @@ class ZhiyuApp:
         # 与用户暂停是两条独立路径；tooltip 如实反映当前处于哪条。
         self._sysime_active = False
         self._sysime_poll = QTimer()
-        self._sysime_poll.setInterval(500)
+        self._sysime_poll.setInterval(250)     # D01：唯一检测点，缩短放行延迟
         self._sysime_poll.timeout.connect(self._poll_sysime)
         self._sysime_poll.start()
 
@@ -249,7 +255,12 @@ class ZhiyuApp:
                     0, lambda c=pending: self._raise_slot(c))
 
     def _poll_sysime(self) -> None:
+        """审计 D01：全项目**唯一**调用 system_ime_composing() 的地方。
+
+        结果写给内核的布尔，钩子回调只读布尔、绝不自己枚举窗口。
+        """
         active = bool(self.ime.enabled) and system_ime_composing()
+        self.ime.core.sys_ime_active = active
         if active == self._sysime_active:
             return
         self._sysime_active = active
@@ -377,14 +388,27 @@ class ZhiyuApp:
             self.bar.show_hint("选中内容太短，看不出语境", "warn")
             return
 
+        # 审计 D06：记录发起时的窗口与代次，异步结果回来后逐项比对。
+        self._translate_gen += 1
+        gen = self._translate_gen
+        self._translate_hwnd = get_foreground_hwnd()
+        allow_llm = not bool(getattr(assist, "local_only", False))
+        # 审计 S14：没 Key 且免费翻译未开启时先征求显式同意；拒绝则本次
+        # 只走本地词库，绝不把选中文本发到任何外部服务。
+        if allow_llm and not self.llm.available and not self._free_enabled:
+            if not self._ensure_free_consent():
+                # 显式短路：用户拒绝后本次绝不使用任何在线通道，
+                # 不依赖 free.enabled / llm.available 的间接保证。
+                allow_llm = False
+
         back = not _has_cjk(src)          # 纯英文（含句中夹符号）→ 英→中
         self._busy = True
         self.bar.show_hint("正在回译…" if back else "正在翻译…", "ai")
 
         def _done(result) -> None:
-            self._results.put(("translation", result))
+            self._results.put(("translation",
+                               (result, gen, self._translate_hwnd)))
 
-        allow_llm = not bool(getattr(assist, "local_only", False))
         if back:
             local = self.translator.translate_back_async(
                 src, self.bar.scene, _done, allow_llm=allow_llm)
@@ -393,9 +417,15 @@ class ZhiyuApp:
                 src, self.bar.scene, _done, allow_llm=allow_llm)
         if local is not None:                # 本地命中，零等待
             self._busy = False
-            self._apply_translation(local)
+            self._apply_translation(local, self._translate_hwnd)
 
-    def _apply_translation(self, result) -> None:
+    def _apply_translation(self, result, expected_hwnd: int = 0) -> None:
+        # 审计 D06：翻译耗时数秒，期间用户可能切窗口/改选区。
+        # 窗口已变则**绝不上屏**，只把结果展示出来，避免打进错误窗口。
+        if expected_hwnd and get_foreground_hwnd() != expected_hwnd:
+            self.bar.show_result(result)
+            self.bar.show_hint("窗口已切换，译文未上屏", "warn")
+            return
         if not result.ok:
             self.bar.show_hint(result.error or "翻译失败", "err")
             return
@@ -448,7 +478,18 @@ class ZhiyuApp:
         self.bar.show_hint(f"已学习：{short}", "memory")
 
     def _drain_results(self) -> None:
-        """主线程消费后台翻译结果。"""
+        """主线程消费后台翻译结果与兜底热键命令。"""
+        # 审计 D03：keyboard 库的回调跑在它自己的工作线程，绝不能在那里
+        # 调 QWidget / 剪贴板。它只投递命令名，由这里统一分发。
+        while True:
+            try:
+                name = self._fallback_hotkeys.get_nowait()
+            except queue.Empty:
+                break
+            try:
+                self.on_hotkey(name)
+            except Exception:
+                pass
         while True:
             try:
                 kind, payload = self._results.get_nowait()
@@ -456,7 +497,13 @@ class ZhiyuApp:
                 break
             if kind == "translation":
                 self._busy = False
-                self._apply_translation(payload)
+                res, gen, hwnd = payload
+                if gen == self._translate_gen:      # 过期结果直接丢弃
+                    self._apply_translation(res, hwnd)
+            elif kind == "ocr":
+                res, err = payload
+                self._ocr_busy = False
+                self._show_ocr_result(res, err)
 
     # ================= 热键分发 =================
     def on_hotkey(self, name: str) -> None:
@@ -470,6 +517,8 @@ class ZhiyuApp:
             self.cycle_profession()
         elif name == "toggle_llm":
             self.toggle_llm()
+        elif name == "ocr_capture":
+            self.start_ocr()
 
     def toggle_llm(self) -> None:
         """Ctrl+Alt+S：一键开关大模型增强（保密场景常用）。"""
@@ -614,18 +663,115 @@ class ZhiyuApp:
                 "AI 增强已开启" if on else "AI 增强已关闭 · 纯本地",
                 "ai" if on else "ok")
 
+    def _ensure_free_consent(self) -> bool:
+        """审计 S14：首次使用在线翻译前显式 opt-in（默认绝不同意）。"""
+        if self._free_enabled:
+            return True
+        if bool(getattr(self.config.assist, "free_translate_declined", False)):
+            return False
+        try:
+            agreed = bool(request_free_translate_consent())
+        except Exception:
+            agreed = False
+        if agreed:
+            self.apply_free_translate(True)
+            return True
+        self.config.assist.free_translate_declined = True
+        self._persist("assist", {"free_translate_declined": True})
+        self.bar.show_hint(
+            "未开启在线翻译 · 本次仅用本地词库（Ⓐ 里可随时开启）", "warn")
+        return False
+
     def apply_free_translate(self, on: bool) -> None:
-        """v2.6：无 Key 免费翻译开关（立即生效并持久化）。"""
+        """无 Key 免费翻译开关（立即生效并持久化）。"""
         on = bool(on)
         self._free_enabled = on
         self.config.assist.free_translate = on
+        self.config.assist.free_translate_declined = False
         if self.free_translator is not None:
             self.free_translator.enabled = on
-        self._persist("assist", {"free_translate": on})
+        self._persist("assist", {"free_translate": on,
+                                 "free_translate_declined": False})
         self.bar.show_hint(
             "免费在线翻译已开启（选中文本会发到公开服务）" if on
             else "免费在线翻译已关闭（仅本地词库与 AI）",
             "ai" if on else "ok")
+
+
+    # ================= 截图取词（OCR，v4.1 / 审计 A01） =================
+    def start_ocr(self) -> None:
+        """Ctrl+Alt+O 或托盘菜单：框选屏幕区域 → Windows 内置离线 OCR。"""
+        if self._ocr_busy:
+            return
+        try:
+            from core import ocr as ocr_mod
+            from ui.ocrcap import CaptureOverlay
+        except Exception:
+            self.bar.show_hint("OCR 组件不可用", "err")
+            return
+        if not ocr_mod.is_available():
+            self.bar.show_hint(
+                "未检测到 Windows OCR 语言包（需安装中文或英文语言功能）",
+                "warn")
+            return
+        self._ocr_hwnd = get_foreground_hwnd()
+        ov = CaptureOverlay()
+        ov.captured.connect(self._on_ocr_captured)
+        ov.cancelled.connect(self._on_ocr_cancelled)
+        if not ov.start():
+            self.bar.show_hint("无法启动截图遮罩", "err")
+            return
+        self.ocr_overlay = ov
+        self._ocr_busy = True
+
+    def _on_ocr_cancelled(self) -> None:
+        self._ocr_busy = False
+        if self.ocr_overlay is not None:
+            self.ocr_overlay.hide()
+            self.ocr_overlay = None
+
+    def _on_ocr_captured(self, img) -> None:
+        """遮罩回调（主线程）。转 PNG 后交给工作线程识别。"""
+        from PySide6.QtCore import QBuffer, QIODevice
+        from core import ocr as ocr_mod
+        self._on_ocr_cancelled()
+        buf = QBuffer()
+        if not buf.open(QIODevice.OpenModeFlag.WriteOnly):
+            self.bar.show_hint("图像缓冲不可用", "err")
+            return
+        try:
+            if not img.save(buf, "PNG"):
+                self.bar.show_hint("截图编码失败", "err")
+                return
+            data = bytes(buf.data())
+        finally:
+            buf.close()
+        self.bar.show_hint("正在识别…", "ai")
+        # recognize_async 的回调在工作线程：只投递队列，绝不碰 Qt。
+        ocr_mod.recognize_async(
+            data, lambda r, e: self._results.put(("ocr", (r, e))))
+
+    def _show_ocr_result(self, res, err: str) -> None:
+        from ui.ocrpopup import OcrPopup
+        if res is None or not getattr(res, "text", ""):
+            self.bar.show_hint(
+                f"识别失败：{(err or '未识别到文字')[:40]}", "err")
+            return
+        pop = OcrPopup()
+        pop.insert_requested.connect(self._ocr_insert)
+        pop.show_result(res.text, res.lang, res.elapsed_ms,
+                        note="离线识别 · 「插入」回到截图前窗口")
+        pop.show()
+        self._place_popup(pop)
+        self.ocr_popup = pop
+
+    def _ocr_insert(self, text: str) -> None:
+        """还原截图前的窗口，再按项目红线用 SendInput Unicode 上屏。"""
+        if not text:
+            return
+        if self._ocr_hwnd:
+            set_foreground(self._ocr_hwnd)
+        QTimer.singleShot(140, lambda t=text: send_unicode_text(t))
 
     def open_about(self) -> None:
         """Ⓘ：关于弹窗（版本/作者 + 导出水杉词库）。"""
@@ -655,6 +801,8 @@ class ZhiyuApp:
         self.act_pause = menu.addAction("暂停拼音接管")
         self.act_pause.triggered.connect(lambda: self.toggle_ime())
         menu.addSeparator()
+        self.act_ocr = menu.addAction(f"截图取词（{self._hk('ocr_capture')}）")
+        self.act_ocr.triggered.connect(self.start_ocr)
         self.act_hotkeys = menu.addAction("快捷键速查…")
         self.act_hotkeys.triggered.connect(self.show_hotkey_reference)
         self.act_dir = menu.addAction("打开配置目录")
@@ -802,10 +950,7 @@ def main() -> int:
         print("[WARN] 热键配置校验未通过（内核已回退默认）: "
               + "；".join(hk_errs), file=sys.stderr)
 
-    bridge = HotkeyBridge()
-    bridge.cycle_scope.connect(zh.cycle_profession)
-    bridge.toggle_llm.connect(zh.toggle_llm)
-    _install_fallback_hotkeys(zh, bridge)
+    _install_fallback_hotkeys(zh)
 
     st = zh.engine.lexicons.stats()
     mem = zh.memory.stats()
@@ -831,7 +976,7 @@ def main() -> int:
     return app.exec()
 
 
-def _install_fallback_hotkeys(zh, bridge: HotkeyBridge) -> None:
+def _install_fallback_hotkeys(zh) -> None:
     """热键兜底通道。
 
     主通道是 core/ime.py 的全局钩子（零额外依赖、与拼音状态机同一份状态）。
@@ -843,21 +988,12 @@ def _install_fallback_hotkeys(zh, bridge: HotkeyBridge) -> None:
     try:
         import keyboard
         hk = zh.config.hotkey
-        keyboard.add_hotkey(
-            hk("translate_selection", DEFAULT_HOTKEYS["translate_selection"]),
-            zh.translate_selection)
-        keyboard.add_hotkey(
-            hk("mark_correction", DEFAULT_HOTKEYS["mark_correction"]),
-            zh.mark_correction)
-        keyboard.add_hotkey(
-            hk("toggle_panel", DEFAULT_HOTKEYS["toggle_panel"]),
-            zh.toggle_panel)
-        keyboard.add_hotkey(
-            hk("cycle_scope", DEFAULT_HOTKEYS["cycle_scope"]),
-            bridge.cycle_scope.emit)
-        keyboard.add_hotkey(
-            hk("toggle_llm", DEFAULT_HOTKEYS["toggle_llm"]),
-            bridge.toggle_llm.emit)
+        # 只投递命令名；真正的动作在 _drain_results（主线程）里执行。
+        for name in ("translate_selection", "mark_correction", "toggle_panel",
+                     "cycle_scope", "toggle_llm", "ocr_capture"):
+            keyboard.add_hotkey(
+                hk(name, DEFAULT_HOTKEYS[name]),
+                lambda n=name: zh._fallback_hotkeys.put(n))
     except Exception as e:
         print(f"[WARN] 兜底热键注册失败: {e}", file=sys.stderr)
 

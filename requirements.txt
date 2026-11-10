@@ -2,20 +2,49 @@
 # 智语 · 工程领域智能中文输入法  依赖清单
 # Python >= 3.10  (推荐 3.13)
 # ============================================================
+#
+# 依赖固定口径（审计 S10）：
+#   · 一律写成「>=下界,<上界」的兼容区间，不再用无上界的 >=，避免某天
+#     pip 拉到跨大版本的新包把 API 打断；也不写死 ==，方便收安全补丁。
+#   · 下界 = 本项目实测可用 / requirements 原本声明的最低版本；
+#     上界 = 下一个已知会破坏兼容性的主版本（不含）。
+#   · 带 ; sys_platform == "win32" 的只在 Windows 装（本项目是 Windows 输入法）。
+#   · pyperclip / psutil 被 packaging/zhiyu.spec 的 hiddenimports 强打，
+#     之前漏声明，现补齐，避免构建机与开发机环境漂移。
+# ============================================================
 
 # --- UI 层：无边框置顶候选窗 + 系统托盘 ---
 # PySide6（LGPL v3）：Qt 官方绑定，动态链接分发满足 relink 条款
 PySide6>=6.7.0,<7.0.0
 
 # --- 场景探测层：Win32 前台窗口 / 进程 / 键盘钩子 ---
-pywin32>=306 ; sys_platform == "win32"
-pygetwindow>=0.0.9 ; sys_platform == "win32"
+# pywin32：spec hiddenimports 未强打，src 里也 grep 不到任何 import，
+#          疑似历史残留 —— 待确认可移除（确认前保留，避免破坏构建）。
+pywin32>=306,<400 ; sys_platform == "win32"
+# pygetwindow：src/scene/detector.py 有真实 import（前台窗口信息），保留。
+pygetwindow>=0.0.9,<0.1.0 ; sys_platform == "win32"
+# psutil：src/scene/detector.py 用到，且 spec hiddenimports 强打；之前漏声明，补上。
+psutil>=5.9,<8.0
+# pyperclip：src/ui/inserter.py 用到，且 spec hiddenimports 强打；之前漏声明，补上。
+pyperclip>=1.8,<2.0
 
 # --- 拼音层：汉字转拼音（词库构建期使用，运行期读缓存） ---
-pypinyin>=0.51.0
+pypinyin>=0.51.0,<1.0.0
+
+# --- 离线 OCR：Windows.Media.Ocr（src/core/ocr.py，审计 S10 补齐） ---
+# 这些命名空间包由 winrt 项目按模块拆分发布，本机实测均为 3.2.1，
+# 随 3.x 一起发版；用 >=3.2,<4.0 锁在 3.x 内，跨 4.0 视为不兼容。
+# 仅 Windows 可安装（Windows Runtime），故加平台标记。
+winrt-runtime>=3.2,<4.0 ; sys_platform == "win32"
+winrt-Windows.Media.Ocr>=3.2,<4.0 ; sys_platform == "win32"
+winrt-Windows.Graphics.Imaging>=3.2,<4.0 ; sys_platform == "win32"
+winrt-Windows.Storage.Streams>=3.2,<4.0 ; sys_platform == "win32"
+winrt-Windows.Globalization>=3.2,<4.0 ; sys_platform == "win32"
+winrt-Windows.Foundation>=3.2,<4.0 ; sys_platform == "win32"
+winrt-Windows.Foundation.Collections>=3.2,<4.0 ; sys_platform == "win32"
 
 # --- 全局热键 ---
-keyboard>=0.13.5 ; sys_platform == "win32"
+keyboard>=0.13.5,<0.2.0 ; sys_platform == "win32"
 
 # --- 工具 ---
-colorama>=0.4.6
+colorama>=0.4.6,<0.5.0

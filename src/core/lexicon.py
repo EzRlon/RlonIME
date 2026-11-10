@@ -37,6 +37,63 @@ from core.models import Term
 # 缓存文件：避免每次启动都跑 pypinyin
 CACHE_VERSION = 3
 
+# S08：用户可写目录下词库 / 通用词库的加载上限（gzip bomb、巨型数组 DoS）。
+MAX_LEXICON_BYTES = 32 * 1024 * 1024     # 单文件 32 MiB
+MAX_COMMON_LINES = 200_000                # 通用词库解压后物理行数上限
+_MAX_TERM_STR = 512                       # 单个字符串字段最大长度
+_MAX_TERM_LIST = 256                      # 列表字段最大条目数
+_MAX_ZH = 64                              # 中文术语最大长度
+_MAX_TSV_LINE = 8192                      # 通用词库单行最大长度
+
+
+def _coerce_term(item) -> "Term | None":
+    """逐字段校验词库条目；非法条目返回 None（跳过而不是崩）。S08。
+
+    词库 JSON 来自用户可写目录，字段类型/长度不可信。校验放在
+    Term.from_dict 之前，避免畸形字段在拼音生成 / 建索引阶段抛异常。
+    """
+    if not isinstance(item, dict):
+        return None
+    zh = item.get("zh")
+    if not isinstance(zh, str) or not (0 < len(zh) <= _MAX_ZH):
+        return None
+    cleaned: dict = {"zh": zh}      # zh 是 Term 的必填字段
+    for k in ("en", "pinyin", "abbr", "brief", "scene", "standard",
+              "profession"):
+        if k not in item:
+            continue
+        v = item[k]
+        if v is None:
+            v = ""
+        if not isinstance(v, str) or len(v) > _MAX_TERM_STR:
+            return None
+        cleaned[k] = v
+    for k in ("pinyin_alt", "software", "scene_tags", "var_en"):
+        if k not in item:
+            continue
+        v = item[k]
+        if v is None:
+            v = []
+        if not isinstance(v, list) or len(v) > _MAX_TERM_LIST:
+            return None
+        if any(not isinstance(x, str) or len(x) > _MAX_TERM_STR for x in v):
+            return None
+        cleaned[k] = v
+    if "freq" in item:
+        f = item["freq"]
+        if isinstance(f, bool) or not isinstance(f, int) or f < 0:
+            return None
+        cleaned["freq"] = f
+    if "custom" in item:
+        c = item["custom"]
+        if not isinstance(c, bool):
+            return None
+        cleaned["custom"] = c
+    try:
+        return Term.from_dict(cleaned)
+    except Exception:
+        return None
+
 
 def pinyin_of(text: str) -> str:
     """汉字 -> 全拼小写，无分隔。'螺纹孔' -> 'luowenkong'"""
@@ -65,17 +122,27 @@ class Lexicon:
     def load(self) -> "Lexicon":
         if not self.path.exists():
             raise FileNotFoundError(f"词库文件不存在: {self.path}")
+        # S08：单文件大小上限，挡住可写目录下被替换的巨型 JSON。
+        if self.path.stat().st_size > MAX_LEXICON_BYTES:
+            raise ValueError(f"词库文件过大(>{MAX_LEXICON_BYTES}B): {self.path}")
 
         with open(self.path, "r", encoding="utf-8") as f:
             raw = json.load(f)
+        if not isinstance(raw, dict):
+            raise ValueError(f"词库根节点不是对象: {self.path}")
+        terms = raw.get("terms", [])
+        if not isinstance(terms, list):
+            raise ValueError(f"词库 terms 不是数组: {self.path}")
 
         self.name = raw.get("name", self.profession)
         self.description = raw.get("description", "")
         self.version = raw.get("version", "0.0.0")
 
         seen: set[str] = set()
-        for item in raw.get("terms", []):
-            t = Term.from_dict(item)
+        for item in terms:
+            t = _coerce_term(item)          # S08：非法条目跳过而不是崩
+            if t is None:
+                continue
             if self.override_profession:
                 t.profession = self.profession
             # 拼音由 pypinyin 自动生成（若词库未显式提供）
@@ -120,6 +187,10 @@ class LexiconManager:
 
     # ---------- 加载 ----------
     def load_all(self) -> "LexiconManager":
+        # D15：幂等 —— 每次都从空表重建（同时保留配置热重载能力），
+        # 重复调用不会让 all_terms / 各索引翻倍。
+        self.lexicons.clear()
+        self.all_terms.clear()
         for prof_key, lex_path in self.config.all_lexicon_paths():
             try:
                 lex = Lexicon(prof_key, lex_path).load()
@@ -175,6 +246,8 @@ class LexiconManager:
 
         self.zh_set = {t.zh for t in self.all_terms}
         self._indexed = True
+        # D04：索引重建后整句分段码表必须失效，下次 seg_codes() 重算。
+        self._seg_codes = None
 
     # ---------- 查询辅助 ----------
     def get_terms(self, profession: str | None = None) -> list[Term]:
@@ -202,10 +275,20 @@ class LexiconManager:
         p = path or self.config.common_dict_path
         if not p.exists():
             return 0
+        # S08：压缩文件设大小上限；解压后物理行数另设上限防 gzip bomb，
+        # 超长单行也直接跳过（84545 行的正常词库远低于这些阈值）。
+        if p.stat().st_size > MAX_LEXICON_BYTES:
+            return 0
         idx: dict[str, list[tuple[str, str, int, int]]] = {}
         count = 0
+        lines = 0
         with gzip.open(p, "rt", encoding="utf-8") as f:
             for line in f:
+                lines += 1
+                if lines > MAX_COMMON_LINES:
+                    break
+                if len(line) > _MAX_TSV_LINE:
+                    continue
                 parts = line.rstrip("\n").split("\t")
                 if len(parts) != 5:
                     continue
@@ -222,6 +305,8 @@ class LexiconManager:
         self.common_keys = sorted(idx)
         self.common_count = count
         self.common_loaded = True
+        # D04：通用词库就位后整句分段码表必须失效，下次重算才含通用词条。
+        self._seg_codes = None
         return count
 
     def common_exact(self, code: str) -> list[tuple[str, str, int, int]]:
@@ -328,8 +413,14 @@ class LexiconManager:
         self.all_terms.append(term)
         self.term_index[term.pinyin].append(term)
         self.abbr_index[term.abbr].append(term)
+        # D14：补中文前缀索引与去重集，自定义词才能被中文反查 / 参与去重。
+        for i in range(1, len(term.zh) + 1):
+            self.zh_index[term.zh[:i]].append(term)
+        self.zh_set.add(term.zh)
         if term.en:
             self.en_index[term.en.lower()].append(term)
+        # D04：新增词条后整句分段码表失效。
+        self._seg_codes = None
 
     def save_custom(self, path: Path) -> int:
         customs = [t.to_dict() for t in self.all_terms if t.custom]
@@ -341,11 +432,21 @@ class LexiconManager:
     def load_custom(self, path: Path) -> int:
         if not path.exists():
             return 0
+        # S08：自定义词库同样来自用户可写目录，套用大小 / 条目校验。
+        if path.stat().st_size > MAX_LEXICON_BYTES:
+            return 0
         with open(path, "r", encoding="utf-8") as f:
             raw = json.load(f)
+        if not isinstance(raw, dict):
+            return 0
+        terms = raw.get("terms", [])
+        if not isinstance(terms, list):
+            return 0
         n = 0
-        for item in raw.get("terms", []):
-            t = Term.from_dict(item)
+        for item in terms:
+            t = _coerce_term(item)
+            if t is None:
+                continue
             prof = t.profession or self.config.profile.get("active_profession", "")
             t.profession = prof
             self.add_custom(t)

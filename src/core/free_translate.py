@@ -44,6 +44,8 @@ _MYMEMORY = "https://api.mymemory.translated.net/get"
 _GOOGLE = "https://translate.googleapis.com/translate_a/single"
 _UA = "RlonIME/2.6 (Windows IME; free translate)"
 _MAX_CHUNK = 480          # MyMemory 匿名单次上限 500 字节，留余量
+MAX_RESP_BYTES = 1 << 20  # S07：单次响应体上限 1 MiB
+MAX_TEXT_CHARS = 4000     # S05：待译文本总字符上限（超出直接拒绝，不静默截断）
 _POOL = ThreadPoolExecutor(max_workers=2, thread_name_prefix="RlonFree")
 
 # 本机常见代理端口（Clash / Clash Verge / v2rayN / 通用 HTTP 代理）。
@@ -160,7 +162,18 @@ def _open(url: str, timeout: float, proxy: str,
         url, data=data, headers=hdrs,
         method="POST" if data is not None else "GET")
     with opener.open(req, timeout=timeout) as resp:
-        return resp.read().decode("utf-8", "ignore")
+        # S07：被劫持端点可返回无限大响应体撑爆进程，先校验声明长度再限量读。
+        cl = resp.headers.get("Content-Length")
+        if cl is not None:
+            try:
+                if int(cl) > MAX_RESP_BYTES:
+                    raise FreeTranslateError("响应过大（Content-Length 超限）")
+            except (TypeError, ValueError):
+                pass
+        data = resp.read(MAX_RESP_BYTES + 1)
+        if len(data) > MAX_RESP_BYTES:
+            raise FreeTranslateError("响应过大，已丢弃")
+        return data.decode("utf-8", "ignore")
 
 
 def reset_route() -> None:
@@ -232,7 +245,9 @@ class _Fetcher:
 
     def __init__(self, get=None, prefer: str = ""):
         self._custom = get is not None
-        self._getter = get or (lambda url, timeout: _http_get(url, timeout, prefer))
+        # D12：默认 GET 不再闭包捕获局部 prefer，改为读实例属性 self.prefer，
+        # 这样 FreeTranslator.proxy setter 改 prefer 后无需重建即生效。
+        self._getter = get or (lambda url, timeout: _http_get(url, timeout, self.prefer))
         self.prefer = prefer
 
     def __call__(self, url: str, timeout: float) -> str:
@@ -350,13 +365,25 @@ _PROVIDERS: list[tuple[str, Callable[..., str]]] = [
 
 
 def _split(text: str, limit: int = _MAX_CHUNK) -> list[str]:
-    """长句按标点/空白切段（免费接口有长度上限）。"""
+    """长句按标点/空白切段（免费接口有长度上限）。
+
+    D08：单个无标点 piece 超过 limit 时按 limit 硬切成多段，
+    否则上千字的连续文本会作为 1 个 chunk 突破接口上限导致全链降级。
+    """
     if len(text) <= limit:
         return [text]
     out: list[str] = []
     buf = ""
     for piece in re.split(r"(?<=[，。；：！？,.;:!?\s])", text):
         if not piece:
+            continue
+        if len(piece) > limit:
+            # 先结算已攒的 buf，再对超长 piece 按 limit 硬切。
+            if buf:
+                out.append(buf)
+                buf = ""
+            for i in range(0, len(piece), limit):
+                out.append(piece[i:i + limit])
             continue
         if len(buf) + len(piece) > limit and buf:
             out.append(buf)
@@ -375,15 +402,32 @@ class FreeTranslator:
                  fetcher: Callable[[str, float], str] | None = None,
                  providers: list | None = None, proxy: str = ""):
         self.enabled = bool(enabled)
+        # 审计 S05/S16：默认只在境内两家（腾讯 transmart / 有道）之间降级；
+        # 境外端点（MyMemory / Google）必须用户显式开启才兜底。
+        self.allow_overseas = False
         self.timeout = float(timeout)
         self.last_error = ""
         self.last_detail = ""       # 原始错误串（日志/诊断用，不直接给用户看）
         self.last_provider = ""
         # 用户在设置里手填的代理（host:port）；留空 = 自动探测。
-        self.proxy = _split_hostport(proxy)
+        self.proxy = _split_hostport(proxy)      # 走 setter（此时 _fetch 尚未建）
         # 测试可注入纯 GET 函数；生产走带代理回退的 _Fetcher（GET + POST）
-        self._fetch = _Fetcher(fetcher, self.proxy)
+        self._fetch = _Fetcher(fetcher, self._proxy)
         self._providers = providers or _PROVIDERS
+
+    # D12：main.py 的 `self.free_translator.proxy = ...` 会走这个 setter，
+    # 同步 _Fetcher.prefer（默认 GET 闭包 / POST 都读它），新代理立即生效；
+    # 保持 self.proxy 可读、构造参数不变。
+    @property
+    def proxy(self) -> str:
+        return self._proxy
+
+    @proxy.setter
+    def proxy(self, value: str) -> None:
+        self._proxy = _split_hostport(value) if isinstance(value, str) else ""
+        fetch = getattr(self, "_fetch", None)
+        if fetch is not None:
+            fetch.prefer = self._proxy
 
     @property
     def available(self) -> bool:
@@ -397,19 +441,35 @@ class FreeTranslator:
             raise FreeTranslateError("空文本")
         if not self.enabled:
             raise FreeTranslateError("免费翻译已关闭")
+        # S05：待译文本总字符上限，超出直接拒绝，绝不静默截断后外发。
+        if len(text) > MAX_TEXT_CHARS:
+            msg = f"选中文本过长（{len(text)} 字，上限 {MAX_TEXT_CHARS}），已取消外发"
+            self.last_error = msg
+            self.last_detail = msg
+            raise FreeTranslateError(msg)
         errors: list[str] = []
         blocked = False
-        for name, fn in self._providers:
+        # S05：真联网（生产）模式失败即停止、不换家重发全文，避免同一份
+        # 选中文本被发往多家第三方；离线注入模式（测试用本地假 fetcher，
+        # 不产生任何外发）保留完整回退链以维持兼容与可测性。
+        providers = self._providers
+        if not self._fetch._custom:
+            # 生产路径：境内两家足够兜底，且不会把同一份文本发往 4 家。
+            # 离线注入模式（测试用假 fetcher、零外发）保留完整回退链。
+            providers = providers if self.allow_overseas else providers[:2]
+        # D21：英→中长文本段间不插空格，其余语言用单个空格。
+        joiner = "" if (dst or "").lower().startswith("zh") else " "
+        for name, fn in providers:
             try:
                 parts = [fn(chunk, src, dst, self.timeout, self._fetch)
                          for chunk in _split(text)]
-                out = " ".join(p for p in parts if p).strip()
+                out = joiner.join(p for p in parts if p).strip()
                 if out:
                     self.last_provider = name
                     self.last_error = ""
                     self.last_detail = ""
                     return out, name
-            except Exception as e:      # 换下一个提供方
+            except Exception as e:      # 生产模式仅此一家、记录即停；离线模式换下一位
                 errors.append(f"{name}: {e}")
                 if _is_link_blocked(e):
                     blocked = True

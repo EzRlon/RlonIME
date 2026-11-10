@@ -89,16 +89,17 @@ class OcrPopup(_CardPopup):
             bits.append(note)
         self.lab_meta.setText(" · ".join(bits))
         self.status.setText(
-            "Ctrl+C 可复制；「插入译文」会还原到你截图前的窗口光标处"
-            if self._dst else "正在翻译…")
+            "Ctrl+C 可复制；「插入」会还原到你截图前的窗口光标处"
+            if (self._dst or self._src) else "正在翻译…")
         self.btn_copy_dst.setEnabled(bool(self._dst))
-        self.btn_insert.setEnabled(bool(self._dst))
+        # v4.1：没有译文时「插入」应插入识别原文，否则截图取词不可用。
+        self.btn_insert.setEnabled(bool(self._dst or self._src))
 
     def set_translation(self, dst: str, note: str = "") -> None:
         self._dst = dst or ""
         self.ed_dst.setPlainText(self._dst)
         self.btn_copy_dst.setEnabled(bool(self._dst))
-        self.btn_insert.setEnabled(bool(self._dst))
+        self.btn_insert.setEnabled(bool(self._dst or self._src))
         self.status.setText(note or "")
 
     # ---------------- 动作 ----------------
@@ -110,7 +111,8 @@ class OcrPopup(_CardPopup):
         self.copy_requested.emit(text)
 
     def _insert(self) -> None:
-        if not self._dst:
+        text = self._dst or self._src
+        if not text:
             return
         self.hide()
-        self.insert_requested.emit(self._dst)
+        self.insert_requested.emit(text)

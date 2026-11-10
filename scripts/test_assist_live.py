@@ -192,7 +192,7 @@ def main() -> int:
     try:
         recv.focus_me()
         ck("接收窗取得前台焦点",
-           int(user32.GetForegroundWindow()) == int(recv.winId()))
+           int(user32.GetForegroundWindow() or 0) == int(recv.winId()))
 
         # ---- [1] 记忆库精确命中 ----
         print("[1] 选中中文 → Ctrl+Alt+T（应命中记忆库）")
@@ -207,7 +207,7 @@ def main() -> int:
            got == SEED_EN, f"实际={got[:70]!r}")
         ck("端到端延迟（含按键松开等待）< 2.5s", lat < 2.5, f"{lat:.2f}s")
         ck("接收窗全程未被候选条抢焦点",
-           int(user32.GetForegroundWindow()) == int(recv.winId()))
+           int(user32.GetForegroundWindow() or 0) == int(recv.winId()))
 
         # ---- [2] 术语库整段覆盖（另一个窗口，验证全局性）----
         print("[2] 换到第二个接收窗，验证全局可用（不绑定任何软件）")

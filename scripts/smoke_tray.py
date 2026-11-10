@@ -36,7 +36,7 @@ def main() -> int:
         menu = zh.tray.contextMenu()
         ck("托盘已挂右键菜单", menu is not None)
         labels = [a.text() for a in menu.actions() if not a.isSeparator()]
-        ck("菜单 5 项（不含分隔线）", len(labels) == 5, labels)
+        ck("菜单 6 项（含 v4.1 截图取词）", len(labels) == 6, labels)
         for want in ("候选条", "拼音接管", "快捷键速查", "配置目录", "退出"):
             ck(f"含「{want}」", any(want in x for x in labels), labels)
 

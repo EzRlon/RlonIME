@@ -27,7 +27,7 @@ import sqlite3
 import sys
 import threading
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -117,32 +117,36 @@ class TranslationMemory:
 
     # ---------------- 缓存 ----------------
     def _reload(self) -> None:
+        # D07：读库、重建缓存、清零 _dirty 全程在同一把锁内，
+        # 避免并发 learn 置位的 _dirty 被本次 _reload 末尾吞掉。
         with self._lock:
             cur = self._conn.execute(
                 "SELECT src, dst, industry, count, updated, source FROM pair"
             )
             rows = cur.fetchall()
-        exact: dict[str, Pair] = {}
-        pairs: list[tuple[str, Pair]] = []
-        for src, dst, industry, count, updated, source in rows:
-            p = Pair(src=src, dst=dst, industry=industry or "", count=count or 1,
-                     updated=updated or 0.0, source=source or "user")
-            n = normalize(src)
-            pairs.append((n, p))
-            # 同一中文原句可能有多条不同译法。排序优先级：
-            #   用户确认过的 > 出现次数 > 最近更新
-            # 这样 AI 产出的初稿永远不会盖掉用户亲手纠正过的译法。
-            key = (p.source == "user", p.count, p.updated)
-            old = exact.get(n)
-            if old is None or key > (old.source == "user", old.count, old.updated):
-                exact[n] = p
-        self._exact = exact
-        self._rows = pairs
-        self._dirty = False
+            exact: dict[str, Pair] = {}
+            pairs: list[tuple[str, Pair]] = []
+            for src, dst, industry, count, updated, source in rows:
+                p = Pair(src=src, dst=dst, industry=industry or "", count=count or 1,
+                         updated=updated or 0.0, source=source or "user")
+                n = normalize(src)
+                pairs.append((n, p))
+                # 同一中文原句可能有多条不同译法。排序优先级：
+                #   用户确认过的 > 出现次数 > 最近更新
+                # 这样 AI 产出的初稿永远不会盖掉用户亲手纠正过的译法。
+                key = (p.source == "user", p.count, p.updated)
+                old = exact.get(n)
+                if old is None or key > (old.source == "user", old.count, old.updated):
+                    exact[n] = p
+            self._exact = exact
+            self._rows = pairs
+            self._dirty = False
 
     def _ensure_fresh(self) -> None:
-        if self._dirty:
-            self._reload()
+        # D07：_dirty 的读与 _reload 同一临界区，判断与重建保持原子。
+        with self._lock:
+            if self._dirty:
+                self._reload()
 
     # ---------------- 查询 ----------------
     def exact(self, src: str, industry: str = "") -> Pair | None:
@@ -151,9 +155,11 @@ class TranslationMemory:
         n = normalize(src)
         if not n:
             return None
-        p = self._exact.get(n)
-        if p is None:
-            return None
+        with self._lock:
+            p = self._exact.get(n)
+            if p is None:
+                return None
+            p = replace(p)      # D07：返回副本，绝不外泄缓存内共享对象
         if industry and p.industry and p.industry != industry:
             # 命中但行业不同：仍算命中，只是降权（专业译法常有行业差异，
             # 但用户显然更想要「有个答案」而不是「没有答案」）
@@ -166,14 +172,17 @@ class TranslationMemory:
         return p
 
     def _best_for_industry(self, norm_src: str, industry: str) -> Pair | None:
-        best = None
-        for n, p in self._rows:
-            if n != norm_src or p.industry != industry:
-                continue
-            if best is None or (p.count, p.updated) > (best.count, best.updated):
-                best = p
-        if best is not None:
-            best.score = 1.0
+        with self._lock:
+            best = None
+            for n, p in self._rows:
+                if n != norm_src or p.industry != industry:
+                    continue
+                if best is None or (p.count, p.updated) > (best.count, best.updated):
+                    best = p
+            if best is None:
+                return None
+            best = replace(best)      # D07：副本
+        best.score = 1.0
         return best
 
     def fuzzy(self, src: str, industry: str = "",
@@ -181,14 +190,18 @@ class TranslationMemory:
         """模糊命中，返回相似度最高且 >= threshold 的一条。"""
         self._ensure_fresh()
         n = normalize(src)
-        if len(n) < 2 or not self._rows:
+        if len(n) < 2:
+            return None
+        with self._lock:
+            rows = list(self._rows)     # D07：锁内取快照，遍历时缓存不被并发替换
+        if not rows:
             return None
         thr = self.threshold if threshold is None else threshold
         best: Pair | None = None
         best_r = thr
         q_set = _char_set(n)
         q_len = len(n)
-        for cand_n, p in self._rows:
+        for cand_n, p in rows:
             # 过滤器 1：长度差超过阈值允许范围，相似度不可能达标
             cl = len(cand_n)
             if not cl or abs(cl - q_len) > max(2, int(q_len * (1 - thr)) + 1):
@@ -203,6 +216,7 @@ class TranslationMemory:
             if r > best_r:
                 best_r, best = r, p
         if best is not None:
+            best = replace(best)            # D07：返回副本，不改缓存对象
             best.score = round(min(best_r, 1.0), 4)
         return best
 
@@ -243,7 +257,8 @@ class TranslationMemory:
                 self._conn.commit()
             except Exception:
                 return False
-        self._dirty = True
+            # D07：_dirty 置位与写库同一把锁内，避免被并发 _reload 清零吞掉。
+            self._dirty = True
         return True
 
     def reinforce(self, src: str, industry: str = "") -> None:
@@ -258,7 +273,7 @@ class TranslationMemory:
                 (time.time(), normalize(src), p.dst),
             )
             self._conn.commit()
-        self._dirty = True
+            self._dirty = True
 
     def forget(self, src: str, dst: str = "") -> int:
         """删除记忆。dst 为空则删掉该中文原句的所有译法。"""
@@ -271,7 +286,7 @@ class TranslationMemory:
                 cur = self._conn.execute("DELETE FROM pair WHERE norm = ?", (n,))
             self._conn.commit()
             n_del = cur.rowcount
-        self._dirty = True
+            self._dirty = True
         return n_del
 
     # ---------------- 统计 / 导出 ----------------

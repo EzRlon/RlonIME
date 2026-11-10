@@ -26,7 +26,6 @@ from ctypes import wintypes
 if sys.platform != "win32":  # pragma: no cover
     raise ImportError("RlonIME 输入内核仅支持 Windows")
 
-from core.sysime import system_ime_composing     # noqa: E402
 
 user32 = ctypes.WinDLL("user32", use_last_error=True)
 kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
@@ -223,12 +222,39 @@ def default_hotkey_table() -> list[HotkeyEntry]:
 MAGIC = 0x5A595A59          # 'ZYZY' 注入标记，回调里识别后直接放行
 
 
+_SHIFTED_OEM = {"`": "~", "\\": "|"}
+
+
+def _raw_char_for(vk: int, shift: bool = False) -> str:
+    """组合态表外符号 → 可打印字符；取不到返回空串（放行物理键）。
+
+    MapVirtualKeyW 不反映 Shift，QA 实测 Shift+` 会被注入成 '`'；
+    对会走这条路径的两个 OEM 键单独补上档字符。
+    """
+    try:
+        user32.MapVirtualKeyW.argtypes = (wintypes.UINT, wintypes.UINT)
+        user32.MapVirtualKeyW.restype = wintypes.UINT
+        code = int(user32.MapVirtualKeyW(vk, 2) or 0)
+        if not code or code > 0xFFFF:
+            return ""
+        ch = chr(code)
+        if shift:
+            ch = _SHIFTED_OEM.get(ch, ch)
+        return ch if ch.isprintable() else ""
+    except Exception:
+        return ""
+
+
 def digit_index(vk: int) -> int:
     """数字键 1-9 → 候选索引 0-8，数字键 0 → 索引 9。"""
     return (vk - VK_0 - 1) if vk > VK_0 else 9
 
 
 # ================================================================ 上屏
+# 审计 D16：SendInput 可能只插入前 N 个事件；记录实际成功数供诊断，
+# 关键是**部分成功绝不整句重发**。
+LAST_SEND_RESULT: tuple[int, int] = (0, 0)
+
 def _ki(vk: int, scan: int, flags: int) -> INPUT:
     inp = INPUT()
     inp.type = 1            # INPUT_KEYBOARD
@@ -258,7 +284,10 @@ def send_unicode_text(text: str) -> bool:
             items.append(_ki(0, code, KEYEVENTF_UNICODE | KEYEVENTF_KEYUP))
     arr = (INPUT * len(items))(*items)
     sent = user32.SendInput(len(items), arr, ctypes.sizeof(INPUT))
-    return sent == len(items)
+    global LAST_SEND_RESULT
+    LAST_SEND_RESULT = (int(sent), len(items))
+    # 部分成功时前半截已上屏：返回 True 让调用方不再重发整句。
+    return sent > 0
 
 
 def send_vk(vk: int, up: bool = False) -> bool:
@@ -431,6 +460,11 @@ class ImeCore:
         self.events: deque[ImeEvent] = deque()
         self._ctrl = self._shift = self._alt = self._win = False
         self._swallowed: set[int] = set()   # 已吞下 keydown 的键，抬起要配套吞
+        self._swallowed_at: dict[int, float] = {}   # 吞键时刻，用于清理陈旧项
+        # 审计 D01：系统输入法组合态由主线程 _poll_sysime 轮询后写入，
+        # 钩子回调只读这个布尔。system_ime_composing() 内部会全局 EnumWindows
+        # + 跨进程 ImmGetContext，绝不能放进 WH_KEYBOARD_LL 回调。
+        self.sys_ime_active = False
         # CapsLock（v3.0）：开启时字母直通大写英文，与系统输入法一致。
         # 以前完全没读这个状态 —— 大写锁定开着打字母仍然拼中文，用户会
         # 以为键盘坏了。做成可注入的 provider，单测不碰真实键盘。
@@ -572,6 +606,11 @@ class ImeCore:
             # keyup，键盘状态机错乱后，SendInput 注入的字符会被一并丢弃。
             if vk in self._swallowed:
                 self._swallowed.discard(vk)
+                ts = self._swallowed_at.pop(vk, None)
+                # 钩子切换/自动重复可能让 keydown 与 keyup 相隔很久；
+                # 超过 3s 视为陈旧项，放行避免吞掉不属于我们的 keyup。
+                if ts is not None and time.monotonic() - ts > 3.0:
+                    return False
                 return True
             if vk in _VK_SHIFT:
                 return self._on_shift_up()
@@ -584,8 +623,20 @@ class ImeCore:
         block = self._decide(vk)
         if block:
             self._swallowed.add(vk)
+            self._swallowed_at[vk] = time.monotonic()
             if self._cad_temp:
                 self._cad_last = time.monotonic()   # 持续输入 ⟹ 临时激活续命
+        else:
+            # 审计 D02：自动重复键在组合态被 reset 后会走放行分支，
+            # 此时必须清掉上一次吞键留下的标记，否则唯一那个 keyup 仍被吞。
+            self._swallowed.discard(vk)
+            self._swallowed_at.pop(vk, None)
+            if len(self._swallowed) > 24:
+                now = time.monotonic()
+                for k in [k for k, t in self._swallowed_at.items()
+                          if now - t > 3.0]:
+                    self._swallowed.discard(k)
+                    self._swallowed_at.pop(k, None)
         return block
 
     def _match_hotkey(self, vk: int) -> str | None:
@@ -692,10 +743,10 @@ class ImeCore:
             self.exit_suggest()
 
         # 系统输入法组合中 → 智语全放行（UX-P0-3）。
-        # 只在「接下来可能被吞」的键路径上判定（a-z 与组合态专用键），
-        # imm32 调用为微秒级，不违钩子不阻塞红线。
-        # 全放行 = 压根不吞，因此「吞 keydown 配套吞 keyup」的状态机不参与。
-        if self.enabled and self._might_swallow(vk) and system_ime_composing():
+        # 审计 D01：判定由主线程轮询写入 self.sys_ime_active，这里只读布尔；
+        # 旧实现在此同步调 system_ime_composing()，实际会全局 EnumWindows
+        # + 跨进程 ImmGetContext，违反钩子不阻塞红线。
+        if self.enabled and self._might_swallow(vk) and self.sys_ime_active:
             self.reset()                # 收掉智语自己的半截拼音（发 cancel）
             return False
 
@@ -812,7 +863,16 @@ class ImeCore:
                 self.reset(emit=False)
                 return True
 
-        # 其它标点/符号：先上屏拼音原文，再把按键交还系统
+        # 审计 D09：表外符号也不能放行物理键（否则符号跑到词前面）。
+        # 把该字符塞进同一条 commit_raw.suffix，由主线程按序发送。
+        ch = _raw_char_for(vk, bool(self._shift))
+        if ch:
+            self.events.append(ImeEvent("commit_raw",
+                                        {"pinyin": self.pinyin,
+                                         "suffix": ch}))
+            self.reset(emit=False)
+            return True
+        # 功能键等取不到可见字符的键：照旧放行
         self.events.append(ImeEvent("commit_raw", {"pinyin": self.pinyin}))
         self.reset(emit=False)
         return False
@@ -839,6 +899,9 @@ class KeyboardHook:
     def start(self, timeout: float = 3.0) -> bool:
         if self.running:
             return True
+        # 审计 D17：上一轮 stop() 超时后线程可能仍活着且钩子还挂着。
+        if self._thread is not None and self._thread.is_alive():
+            return False
         self._ready.clear()
         self._thread = threading.Thread(target=self._run, name="ZhiyuHook",
                                         daemon=True)
@@ -850,6 +913,14 @@ class KeyboardHook:
             user32.PostThreadMessageW(self._tid, WM_QUIT, 0, 0)
         if self._thread:
             self._thread.join(timeout=1.5)
+        # 审计 D17：join 超时说明钩子仍挂着，显式卸载避免残留吞键。
+        if self._thread is not None and self._thread.is_alive():
+            if self._hook:
+                try:
+                    user32.UnhookWindowsHookEx(self._hook)
+                except Exception:
+                    pass
+                self._hook = None
         self._thread = None
         self.running = False
 

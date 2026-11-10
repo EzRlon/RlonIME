@@ -143,12 +143,13 @@ class Chip(QWidget):
         self._f_zh = QFont(family, fs_zh or DS.FS_ZH, QFont.Weight.DemiBold)
         self._f_idx = QFont("Consolas", DS.FS_IDX)
 
-    def measure(self, index: int, zh: str, cap: int = 400) -> int:
-        """按内容测量胶囊宽度（只读，不改控件状态）。
+    def _measure_content(self, index: int, zh: str, cap: int,
+                         max_w: int) -> tuple[str, int, int]:
+        """纯计算：返回 (省略后文本, 序号宽, 胶囊宽)，只读、不改控件状态。
 
-        M1：序号宽度用字体实测（Consolas 9px 的 "1" 与 "9" 等宽，但不同
-        字号/字体下不一定），文本按 cap 省略后再测。布局按这个值累加，
-        总宽超了就少放几枚 —— 不再交给 QHBoxLayout 硬挤。
+        D11：measure / content_width / set_content 共用这一份公式，保证
+        「分页预估宽度」与「set_content 后 c.width()」严格同口径 —— 否则
+        窄条下预估仍按 cap=400 报 400px，渲染却已被 max_w 压到几十 px。
         """
         fm_zh = QFontMetrics(self._f_zh)
         text = fm_zh.elidedText(zh or "", Qt.TextElideMode.ElideRight, cap)
@@ -157,27 +158,37 @@ class Chip(QWidget):
                 str(index + 1)))
             fixed = 6 + idx_w + 4 + 8
         else:
+            idx_w = 0
             fixed = 6 + 8
-        return max(fixed + fm_zh.horizontalAdvance(text), 30)
+        if max_w > 0 and fixed + fm_zh.horizontalAdvance(text) > max_w:
+            text = fm_zh.elidedText(zh or "", Qt.TextElideMode.ElideRight,
+                                    max(16, max_w - fixed))
+        return text, idx_w, max(fixed + fm_zh.horizontalAdvance(text), 30)
+
+    def measure(self, index: int, zh: str, cap: int = 400) -> int:
+        """按内容测量胶囊宽度（只读，不改控件状态）。
+
+        M1：序号宽度用字体实测（Consolas 9px 的 "1" 与 "9" 等宽，但不同
+        字号/字体下不一定），文本按 cap 省略后再测。布局按这个值累加，
+        总宽超了就少放几枚 —— 不再交给 QHBoxLayout 硬挤。
+        """
+        return self._measure_content(index, zh, cap, 0)[2]
+
+    def content_width(self, index: int, zh: str, cap: int = 400,
+                      max_w: int = 0) -> int:
+        """set_content 后的实际胶囊宽度（含 max_w 二次省略），只读。
+
+        D11：分页 / _stable_w 用它预估，与 _fit_geometry 的 c.width() 同口径。
+        """
+        return self._measure_content(index, zh, cap, max_w)[2]
 
     def set_content(self, index: int, zh: str, cap: int = 400,
                     max_w: int = 0) -> None:
         """设置内容；max_w>0 时按像素上限二次省略（单枚超宽的兜底）。"""
         self.index = index
-        fm_zh = QFontMetrics(self._f_zh)
-        text = fm_zh.elidedText(zh or "", Qt.TextElideMode.ElideRight, cap)
-        if index >= 0:
-            self._idx_w = max(11, QFontMetrics(self._f_idx).horizontalAdvance(
-                str(index + 1)))
-            fixed = 6 + self._idx_w + 4 + 8
-        else:
-            self._idx_w = 0
-            fixed = 6 + 8
-        if max_w > 0 and fixed + fm_zh.horizontalAdvance(text) > max_w:
-            text = fm_zh.elidedText(zh or "", Qt.TextElideMode.ElideRight,
-                                    max(16, max_w - fixed))
+        text, self._idx_w, w = self._measure_content(index, zh, cap, max_w)
         self._zh = text
-        self._w = max(fixed + fm_zh.horizontalAdvance(text), 30)
+        self._w = w
         self.setFixedWidth(self._w)
         self.update()
 
@@ -513,6 +524,7 @@ class CandidateBar(QWidget):
         self._noact_applied = False
         self.collapsed = False       # 用户点了 ✕ 收起（后台提示不得再弹条）
         self._anim = None
+        self._anim_pos = None       # D10：入场动画单实例（opacity / pos 各一份）
         self._hide_timer = QTimer(self)
         self._hide_timer.setSingleShot(True)
         self._hide_timer.timeout.connect(self.close_panel)
@@ -1091,9 +1103,17 @@ class CandidateBar(QWidget):
         self._fit_geometry()
 
     # ---------------- M1 溢出治理：分页 ----------------
-    def _chip_width(self, i: int) -> int:
-        """第 i 个候选的胶囊实测宽度（用池内首个胶囊的字体）。"""
-        return self.chips[0].measure(i, self.candidates[i].zh)
+    def _chip_width(self, i: int, max_w: int = 0) -> int:
+        """第 i 个候选的胶囊实际宽度（与 set_content 后 c.width() 同口径）。
+
+        D11：用 set_content 的 max_w 省略口径，而不是 cap=400 的 measure ——
+        窄条下长候选 measure 仍报 400px，渲染却已被 max_w 压到几十 px，
+        分页会无谓地切成一页一枚、条宽也跟着抖。
+        """
+        if max_w <= 0:
+            max_w = getattr(self, "_avail_w", CHIPS_AVAIL_W)
+        return self.chips[0].content_width(
+            i, self.candidates[i].zh, max_w=max_w)
 
     def _compute_pages(self, avail: int) -> list[tuple[int, int]]:
         """按可用宽度把候选切成若干页，返回 [(起始下标, 枚数), ...]。
@@ -1101,6 +1121,9 @@ class CandidateBar(QWidget):
         规则：能放几枚放几枚；**如果后面还有候选**，本页必须给「…+N」
         徽标预留 BADGE_W + 间距。绝不让总宽超过 avail —— 这正是
         「输入 k 时折弯系数盖住后续序号」的根因（旧版无脑 show 满 9 枚）。
+
+        D11：每枚宽度按 set_content 后的实际宽度（max_w=avail）预估，且
+        首枚也做超宽检查 —— 单枚就超宽时仍至少显示 1 枚，不空页/不死循环。
         """
         n = len(self.candidates)
         if n <= 0:
@@ -1112,11 +1135,14 @@ class CandidateBar(QWidget):
             w = 0
             cnt = 0
             while i + cnt < n:
-                cw = self._chip_width(i + cnt)
+                cw = self._chip_width(i + cnt, avail)
                 add = cw + (gap if cnt else 0)
                 more_after = (i + cnt + 1) < n
                 limit = avail - ((self._badge_w + gap) if more_after else 0)
-                if cnt > 0 and w + add > limit:
+                if w + add > limit:
+                    # 首枚就超宽：仍保证本页 1 枚，避免空页 / 死循环。
+                    if cnt == 0:
+                        cnt = 1
                     break
                 w += add
                 cnt += 1
@@ -1169,7 +1195,8 @@ class CandidateBar(QWidget):
             for st, cn in self._pages:
                 # 口径必须和 _fit_geometry 的 chips_need 一致（每枚都带一个
                 # GAP），否则两页之间会差一个 GAP（实测 4px，条子仍会微跳）
-                w = sum(self._chip_width(st + k) for k in range(cn))
+                w = sum(self._chip_width(st + k, self._avail_w)
+                        for k in range(cn))
                 w += DS.GAP * cn
                 if st + cn < total:
                     w += self._badge_w + DS.GAP
@@ -1573,6 +1600,17 @@ class CandidateBar(QWidget):
     def close_panel(self) -> None:
         self._hide_timer.stop()
         self.hover.cancel()
+        # D10：停掉入场动画并复位不透明度 —— 否则 hide 时动画把窗口停在
+        # opacity≈0（下次显示像"消失"）或 pos 停在半途（位置跳动）。
+        if self._anim is not None:
+            self._anim.stop()
+        if self._anim_pos is not None:
+            self._anim_pos.stop()
+        self.setWindowOpacity(DS.OPACITY)
+        # D05：统一收起语义。托盘单击 / 右键「隐藏」都走 toggle_panel()
+        # → close_panel()，此前只有 hide_to_tray / ✕ 置 collapsed，后台异步
+        # 翻译结果经 show_result()/show_hint() 会把已收起的条子弹回来。
+        self.collapsed = True
         if self.mode == MODE_SUGGEST and self.ime is not None:
             self.ime.exit_suggest()
         self.sug_host.hide()
@@ -1580,22 +1618,33 @@ class CandidateBar(QWidget):
         self.closed.emit()
 
     def _animate_in(self) -> None:
-        self.setWindowOpacity(0.0)
-        a = QPropertyAnimation(self, b"windowOpacity", self)
-        a.setDuration(120)          # I03：100→120ms 更柔和
+        # D10：复用单实例 + start 前 stop 旧的，杜绝连续提示（120ms 内）或
+        # 提示中 hide 时多个 QPropertyAnimation 并发改同一个 windowOpacity /
+        # pos（窗口会停在 opacity≈0 或位置跳动）。
+        a = self._anim
+        if a is None:
+            a = QPropertyAnimation(self, b"windowOpacity", self)
+            a.setDuration(120)          # I03：100→120ms 更柔和
+            a.setEasingCurve(QEasingCurve.Type.OutCubic)
+            self._anim = a
+        else:
+            a.stop()
         a.setStartValue(0.0)
         a.setEndValue(DS.OPACITY)
-        a.setEasingCurve(QEasingCurve.Type.OutCubic)
+        b = self._anim_pos
+        if b is None:
+            b = QPropertyAnimation(self, b"pos", self)
+            b.setDuration(120)
+            b.setEasingCurve(QEasingCurve.Type.OutCubic)
+            self._anim_pos = b
+        else:
+            b.stop()
+        self.setWindowOpacity(0.0)
         a.start()
-        self._anim = a
         pos = self.pos()
-        b = QPropertyAnimation(self, b"pos", self)
-        b.setDuration(120)
         b.setStartValue(QPoint(pos.x(), pos.y() + 5))
         b.setEndValue(pos)
-        b.setEasingCurve(QEasingCurve.Type.OutCubic)
         b.start()
-        self._anim_pos = b
 
     # ---------------- 四态 ----------------
     def show_input(self, pinyin: str) -> None:
@@ -2003,7 +2052,9 @@ class CandidateBar(QWidget):
         if not self.candidates:
             return False
         if not self._pages:
-            self._pages = self._compute_pages(CHIPS_AVAIL_W)
+            # D11：空页重算也优先用 _avail_w（存在时），与 _layout_chips 同口径。
+            self._pages = self._compute_pages(
+                getattr(self, "_avail_w", CHIPS_AVAIL_W))
         n = len(self._pages)
         if n <= 1:
             before = self.active_index

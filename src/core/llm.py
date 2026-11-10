@@ -18,6 +18,7 @@
 """
 from __future__ import annotations
 
+import ipaddress
 import json
 import re
 import sys
@@ -28,10 +29,12 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Callable
+from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from core import secrets as _secrets        # noqa: E402  S03：DPAPI 凭据保护
 
-# 预设服务商：key -> (显示名, base_url, 默认模型, 是否需 API Key, 申请地址)
+# 预设服务商：key -> 服务商字典（name / base_url / model / need_key / signup）
 PRESETS: dict[str, dict] = {
     "glm": {
         "name": "智谱 GLM-4-Flash（免费）",
@@ -78,11 +81,107 @@ class LLMError(Exception):
     pass
 
 
+class ResponseTooLarge(LLMError):
+    """响应体超过字节上限（可捕获，交调用方降级）。"""
+
+
+# ---------------- 安全：端点校验 / 响应上限 / 凭据解密（S03/S04/S07） ----------------
+MAX_RESPONSE_BYTES = 1024 * 1024        # 1 MiB：响应体硬上限，防被劫持端点 OOM
+
+# 云元数据 / 常见内网主机名黑名单（域名只做字符串匹配，不做 DNS 解析以免阻塞）
+_BLOCKED_HOSTS = frozenset({
+    "169.254.169.254",
+    "metadata.google.internal",
+    "metadata.goog",
+    "metadata",
+})
+# 本地明文白名单：仅精确回环主机名 + http（Ollama 等本地自建服务）
+_LOCAL_PLAINTEXT_HOSTS = frozenset({"127.0.0.1", "localhost", "::1"})
+
+
+def validate_endpoint(url: str) -> tuple[bool, str]:
+    """校验自定义 base_url，返回 (是否放行, 理由)。
+
+    规则：仅 https 放行；例外放行 http://127.0.0.1 / localhost 本地自建服务
+    （理由标注「本地明文」）。拒绝 file:// 等非 http(s) scheme、云元数据地址、
+    私网 / loopback / link-local / reserved IP、.local 域名、带 userinfo 的
+    URL、空 host。域名只做字符串黑名单，不做 DNS 解析（避免阻塞 / DNS rebinding）。
+    """
+    raw = str(url or "").strip()
+    if not raw:
+        return False, "端点为空"
+    try:
+        p = urlsplit(raw)
+    except ValueError:
+        return False, "URL 无法解析"
+    scheme = (p.scheme or "").lower()
+    if scheme not in ("http", "https"):
+        return False, "仅允许 http(s) 协议（拒绝 file:// 等）"
+    # userinfo：http://user@host 会把真正 host 藏进用户名，是常见 SSRF 绕过
+    if p.username is not None or p.password is not None:
+        return False, "URL 不允许携带用户信息（防 @ 混淆）"
+    host = (p.hostname or "").lower().rstrip(".")
+    if not host:
+        return False, "缺少主机名"
+    if host in _BLOCKED_HOSTS:
+        return False, "禁止云元数据 / 内网元数据地址"
+    if host.endswith(".local"):
+        return False, "禁止 .local 域名"
+    if scheme == "http":
+        if host in _LOCAL_PLAINTEXT_HOSTS:
+            return True, "本地明文（http 回环自建服务，密钥不出本机）"
+        return False, "自定义端点必须使用 https（http 仅限本地明文白名单）"
+    # 到这里必为 https：IP 字面量用 ipaddress 判定，域名仅靠上面的黑名单
+    try:
+        ip = ipaddress.ip_address(host)
+    except ValueError:
+        ip = None
+    if ip is not None and (
+        ip.is_private or ip.is_loopback or ip.is_link_local
+        or ip.is_reserved or ip.is_multicast or not ip.is_global
+    ):
+        return False, f"禁止非公网 IP 字面量（{ip}）"
+    return True, "https 公网端点"
+
+
+def read_limited(resp, limit: int = MAX_RESPONSE_BYTES) -> bytes:
+    """读取响应体：先校验 Content-Length，再限制实际读取字节数，超限抛异常。"""
+    try:
+        cl = resp.headers.get("Content-Length")
+    except Exception:
+        cl = None
+    if cl is not None:
+        try:
+            if int(cl) > limit:
+                raise ResponseTooLarge(
+                    f"响应体声明长度 {cl} 超过上限 {limit} 字节")
+        except ValueError:
+            pass
+    data = resp.read(limit + 1)
+    if len(data) > limit:
+        raise ResponseTooLarge(f"响应体超过上限 {limit} 字节")
+    return data
+
+
+def _normalize_cfg(cfg: dict | None) -> dict:
+    """配置副本：把 api_key 统一解密成明文供请求使用（S03）。
+
+    unprotect 对旧明文原样返回、对 DPAPI 密文解密；只改副本，不改调用方
+    传入的 dict（避免把明文回写进持久化配置）。
+    """
+    out = dict(cfg or {})
+    key = out.get("api_key")
+    if isinstance(key, str) and key:
+        out["api_key"] = _secrets.unprotect(key)
+    return out
+
+
 class LLMClient:
     """OpenAI 兼容的极简客户端。"""
 
     def __init__(self, cfg: dict | None = None):
-        self.cfg = dict(cfg or {})
+        # S03：无论配置里是旧明文还是 DPAPI 密文，内部一律存明文供请求使用
+        self.cfg = _normalize_cfg(cfg)
         self._cache: dict[str, str] = {}
         self._lock = threading.Lock()
         self.last_error: str = ""
@@ -90,7 +189,7 @@ class LLMClient:
     # ---------------- 配置 ----------------
     def configure(self, cfg: dict) -> None:
         with self._lock:
-            self.cfg = dict(cfg or {})
+            self.cfg = _normalize_cfg(cfg)
             self._cache.clear()
         self.last_error = ""
 
@@ -132,6 +231,11 @@ class LLMClient:
         api_key = self.cfg.get("api_key", "") or "ollama"
         base_url = str(self.cfg.get("base_url", "")).rstrip("/")
         model = self.cfg.get("model", "")
+        # S04：请求发出前校验端点，失败直接抛错，绝不静默改用别的地址。
+        ok, why = validate_endpoint(base_url)
+        if not ok:
+            self.last_error = f"接口地址不安全：{why}"
+            raise LLMError(self.last_error)
         payload: dict = {
             "model": model,
             "messages": [
@@ -165,11 +269,12 @@ class LLMClient:
             else:
                 opener = urllib.request.build_opener()
             with opener.open(req, timeout=timeout) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
+                # S07：带字节上限读取，防被劫持端点把托盘进程撑爆
+                data = json.loads(read_limited(resp).decode("utf-8"))
         except urllib.error.HTTPError as e:
             body = ""
             try:
-                body = e.read().decode("utf-8", "ignore")[:200]
+                body = e.read(4096).decode("utf-8", "ignore")[:200]
             except Exception:
                 pass
             self.last_error = f"HTTP {e.code}: {body}"

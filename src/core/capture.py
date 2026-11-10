@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import ctypes
 import sys
+import threading
 import time
 from ctypes import wintypes
 from dataclasses import dataclass
@@ -42,6 +43,11 @@ DEFAULT_TIMEOUT = 0.45
 # 轮询间隔：8ms 是手感与 CPU 占用的平衡点（一轮最多 ~55 次 GetClipboardSequenceNumber，
 # 每次为内核计数器读取，开销可忽略）。
 POLL_INTERVAL = 0.008
+
+# D13：read_selection 重入保护。同一时刻只允许一次取词，热键在
+# processEvents 里重入时直接返回失败结果，不抛异常、不二次动剪贴板。
+_capturing = False
+_capture_lock = threading.Lock()
 
 
 def wait_modifiers_released(timeout: float = 0.45) -> bool:
@@ -134,7 +140,24 @@ def read_selection(timeout: float = DEFAULT_TIMEOUT,
 
     时序：备份 → Ctrl+C → 等序列号变化 → 读文本 → 还原。
     整个过程在主线程完成，典型耗时 25~60ms，用户无感。
+
+    D13：整段取词加重入保护，且剪贴板还原放进 finally —— 任何异常 /
+    早返回路径都不会把 Ctrl+C 的新内容留在用户剪贴板里。
     """
+    global _capturing
+    with _capture_lock:
+        if _capturing:
+            # 重入（热键在 processEvents 里再次触发）：直接失败，不抛异常。
+            return CaptureResult(reason="timeout")
+        _capturing = True
+    try:
+        return _read_selection(timeout, restore)
+    finally:
+        with _capture_lock:
+            _capturing = False
+
+
+def _read_selection(timeout: float, restore: bool) -> CaptureResult:
     from PySide6.QtWidgets import QApplication
 
     app = QApplication.instance()
@@ -147,38 +170,40 @@ def read_selection(timeout: float = DEFAULT_TIMEOUT,
     # 必须先等热键的修饰键松开，否则 Ctrl+C 会变成 Ctrl+Alt+C
     wait_modifiers_released()
 
-    snap = snapshot_clipboard() if restore else None
-    seq0 = _u32.GetClipboardSequenceNumber()
+    snap: dict[str, bytes] | None = None
+    try:
+        snap = snapshot_clipboard() if restore else None
+        seq0 = _u32.GetClipboardSequenceNumber()
 
-    if not send_chord(VK_C, ctrl=True):
-        return CaptureResult(reason="timeout")
+        if not send_chord(VK_C, ctrl=True):
+            return CaptureResult(reason="timeout")
 
-    text = ""
-    changed = False
-    deadline = time.perf_counter() + timeout
-    while time.perf_counter() < deadline:
-        if _u32.GetClipboardSequenceNumber() != seq0:
-            changed = True
-            break
-        time.sleep(POLL_INTERVAL)
-        QApplication.processEvents()     # 让 Qt 感知到系统剪贴板变化
+        text = ""
+        changed = False
+        deadline = time.perf_counter() + timeout
+        while time.perf_counter() < deadline:
+            if _u32.GetClipboardSequenceNumber() != seq0:
+                changed = True
+                break
+            time.sleep(POLL_INTERVAL)
+            QApplication.processEvents()     # 让 Qt 感知到系统剪贴板变化
 
-    if changed:
-        # 给目标程序一点时间把数据真正写入剪贴板
-        time.sleep(0.012)
-        QApplication.processEvents()
-        md = cb.mimeData()
-        if md is not None and md.hasText():
-            text = md.text().strip()
+        if changed:
+            # 给目标程序一点时间把数据真正写入剪贴板
+            time.sleep(0.012)
+            QApplication.processEvents()
+            md = cb.mimeData()
+            if md is not None and md.hasText():
+                text = md.text().strip()
 
-    if restore:
-        restore_clipboard(snap)
-
-    if not changed:
-        return CaptureResult(reason="timeout")
-    if not text:
-        return CaptureResult(reason="empty")
-    return CaptureResult(text=text, ok=True, reason="ok")
+        if not changed:
+            return CaptureResult(reason="timeout")
+        if not text:
+            return CaptureResult(reason="empty")
+        return CaptureResult(text=text, ok=True, reason="ok")
+    finally:
+        if restore:
+            restore_clipboard(snap)
 
 
 # ================================================================
